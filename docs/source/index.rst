@@ -8,7 +8,7 @@
     :format: html
 
 
-Welcome to ROS End-Effector's documentation!
+Welcome to ROS End-Effector's documentation! :D
 ======================================================
 
 
