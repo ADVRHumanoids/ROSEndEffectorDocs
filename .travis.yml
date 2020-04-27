@@ -1,0 +1,35 @@
+os: linux
+language: cpp
+compiler: g++
+dist: xenial
+notifications:
+  email:
+    recipients:
+      - luca.muratore89@gmail.com
+    on_success: never
+    on_failure: always
+
+before_install:
+
+install:
+  - sudo apt-get install python3-sphinx
+  - sudo pip install sphinx_rtd_theme #readthedocs theme
+
+script: 
+
+  #build sphynx doc
+  - cd docs
+  - make html
+  - cd ..
+
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  local_dir: docs/build/html
+  on:
+    branch: master
+
+
