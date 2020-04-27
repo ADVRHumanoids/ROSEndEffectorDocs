@@ -54,8 +54,9 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'ROSEndEffector'
-copyright = '2020, Davide Torielli'
+copyright = '2020, Luca Muratore, Davide Torielli'
 author = 'Davide Torielli'
+author = 'Luca Muratore'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
