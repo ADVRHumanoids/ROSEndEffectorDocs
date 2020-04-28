@@ -88,8 +88,12 @@
               <p class="caption"><span class="caption-text">Usage</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#install-external-system-dependencies">Install External System Dependencies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-ros-end-effector-package-from-sources">Install ROS End-Effector package from sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#full-installation-suggested">Full Installation (suggested)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-installation">Custom Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-external-system-dependencies">Install External System Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-ros-end-effector-package-from-sources">Install ROS End-Effector package from sources</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#installation-issues">Installation issues</a></li>
 </ul>
 </li>
@@ -179,17 +183,38 @@
             
   <span class="target" id="install"></span><div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>ROS-EndEffector is a ROS package tested on ROS kinetic with Ubuntu 16.04</p>
+<p>ROS End-Effector is a ROS package tested on ROS kinetic with Ubuntu 16.04.
+<span class="raw-html"><br /></span>
+So, first, be sure to have ROS kinetic installed as described <a class="reference external" href="http://wiki.ros.org/kinetic/Installation/Ubuntu">here</a>.</p>
 <p><strong>Note</strong> We are going to use the abreviation ROSEE for the ROS End-Effector from now on</p>
+<div class="section" id="full-installation-suggested">
+<h2>Full Installation (suggested)<a class="headerlink" href="#full-installation-suggested" title="Permalink to this headline">¶</a></h2>
+<p>The following steps will guide you to install all packages of ROSEE using a <em>.rosintall</em> file.
+<span class="raw-html"><br /></span>
+ROS End-Effector is in development. Actually the most updated and working branch is the <em>devel</em> one, so you will
+clone the “devels” branch of each repository.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone -b devel https://github.com/ADVRHumanoids/ROSEndEffectorPackageManager.git</span>
+<span class="go">cd ROSEndEffectorPackageManager</span>
+<span class="go">./setup.sh</span>
+<span class="go">cd src</span>
+<span class="go">catkin_init_workspace</span>
+<span class="go">rosinstall .</span>
+<span class="go">catkin_make</span>
+</pre></div>
+</div>
+<p><em>Note</em> The sh script will install external necessary dependencies with apt-get</p>
+</div>
+<div class="section" id="custom-installation">
+<h2>Custom Installation<a class="headerlink" href="#custom-installation" title="Permalink to this headline">¶</a></h2>
+<p>If you want, you can clone only the single ROSEE packages, without using the rosintall. Here are the steps</p>
 <div class="section" id="install-external-system-dependencies">
-<h2>Install External System Dependencies<a class="headerlink" href="#install-external-system-dependencies" title="Permalink to this headline">¶</a></h2>
+<h3>Install External System Dependencies<a class="headerlink" href="#install-external-system-dependencies" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo apt-get install ros-kinetic-moveit #moveit</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="install-ros-end-effector-package-from-sources">
-<h2>Install ROS End-Effector package from sources<a class="headerlink" href="#install-ros-end-effector-package-from-sources" title="Permalink to this headline">¶</a></h2>
-<p><strong>Note</strong> A .rosinstall file will be available in future for a single-command way to install all</p>
+<h3>Install ROS End-Effector package from sources<a class="headerlink" href="#install-ros-end-effector-package-from-sources" title="Permalink to this headline">¶</a></h3>
 <p><strong>IMPORTANT</strong> : ROSEE is a project under development. When cloning, be sure to download the branch you really want. Currently the newest features can be found in the <em>devel</em> branch (so, in the commands below substitute &lt;branch_you_want&gt; with devel. Note that also the other ROSEEE related packages should be used with the right branch.</p>
 <p>The next steps will guide you to the creation of a new catkin_workspace, for clone all the necessary repository and compile them all</p>
 <ul>
@@ -221,7 +246,7 @@
 </div>
 </li>
 </ul>
-<p><strong>TODO</strong> you can see details on each optional plugin in their relative page of this doc
+<p><strong>NOTE</strong> you can see details on each optional plugin in their relative page of this doc
 <span class="raw-html"><br /></span>
 <span class="raw-html"><br /></span></p>
 </li>
@@ -237,6 +262,7 @@
 </div>
 </li>
 </ul>
+</div>
 </div>
 <div class="section" id="installation-issues">
 <h2>Installation issues<a class="headerlink" href="#installation-issues" title="Permalink to this headline">¶</a></h2>
