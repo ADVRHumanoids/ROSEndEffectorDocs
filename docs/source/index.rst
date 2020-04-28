@@ -49,13 +49,18 @@ CI powered by Travis CI (.org)
    install
    usage
    examples
+
+.. toctree::
+   :maxdepth: 2
+   :caption: The Main Component
+  
+   actions
+   findActions
    
 .. toctree::
    :maxdepth: 2
-   :caption: Components
-   
-   actions
-   nodes
+   :caption: Other Components
+  
    roseeGui
    roseeGazeboPlugin
    
