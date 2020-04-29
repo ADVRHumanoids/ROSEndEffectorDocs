@@ -181,33 +181,22 @@
 </pre></div>
 </div>
 </li>
-<li><p class="first">Run Test Run Test OPTION 1 (Colorful prints but all tests togheter)</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">roslaunch ros_end_effector googleTest_run_all.launch</span>
+<li><p class="first">Run Test OPTION 1 (suggested)</p>
+<p>Multiple tests on multiple end-effectors will be launched.
+Check the cmake to change/add the end-effectors for the tests</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">make test ARGS=&quot;-V&quot; #or ctest --verbose</span>
 </pre></div>
 </div>
-<p>Check the <strong>googleTest_run_all.launch</strong> file to change the hand for the tests
+</li>
+<li><p class="first">Run Test OPTION 2 (Colorful prints but all tests togheter)</p>
+<p>This is old way kept here only for reference, and it should still works anyway. Roscore is runned in
+the test itself so there isn’t the need to run external roscore before the tests, or using roslaunch.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">roslaunch ros_end_effector old_googleTest_run_all.launch</span>
+</pre></div>
+</div>
+<p>Check the <strong>old_googleTest_run_all.launch</strong> file to change the hand for the tests
 <span class="raw-html"><br /></span>
 <span class="raw-html"><br /></span></p>
-</li>
-<li><p class="first">Run Test OPTION 2 (each test sequentially)</p>
-<blockquote>
-<div><p>With  <code class="code docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span> <span class="pre">ARGS=&quot;-V&quot;</span></code> we first need to load the urdf and srdf file “manually” with <code class="code docutils literal notranslate"><span class="pre">rosparam</span> <span class="pre">set</span> <span class="pre">[..]</span></code>, for example:</p>
-<p>for test_ee hand:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> <span class="k">for</span> test_ee hand
-<span class="go">rosparam set -t $(rospack find ros_end_effector)/configs/urdf/test_ee.urdf robot_description</span>
-<span class="go">rosparam set -t $(rospack find ros_end_effector)/configs/srdf/test_ee.srdf robot_description_semantic</span>
-<span class="go">make test ARGS=&quot;-V&quot;</span>
-</pre></div>
-</div>
-<p>OR, for for two_finger hand:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> <span class="k">for</span> two_finger hand
-<span class="go">rosparam set -t $(rospack find ros_end_effector)/configs/urdf/two_finger.urdf robot_description</span>
-<span class="go">rosparam set -t $(rospack find ros_end_effector)/configs/srdf/two_finger.srdf robot_description_semantic</span>
-<span class="go">make test ARGS=&quot;-V&quot;</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p>Similar for other hands.</p>
 </li>
 </ul>
 </div>
