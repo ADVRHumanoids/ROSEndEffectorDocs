@@ -70,7 +70,7 @@ The same yaml files are also parsed by the same node to test (and print) the cor
 **WARNING** old action *yaml* files will be ovewritten every time you run again the node.
 Also, take care to generate correctly the SRDF (as described above).
 
-
+.. _controlEEWithROSEE:
 
 Control your End-Effector with ROSEE (online phase)
 ####################################################
