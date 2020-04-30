@@ -30,6 +30,7 @@ clone the "devels" branch of each repository.
   cd src
   catkin_init_workspace
   rosinstall .
+  cd ..
   catkin_make
   
 *Note* The sh script will install external necessary dependencies with apt-get
