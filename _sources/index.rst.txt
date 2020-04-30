@@ -56,6 +56,7 @@ CI powered by Travis CI (.org)
   
    actions
    findActions
+   rosTopics
    
 .. toctree::
    :maxdepth: 2

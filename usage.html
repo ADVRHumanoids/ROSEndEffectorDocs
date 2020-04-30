@@ -103,6 +103,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="actions.html">ROS End-Effector Grasping Actions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="findActions.html">FindActions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rosTopics.html">ROS Topics Structures</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Other Components</span></p>
 <ul>
@@ -234,7 +235,7 @@ The same yaml files are also parsed by the same node to test (and print) the cor
 Also, take care to generate correctly the SRDF (as described above).</p>
 </div>
 <div class="section" id="control-your-end-effector-with-rosee-online-phase">
-<h2>Control your End-Effector with ROSEE (online phase)<a class="headerlink" href="#control-your-end-effector-with-rosee-online-phase" title="Permalink to this headline">¶</a></h2>
+<span id="controleewithrosee"></span><h2>Control your End-Effector with ROSEE (online phase)<a class="headerlink" href="#control-your-end-effector-with-rosee-online-phase" title="Permalink to this headline">¶</a></h2>
 <p>Now you can run the main controller.
 This node will take grasping actions command (received as <em>ROS actions</em>) and will send joint positions to the simulation/real robot.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> <span class="nb">source</span> the setup.bash of package where robot meshes are
