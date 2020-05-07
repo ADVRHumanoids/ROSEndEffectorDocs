@@ -188,7 +188,7 @@ These kind of actions are created similarly to generic ones. The difference is t
 
     actionTimed.insertAction( mapsHandler.getPrimitive("singleJointMultipleTips_3", "left_hand_Finger_Spread"), 0, 0.2, 0, 0.5, "SPREAD");
         
-    actionTimed.insertAction( mapsHandler.getPrimitive("pinchTight", std::make_pair("left_hand_c", "left_hand_q")), 0, 0.2, 0, 1, "PINCH");
+    actionTimed.insertAction( mapsHandler.getPrimitive("pinchTight", std::make_pair("thumb", "pinky")), 0, 0.2, 0, 1, "PINCH");
 
     actionTimed.print();
         
