@@ -121,7 +121,7 @@ For example, to publish:
       action_name: 'pinchTight'
       action_type: 0
       actionPrimitive_type: 0
-      selectable_items: ['left_hand_c', 'left_hand_s']
+      selectable_items: ['index', 'thumb']
       percentage: 1.0" 
 
 **NOTE** the important lines are the last ones.
