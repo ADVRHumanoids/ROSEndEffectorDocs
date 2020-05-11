@@ -244,7 +244,7 @@ This node will take grasping actions command (received as <em>ROS actions</em>) 
 </div>
 <p>This command will load ROSEE controller node, togheter with rviz for visualization purposes.</p>
 <blockquote>
-<div><strong>Note</strong> You can add the argument <code class="code docutils literal notranslate"><span class="pre">inSlider:=true</span></code> if you want to not run ROSEE controller but load a joint publisher GUI to command directly each joint position.</div></blockquote>
+<div><strong>Note</strong> Instead of this, you can launch <code class="code docutils literal notranslate"><span class="pre">roslaunch</span> <span class="pre">ros_end_effector</span> <span class="pre">jsp_startup.launch</span> <span class="pre">hand_name:=my_hand</span></code> if you want to not run ROSEE controller but load a joint publisher GUI to command directly each joint position. This can be useful to visualize the hand and try to move it setting joints positions thanks to ROS tools.</div></blockquote>
 <p>In another terminal, you can run the GUI to easy send the action parsed before. Only be sure to have rosee_gui installed (one of the optional dependencies indicated in <a class="reference internal" href="install.html#install"><span class="std std-ref">Installation</span></a> section).</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">roslaunch rosee_gui gui.launch #no hand name is needed</span>
 </pre></div>
