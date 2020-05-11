@@ -85,7 +85,7 @@ This node will take grasping actions command (received as *ROS actions*) and wil
   
 This command will load ROSEE controller node, togheter with rviz for visualization purposes.
 
-  **Note** You can add the argument :code:`inSlider:=true` if you want to not run ROSEE controller but load a joint publisher GUI to command directly each joint position.
+  **Note** Instead of this, you can launch :code:`roslaunch ros_end_effector jsp_startup.launch hand_name:=my_hand` if you want to not run ROSEE controller but load a joint publisher GUI to command directly each joint position. This can be useful to visualize the hand and try to move it setting joints positions thanks to ROS tools.
 
 In another terminal, you can run the GUI to easy send the action parsed before. Only be sure to have rosee_gui installed (one of the optional dependencies indicated in :ref:`Installation <install>` section).
 
