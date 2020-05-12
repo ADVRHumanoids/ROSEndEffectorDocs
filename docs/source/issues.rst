@@ -8,7 +8,7 @@ Possible Issues
 
 - From 28-01-2020 the *use_gui* param (in launch files) gives an error because it is deprecated. This causes the sliders of joint state publisher not shown. To solve : 
 
-  .. code-block:: console
+  .. code-block:: bash
   
     sudo apt install ros-kinetic-joint-state-publisher-gui
     

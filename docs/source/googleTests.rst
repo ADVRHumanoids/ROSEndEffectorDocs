@@ -10,7 +10,7 @@ This is the developer zone for advanced users.
 
 - Compile
 
-  .. code-block:: console
+  .. code-block:: bash
   
     cd <ROSEE_pkg_path>/build
     make tests
@@ -21,7 +21,7 @@ This is the developer zone for advanced users.
   Multiple tests on multiple end-effectors will be launched. 
   Check the cmake to change/add the end-effectors for the tests
    
-  .. code-block:: console
+  .. code-block:: bash
     
     make test ARGS="-V" #or ctest --verbose
       
@@ -31,7 +31,7 @@ This is the developer zone for advanced users.
   This is old way kept here only for reference, and it should still works anyway. Roscore is runned in
   the test itself so there isn't the need to run external roscore before the tests, or using roslaunch.
 
-  .. code-block:: console
+  .. code-block:: bash
   
     roslaunch ros_end_effector old_googleTest_run_all.launch 
     

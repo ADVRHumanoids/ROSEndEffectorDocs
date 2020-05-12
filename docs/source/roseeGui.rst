@@ -14,7 +14,7 @@ How To Install
 
 **NOTE** You probably already installed this if you have followed the steps in :ref:`Install <install>` section
 
-.. code-block:: console
+.. code-block:: bash
 
   git clone -b <branch_you_want> https://github.com/ADVRHumanoids/rosee_gui
   

@@ -59,7 +59,7 @@ How to Install
 
 **NOTE** You probably already installed this if you have followed the steps in :ref:`Install <install>` section
 
-.. code-block:: console
+.. code-block:: bash
 
   git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins.git #necessary external plugin
   git clone -b <branch_you_want> https://github.com/ADVRHumanoids/rosee_gazebo_plugins.git
@@ -74,21 +74,21 @@ To run ROS End-Effector as a whole, follow the guide in :ref:`How to use ROS End
 
 - Anyway, ROS End-Effector Gazebo Plugins is a package that run independently, so you can also launch it alone:
 
-  .. code-block:: console
+  .. code-block:: bash
   
     roslaunch rosee_gazebo_plugins twofinger.launch
 
 
 - To run the dynamic reconfigurator:
   
-  .. code-block:: console
+  .. code-block:: bash
   
     rosrun rosee_gazebo_plugins DynReconfigure two_finger
 
 
 - Also useful
 
-  .. code-block:: console
+  .. code-block:: bash
   
     rqt  
     

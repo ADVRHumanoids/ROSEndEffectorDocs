@@ -45,7 +45,7 @@ In the *SRDF* file you can also indicate some joints as passive in this way:
 
 .. code-block:: xml 
 
-  <passive_joint name="NOME_JOINT" /> 
+  <passive_joint name="JOINT_NAME" /> 
 
 See for example the *robotiq_3f.srdf* file. Please **DO NOT** add the passive tag for joint that are mimic.  This can cause problem and it is useless, because mimic joints are already considered as non-actuated by ROSEE. 
 Instead, the passive tag can be useful to indicate that a non-fixed joint is not actuated (for example, it can move only if some external forces is received, in a compliant way). 
@@ -59,7 +59,7 @@ Find Grasping Actions (offline phase)
 ######################################
 First thing is to let **UniversalFindActions** explore your model and extract the grasping primitives. 
 
-.. code-block:: console
+.. code-block:: bash
 
   # source the setup.bash of package where robot meshes are
   roslaunch ros_end_effector findActions.launch hand_name:=my_hand
@@ -78,7 +78,7 @@ Control your End-Effector with ROSEE (online phase)
 Now you can run the main controller.
 This node will take grasping actions command (received as *ROS actions*) and will send joint positions to the simulation/real robot.
 
-.. code-block:: console
+.. code-block:: bash
 
   # source the setup.bash of package where robot meshes are
   roslaunch ros_end_effector rosee_startup.launch hand_name:=my_hand
@@ -89,7 +89,7 @@ This command will load ROSEE controller node, togheter with rviz for visualizati
 
 In another terminal, you can run the GUI to easy send the action parsed before. Only be sure to have rosee_gui installed (one of the optional dependencies indicated in :ref:`Installation <install>` section).
 
-.. code-block:: console
+.. code-block:: bash
 
   roslaunch rosee_gui gui.launch #no hand name is needed
 
@@ -100,7 +100,7 @@ You can simply :code:`pub` a *rosee_msg/ROSEECommandActionGoal* message on */ros
 
 For example, to publish:
 
-.. code-block:: console
+.. code-block:: bash
   :emphasize-lines: 13,14,15,16,17,18,19,20
   
   rostopic pub /ros_end_effector/action_command/goal rosee_msg/ROSEECommandActionGoal "header:
@@ -128,7 +128,7 @@ For example, to publish:
 
 To receive feedback:
 
-.. code-block:: console
+.. code-block:: bash
   
   rostopic echo /ros_end_effector/action_command/feedback 
 
@@ -145,14 +145,14 @@ Be sure to have installed the rosee_gazebo_plugin (one of the optional dependenc
 
 Launch the main node with the :code:`gazebo:=true` argument, like this way:
 
-.. code-block:: console
+.. code-block:: bash
 
   # source the setup.bash of package where robot meshes are
   roslaunch ros_end_effector rosee_startup.launch hand_name:=my_hand gazebo:=true
   
 As before, you can use the ROSEE GUI to send grasping action commands:
 
-.. code-block:: console
+.. code-block:: bash
 
   roslaunch rosee_gui gui.launch #no hand name is needed
 
