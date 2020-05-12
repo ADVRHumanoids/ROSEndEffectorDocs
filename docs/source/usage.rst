@@ -6,19 +6,31 @@
 How to use ROS End-Effector with your End-Effector
 ==================================================
 
+This section will guide you through using ROS End-Effector package.
+
+- `Prepare the files`_
+- `Find Grasping Actions (offline phase)`_
+- `Control your End-Effector with ROSEE (online phase)`_
+
+.. _prepareTheFiles:
+
+Prepare the files
+####################
+
 ROS End-Effector allows you to control your end-effector with minimal inital set-up
 
 - If you want to use also gazebo and :ref:`ROS End-Effector Gazebo plugin <roseeGazeboPlugin>`, please prepare correctly your *.urdf* model following the steps :ref:`here <prepare4Gazebo>`
 
-- Put *.urdf* and *.srdf* files in *ROSEndEffector/configs/urdf/* and *ROSEndEffector/configs/srdf/* respectively.
-  See below for information on how to proper write your *.srdf* file
+- Put *.urdf* and *.srdf* files in *ROSEndEffector/configs/urdf/* and *ROSEndEffector/configs/srdf/* respectively
+  (see below for information on how to proper write your *.srdf* file).
+  :raw-html:`<br />`
   Be sure that the files are named like the name of the robot tag of *.urdf* and *.srdf*
   
     **E.G.** *my_hand.urdf*, *my_hand.srdf*, with tags in the files like : :code:`<robot name="my_hand" [...] >`
 
   The meshes can be kept on your hand_description folder, only be sure to :code:`source` that *setup.bash* before run ROSEE nodes.
 
-- Create a yaml config file to tell where the *.urdf* and *.srdf* files are, and put in *ROSEndEffector/configs/* folder, like this one:
+- Create a yaml config file named *my_hand.yaml* to tell where the *.urdf* and *.srdf* files are, and put it in *ROSEndEffector/configs/* folder. Below there is the necessary generic structure of the file:
 
   .. code-block:: yaml 
 
@@ -30,7 +42,7 @@ ROS End-Effector allows you to control your end-effector with minimal inital set
 
 
 Creating SRDF files
-#######################
+*********************
 
 Both *moveit* and this *ROSEE node* refers to SRDF file to explore your hand. So it is important to provide a compatible SRDF file. 
 :raw-html:`<br />`
@@ -52,8 +64,6 @@ Instead, the passive tag can be useful to indicate that a non-fixed joint is not
 It is not necessary to set the passive tag for fixed joints.
 
 
-**TODO** link schunk srdf not on internet but on interal package file?
-
 
 Find Grasping Actions (offline phase)
 ######################################
@@ -67,8 +77,8 @@ First thing is to let **UniversalFindActions** explore your model and extract th
 The findActions node will generate yaml files in the *config/action/my_hand/* folder. 
 The same yaml files are also parsed by the same node to test (and print) the correctness. 
 
-**WARNING** old action *yaml* files will be ovewritten every time you run again the node.
-Also, take care to generate correctly the SRDF (as described above).
+  **WARNING** old action *yaml* files will be ovewritten every time you run again the node.
+  Also, take care to generate correctly the SRDF (as described above).
 
 .. _controlEEWithROSEE:
 
@@ -139,7 +149,7 @@ To receive feedback:
 Dynamic Simulation with Gazebo
 ********************************
 
-Be sure to have installed the rosee_gazebo_plugin (one of the optional dependencies indicated in :ref:`Installation <install>` section) and your urdf model ready to be used with Gazebo (TODO see plugingazebo section). 
+Be sure to have installed the rosee_gazebo_plugin (one of the optional dependencies indicated in :ref:`Installation <install>` section). Be also sure that and your urdf model is ready to be used with Gazebo, as explained :ref:`here <prepare4Gazebo>` . 
 
   **Note** Also remember that you have to run the *offline phase* if you have never run it for your hand.
 

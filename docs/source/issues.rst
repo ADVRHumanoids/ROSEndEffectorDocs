@@ -6,6 +6,9 @@
 Possible Issues
 ========================
 
+Generic
+#########
+
 - From 28-01-2020 the *use_gui* param (in launch files) gives an error because it is deprecated. This causes the sliders of joint state publisher not shown. To solve : 
 
   .. code-block:: bash
@@ -23,6 +26,8 @@ Possible Issues
   :raw-html:`<br />`
   :raw-html:`<br />`
   
+Rviz problems
+##############
 
 - Rviz does not visualize my model!
 
@@ -37,4 +42,22 @@ Possible Issues
     :raw-html:`<br />`
     
   - Be sure to have added the RobotModel (it should be present in the right menu)
+
+Gazebo explosions
+##################
+
+- Gazebo dynamic simulation problems
   
+  If gazebo simulation is unstable, or the model explodes, or other similar issues happen, the reasons can be many.
+
+  - Be sure that dynamic parameters of the model are correct. In particular, in the urdf file, other than the :code:`<inertial>` tags, you will probably need also some dynamic params for joints: 
+
+    .. code-block:: xml
+    
+      <dynamics damping="SOMEVALUE" friction="SOMEVALUE"/>
+  
+    If you not put these values, or they are too low (like <10e-05?) you could have some issues. They may be caused by some divisions by 0 (or a very low number) that cause too high magnitudes somewhere in the computations. Even if you do not known the real parameters, the experiments should not be influenced so much by wrong values.
+  
+    :raw-html:`<br />`
+  - Similar problems can be caused by too high pid gains. They should be set accordingly *also* to these dynamics values, so more trials may be necessary. You can check the files for the tested hands (present in the config folder) to have an idea of magnitudes that do not cause problems on the specific end-effectors.	     
+     

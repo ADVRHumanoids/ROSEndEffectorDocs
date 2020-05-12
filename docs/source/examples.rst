@@ -42,9 +42,9 @@ The files for this hand are already in the ROS End-Effector main package. So sim
   roslaunch ros_end_effector findActions.launch hand_name:=heri_II #offline phase
   roslaunch ros_end_effector rosee_startup.launch hand_name:=heri_II #online phase
 
-Remember to add :code:`gazebo:=true` to the second command to launch the dynamic simulation with gazebo
+Remember to add :code:`gazebo:=true` to the second command if you want to launch the dynamic simulation with gazebo
 
-  **NOTE** Experiment with the real hardware are incoming soon!
+  **NOTE** Experiments with the real hardware are coming soon!
 
 
 .. _`Schunk SVH 5-finger hand`:
