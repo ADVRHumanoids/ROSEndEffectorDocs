@@ -29,11 +29,13 @@ clone the "devels" branch of each repository.
   ./setup.sh
   cd src
   catkin_init_workspace
-  rosinstall .
+  rosws update
   cd ..
   catkin_make
   
 *Note* The sh script will install external necessary dependencies with apt-get
+:raw-html:`<br />`
+*Note* In future, if you want to pull the last updates, you can use :code:`rosws update` to pull all the updates of each repository with this unique command!
 
 
 Custom Installation
