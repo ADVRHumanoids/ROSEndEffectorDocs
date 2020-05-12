@@ -107,12 +107,3 @@ More information: rosin-project.eu_
 This project has received funding from the European Union’s Horizon 2020  
 research and innovation programme under grant agreement no. 732287. 
 
-
-
-Indices and tables
-==========================================================================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
