@@ -105,8 +105,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#mimic-joints">Mimic Joints</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#prepare-your-model-for-gazebo">Prepare your Model for Gazebo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-install">How to Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prepare-your-model-for-gazebo">Prepare your Model for Gazebo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-run">How to Run</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#advanced">Advanced</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#change-more-params-with-dynamic-reconfigurator">Change more params with Dynamic Reconfigurator</a></li>
@@ -193,62 +193,142 @@ It is hosted on <em>github</em> <a class="reference external" href="https://gith
 <div class="section" id="generic-information">
 <h2>Generic Information<a class="headerlink" href="#generic-information" title="Permalink to this headline">¶</a></h2>
 <p>It is very similar to the “official” ROS package for control : <a class="reference external" href="http://gazebosim.org/tutorials/?tut=ros_control">gazebo_ros_control</a>.</p>
-<p>It includes a gazebo plugin to take commands (<em>references</em>) from <strong>/ros_end_effector/joint_states</strong> topic and use to move the simulated robot in gazebo. The same plugin also publish the “real” joint States (derived by the gazebo simulation) in the topic <strong>/rosee_gazebo_plugin/joint_states</strong>.</p>
-<p><strong>Take care:</strong> In <strong>/ros_end_effector/joint_states</strong> topic there are state for only some joints (and never for not actuated ones); while in <strong>/rosee_gazebo_plugin/joint_states</strong> there are state for ALL non-fixed joints, always, included not actuated (i.e. mimic). This may change in future, but for now I leave as it is because returning also mimic joints is not so a problem.</p>
-<p>At the moment each joint can be commanded in position or in velocity, using the <em>SetPositionTarget()</em> and <em>SetVelocityTarget()</em> of gazebo. Gains (pid) are settable in a config file (see later for istructions).</p>
-<p>There is also a ROS node, <em>rosee_gazebo_plugin_DynReconfigure</em> which create <em>dynamic_reconfigure</em> servers to give the possibility to change the PID params during the simulation.</p>
+<p>It includes a gazebo plugin to take commands (<em>references</em>) from <strong>/ros_end_effector/joint_states</strong> topic and use to move the simulated robot in gazebo. This is done with a pid controller. The same plugin also publish the “real” joint states (derived by the gazebo simulation) in the topic <strong>/rosee_gazebo_plugin/joint_states</strong>.</p>
+<p><strong>Take care:</strong> In <strong>/ros_end_effector/joint_states</strong> topic there are states for actuated joints only; while in <strong>/rosee_gazebo_plugin/joint_states</strong> there are states for ALL non-fixed joints (passive and mimic included). This may change in future, but for now I leave as it is because returning also mimic joints is not so a big problem.</p>
+<p>At the moment each joint can be controlled in position or in velocity, using the <em>SetPositionTarget()</em> and <em>SetVelocityTarget()</em> of gazebo. Gains (pid) are settable in a config file (see later for istructions). Please note that for now ROS End-Effector sends only positional references.</p>
+<p>There is also a ROS node, <em>rosee_gazebo_plugin_DynReconfigure</em> which use the ROS tool <em>dynamic_reconfigure</em> server to give the possibility to change the PID gains during the simulation.</p>
 <div class="section" id="mimic-joints">
 <h3>Mimic Joints<a class="headerlink" href="#mimic-joints" title="Permalink to this headline">¶</a></h3>
 <p>Thanks to the <a class="reference external" href="https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins">mimic_joint_plugin</a> (and to <a class="reference external" href="https://github.com/mintar/mimic_joint_gazebo_tutorial">mimic_joint_gazebo_tutorial</a> to understand how to use it), now also mimic joints work correctly. The argument <em>set_pid</em> of this plugin should be set to false, because otherwise a pid controller is used, that is the “default” gazebo one (see plugin page for more info). And also when mimicking, we want to reply exactly the angle of the other joint (or not?). See above how to deal with this plugin if your urdf model has some mimic joint</p>
+</div>
+</div>
+<div class="section" id="how-to-install">
+<h2>How to Install<a class="headerlink" href="#how-to-install" title="Permalink to this headline">¶</a></h2>
+<p><strong>NOTE</strong> You probably already installed this if you have followed the steps in <a class="reference internal" href="install.html#install"><span class="std std-ref">Install</span></a> section</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins.git <span class="c1">#necessary external plugin</span>
+git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/rosee_gazebo_plugins.git
+
+compile with catkin_make
+</pre></div>
 </div>
 </div>
 <div class="section" id="prepare-your-model-for-gazebo">
 <span id="prepare4gazebo"></span><h2>Prepare your Model for Gazebo<a class="headerlink" href="#prepare-your-model-for-gazebo" title="Permalink to this headline">¶</a></h2>
 <p>You need additional steps on your <em>.urdf</em> file to make Gazebo simulation works.</p>
 <ul>
-<li><p class="first">Be sure to have an urdf file ready for gazebo <a class="reference external" href="http://gazebosim.org/tutorials/?tut=ros_urdf">info here</a>.
+<li><p class="first">Be sure to have an urdf file ready for gazebo (info <a class="reference external" href="http://gazebosim.org/tutorials/?tut=ros_urdf">here</a>.
+<span class="raw-html"><br /></span>
 Also add in your <em>.urdf</em> :</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;gazebo&gt;</span>
   <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;SOMENAME&quot;</span> <span class="na">filename=</span><span class="s">&quot;librosee_plugin.so&quot;</span><span class="nt">&gt;</span> <span class="nt">&lt;/plugin&gt;</span>
 <span class="nt">&lt;/gazebo&gt;</span>
 </pre></div>
 </div>
+<p><span class="raw-html"><br /></span></p>
 </li>
-<li><p class="first">Create new <em>YOURROBOTNAME_control.yaml</em> file in <em>rosee_gazebo_plugins/configs</em> folder, following the examples present there. Note that supported controllers <em>type</em> are <em>JointPositionController</em> and <em>JointVelocityController</em>, but for now ROS End-Effector only send position reference (so use <em>JointPositionController</em> for now)</p>
-<p><strong>NOTE</strong> In future this file will probably be shifted somewhere else and pointed with a config file.
-<span class="raw-html"><br /></span>
-<span class="raw-html"><br /></span></p>
-</li>
-<li><p class="first"><strong>Important</strong> If your urdf file has some mimic joint, you have to add a <a class="reference external" href="https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins">mimic_joint_plugin</a> for each mimic joint. See <a class="reference external" href="https://github.com/ADVRHumanoids/rosee_gazebo_plugins/blob/master/configs/urdf/two_finger_mimic.urdf.xacro">two_finger_mimic.urdf.xacro</a> file or <a class="reference external" href="https://github.com/mintar/mimic_joint_gazebo_tutorial">mimic_joint_gazebo_tutorial</a> for example on how to use the plugin</p>
-</li>
-</ul>
-</div>
-<div class="section" id="how-to-install">
-<h2>How to Install<a class="headerlink" href="#how-to-install" title="Permalink to this headline">¶</a></h2>
-<p><strong>NOTE</strong> You probably already installed this if you have followed the steps in <a class="reference internal" href="install.html#install"><span class="std std-ref">Install</span></a> section</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins.git #necessary external plugin</span>
-<span class="go">git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/rosee_gazebo_plugins.git</span>
+<li><p class="first">Add <em>rosee_gazebo_plugins_args</em> node in the main <em>yaml</em> config file <em>your_hand.yaml</em>, that you have created before as instructed in <a class="reference internal" href="usage.html#preparethefiles"><span class="std std-ref">Prepare the files</span></a> section. In this node you have a controller for each actuated joint, specifing
+the controller type, the joint which is controlled, and the pid gains.
+An example is below:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">ROSEndEffector</span><span class="p">:</span>
+  <span class="nt">urdf_path</span><span class="p">:</span> <span class="s">&quot;urdf/my_hand.urdf&quot;</span>
+  <span class="nt">srdf_path</span><span class="p">:</span> <span class="s">&quot;srdf/my_hand.srdf&quot;</span>
+<span class="c1"># ^^^^^^^^^^^^^^^^^^^^^^^^^^^^   -- &gt; you should already have these lines</span>
 
-<span class="go">compile with catkin_make</span>
+<span class="nt">rosee_gazebo_plugins_args</span><span class="p">:</span>
+
+  <span class="nt">joint_1_controller_name</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">JointPositionController</span>
+    <span class="nt">joint_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">JOINT NAME</span>
+    <span class="nt">pid</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">p</span><span class="p">:</span> <span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="nt"> i</span><span class="p">:</span> <span class="nv">0.001</span><span class="p p-Indicator">,</span><span class="nt"> d</span><span class="p">:</span> <span class="nv">0.00005</span><span class="p p-Indicator">}</span>
+
+<span class=" -Error"> </span><span class="nt">joint_2_controller_name</span><span class="p">:</span>
+   <span class="l l-Scalar l-Scalar-Plain">...</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li>Be sure to put different controller names</li>
+<li>Supported controllers <em>type</em> are <em>JointPositionController</em> and <em>JointVelocityController</em>, but for now ROS End-Effector only send position reference (so use <em>JointPositionController</em> for now).
+<span class="raw-html"><br /></span>
+In truth there exists also <em>JointEffortController</em>, we will implement this in future if gazebo will allow it (it is not possible in gazebo 7)</li>
+<li>The pid gains are settable online thanks to the Dynamic reconfigurator server, a ROS tool integrated in the rosee_gazebo_plugin.</li>
+</ul>
+<p><span class="raw-html"><br /></span></p>
+</li>
+<li><p class="first"><strong>Important</strong>: if your urdf file has some mimic joints, you have to add a <a class="reference external" href="https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins">mimic_joint_plugin</a> for each one, like below:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;base_to_right_finger&quot;</span> <span class="na">type=</span><span class="s">&quot;revolute&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;limit</span> <span class="na">effort=</span><span class="s">&quot;1000.0&quot;</span> <span class="na">lower=</span><span class="s">&quot;-0.7&quot;</span> <span class="na">upper=</span><span class="s">&quot;0.0&quot;</span> <span class="na">velocity=</span><span class="s">&quot;0.5&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;base&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">&quot;right_finger&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;.1 0 0&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;mimic</span> <span class="na">joint=</span><span class="s">&quot;base_to_left_finger&quot;</span> <span class="na">multiplier=</span><span class="s">&quot;-1&quot;</span> <span class="na">offset=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/joint&gt;</span>
+<span class="c">&lt;!-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this is the mimic joint --&gt;</span>
+
+<span class="nt">&lt;gazebo&gt;</span>
+  <span class="nt">&lt;plugin</span> <span class="na">filename=</span><span class="s">&quot;libroboticsgroup_gazebo_mimic_joint_plugin.so&quot;</span> <span class="na">name=</span><span class="s">&quot;base_to_right_finger_jointmimic_joint_plugin&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;joint&gt;</span>base_to_left_finger<span class="nt">&lt;/joint&gt;</span>
+  <span class="nt">&lt;mimicJoint&gt;</span>base_to_right_finger<span class="nt">&lt;/mimicJoint&gt;</span>
+  <span class="nt">&lt;multiplier&gt;</span>-1.0<span class="nt">&lt;/multiplier&gt;</span>
+  <span class="nt">&lt;offset&gt;</span>0<span class="nt">&lt;/offset&gt;</span>
+  <span class="nt">&lt;sensitiveness&gt;</span>0.0<span class="nt">&lt;/sensitiveness&gt;</span>
+  <span class="c">&lt;!-- if absolute difference between setpoint and process value is below this threshold, do nothing; 0.0 = disable [rad] --&gt;</span>
+  <span class="nt">&lt;maxEffort&gt;</span>1000.0<span class="nt">&lt;/maxEffort&gt;</span>
+  <span class="nt">&lt;/plugin&gt;</span>
+<span class="nt">&lt;/gazebo&gt;</span>
+</pre></div>
+</div>
+<p>This example is taken from <em>configs/urdf/two_finger_mimic.urdf</em> file.
+<span class="raw-html"><br /></span>
+If you like to use xacro macros to add this plugin, you can create one in this way:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;xacro:macro</span> <span class="na">name=</span><span class="s">&quot;mimic_joint_plugin_gazebo&quot;</span> <span class="na">params=</span><span class="s">&quot;name_prefix parent_joint mimic_joint has_pid:=false multiplier:=1.0 offset:=0 sensitiveness:=0.0 max_effort:=1.0 robot_namespace:=&#39;&#39;&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;gazebo&gt;</span>
+  <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;${name_prefix}mimic_joint_plugin&quot;</span> <span class="na">filename=</span><span class="s">&quot;libroboticsgroup_gazebo_mimic_joint_plugin.so&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;joint&gt;</span>${parent_joint}<span class="nt">&lt;/joint&gt;</span>
+      <span class="nt">&lt;mimicJoint&gt;</span>${mimic_joint}<span class="nt">&lt;/mimicJoint&gt;</span>
+      <span class="nt">&lt;xacro:if</span> <span class="na">value=</span><span class="s">&quot;${has_pid}&quot;</span><span class="nt">&gt;</span>                     <span class="c">&lt;!-- if set to true, PID parameters from &quot;/gazebo_ros_control/pid_gains/${mimic_joint}&quot; are loaded --&gt;</span>
+           <span class="nt">&lt;hasPID</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/xacro:if&gt;</span>
+      <span class="nt">&lt;multiplier&gt;</span>${multiplier}<span class="nt">&lt;/multiplier&gt;</span>
+      <span class="nt">&lt;offset&gt;</span>${offset}<span class="nt">&lt;/offset&gt;</span>
+      <span class="nt">&lt;sensitiveness&gt;</span>${sensitiveness}<span class="nt">&lt;/sensitiveness&gt;</span>   <span class="c">&lt;!-- if absolute difference between setpoint and process value is below this threshold, do nothing; 0.0 = disable [rad] --&gt;</span>
+      <span class="nt">&lt;maxEffort&gt;</span>${max_effort}<span class="nt">&lt;/maxEffort&gt;</span>              <span class="c">&lt;!-- only taken into account if has_pid:=true [Nm] --&gt;</span>
+      <span class="nt">&lt;xacro:unless</span> <span class="na">value=</span><span class="s">&quot;${robot_namespace == &#39;&#39;}&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;robotNamespace&gt;</span>($robot_namespace)<span class="nt">&lt;/robotNamespace&gt;</span>
+      <span class="nt">&lt;/xacro:unless&gt;</span>
+  <span class="nt">&lt;/plugin&gt;</span>
+  <span class="nt">&lt;/gazebo&gt;</span>
+<span class="nt">&lt;/xacro:macro&gt;</span>
+</pre></div>
+</div>
+<p>And then use it:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;xacro:mimic_joint_plugin_gazebo</span> <span class="na">name_prefix=</span><span class="s">&quot;base_to_right_finger_joint&quot;</span>
+  <span class="na">arent_joint=</span><span class="s">&quot;base_to_left_finger&quot;</span> <span class="na">mimic_joint=</span><span class="s">&quot;base_to_right_finger&quot;</span>
+  <span class="na">has_pid=</span><span class="s">&quot;false&quot;</span> <span class="na">multiplier=</span><span class="s">&quot;-1.0&quot;</span> <span class="na">max_effort=</span><span class="s">&quot;1000.0&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>This example is taken from <em>configs/urdf/two_finger_mimic.urdf.xacro</em> file.
+<span class="raw-html"><br /></span>
+The macro is taken from <a class="reference external" href="https://github.com/mintar/mimic_joint_gazebo_tutorial">mimic_joint_gazebo_tutorial</a>.</p>
+</li>
+</ul>
 </div>
 <div class="section" id="how-to-run">
 <h2>How to Run<a class="headerlink" href="#how-to-run" title="Permalink to this headline">¶</a></h2>
 <p>To run ROS End-Effector as a whole, follow the guide in <a class="reference internal" href="usage.html#usage"><span class="std std-ref">How to use ROS End-Effector with your End-Effector</span></a> section.</p>
 <ul>
 <li><p class="first">Anyway, ROS End-Effector Gazebo Plugins is a package that run independently, so you can also launch it alone:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">roslaunch rosee_gazebo_plugins twofinger.launch</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch rosee_gazebo_plugins twofinger.launch
 </pre></div>
 </div>
 </li>
 <li><p class="first">To run the dynamic reconfigurator:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">rosrun rosee_gazebo_plugins DynReconfigure two_finger</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosrun rosee_gazebo_plugins DynReconfigure two_finger
 </pre></div>
 </div>
 </li>
 <li><p class="first">Also useful</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">rqt</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rqt
 </pre></div>
 </div>
 <p>And set it to have things like that, for example to tune the gains:</p>

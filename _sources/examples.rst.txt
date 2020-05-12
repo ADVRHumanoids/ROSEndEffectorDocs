@@ -11,7 +11,7 @@ You can run experiments with ready-to-use hands. The simplest one are geometrica
 
 Simply run *UniversalFindActions* node and *UniversalROSEndEffector* as described in :ref:`How to use ROS End-Effector with your End-Effector <usage>` section, reported again briefly below :
 
-.. code-block:: console
+.. code-block:: bash
 
   #substitute test_ee accordigly
   
@@ -37,14 +37,14 @@ HERI II
 
 The files for this hand are already in the ROS End-Effector main package. So simply run:
 
-.. code-block:: console
+.. code-block:: bash
 
   roslaunch ros_end_effector findActions.launch hand_name:=heri_II #offline phase
   roslaunch ros_end_effector rosee_startup.launch hand_name:=heri_II #online phase
 
-Remember to add :code:`gazebo:=true` to the second command to launch the dynamic simulation with gazebo
+Remember to add :code:`gazebo:=true` to the second command if you want to launch the dynamic simulation with gazebo
 
-  **NOTE** Experiment with the real hardware are incoming soon!
+  **NOTE** Experiments with the real hardware are coming soon!
 
 
 .. _`Schunk SVH 5-finger hand`:
@@ -57,7 +57,7 @@ in `Schunk website <https://schunk.com/it_en/gripping-systems/highlights/svh/>`_
 
 Necessary steps before run ROS End-Effector with this hand:
 
-.. code-block:: console
+.. code-block:: bash
 
   mkdir ~/schunk_ws
   mkdir ~/schunk_ws/src
@@ -85,7 +85,7 @@ This hand has a humanoid structure but it has only a single actuated joint that 
 
 Necessary steps before run ROS End-Effector with this hand:
 
-.. code-block:: console
+.. code-block:: bash
 
   cd ~/qbhand/src
   git clone --branch production-kinetic https://bitbucket.org/qbrobotics/qbdevice-ros.git
@@ -109,7 +109,7 @@ This is a gripper with 3-Fingers. More information at at `Robotiq website <https
 
 Necessary steps before run ROS End-Effector with this hand:
 
-.. code-block:: console
+.. code-block:: bash
 
   mkdir ~/robotiq_ws
   cd robotiq_ws

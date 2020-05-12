@@ -189,10 +189,10 @@
 <li>two_finger_mimic</li>
 </ul>
 <p>Simply run <em>UniversalFindActions</em> node and <em>UniversalROSEndEffector</em> as described in <a class="reference internal" href="usage.html#usage"><span class="std std-ref">How to use ROS End-Effector with your End-Effector</span></a> section, reported again briefly below :</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>substitute test_ee accordigly
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#substitute test_ee accordigly</span>
 
-<span class="go">roslaunch ros_end_effector findActions.launch hand_name:=test_ee #offline phase</span>
-<span class="go">roslaunch ros_end_effector rosee_startup.launch hand_name:=test_ee #online phase</span>
+roslaunch ros_end_effector findActions.launch hand_name:<span class="o">=</span>test_ee <span class="c1">#offline phase</span>
+roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</span>test_ee <span class="c1">#online phase</span>
 </pre></div>
 </div>
 <p>There are also some examples done with models from real hands, at the moment there are:</p>
@@ -207,28 +207,28 @@
 <div class="section" id="heri-ii">
 <span id="id1"></span><h2>HERI II<a class="headerlink" href="#heri-ii" title="Permalink to this headline">¶</a></h2>
 <p>The files for this hand are already in the ROS End-Effector main package. So simply run:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">roslaunch ros_end_effector findActions.launch hand_name:=heri_II #offline phase</span>
-<span class="go">roslaunch ros_end_effector rosee_startup.launch hand_name:=heri_II #online phase</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch ros_end_effector findActions.launch hand_name:<span class="o">=</span>heri_II <span class="c1">#offline phase</span>
+roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</span>heri_II <span class="c1">#online phase</span>
 </pre></div>
 </div>
-<p>Remember to add <code class="code docutils literal notranslate"><span class="pre">gazebo:=true</span></code> to the second command to launch the dynamic simulation with gazebo</p>
+<p>Remember to add <code class="code docutils literal notranslate"><span class="pre">gazebo:=true</span></code> to the second command if you want to launch the dynamic simulation with gazebo</p>
 <blockquote>
-<div><strong>NOTE</strong> Experiment with the real hardware are incoming soon!</div></blockquote>
+<div><strong>NOTE</strong> Experiments with the real hardware are coming soon!</div></blockquote>
 </div>
 <div class="section" id="schunk-svh-5-finger-hand">
 <span id="id2"></span><h2>Schunk SVH 5-finger hand<a class="headerlink" href="#schunk-svh-5-finger-hand" title="Permalink to this headline">¶</a></h2>
 <p>This a complex humanoids hand with lot of actuted joints and DOFs. More details about it can be found
 in <a class="reference external" href="https://schunk.com/it_en/gripping-systems/highlights/svh/">Schunk website</a>.</p>
 <p>Necessary steps before run ROS End-Effector with this hand:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir ~/schunk_ws</span>
-<span class="go">mkdir ~/schunk_ws/src</span>
-<span class="go">cd ~/schunk_ws/src</span>
-<span class="go">git clone https://github.com/fzi-forschungszentrum-informatik/fzi_icl_core.git #schunk library, I am not sure if needed for only the simulation</span>
-<span class="go">git clone https://github.com/fzi-forschungszentrum-informatik/fzi_icl_comm.git #schunk library, I am not sure if needed for only the simulation</span>
-<span class="go">git clone https://github.com/fzi-forschungszentrum-informatik/schunk_svh_driver.git #the main schunk repo</span>
-<span class="go">cd ..</span>
-<span class="go">catkin_make_isolated</span>
-<span class="go">source devel_isolated/setup.bash</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir ~/schunk_ws
+mkdir ~/schunk_ws/src
+<span class="nb">cd</span> ~/schunk_ws/src
+git clone https://github.com/fzi-forschungszentrum-informatik/fzi_icl_core.git <span class="c1">#schunk library, I am not sure if needed for only the simulation</span>
+git clone https://github.com/fzi-forschungszentrum-informatik/fzi_icl_comm.git <span class="c1">#schunk library, I am not sure if needed for only the simulation</span>
+git clone https://github.com/fzi-forschungszentrum-informatik/schunk_svh_driver.git <span class="c1">#the main schunk repo</span>
+<span class="nb">cd</span> ..
+catkin_make_isolated
+<span class="nb">source</span> devel_isolated/setup.bash
 </pre></div>
 </div>
 <p>Then run codes with <code class="code docutils literal notranslate"><span class="pre">hand_name:=schunk</span></code> as argument</p>
@@ -240,12 +240,12 @@ in <a class="reference external" href="https://schunk.com/it_en/gripping-systems
 <span id="id3"></span><h2>qb SoftHand<a class="headerlink" href="#qb-softhand" title="Permalink to this headline">¶</a></h2>
 <p>This hand has a humanoid structure but it has only a single actuated joint that close all the fingers togheter in a compliant way. More info at <a class="reference external" href="https://qbrobotics.com/products/qb-softhand-research/">qb robotics website</a>.</p>
 <p>Necessary steps before run ROS End-Effector with this hand:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~/qbhand/src</span>
-<span class="go">git clone --branch production-kinetic https://bitbucket.org/qbrobotics/qbdevice-ros.git</span>
-<span class="go">git clone --branch production-kinetic https://bitbucket.org/qbrobotics/qbhand-ros.git</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/qbhand/src
+git clone --branch production-kinetic https://bitbucket.org/qbrobotics/qbdevice-ros.git
+git clone --branch production-kinetic https://bitbucket.org/qbrobotics/qbhand-ros.git
 
-<span class="go">cd ~/catkin_ws</span>
-<span class="go">catkin_make</span>
+<span class="nb">cd</span> ~/catkin_ws
+catkin_make
 </pre></div>
 </div>
 <p>Then run codes with <code class="code docutils literal notranslate"><span class="pre">hand_name:=qbhand</span></code> as argument</p>
@@ -256,20 +256,20 @@ in <a class="reference external" href="https://schunk.com/it_en/gripping-systems
 <span id="id4"></span><h2>Robotiq 3-Finger Gripper<a class="headerlink" href="#robotiq-3-finger-gripper" title="Permalink to this headline">¶</a></h2>
 <p>This is a gripper with 3-Fingers. More information at at <a class="reference external" href="https://robotiq.com/products/3-finger-adaptive-robot-gripper/">Robotiq website</a>.</p>
 <p>Necessary steps before run ROS End-Effector with this hand:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir ~/robotiq_ws</span>
-<span class="go">cd robotiq_ws</span>
-<span class="go">mkdir src</span>
-<span class="go">cd src</span>
-<span class="go">git clone https://github.com/ros-industrial/robotiq.git</span>
-<span class="go">cd robotiq</span>
-<span class="go">git checkout kinetic-devel</span>
-<span class="go">cd ../..</span>
-<span class="go">rosdep update</span>
-<span class="go">rosdep install robotiq_modbus_tcp</span>
-<span class="go">sudo apt-get install ros-kinetic-soem</span>
-<span class="go">rosdep install --from-paths src/ --ignore-src --rosdistro kinetic</span>
-<span class="go">catkin_make</span>
-<span class="go">source devel/setup.bash</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir ~/robotiq_ws
+<span class="nb">cd</span> robotiq_ws
+mkdir src
+<span class="nb">cd</span> src
+git clone https://github.com/ros-industrial/robotiq.git
+<span class="nb">cd</span> robotiq
+git checkout kinetic-devel
+<span class="nb">cd</span> ../..
+rosdep update
+rosdep install robotiq_modbus_tcp
+sudo apt-get install ros-kinetic-soem
+rosdep install --from-paths src/ --ignore-src --rosdistro kinetic
+catkin_make
+<span class="nb">source</span> devel/setup.bash
 </pre></div>
 </div>
 <p>Then run codes with <code class="code docutils literal notranslate"><span class="pre">hand_name:=robotiq_3f</span></code> as argument</p>

@@ -194,14 +194,14 @@ So, first, be sure to have ROS kinetic installed as described <a class="referenc
 <span class="raw-html"><br /></span>
 ROS End-Effector is in development. Actually the most updated and working branch is the <em>devel</em> one, so you will
 clone the “devels” branch of each repository.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone -b devel https://github.com/ADVRHumanoids/ROSEndEffectorPackageManager.git</span>
-<span class="go">cd ROSEndEffectorPackageManager</span>
-<span class="go">./setup.sh</span>
-<span class="go">cd src</span>
-<span class="go">catkin_init_workspace</span>
-<span class="go">rosinstall .</span>
-<span class="go">cd ..</span>
-<span class="go">catkin_make</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone -b devel https://github.com/ADVRHumanoids/ROSEndEffectorPackageManager.git
+<span class="nb">cd</span> ROSEndEffectorPackageManager
+./setup.sh
+<span class="nb">cd</span> src
+catkin_init_workspace
+rosinstall .
+<span class="nb">cd</span> ..
+catkin_make
 </pre></div>
 </div>
 <p><em>Note</em> The sh script will install external necessary dependencies with apt-get</p>
@@ -211,7 +211,7 @@ clone the “devels” branch of each repository.</p>
 <p>If you want, you can clone only the single ROSEE packages, without using the rosintall. Here are the steps</p>
 <div class="section" id="install-external-system-dependencies">
 <h3>Install External System Dependencies<a class="headerlink" href="#install-external-system-dependencies" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo apt-get install ros-kinetic-moveit #moveit</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install ros-kinetic-moveit <span class="c1">#moveit</span>
 </pre></div>
 </div>
 </div>
@@ -221,29 +221,29 @@ clone the “devels” branch of each repository.</p>
 <p>The next steps will guide you to the creation of a new catkin_workspace, for clone all the necessary repository and compile them all</p>
 <ul>
 <li><p class="first">Create a catkin workspace</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir ~/ROSEE</span>
-<span class="go">cd ROSEE</span>
-<span class="go">mkdir src</span>
-<span class="go">cd src</span>
-<span class="go">catkin_init_workspace</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir ~/ROSEE
+<span class="nb">cd</span> ROSEE
+mkdir src
+<span class="nb">cd</span> src
+catkin_init_workspace
 </pre></div>
 </div>
 </li>
 <li><p class="first">Clone Necessary dependencies:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/rosee_msg.git</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/rosee_msg.git
 </pre></div>
 </div>
 </li>
 <li><p class="first">Clone Optional dependencies:</p>
 <ul>
 <li><p class="first">GUI</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/rosee_gui.git</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/rosee_gui.git
 </pre></div>
 </div>
 </li>
 <li><p class="first">Gazebo Plugin (more info in the dedicated <a class="reference internal" href="roseeGazeboPlugin.html#roseegazeboplugin"><span class="std std-ref">section</span></a>)</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins.git #necessary external plugin</span>
-<span class="go">git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/rosee_gazebo_plugins.git</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins.git <span class="c1">#necessary external plugin</span>
+git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/rosee_gazebo_plugins.git
 </pre></div>
 </div>
 </li>
@@ -253,13 +253,13 @@ clone the “devels” branch of each repository.</p>
 <span class="raw-html"><br /></span></p>
 </li>
 <li><p class="first">Clone Core Package</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/ROSEndEffector</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/ROSEndEffector
 </pre></div>
 </div>
 </li>
 <li><p class="first">Compile them all!</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~/ROSEE</span>
-<span class="go">catkin_make</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/ROSEE
+catkin_make
 </pre></div>
 </div>
 </li>

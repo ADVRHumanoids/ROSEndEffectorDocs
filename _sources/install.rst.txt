@@ -22,7 +22,7 @@ The following steps will guide you to install all packages of ROSEE using a *.ro
 ROS End-Effector is in development. Actually the most updated and working branch is the *devel* one, so you will
 clone the "devels" branch of each repository.
 
-.. code-block:: console
+.. code-block:: bash
 
   git clone -b devel https://github.com/ADVRHumanoids/ROSEndEffectorPackageManager.git
   cd ROSEndEffectorPackageManager
@@ -44,7 +44,7 @@ If you want, you can clone only the single ROSEE packages, without using the ros
 Install External System Dependencies
 ***************************************
 
-.. code-block:: console 
+.. code-block:: bash 
 
   sudo apt-get install ros-kinetic-moveit #moveit
 
@@ -57,7 +57,7 @@ The next steps will guide you to the creation of a new catkin_workspace, for clo
 
 - Create a catkin workspace
 
-  .. code-block:: console
+  .. code-block:: bash
   
     mkdir ~/ROSEE
     cd ROSEE
@@ -68,7 +68,7 @@ The next steps will guide you to the creation of a new catkin_workspace, for clo
 
 - Clone Necessary dependencies:
 
-  .. code-block:: console
+  .. code-block:: bash
    
     git clone -b <branch_you_want> https://github.com/ADVRHumanoids/rosee_msg.git
          
@@ -76,13 +76,13 @@ The next steps will guide you to the creation of a new catkin_workspace, for clo
 
   - GUI
   
-    .. code-block:: console 
+    .. code-block:: bash 
     
       git clone -b <branch_you_want> https://github.com/ADVRHumanoids/rosee_gui.git
   
   - Gazebo Plugin (more info in the dedicated :ref:`section <roseeGazeboPlugin>`)
   
-    .. code-block:: console
+    .. code-block:: bash
     
       git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins.git #necessary external plugin
       git clone -b <branch_you_want> https://github.com/ADVRHumanoids/rosee_gazebo_plugins.git
@@ -93,13 +93,13 @@ The next steps will guide you to the creation of a new catkin_workspace, for clo
   
 - Clone Core Package
 
-  .. code-block:: console
+  .. code-block:: bash
    
     git clone -b <branch_you_want> https://github.com/ADVRHumanoids/ROSEndEffector
   
 - Compile them all!
 
-  .. code-block:: console
+  .. code-block:: bash
   
     cd ~/ROSEE
     catkin_make    
