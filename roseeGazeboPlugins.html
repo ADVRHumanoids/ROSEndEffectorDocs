@@ -173,7 +173,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/roseeGazeboPlugin.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/roseeGazeboPlugins.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -187,16 +187,16 @@
            <div itemprop="articleBody">
             
   <div class="section" id="ros-end-effector-gazebo-plugins">
-<span id="roseegazeboplugin"></span><h1>ROS End-Effector Gazebo Plugins<a class="headerlink" href="#ros-end-effector-gazebo-plugins" title="Permalink to this headline">¶</a></h1>
+<span id="roseegazeboplugins"></span><h1>ROS End-Effector Gazebo Plugins<a class="headerlink" href="#ros-end-effector-gazebo-plugins" title="Permalink to this headline">¶</a></h1>
 <p>This package is an utility to help end effector dynamic simulation with Gazebo.
 It is hosted on <em>github</em> <a class="reference external" href="https://github.com/ADVRHumanoids/rosee_gazebo_plugins">here</a>.</p>
 <div class="section" id="generic-information">
 <h2>Generic Information<a class="headerlink" href="#generic-information" title="Permalink to this headline">¶</a></h2>
 <p>It is very similar to the “official” ROS package for control : <a class="reference external" href="http://gazebosim.org/tutorials/?tut=ros_control">gazebo_ros_control</a>.</p>
-<p>It includes a gazebo plugin to take commands (<em>references</em>) from <strong>/ros_end_effector/joint_states</strong> topic and use to move the simulated robot in gazebo. This is done with a pid controller. The same plugin also publish the “real” joint states (derived by the gazebo simulation) in the topic <strong>/rosee_gazebo_plugin/joint_states</strong>.</p>
-<p><strong>Take care:</strong> In <strong>/ros_end_effector/joint_states</strong> topic there are states for actuated joints only; while in <strong>/rosee_gazebo_plugin/joint_states</strong> there are states for ALL non-fixed joints (passive and mimic included). This may change in future, but for now I leave as it is because returning also mimic joints is not so a big problem.</p>
+<p>It includes a gazebo plugin to take commands (<em>references</em>) from <strong>/ros_end_effector/joint_states</strong> topic and use to move the simulated robot in gazebo. This is done with a pid controller. The same plugin also publish the “real” joint states (derived by the gazebo simulation) in the topic <strong>/rosee_gazebo_plugins/joint_states</strong>.</p>
+<p><strong>Take care:</strong> In <strong>/ros_end_effector/joint_states</strong> topic there are states for actuated joints only; while in <strong>/rosee_gazebo_plugins/joint_states</strong> there are states for ALL non-fixed joints (passive and mimic included). This may change in future, but for now I leave as it is because returning also mimic joints is not so a big problem.</p>
 <p>At the moment each joint can be controlled in position or in velocity, using the <em>SetPositionTarget()</em> and <em>SetVelocityTarget()</em> of gazebo. Gains (pid) are settable in a config file (see later for istructions). Please note that for now ROS End-Effector sends only positional references.</p>
-<p>There is also a ROS node, <em>rosee_gazebo_plugin_DynReconfigure</em> which use the ROS tool <em>dynamic_reconfigure</em> server to give the possibility to change the PID gains during the simulation.</p>
+<p>In the package, there is an additional ROS node, <em>DynReconfigure</em>, which uses the ROS tool <em>Dynamic Reconfigure server</em> to give the possibility to change the PID gains during the simulation.</p>
 <div class="section" id="mimic-joints">
 <h3>Mimic Joints<a class="headerlink" href="#mimic-joints" title="Permalink to this headline">¶</a></h3>
 <p>Thanks to the <a class="reference external" href="https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins">mimic_joint_plugin</a> (and to <a class="reference external" href="https://github.com/mintar/mimic_joint_gazebo_tutorial">mimic_joint_gazebo_tutorial</a> to understand how to use it), now also mimic joints work correctly. The argument <em>set_pid</em> of this plugin should be set to false, because otherwise a pid controller is used, that is the “default” gazebo one (see plugin page for more info). And also when mimicking, we want to reply exactly the angle of the other joint (or not?). See above how to deal with this plugin if your urdf model has some mimic joint</p>
@@ -216,7 +216,7 @@ compile with catkin_make
 <span id="prepare4gazebo"></span><h2>Prepare your Model for Gazebo<a class="headerlink" href="#prepare-your-model-for-gazebo" title="Permalink to this headline">¶</a></h2>
 <p>You need additional steps on your <em>.urdf</em> file to make Gazebo simulation works.</p>
 <ul>
-<li><p class="first">Be sure to have an urdf file ready for gazebo (info <a class="reference external" href="http://gazebosim.org/tutorials/?tut=ros_urdf">here</a>.
+<li><p class="first">Be sure to have an urdf file ready for gazebo (info <a class="reference external" href="http://gazebosim.org/tutorials/?tut=ros_urdf">here</a>).
 <span class="raw-html"><br /></span>
 Also add in your <em>.urdf</em> :</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;gazebo&gt;</span>
@@ -250,7 +250,7 @@ An example is below:</p>
 <li>Supported controllers <em>type</em> are <em>JointPositionController</em> and <em>JointVelocityController</em>, but for now ROS End-Effector only send position reference (so use <em>JointPositionController</em> for now).
 <span class="raw-html"><br /></span>
 In truth there exists also <em>JointEffortController</em>, we will implement this in future if gazebo will allow it (it is not possible in gazebo 7)</li>
-<li>The pid gains are settable online thanks to the Dynamic reconfigurator server, a ROS tool integrated in the rosee_gazebo_plugin.</li>
+<li>The pid gains are settable online thanks to the <em>DynReconfigure</em> node. This exploits a ROS tool called <em>Dynamic reconfigurator server</em>. The node is inside this package</li>
 </ul>
 <p><span class="raw-html"><br /></span></p>
 </li>

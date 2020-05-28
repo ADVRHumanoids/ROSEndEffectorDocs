@@ -43,6 +43,7 @@ Dynamic simulation (with gazebo)
   :alt: ros topics kinematic gazebo simulation
   :width: 700
     
-With the dynamic simulations the graph is similar. The only difference is that, instead of the **joint_state_publisher**, there is the **gazebo** node. This includes the :ref:`rosee_gazebo_plugin <roseeGazeboPlugin>` which job includes the "mimic consideration" similarly to the **joint_state_publisher**.
+With the dynamic simulations the graph is similar. The only difference is that, instead of the **joint_state_publisher**, there is the **gazebo** node. Inside this node, it is present the :ref:`rosee_gazebo_plugins <roseeGazeboPlugins>` (which is not a standalone node because it is only a "plugin" for gazebo node). The plugin's job includes to consider the mimic joints, similarly to what the **joint_state_publisher** did before.
 :raw-html:`<br />`
-The */joint_states* topic has now a different namespace to remember us that we are using gazebo, but its messages are of the same type as before.
+The */joint_states* topic has now a different namespace (i.e. */rosee_gazebo_plugins*) to remember us that we are using gazebo, but its messages are of the same type as before (i.e. *js_publisher*).
+

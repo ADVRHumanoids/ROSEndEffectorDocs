@@ -1,4 +1,4 @@
-.. _roseeGazeboPlugin:
+.. _roseeGazeboPlugins:
 
 .. role:: raw-html(raw)
   :format: html
@@ -14,14 +14,14 @@ Generic Information
 
 It is very similar to the "official" ROS package for control : `gazebo_ros_control <http://gazebosim.org/tutorials/?tut=ros_control>`_.
 
-It includes a gazebo plugin to take commands (*references*) from **/ros_end_effector/joint_states** topic and use to move the simulated robot in gazebo. This is done with a pid controller. The same plugin also publish the "real" joint states (derived by the gazebo simulation) in the topic **/rosee_gazebo_plugin/joint_states**.
+It includes a gazebo plugin to take commands (*references*) from **/ros_end_effector/joint_states** topic and use to move the simulated robot in gazebo. This is done with a pid controller. The same plugin also publish the "real" joint states (derived by the gazebo simulation) in the topic **/rosee_gazebo_plugins/joint_states**.
 
-**Take care:** In **/ros_end_effector/joint_states** topic there are states for actuated joints only; while in **/rosee_gazebo_plugin/joint_states** there are states for ALL non-fixed joints (passive and mimic included). This may change in future, but for now I leave as it is because returning also mimic joints is not so a big problem.
+**Take care:** In **/ros_end_effector/joint_states** topic there are states for actuated joints only; while in **/rosee_gazebo_plugins/joint_states** there are states for ALL non-fixed joints (passive and mimic included). This may change in future, but for now I leave as it is because returning also mimic joints is not so a big problem.
 
 
 At the moment each joint can be controlled in position or in velocity, using the *SetPositionTarget()* and *SetVelocityTarget()* of gazebo. Gains (pid) are settable in a config file (see later for istructions). Please note that for now ROS End-Effector sends only positional references.
 
-There is also a ROS node, *rosee_gazebo_plugin_DynReconfigure* which use the ROS tool *dynamic_reconfigure* server to give the possibility to change the PID gains during the simulation.
+In the package, there is an additional ROS node, *DynReconfigure*, which uses the ROS tool *Dynamic Reconfigure server* to give the possibility to change the PID gains during the simulation.
 
 
 Mimic Joints
@@ -49,7 +49,7 @@ Prepare your Model for Gazebo
 
 You need additional steps on your *.urdf* file to make Gazebo simulation works.
 
-- Be sure to have an urdf file ready for gazebo (info `here <http://gazebosim.org/tutorials/?tut=ros_urdf>`_.
+- Be sure to have an urdf file ready for gazebo (info `here <http://gazebosim.org/tutorials/?tut=ros_urdf>`_).
   :raw-html:`<br />`
   Also add in your *.urdf* :
   
@@ -87,7 +87,7 @@ You need additional steps on your *.urdf* file to make Gazebo simulation works.
   - Supported controllers *type* are *JointPositionController* and *JointVelocityController*, but for now ROS End-Effector only send position reference (so use *JointPositionController* for now).   
     :raw-html:`<br />`
     In truth there exists also *JointEffortController*, we will implement this in future if gazebo will allow it (it is not possible in gazebo 7)
-  - The pid gains are settable online thanks to the Dynamic reconfigurator server, a ROS tool integrated in the rosee_gazebo_plugin. 
+  - The pid gains are settable online thanks to the *DynReconfigure* node. This exploits a ROS tool called *Dynamic reconfigurator server*. The node is inside this package
 
   :raw-html:`<br />`
   
@@ -202,4 +202,5 @@ Change more params with Dynamic Reconfigurator
 - Check the ros tutorials about that ( `here <http://wiki.ros.org/dynamic_reconfigure/Tutorials>`_ ) 
 - Add (or extend) config files in *rosee_gazebo_plugins/cfg* folder
 - Check the DynReconfigure code in *src/DynReconfigure*
+
 

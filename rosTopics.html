@@ -104,7 +104,7 @@
 <p class="caption"><span class="caption-text">Other Components</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="roseeGui.html">ROS End-Effector GUI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="roseeGazeboPlugin.html">ROS End-Effector Gazebo Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roseeGazeboPlugins.html">ROS End-Effector Gazebo Plugins</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Other</span></p>
 <ul>
@@ -205,9 +205,9 @@ interpret them, and, if they are correct, send the joint position reference (for
 <div class="section" id="dynamic-simulation-with-gazebo">
 <h2>Dynamic simulation (with gazebo)<a class="headerlink" href="#dynamic-simulation-with-gazebo" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="_images/rqt_graph_gaz.png"><img alt="ros topics kinematic gazebo simulation" src="_images/rqt_graph_gaz.png" style="width: 700px;" /></a>
-<p>With the dynamic simulations the graph is similar. The only difference is that, instead of the <strong>joint_state_publisher</strong>, there is the <strong>gazebo</strong> node. This includes the <a class="reference internal" href="roseeGazeboPlugin.html#roseegazeboplugin"><span class="std std-ref">rosee_gazebo_plugin</span></a> which job includes the “mimic consideration” similarly to the <strong>joint_state_publisher</strong>.
+<p>With the dynamic simulations the graph is similar. The only difference is that, instead of the <strong>joint_state_publisher</strong>, there is the <strong>gazebo</strong> node. Inside this node, it is present the <a class="reference internal" href="roseeGazeboPlugins.html#roseegazeboplugins"><span class="std std-ref">rosee_gazebo_plugins</span></a> (which is not a standalone node because it is only a “plugin” for gazebo node). The plugin’s job includes to consider the mimic joints, similarly to what the <strong>joint_state_publisher</strong> did before.
 <span class="raw-html"><br /></span>
-The <em>/joint_states</em> topic has now a different namespace to remember us that we are using gazebo, but its messages are of the same type as before.</p>
+The <em>/joint_states</em> topic has now a different namespace (i.e. <em>/rosee_gazebo_plugins</em>) to remember us that we are using gazebo, but its messages are of the same type as before (i.e. <em>js_publisher</em>).</p>
 </div>
 </div>
 
