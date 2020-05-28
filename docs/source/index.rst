@@ -63,7 +63,7 @@ CI powered by Travis CI (.org)
    :caption: Other Components
   
    roseeGui
-   roseeGazeboPlugin
+   roseeGazeboPlugins
    
    
    

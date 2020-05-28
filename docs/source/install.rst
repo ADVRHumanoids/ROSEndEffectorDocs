@@ -82,7 +82,7 @@ The next steps will guide you to the creation of a new catkin_workspace, for clo
     
       git clone -b <branch_you_want> https://github.com/ADVRHumanoids/rosee_gui.git
   
-  - Gazebo Plugin (more info in the dedicated :ref:`section <roseeGazeboPlugin>`)
+  - Gazebo Plugin (more info in the dedicated :ref:`section <roseeGazeboPlugins>`)
   
     .. code-block:: bash
     

@@ -19,7 +19,7 @@ Prepare the files
 
 ROS End-Effector allows you to control your end-effector with minimal inital set-up
 
-- If you want to use also gazebo and :ref:`ROS End-Effector Gazebo plugin <roseeGazeboPlugin>`, please prepare correctly your *.urdf* model following the steps :ref:`here <prepare4Gazebo>`
+- If you want to use also gazebo and :ref:`ROS End-Effector Gazebo plugin <roseeGazeboPlugins>`, please prepare correctly your *.urdf* model following the steps :ref:`here <prepare4Gazebo>`
 
 - Put *.urdf* and *.srdf* files in *ROSEndEffector/configs/urdf/* and *ROSEndEffector/configs/srdf/* respectively
   (see below for information on how to proper write your *.srdf* file).
@@ -149,7 +149,7 @@ To receive feedback:
 Dynamic Simulation with Gazebo
 ********************************
 
-Be sure to have installed the rosee_gazebo_plugin (one of the optional dependencies indicated in :ref:`Installation <install>` section). Be also sure that and your urdf model is ready to be used with Gazebo, as explained :ref:`here <prepare4Gazebo>` . 
+Be sure to have installed the *rosee_gazebo_plugins* package (one of the optional dependencies indicated in :ref:`Installation <install>` section). Be also sure that and your urdf model is ready to be used with Gazebo, as explained :ref:`here <prepare4Gazebo>` . 
 
   **Note** Also remember that you have to run the *offline phase* if you have never run it for your hand.
 
