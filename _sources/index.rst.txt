@@ -14,32 +14,7 @@ Welcome to ROS End-Effector's documentation!
 
 ROS End-Effector package: provides a ROS-based set of standard interfaces to command robotics end-effectors in an agnostic fashion.
 
-Package List (links to github repositories) :
-
-- `ROSEndEffector <https://github.com/ADVRHumanoids/ROSEndEffector>`_ - the main package
-
-- `ROS End-Effector GUI <https://github.com/ADVRHumanoids/rosee_gui>`_ - specific GUI for ROSEndEffector
-
-- `ROS End-Effector Gazebo Plugins <https://github.com/ADVRHumanoids/rosee_gazebo_plugins>`_ - gazebo plugins to use ROS End-Effector with Gazebo
-
-- `rosee_msg <https://github.com/ADVRHumanoids/rosee_msg>`_ - custom ROS messages specific for ROSEndEffector
-
-- `ROSEndEffectorDocs <https://github.com/ADVRHumanoids/ROSEndEffectorDocs>`_ - the repository where this documentation is hosted
-
-- `ROSEndEffectorPackageManager <https://github.com/ADVRHumanoids/ROSEndEffectorPackageManager>`_ - metapackage to easy installation
-
-
 Documentation about the API of ROS End-Effector can be found at https://advrhumanoids.github.io/ROSEndEffector/index.html
-
-CI powered by Travis CI (.org) 
-:raw-html:`<br />`
-|travisLogo| https://travis-ci.org/ADVRHumanoids/ROSEndEffector
-
-.. |travisLogo| image:: https://travis-ci.org/ADVRHumanoids/ROSEndEffector.svg?branch=master
-  :target: https://travis-ci.org/ADVRHumanoids/ROSEndEffector
-  :alt: Build Status
-  :width: 70
-
 
 
 .. toctree::
@@ -79,6 +54,33 @@ CI powered by Travis CI (.org)
    
    googleTests
 
+
+Package List
+=================================================
+For reference, here there are listed all the packages involved in this project (links send to github repositories)
+
+- `ROS End-Effector <https://github.com/ADVRHumanoids/ROSEndEffector>`_ - the main package
+  :raw-html:`<br />`
+  Documentation about the API of ROS End-Effector can be found at https://advrhumanoids.github.io/ROSEndEffector/index.html
+
+  CI powered by Travis CI (.org) 
+  :raw-html:`<br />`
+  |travisLogo| https://travis-ci.org/ADVRHumanoids/ROSEndEffector
+
+- `ROS End-Effector GUI <https://github.com/ADVRHumanoids/rosee_gui>`_ - specific GUI for ROSEndEffector
+
+- `ROS End-Effector Gazebo Plugins <https://github.com/ADVRHumanoids/rosee_gazebo_plugins>`_ - gazebo plugins to use ROS End-Effector with Gazebo
+
+- `ROS End-Effector msgs <https://github.com/ADVRHumanoids/rosee_msg>`_ - custom ROS messages specific for ROS End-Effector
+
+- `ROS End-Effector Documentation <https://github.com/ADVRHumanoids/ROSEndEffectorDocs>`_ - the repository where this documentation is hosted
+
+- `ROS End-Effector Package Manager <https://github.com/ADVRHumanoids/ROSEndEffectorPackageManager>`_ - metapackage to easy installation
+
+.. |travisLogo| image:: https://travis-ci.org/ADVRHumanoids/ROSEndEffector.svg?branch=master
+  :target: https://travis-ci.org/ADVRHumanoids/ROSEndEffector
+  :alt: Build Status
+  :width: 70
 
 =================================================
 

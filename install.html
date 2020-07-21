@@ -90,7 +90,7 @@
               <p class="caption"><span class="caption-text">Usage</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#full-installation-suggested">Full Installation (suggested)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#full-installation-recommended">Full Installation (recommended)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#custom-installation-this-could-be-not-updated">Custom Installation (this could be not updated)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#install-external-system-dependencies">Install External System Dependencies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#install-ros-end-effector-package-from-sources">Install ROS End-Effector package from sources</a></li>
@@ -191,8 +191,8 @@
 <span class="raw-html"><br /></span>
 So, first, be sure to have ROS kinetic installed as described <a class="reference external" href="http://wiki.ros.org/kinetic/Installation/Ubuntu">here</a>.</p>
 <p><strong>Note</strong> We are going to use the abreviation ROSEE for the ROS End-Effector from now on</p>
-<div class="section" id="full-installation-suggested">
-<h2>Full Installation (suggested)<a class="headerlink" href="#full-installation-suggested" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="full-installation-recommended">
+<h2>Full Installation (recommended)<a class="headerlink" href="#full-installation-recommended" title="Permalink to this headline">¶</a></h2>
 <p>The following steps will guide you to install all packages of ROSEE using a <em>.rosintall</em> file.
 <span class="raw-html"><br /></span>
 ROS End-Effector is in development. Actually the most updated and working branch is the <em>devel</em> one, so you will
@@ -210,6 +210,7 @@ catkin_make
 <p><em>Note</em>: The sh script will install external necessary dependencies with apt-get
 <span class="raw-html"><br /></span>
 <em>Note</em>: In future, if you want to pull the last updates, you can use <code class="code docutils literal notranslate"><span class="pre">rosws</span> <span class="pre">update</span></code> to pull all the updates of each repository with this unique command!</p>
+<p>You are now ready to use ROS End-Effector! Check <a class="reference internal" href="usage.html#usage"><span class="std std-ref">How to use ROS End-Effector with your end-effector</span></a> and <a class="reference internal" href="examples.html#examples"><span class="std std-ref">Examples with ready to use end-effectors</span></a> sections to learn how to use it.</p>
 </div>
 <div class="section" id="custom-installation-this-could-be-not-updated">
 <h2>Custom Installation (this could be not updated)<a class="headerlink" href="#custom-installation-this-could-be-not-updated" title="Permalink to this headline">¶</a></h2>
@@ -219,7 +220,10 @@ In this sections there are the steps.</p>
 <div class="section" id="install-external-system-dependencies">
 <h3>Install External System Dependencies<a class="headerlink" href="#install-external-system-dependencies" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install ros-kinetic-moveit <span class="c1">#moveit</span>
-sudo apt install ros-kinetic-control-toolbox <span class="c1">#to control the robot in gazebo</span>
+
+<span class="c1">#I do not know if these two are the same...</span>
+sudo apt install ros-kinetic-ros-control
+sudo apt install ros-kinetic-control-toolbox
 </pre></div>
 </div>
 </div>

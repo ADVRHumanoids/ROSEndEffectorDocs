@@ -14,7 +14,7 @@ So, first, be sure to have ROS kinetic installed as described `here <http://wiki
 
 **Note** We are going to use the abreviation ROSEE for the ROS End-Effector from now on
 
-Full Installation (suggested)
+Full Installation (recommended)
 ###############################
 
 The following steps will guide you to install all packages of ROSEE using a *.rosintall* file.
@@ -37,6 +37,8 @@ clone the "devels" branch of each repository.
 :raw-html:`<br />`
 *Note*: In future, if you want to pull the last updates, you can use :code:`rosws update` to pull all the updates of each repository with this unique command!
 
+You are now ready to use ROS End-Effector! Check :ref:`How to use ROS End-Effector with your end-effector <usage>` and :ref:`Examples with ready to use end-effectors <examples>` sections to learn how to use it.  
+
 
 Custom Installation (this could be not updated)
 ################################################
@@ -51,7 +53,10 @@ Install External System Dependencies
 .. code-block:: bash 
 
   sudo apt-get install ros-kinetic-moveit #moveit
-  sudo apt install ros-kinetic-control-toolbox #to control the robot in gazebo
+  
+  #I do not know if these two are the same...
+  sudo apt install ros-kinetic-ros-control
+  sudo apt install ros-kinetic-control-toolbox
 
 Install ROS End-Effector package from sources
 **************************************************

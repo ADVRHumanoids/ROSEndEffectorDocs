@@ -241,12 +241,15 @@ catkin_make_isolated
 <span id="id3"></span><h2>qb SoftHand<a class="headerlink" href="#qb-softhand" title="Permalink to this headline">¶</a></h2>
 <p>This end-effector has a humanoid structure but it has only a single actuated joint. It can close all the fingers together in a compliant way. More information can be found at <a class="reference external" href="https://qbrobotics.com/products/qb-softhand-research/">qb robotics website</a>.</p>
 <p>Necessary steps before running ROS End-Effector with this hand:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/qbhand/src
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir ~/qbhand
+<span class="nb">cd</span> ~/qbhand
+mkdir src
+<span class="nb">cd</span> src
 git clone --branch production-kinetic https://bitbucket.org/qbrobotics/qbdevice-ros.git
 git clone --branch production-kinetic https://bitbucket.org/qbrobotics/qbhand-ros.git
-
-<span class="nb">cd</span> ~/catkin_ws
+      <span class="nb">cd</span> ~/qbhand
 catkin_make
+<span class="nb">source</span> devel/setup.bash
 </pre></div>
 </div>
 <p>Then run the nodes as usually but with <code class="code docutils literal notranslate"><span class="pre">hand_name:=qbahnd</span></code> as argument.</p>
@@ -256,7 +259,7 @@ catkin_make
 <p>This is a gripper with 3 fingers and two actuators. The first one close all the fingers, the other one spread the two adiacent fingers. More information can be found in the <a class="reference external" href="https://robotiq.com/products/3-finger-adaptive-robot-gripper/">Robotiq website</a>.</p>
 <p>Necessary steps before running ROS End-Effector with this gripper:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir ~/robotiq_ws
-<span class="nb">cd</span> robotiq_ws
+<span class="nb">cd</span> ~/robotiq_ws
 mkdir src
 <span class="nb">cd</span> src
 git clone https://github.com/ros-industrial/robotiq.git

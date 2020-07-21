@@ -257,11 +257,14 @@ Also, it is not necessary to set the passive tag for fixed joints.</p>
 <div class="section" id="find-grasping-actions-offline-phase">
 <span id="offphase"></span><h2>Find Grasping Actions (offline phase)<a class="headerlink" href="#find-grasping-actions-offline-phase" title="Permalink to this headline">¶</a></h2>
 <p>Before control a new end-effector, the first step is to let <strong>UniversalFindActions</strong> explore your model and extract the grasping primitive actions. So, run the dedicated launch:</p>
+<blockquote>
+<div><strong>WARNING</strong>: old <em>yaml</em> files of grasping actions will be ovewritten every time you run again this node.
+<span class="raw-html"><br /></span>
+<strong>NOTE</strong>: As you may known, <code class="code docutils literal notranslate"><span class="pre">roslaunch</span></code> starts <code class="code docutils literal notranslate"><span class="pre">roscore</span></code> it is not already running; so when findActions is finished, <code class="code docutils literal notranslate"><span class="pre">roscore</span></code> may continue running in the terminal. It is safe to <code class="code docutils literal notranslate"><span class="pre">ctrl+c</span></code> in the terminal as soon it prints something like : <code class="code docutils literal notranslate"><span class="pre">[UniversalFindActions-2]</span> <span class="pre">process</span> <span class="pre">has</span> <span class="pre">finished</span> <span class="pre">cleanly</span></code>.</div></blockquote>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># source the setup.bash of package where robot meshes are</span>
 roslaunch ros_end_effector findActions.launch hand_name:<span class="o">=</span>my_hand
 </pre></div>
 </div>
-<p><strong>WARNING</strong> old action <em>yaml</em> files will be ovewritten every time you run again the node.</p>
 <p>The findActions node will generate yaml files ( in the <em>config/action/my_hand/</em> folder ) for the grasping primitives extracted from your robot’s model.
 These files will be parsed each time you run the main node (as explained in the next section).
 <span class="raw-html"><br /></span>
