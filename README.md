@@ -1,7 +1,7 @@
 # ROSEndEffectorDocs
 The rendered documentation is visible at https://advrhumanoids.github.io/ROSEndEffectorDocs/
 
-This package contains the source of the whole [ROSEndEffector package](https://github.com/ADVRHumanoids/ROSEndEffector) documentation.
+This repository contains the source of the documentation of [ROSEndEffector](https://github.com/ADVRHumanoids/ROSEndEffector) package and related packages.
 
 Built with Sphix and readthedocs theme
 
