@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,48 +12,50 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
-  
-  
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+
+  
   
     
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-    
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Possible Issues" href="issues.html" />
-    <link rel="prev" title="ROS End-Effector GUI" href="roseeGui.html" /> 
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ROSEndEffector 1.0 documentation" href="index.html"/>
+        <link rel="next" title="Possible Issues" href="issues.html"/>
+        <link rel="prev" title="ROS End-Effector GUI" href="roseeGui.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
-   
   <div class="wy-grid-for-nav">
+
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search">
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> ROSEndEffector
+            <a href="index.html" class="icon icon-home"> ROSEndEffector
           
 
           
@@ -79,15 +82,11 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
             
-              
-            
-            
-              <p class="caption"><span class="caption-text">Usage</span></p>
+                <p class="caption"><span class="caption-text">Usage</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">How to use ROS End-Effector with your end-effector</a></li>
@@ -129,61 +128,40 @@
             
           
         </div>
-        
       </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ROSEndEffector</a>
-        
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">ROSEndEffector</a>
       </nav>
 
 
+      
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
           
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
-
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-      <li>ROS End-Effector Gazebo Plugins</li>
-    
-    
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>ROS End-Effector Gazebo Plugins</li>
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="_sources/roseeGazeboPlugins.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -208,7 +186,7 @@ It is hosted on <em>github</em> <a class="reference external" href="https://gith
 <div class="section" id="how-to-install">
 <h2>How to Install<a class="headerlink" href="#how-to-install" title="Permalink to this headline">¶</a></h2>
 <p><strong>NOTE</strong> You probably already installed this if you have followed the steps in <a class="reference internal" href="install.html#install"><span class="std std-ref">Install</span></a> section</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins.git <span class="c1">#necessary external plugin</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins.git <span class="c1">#necessary external plugin</span>
 git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/rosee_gazebo_plugins.git
 
 compile with catkin_make
@@ -222,7 +200,7 @@ compile with catkin_make
 <li><p class="first">Be sure to have an urdf file ready for gazebo (info <a class="reference external" href="http://gazebosim.org/tutorials/?tut=ros_urdf">here</a>).
 <span class="raw-html"><br /></span>
 Also add in your <em>.urdf</em> :</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;gazebo&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span class="nt">&lt;gazebo&gt;</span>
   <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;SOMENAME&quot;</span> <span class="na">filename=</span><span class="s">&quot;librosee_plugin.so&quot;</span><span class="nt">&gt;</span> <span class="nt">&lt;/plugin&gt;</span>
 <span class="nt">&lt;/gazebo&gt;</span>
 </pre></div>
@@ -232,19 +210,19 @@ Also add in your <em>.urdf</em> :</p>
 <li><p class="first">Add <em>rosee_gazebo_plugins_args</em> node in the main <em>yaml</em> config file <em>your_hand.yaml</em>, that you have created before as instructed in <a class="reference internal" href="usage.html#preparethefiles"><span class="std std-ref">Prepare the files</span></a> section. In this node you have a controller for each actuated joint, specifing
 the controller type, the joint which is controlled, and the pid gains.
 An example is below:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">ROSEndEffector</span><span class="p">:</span>
-  <span class="nt">urdf_path</span><span class="p">:</span> <span class="s">&quot;urdf/my_hand.urdf&quot;</span>
-  <span class="nt">srdf_path</span><span class="p">:</span> <span class="s">&quot;srdf/my_hand.srdf&quot;</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">ROSEndEffector</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">urdf_path</span><span class="p p-Indicator">:</span> <span class="s">&quot;urdf/my_hand.urdf&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">srdf_path</span><span class="p p-Indicator">:</span> <span class="s">&quot;srdf/my_hand.srdf&quot;</span>
 <span class="c1"># ^^^^^^^^^^^^^^^^^^^^^^^^^^^^   -- &gt; you should already have these lines</span>
 
-<span class="nt">rosee_gazebo_plugins_args</span><span class="p">:</span>
+<span class="l l-Scalar l-Scalar-Plain">rosee_gazebo_plugins_args</span><span class="p p-Indicator">:</span>
 
-  <span class="nt">joint_1_controller_name</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">JointPositionController</span>
-    <span class="nt">joint_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">JOINT NAME</span>
-    <span class="nt">pid</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">p</span><span class="p">:</span> <span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="nt"> i</span><span class="p">:</span> <span class="nv">0.001</span><span class="p p-Indicator">,</span><span class="nt"> d</span><span class="p">:</span> <span class="nv">0.00005</span><span class="p p-Indicator">}</span>
+  <span class="l l-Scalar l-Scalar-Plain">joint_1_controller_name</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">JointPositionController</span>
+    <span class="l l-Scalar l-Scalar-Plain">joint_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">JOINT NAME</span>
+    <span class="l l-Scalar l-Scalar-Plain">pid</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="nv">p</span><span class="p p-Indicator">:</span> <span class="nv">0.3</span><span class="p p-Indicator">,</span> <span class="nv">i</span><span class="p p-Indicator">:</span> <span class="nv">0.001</span><span class="p p-Indicator">,</span> <span class="nv">d</span><span class="p p-Indicator">:</span> <span class="nv">0.00005</span><span class="p p-Indicator">}</span>
 
-<span class=" -Error"> </span><span class="nt">joint_2_controller_name</span><span class="p">:</span>
+<span class=" -Error"> </span><span class="l l-Scalar l-Scalar-Plain">joint_2_controller_name</span><span class="p p-Indicator">:</span>
    <span class="l l-Scalar l-Scalar-Plain">...</span>
 </pre></div>
 </div>
@@ -258,7 +236,7 @@ In truth there exists also <em>JointEffortController</em>, we will implement thi
 <p><span class="raw-html"><br /></span></p>
 </li>
 <li><p class="first"><strong>Important</strong>: if your urdf file has some mimic joints, you have to add a <a class="reference external" href="https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins">mimic_joint_plugin</a> for each one, like below:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;base_to_right_finger&quot;</span> <span class="na">type=</span><span class="s">&quot;revolute&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;base_to_right_finger&quot;</span> <span class="na">type=</span><span class="s">&quot;revolute&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;limit</span> <span class="na">effort=</span><span class="s">&quot;1000.0&quot;</span> <span class="na">lower=</span><span class="s">&quot;-0.7&quot;</span> <span class="na">upper=</span><span class="s">&quot;0.0&quot;</span> <span class="na">velocity=</span><span class="s">&quot;0.5&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;base&quot;</span><span class="nt">/&gt;</span>
@@ -284,7 +262,7 @@ In truth there exists also <em>JointEffortController</em>, we will implement thi
 <p>This example is taken from <em>configs/urdf/two_finger_mimic.urdf</em> file.
 <span class="raw-html"><br /></span>
 If you like to use xacro macros to add this plugin, you can create one in this way:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;xacro:macro</span> <span class="na">name=</span><span class="s">&quot;mimic_joint_plugin_gazebo&quot;</span> <span class="na">params=</span><span class="s">&quot;name_prefix parent_joint mimic_joint has_pid:=false multiplier:=1.0 offset:=0 sensitiveness:=0.0 max_effort:=1.0 robot_namespace:=&#39;&#39;&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span class="nt">&lt;xacro:macro</span> <span class="na">name=</span><span class="s">&quot;mimic_joint_plugin_gazebo&quot;</span> <span class="na">params=</span><span class="s">&quot;name_prefix parent_joint mimic_joint has_pid:=false multiplier:=1.0 offset:=0 sensitiveness:=0.0 max_effort:=1.0 robot_namespace:=&#39;&#39;&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;gazebo&gt;</span>
   <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;${name_prefix}mimic_joint_plugin&quot;</span> <span class="na">filename=</span><span class="s">&quot;libroboticsgroup_gazebo_mimic_joint_plugin.so&quot;</span><span class="nt">&gt;</span>
       <span class="nt">&lt;joint&gt;</span>${parent_joint}<span class="nt">&lt;/joint&gt;</span>
@@ -305,7 +283,7 @@ If you like to use xacro macros to add this plugin, you can create one in this w
 </pre></div>
 </div>
 <p>And then use it:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;xacro:mimic_joint_plugin_gazebo</span> <span class="na">name_prefix=</span><span class="s">&quot;base_to_right_finger_joint&quot;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span class="nt">&lt;xacro:mimic_joint_plugin_gazebo</span> <span class="na">name_prefix=</span><span class="s">&quot;base_to_right_finger_joint&quot;</span>
   <span class="na">arent_joint=</span><span class="s">&quot;base_to_left_finger&quot;</span> <span class="na">mimic_joint=</span><span class="s">&quot;base_to_right_finger&quot;</span>
   <span class="na">has_pid=</span><span class="s">&quot;false&quot;</span> <span class="na">multiplier=</span><span class="s">&quot;-1.0&quot;</span> <span class="na">max_effort=</span><span class="s">&quot;1000.0&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
@@ -321,17 +299,17 @@ The macro is taken from <a class="reference external" href="https://github.com/m
 <p>To run ROS End-Effector as a whole, follow the guide in <a class="reference internal" href="usage.html#usage"><span class="std std-ref">How to use ROS End-Effector with your End-Effector</span></a> section.</p>
 <ul>
 <li><p class="first">Anyway, ROS End-Effector Gazebo Plugins is a package that run independently, so you can also launch it alone:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch rosee_gazebo_plugins twofinger.launch
+<div class="highlight-bash notranslate"><div class="highlight"><pre>roslaunch rosee_gazebo_plugins twofinger.launch
 </pre></div>
 </div>
 </li>
 <li><p class="first">To run the dynamic reconfigurator:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosrun rosee_gazebo_plugins DynReconfigure two_finger
+<div class="highlight-bash notranslate"><div class="highlight"><pre>rosrun rosee_gazebo_plugins DynReconfigure two_finger
 </pre></div>
 </div>
 </li>
 <li><p class="first">Also useful</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rqt
+<div class="highlight-bash notranslate"><div class="highlight"><pre>rqt
 </pre></div>
 </div>
 <p>And set it to have things like that, for example to tune the gains:</p>
@@ -355,16 +333,15 @@ The macro is taken from <a class="reference external" href="https://github.com/m
 
 
            </div>
-           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="issues.html" class="btn btn-neutral float-right" title="Possible Issues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="issues.html" class="btn btn-neutral float-right" title="Possible Issues" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="roseeGui.html" class="btn btn-neutral float-left" title="ROS End-Effector GUI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="roseeGui.html" class="btn btn-neutral" title="ROS End-Effector GUI" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -373,19 +350,11 @@ The macro is taken from <a class="reference external" href="https://github.com/m
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020, Luca Muratore, Davide Torielli
+        &copy; Copyright 2020, Luca Muratore, Davide Torielli.
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -397,15 +366,40 @@ The macro is taken from <a class="reference external" href="https://github.com/m
   </div>
   
 
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="_static/clipboard.min.js"></script>
+      <script type="text/javascript" src="_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
 
   
   
-    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
    
 
 </body>

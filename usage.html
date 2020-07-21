@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,48 +12,50 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
-  
-  
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+
+  
   
     
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-    
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Examples with ready to use end-effectors" href="examples.html" />
-    <link rel="prev" title="Installation" href="install.html" /> 
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ROSEndEffector 1.0 documentation" href="index.html"/>
+        <link rel="next" title="Examples with ready to use end-effectors" href="examples.html"/>
+        <link rel="prev" title="Installation" href="install.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
-   
   <div class="wy-grid-for-nav">
+
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search">
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> ROSEndEffector
+            <a href="index.html" class="icon icon-home"> ROSEndEffector
           
 
           
@@ -79,15 +82,11 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
             
-              
-            
-            
-              <p class="caption"><span class="caption-text">Usage</span></p>
+                <p class="caption"><span class="caption-text">Usage</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">How to use ROS End-Effector with your end-effector</a><ul>
@@ -128,61 +127,40 @@
             
           
         </div>
-        
       </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ROSEndEffector</a>
-        
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">ROSEndEffector</a>
       </nav>
 
 
+      
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
           
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
-
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-      <li>How to use ROS End-Effector with your end-effector</li>
-    
-    
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>How to use ROS End-Effector with your end-effector</li>
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -207,9 +185,9 @@ Be sure that the files are named like the name of the robot tag of <em>.urdf</em
 <p>The meshes can be kept on your hand_description folder, only be sure to <code class="code docutils literal notranslate"><span class="pre">source</span></code> that <em>setup.bash</em> before run ROSEE nodes.</p>
 </li>
 <li><p class="first">Create a yaml config file named <em>my_hand.yaml</em> to tell where the <em>.urdf</em> and <em>.srdf</em> files are, and put it in <em>ROSEndEffector/configs/</em> folder. As an example, see below:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">ROSEndEffector</span><span class="p">:</span>
-  <span class="nt">urdf_path</span><span class="p">:</span> <span class="s">&quot;urdf/my_hand.urdf&quot;</span>
-  <span class="nt">srdf_path</span><span class="p">:</span> <span class="s">&quot;srdf/my_hand.srdf&quot;</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">ROSEndEffector</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">urdf_path</span><span class="p p-Indicator">:</span> <span class="s">&quot;urdf/my_hand.urdf&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">srdf_path</span><span class="p p-Indicator">:</span> <span class="s">&quot;srdf/my_hand.srdf&quot;</span>
 </pre></div>
 </div>
 </li>
@@ -220,14 +198,14 @@ Be sure that the files are named like the name of the robot tag of <em>.urdf</em
 If you do not know the SRDF format, please read <a class="reference external" href="http://wiki.ros.org/srdf">here</a>.</p>
 <ul>
 <li><p class="first">The convention used by ROS End-Effector is that each finger is a <em>group</em>, from the base of the finger to the tip, so in each group you must add a chain, where the <em>base_link</em> is the first link of the finger, and the <em>tip_link</em> is the last one. For example (taken from <em>robotiq_3f.srdf</em>):</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;finger_1&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;finger_1&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;chain</span> <span class="na">base_link=</span><span class="s">&quot;palm&quot;</span> <span class="na">tip_link=</span><span class="s">&quot;finger_1_link_3&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/group&gt;</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first">All the fingers-group must be included in a bigger group, like this:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span> <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;end_effector_fingers&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre> <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;end_effector_fingers&quot;</span><span class="nt">&gt;</span>
    <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;finger_1&quot;</span> <span class="nt">/&gt;</span>
    <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;finger_2&quot;</span> <span class="nt">/&gt;</span>
    <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;finger_middle&quot;</span> <span class="nt">/&gt;</span>
@@ -236,7 +214,7 @@ If you do not know the SRDF format, please read <a class="reference external" hr
 </div>
 </li>
 <li><p class="first">In the <em>SRDF</em> file you can also indicate some joints as passive in this way:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;passive_joint</span> <span class="na">name=</span><span class="s">&quot;JOINT_NAME&quot;</span> <span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span class="nt">&lt;passive_joint</span> <span class="na">name=</span><span class="s">&quot;JOINT_NAME&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>The passive tag is used to indicate to ROS End-Effector that a non-fixed joint is not actuated (i.e. it can move only if some external forces are applied, in a compliant way). If you not put this tag, the joint will be considered actuated.
@@ -245,7 +223,7 @@ Please <strong>DO NOT</strong> add the passive tag for joints that are defined a
 Also, it is not necessary to set the passive tag for fixed joints.</p>
 </li>
 <li><p class="first">If you are planning to use gazebo, specify as <em>virtual</em> the joint between the <em>world</em> and the end-effector base is necessary, like below:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;virtual_joint</span> <span class="na">name=</span><span class="s">&quot;world_base&quot;</span> <span class="na">type=</span><span class="s">&quot;fixed&quot;</span> <span class="na">parent_frame=</span><span class="s">&quot;world&quot;</span> <span class="na">child_link=</span><span class="s">&quot;palm&quot;</span> <span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span class="nt">&lt;virtual_joint</span> <span class="na">name=</span><span class="s">&quot;world_base&quot;</span> <span class="na">type=</span><span class="s">&quot;fixed&quot;</span> <span class="na">parent_frame=</span><span class="s">&quot;world&quot;</span> <span class="na">child_link=</span><span class="s">&quot;palm&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
 </div>
 </li>
@@ -261,7 +239,7 @@ Also, it is not necessary to set the passive tag for fixed joints.</p>
 <div><strong>WARNING</strong>: old <em>yaml</em> files of grasping actions will be ovewritten every time you run again this node.
 <span class="raw-html"><br /></span>
 <strong>NOTE</strong>: As you may known, <code class="code docutils literal notranslate"><span class="pre">roslaunch</span></code> starts <code class="code docutils literal notranslate"><span class="pre">roscore</span></code> it is not already running; so when findActions is finished, <code class="code docutils literal notranslate"><span class="pre">roscore</span></code> may continue running in the terminal. It is safe to <code class="code docutils literal notranslate"><span class="pre">ctrl+c</span></code> in the terminal as soon it prints something like : <code class="code docutils literal notranslate"><span class="pre">[UniversalFindActions-2]</span> <span class="pre">process</span> <span class="pre">has</span> <span class="pre">finished</span> <span class="pre">cleanly</span></code>.</div></blockquote>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># source the setup.bash of package where robot meshes are</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span class="c1"># source the setup.bash of package where robot meshes are</span>
 roslaunch ros_end_effector findActions.launch hand_name:<span class="o">=</span>my_hand
 </pre></div>
 </div>
@@ -275,7 +253,7 @@ To know more about this part, and how to create custom grasping actions, see <a 
 <p>The main node of ROS End-Effector will wait for grasping actions command (received as <em>ROS actions</em>) and it will send low level commands (such as joint position references) to the end-effector in use.
 <span class="raw-html"><br /></span>
 To launch this, please run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># source the setup.bash of package where robot meshes are</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span class="c1"># source the setup.bash of package where robot meshes are</span>
 roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</span>my_hand
 </pre></div>
 </div>
@@ -285,7 +263,7 @@ roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</spa
 <p>In another terminal, you can run the ROS End-Effector GUI to command the grasping actions. Only be sure to have <em>rosee_gui</em> package installed (that you should have if you have followed <a class="reference internal" href="install.html#install"><span class="std std-ref">Installation</span></a> section).
 <span class="raw-html"><br /></span>
 To run the GUI, please run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch rosee_gui gui.launch <span class="c1">#no hand name is needed</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>roslaunch rosee_gui gui.launch <span class="c1">#no hand name is needed</span>
 </pre></div>
 </div>
 <p>This will load the GUI dynamically, visualizing only the grasping action defined for the end effector in use.
@@ -296,7 +274,7 @@ To know more about ROSEE GUI, check <a class="reference internal" href="roseeGui
 <p>The other way to command grasping actions is directly publishing on ROS topics (that is what GUI does for you).
 You can simply <code class="code docutils literal notranslate"><span class="pre">pub</span></code> a <em>rosee_msg/ROSEECommandActionGoal</em> message on <em>/ros_end_effector/action_command/goal</em> topic, and <code class="code docutils literal notranslate"><span class="pre">echo</span></code> on /<em>ros_end_effector/action_command/feedback</em> to receive the feedback.</p>
 <p>For example, to publish run this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rostopic pub /ros_end_effector/action_command/goal rosee_msg/ROSEECommandActionGoal <span class="s2">&quot;header:</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>rostopic pub /ros_end_effector/action_command/goal rosee_msg/ROSEECommandActionGoal <span class="s2">&quot;header:</span>
 <span class="s2">  seq: 0</span>
 <span class="s2">    stamp:</span>
 <span class="s2">      secs: 0</span>
@@ -320,7 +298,7 @@ You can simply <code class="code docutils literal notranslate"><span class="pre"
 </div>
 <p><strong>NOTE</strong> the important lines are the last ones.</p>
 <p>And to receive feedback, run (in another terminal):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rostopic <span class="nb">echo</span> /ros_end_effector/action_command/feedback
+<div class="highlight-bash notranslate"><div class="highlight"><pre>rostopic <span class="nb">echo</span> /ros_end_effector/action_command/feedback
 </pre></div>
 </div>
 </div>
@@ -330,13 +308,13 @@ You can simply <code class="code docutils literal notranslate"><span class="pre"
 <blockquote>
 <div><strong>Note</strong> Also remember that you have to run the <a class="reference internal" href="#offphase"><span class="std std-ref">offline phase</span></a> once if you have never run it for your end-effector.</div></blockquote>
 <p>Launch the main node with the <code class="code docutils literal notranslate"><span class="pre">gazebo:=true</span></code> argument, in this way:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># source the setup.bash of package where robot meshes are</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span class="c1"># source the setup.bash of package where robot meshes are</span>
 <span class="c1"># if some errors happens, try to also source gazebo.setup, like &quot;source /usr/share/gazebo/setup.sh&quot;</span>
 roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</span>my_hand gazebo:<span class="o">=</span><span class="nb">true</span>
 </pre></div>
 </div>
 <p>As before, you can use the ROSEE GUI to send grasping action commands, running in another terminal:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch rosee_gui gui.launch <span class="c1">#no hand name is needed</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>roslaunch rosee_gui gui.launch <span class="c1">#no hand name is needed</span>
 </pre></div>
 </div>
 </div>
@@ -345,16 +323,15 @@ roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</spa
 
 
            </div>
-           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="examples.html" class="btn btn-neutral float-right" title="Examples with ready to use end-effectors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples with ready to use end-effectors" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="install.html" class="btn btn-neutral" title="Installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -363,19 +340,11 @@ roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</spa
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020, Luca Muratore, Davide Torielli
+        &copy; Copyright 2020, Luca Muratore, Davide Torielli.
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -387,15 +356,40 @@ roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</spa
   </div>
   
 
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="_static/clipboard.min.js"></script>
+      <script type="text/javascript" src="_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
 
   
   
-    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
    
 
 </body>
