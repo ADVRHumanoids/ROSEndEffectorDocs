@@ -32,7 +32,8 @@ Thanks to the `mimic_joint_plugin <https://github.com/roboticsgroup/roboticsgrou
 How to Install
 ################
 
-**NOTE** You probably already installed this if you have followed the steps in :ref:`Install <install>` section
+.. note::
+  You probably already installed this if you have followed the steps in :ref:`Install <install>` section
 
 .. code-block:: bash
 

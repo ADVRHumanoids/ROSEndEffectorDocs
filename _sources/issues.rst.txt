@@ -14,10 +14,9 @@ Generic
   .. code-block:: bash
   
     sudo apt install ros-kinetic-joint-state-publisher-gui
-    
-  **NOTE** *use_gui* is not used anymore by us, but this answer can be useful anyway
-  :raw-html:`<br />`
-  :raw-html:`<br />`
+
+.. note::
+  *use_gui* is not used anymore by us, but this answer can be useful anyway
 
 - With the schunk hand, if we move only the middle finger (base phalange)
   toward the hand, a collision between index tip, middle tip and ring tip is detected. 

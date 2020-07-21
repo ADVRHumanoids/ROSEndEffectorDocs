@@ -212,8 +212,10 @@ catkin_make_isolated
 </pre></div>
 </div>
 <p>Then run the nodes as usually but with <code class="code docutils literal notranslate"><span class="pre">hand_name:=schunk</span></code> as argument.</p>
-<blockquote>
-<div><strong>Note</strong>: the SVH’s URDF does not have dynamic parameters, so at the moment it can not be simulated with gazebo (so do not use <code class="code docutils literal notranslate"><span class="pre">gazebo:=true</span></code>).</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the SVH’s URDF does not have dynamic parameters, so at the moment it can not be simulated with gazebo (so do not use <code class="code docutils literal notranslate"><span class="pre">gazebo:=true</span></code>).</p>
+</div>
 </div>
 <div class="section" id="qb-softhand">
 <span id="id3"></span><h2>qb SoftHand<a class="headerlink" href="#qb-softhand" title="Permalink to this headline">¶</a></h2>
@@ -253,8 +255,10 @@ catkin_make
 </pre></div>
 </div>
 <p>Then run the nodes with <code class="code docutils literal notranslate"><span class="pre">hand_name:=robotiq_3f</span></code> as argument</p>
-<blockquote>
-<div><strong>Note</strong> The original urdf from robotiq has been modified a bit. First, some joints have been put as mimic. Then, friction and damping of joints parameters have been inserted so the model could be used in gazebo. Other addition are contact coefficents (of tips) and colors. These parameters obviosly can be very different from the real ones.</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The original urdf from robotiq has been modified a bit. First, some joints have been put as mimic. Then, friction and damping of joints parameters have been inserted so the model could be used in gazebo. Other addition are contact coefficents (of tips) and colors. These parameters obviosly can be very different from the real ones.</p>
+</div>
 </div>
 <div class="section" id="robotiq-2f-140-gripper">
 <span id="id5"></span><h2>Robotiq 2F-140 Gripper<a class="headerlink" href="#robotiq-2f-140-gripper" title="Permalink to this headline">¶</a></h2>

@@ -235,13 +235,17 @@ Also, it is not necessary to set the passive tag for fixed joints.</p>
 <div class="section" id="find-grasping-actions-offline-phase">
 <span id="offphase"></span><h2>Find Grasping Actions (offline phase)<a class="headerlink" href="#find-grasping-actions-offline-phase" title="Permalink to this headline">¶</a></h2>
 <p>Before control a new end-effector, the first step is to let <strong>UniversalFindActions</strong> explore your model and extract the grasping primitive actions. So, run the dedicated launch:</p>
-<blockquote>
-<div><strong>WARNING</strong>: old <em>yaml</em> files of grasping actions will be ovewritten every time you run again this node.
-<span class="raw-html"><br /></span>
-<strong>NOTE</strong>: As you may known, <code class="code docutils literal notranslate"><span class="pre">roslaunch</span></code> starts <code class="code docutils literal notranslate"><span class="pre">roscore</span></code> it is not already running; so when findActions is finished, <code class="code docutils literal notranslate"><span class="pre">roscore</span></code> may continue running in the terminal. It is safe to <code class="code docutils literal notranslate"><span class="pre">ctrl+c</span></code> in the terminal as soon it prints something like : <code class="code docutils literal notranslate"><span class="pre">[UniversalFindActions-2]</span> <span class="pre">process</span> <span class="pre">has</span> <span class="pre">finished</span> <span class="pre">cleanly</span></code>.</div></blockquote>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span class="c1"># source the setup.bash of package where robot meshes are</span>
 roslaunch ros_end_effector findActions.launch hand_name:<span class="o">=</span>my_hand
 </pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">old <em>yaml</em> files of grasping actions will be ovewritten every time you run again this node.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As you may known, <code class="code docutils literal notranslate"><span class="pre">roslaunch</span></code> starts <code class="code docutils literal notranslate"><span class="pre">roscore</span></code> it is not already running; so when findActions is finished, <code class="code docutils literal notranslate"><span class="pre">roscore</span></code> may continue running in the terminal. It is safe to <code class="code docutils literal notranslate"><span class="pre">ctrl+c</span></code> in the terminal as soon it prints something like : <code class="code docutils literal notranslate"><span class="pre">[UniversalFindActions-2]</span> <span class="pre">process</span> <span class="pre">has</span> <span class="pre">finished</span> <span class="pre">cleanly</span></code>.</p>
 </div>
 <p>The findActions node will generate yaml files ( in the <em>config/action/my_hand/</em> folder ) for the grasping primitives extracted from your robot’s model.
 These files will be parsed each time you run the main node (as explained in the next section).
@@ -258,8 +262,10 @@ roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</spa
 </pre></div>
 </div>
 <p>This command will load ROSEE controller node (called <em>UniversalROSEndEffector</em>) with rviz for visualization purposes.</p>
-<blockquote>
-<div><strong>Note</strong>: If you want to not run ROSEE controller but load the ROS joint publisher GUI to command directly each joint position, you can simply run <code class="code docutils literal notranslate"><span class="pre">roslaunch</span> <span class="pre">ros_end_effector</span> <span class="pre">jsp_startup.launch</span> <span class="pre">hand_name:=my_hand</span></code> . This can be useful to visualize the end-effector and try to move it setting joints positions thanks to ROS tools.</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you want to not run ROSEE controller but load the ROS joint publisher GUI to command directly each joint position, you can simply run <code class="code docutils literal notranslate"><span class="pre">roslaunch</span> <span class="pre">ros_end_effector</span> <span class="pre">jsp_startup.launch</span> <span class="pre">hand_name:=my_hand</span></code> . This can be useful to visualize the end-effector and try to move it setting joints positions thanks to ROS tools.</p>
+</div>
 <p>In another terminal, you can run the ROS End-Effector GUI to command the grasping actions. Only be sure to have <em>rosee_gui</em> package installed (that you should have if you have followed <a class="reference internal" href="install.html#install"><span class="std std-ref">Installation</span></a> section).
 <span class="raw-html"><br /></span>
 To run the GUI, please run:</p>
@@ -296,7 +302,10 @@ You can simply <code class="code docutils literal notranslate"><span class="pre"
 </span><span class="hll"><span class="s2">    percentage: 1.0&quot;</span>
 </span></pre></div>
 </div>
-<p><strong>NOTE</strong> the important lines are the last ones.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the important lines are the last ones.</p>
+</div>
 <p>And to receive feedback, run (in another terminal):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre>rostopic <span class="nb">echo</span> /ros_end_effector/action_command/feedback
 </pre></div>
@@ -305,8 +314,10 @@ You can simply <code class="code docutils literal notranslate"><span class="pre"
 <div class="section" id="dynamic-simulation-with-gazebo">
 <h3>Dynamic Simulation with Gazebo<a class="headerlink" href="#dynamic-simulation-with-gazebo" title="Permalink to this headline">¶</a></h3>
 <p>Be sure to have installed the <em>rosee_gazebo_plugins</em> package (that you should have if you have followed <a class="reference internal" href="install.html#install"><span class="std std-ref">Installation</span></a> section). Be also sure that and your urdf model is ready to be used with Gazebo, as explained <a class="reference internal" href="roseeGazeboPlugins.html#prepare4gazebo"><span class="std std-ref">Prepare your Model for Gazebo</span></a> section.</p>
-<blockquote>
-<div><strong>Note</strong> Also remember that you have to run the <a class="reference internal" href="#offphase"><span class="std std-ref">offline phase</span></a> once if you have never run it for your end-effector.</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Also remember that you have to run the <a class="reference internal" href="#offphase"><span class="std std-ref">offline phase</span></a> once if you have never run it for your end-effector.</p>
+</div>
 <p>Launch the main node with the <code class="code docutils literal notranslate"><span class="pre">gazebo:=true</span></code> argument, in this way:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span class="c1"># source the setup.bash of package where robot meshes are</span>
 <span class="c1"># if some errors happens, try to also source gazebo.setup, like &quot;source /usr/share/gazebo/setup.sh&quot;</span>

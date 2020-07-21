@@ -161,7 +161,10 @@
             
   <div class="section" id="findactions">
 <span id="id1"></span><h1>FindActions<a class="headerlink" href="#findactions" title="Permalink to this headline">¶</a></h1>
-<p><strong>TODO</strong> put link to api doc for the classes</p>
+<div class="admonition-todo admonition" id="id2">
+<p class="first admonition-title">Todo</p>
+<p class="last">put link to api doc for the classes</p>
+</div>
 <div class="section" id="primitives">
 <h2>Primitives<a class="headerlink" href="#primitives" title="Permalink to this headline">¶</a></h2>
 <p>The <strong>FindActions</strong> class will help you to extract automatically the primitive actions that the loaded end-effector can accomplish. Each kind of primitive has its own method to understand if a primitive is doable and how (i.e. which joints moves and in which position).</p>
@@ -226,8 +229,8 @@ First, a MapActionHandler must be created. This is a support class that internal
 The returned map are of type <code class="code docutils literal notranslate"><span class="pre">typedef</span> <span class="pre">std::map</span> <span class="pre">&lt;</span> <span class="pre">std::set</span> <span class="pre">&lt;</span> <span class="pre">std::string</span> <span class="pre">&gt;,</span> <span class="pre">ROSEE::ActionPrimitive::Ptr</span> <span class="pre">&gt;</span> <span class="pre">ActionPrimitiveMap</span></code>.
 The key contains one or more string to select the specific primitive among the one of same type. For example, for a tightPinch, each key is a set containing two strings: the names of the fingers that colllide.
 For example:</p>
-<table border="1" class="docutils" id="id2">
-<caption><span class="caption-text">TightPinch Example</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<table border="1" class="docutils" id="id3">
+<caption><span class="caption-text">TightPinch Example</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="50%" />
 <col width="50%" />
@@ -276,7 +279,10 @@ We can create a custom action <em>summing</em> two previously created actions (p
 <span class="n">mapsHandler</span><span class="p">.</span><span class="n">getGeneric</span><span class="p">(</span><span class="s">&quot;grasp&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">print</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>Note that the above example creates a <code class="code docutils literal notranslate"><span class="pre">ActionComposed</span></code> object, namely a class that is created <em>summing</em> two or more actions. We can also create a generic action from scratch, manually filling the essential structures</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the above example creates a <code class="code docutils literal notranslate"><span class="pre">ActionComposed</span></code> object, namely a class that is created <em>summing</em> two or more actions. We can also create a generic action from scratch, manually filling the essential structures</p>
+</div>
 <p>So, first we fill the ROSEE::JointPos and ROSEE::JointsInvolvedCount structures. In the below example, we will copy inside them information from other actions:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span class="n">ROSEE</span><span class="o">::</span><span class="n">JointPos</span> <span class="n">jp</span><span class="p">;</span>
 

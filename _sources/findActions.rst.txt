@@ -4,7 +4,8 @@
 FindActions
 =====================================
 
-**TODO** put link to api doc for the classes
+.. todo::
+  put link to api doc for the classes
 
 Primitives
 ################
@@ -144,7 +145,8 @@ We can then parse all the generics with the mapsHandler used before for the prim
   mapsHandler.getGeneric("grasp")->print();
 
 
-Note that the above example creates a :code:`ActionComposed` object, namely a class that is created *summing* two or more actions. We can also create a generic action from scratch, manually filling the essential structures
+.. note::
+  the above example creates a :code:`ActionComposed` object, namely a class that is created *summing* two or more actions. We can also create a generic action from scratch, manually filling the essential structures
 
 So, first we fill the ROSEE::JointPos and ROSEE::JointsInvolvedCount structures. In the below example, we will copy inside them information from other actions:
 

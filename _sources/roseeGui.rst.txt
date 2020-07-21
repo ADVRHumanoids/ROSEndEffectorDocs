@@ -12,7 +12,8 @@ QT5 (I am not sure if this is given with ROS, if this is necessary only to compi
 How To Install
 ################
 
-**NOTE** You probably already installed this if you have followed the steps in :ref:`Install <install>` section
+.. note::
+  You probably already installed this if you have followed the steps in :ref:`Install <install>` section
 
 .. code-block:: bash
 

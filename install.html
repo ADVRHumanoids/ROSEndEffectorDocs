@@ -168,7 +168,10 @@
 <p>ROS End-Effector is a ROS package tested on ROS kinetic with Ubuntu 16.04.
 <span class="raw-html"><br /></span>
 So, first, be sure to have ROS kinetic installed as described <a class="reference external" href="http://wiki.ros.org/kinetic/Installation/Ubuntu">here</a>.</p>
-<p><strong>Note</strong> We are going to use the abreviation ROSEE for the ROS End-Effector from now on</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We are going to use the abreviation ROSEE for the ROS End-Effector from now on</p>
+</div>
 <div class="section" id="full-installation-recommended">
 <h2>Full Installation (recommended)<a class="headerlink" href="#full-installation-recommended" title="Permalink to this headline">¶</a></h2>
 <p>The following steps will guide you to install all packages of ROSEE using a <em>.rosintall</em> file.
@@ -185,9 +188,15 @@ rosws update
 catkin_make
 </pre></div>
 </div>
-<p><em>Note</em>: The sh script will install external necessary dependencies with apt-get
-<span class="raw-html"><br /></span>
-<em>Note</em>: In future, if you want to pull the last updates, you can use <code class="code docutils literal notranslate"><span class="pre">rosws</span> <span class="pre">update</span></code> to pull all the updates of each repository with this unique command!</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The sh script will install external necessary dependencies with apt-get
+<span class="raw-html"><br /></span></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In future, if you want to pull the last updates, you can use <code class="code docutils literal notranslate"><span class="pre">rosws</span> <span class="pre">update</span></code> to pull all the updates of each repository with this unique command!</p>
+</div>
 <p>You are now ready to use ROS End-Effector! Check <a class="reference internal" href="usage.html#usage"><span class="std std-ref">How to use ROS End-Effector with your end-effector</span></a> and <a class="reference internal" href="examples.html#examples"><span class="std std-ref">Examples with ready to use end-effectors</span></a> sections to learn how to use it.</p>
 </div>
 <div class="section" id="custom-installation-this-could-be-not-updated">
@@ -238,10 +247,13 @@ git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/rosee_gaze
 </div>
 </li>
 </ul>
-<p><strong>NOTE</strong>: you can see details on each optional plugin in their relative page of this doc
-<span class="raw-html"><br /></span>
-<span class="raw-html"><br /></span></p>
 </li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">you can see details on each optional plugin in their relative page of this doc</p>
+</div>
+<ul>
 <li><p class="first">Clone Core Package</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre>git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/ROSEndEffector
 </pre></div>
