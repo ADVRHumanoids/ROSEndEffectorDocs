@@ -1,10 +1,13 @@
 # ROSEndEffectorDocs
-Sphinx (with readthedocs theme) documentation for [ROSEndEffector package](https://github.com/ADVRHumanoids/ROSEndEffector)
+The rendered documentation is visible at https://advrhumanoids.github.io/ROSEndEffectorDocs/
 
-This documentation is visible at https://advrhumanoids.github.io/ROSEndEffectorDocs/
+This package contains the source of the whole [ROSEndEffector package](https://github.com/ADVRHumanoids/ROSEndEffector) documentation.
+
+Built with Sphix and readthedocs theme
 
 
-#### To compile locally
+
+### To compile locally
 - Prerequisite
   ~~~bash
   sudo apt-get install python3-sphinx
