@@ -15,7 +15,7 @@ before_install:
 install:
   - sudo apt-get install python3-sphinx
   - sudo pip install sphinx_rtd_theme #readthedocs theme
-  - pip3 install sphinx-copybutton
+  - sudo pip install sphinx-copybutton
 
 script: 
 
