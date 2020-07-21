@@ -86,12 +86,17 @@ Find Grasping Actions (offline phase)
 ######################################
 Before control a new end-effector, the first step is to let **UniversalFindActions** explore your model and extract the grasping primitive actions. So, run the dedicated launch:
 
+  **WARNING**: old *yaml* files of grasping actions will be ovewritten every time you run again this node.
+  :raw-html:`<br />`
+  **NOTE**: As you may known, :code:`roslaunch` starts :code:`roscore` it is not already running; so when findActions is finished, :code:`roscore` may continue running in the terminal. It is safe to :code:`ctrl+c` in the terminal as soon it prints something like : :code:`[UniversalFindActions-2] process has finished cleanly`.
+
+
 .. code-block:: bash
 
   # source the setup.bash of package where robot meshes are
   roslaunch ros_end_effector findActions.launch hand_name:=my_hand
 
-**WARNING** old action *yaml* files will be ovewritten every time you run again the node.
+
   
 The findActions node will generate yaml files ( in the *config/action/my_hand/* folder ) for the grasping primitives extracted from your robot's model. 
 These files will be parsed each time you run the main node (as explained in the next section).

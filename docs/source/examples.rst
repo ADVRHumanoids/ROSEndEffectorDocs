@@ -85,12 +85,15 @@ Necessary steps before running ROS End-Effector with this hand:
 
 .. code-block:: bash
 
-  cd ~/qbhand/src
+  mkdir ~/qbhand
+  cd ~/qbhand
+  mkdir src
+  cd src
   git clone --branch production-kinetic https://bitbucket.org/qbrobotics/qbdevice-ros.git
   git clone --branch production-kinetic https://bitbucket.org/qbrobotics/qbhand-ros.git
-
-  cd ~/catkin_ws
+	cd ~/qbhand
   catkin_make
+  source devel/setup.bash
   
 Then run the nodes as usually but with :code:`hand_name:=qbahnd` as argument.
 
@@ -107,7 +110,7 @@ Necessary steps before running ROS End-Effector with this gripper:
 .. code-block:: bash
 
   mkdir ~/robotiq_ws
-  cd robotiq_ws
+  cd ~/robotiq_ws
   mkdir src
   cd src
   git clone https://github.com/ros-industrial/robotiq.git
