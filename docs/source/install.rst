@@ -12,7 +12,8 @@ ROS End-Effector is a ROS package tested on ROS kinetic with Ubuntu 16.04.
 :raw-html:`<br />`
 So, first, be sure to have ROS kinetic installed as described `here <http://wiki.ros.org/kinetic/Installation/Ubuntu>`_.
 
-**Note** We are going to use the abreviation ROSEE for the ROS End-Effector from now on
+.. note::
+  We are going to use the abreviation ROSEE for the ROS End-Effector from now on
 
 Full Installation (recommended)
 ###############################
@@ -33,9 +34,12 @@ clone the "devels" branch of each repository.
   cd ..
   catkin_make
   
-*Note*: The sh script will install external necessary dependencies with apt-get
-:raw-html:`<br />`
-*Note*: In future, if you want to pull the last updates, you can use :code:`rosws update` to pull all the updates of each repository with this unique command!
+.. note::
+   The sh script will install external necessary dependencies with apt-get
+   :raw-html:`<br />`
+
+.. note::
+  In future, if you want to pull the last updates, you can use :code:`rosws update` to pull all the updates of each repository with this unique command!
 
 You are now ready to use ROS End-Effector! Check :ref:`How to use ROS End-Effector with your end-effector <usage>` and :ref:`Examples with ready to use end-effectors <examples>` sections to learn how to use it.  
 
@@ -97,9 +101,8 @@ The next steps will guide you to the creation of a new catkin_workspace, the clo
       git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins.git #necessary external plugin
       git clone -b <branch_you_want> https://github.com/ADVRHumanoids/rosee_gazebo_plugins.git
           
-  **NOTE**: you can see details on each optional plugin in their relative page of this doc
-  :raw-html:`<br />` 
-  :raw-html:`<br />` 
+.. note::
+  you can see details on each optional plugin in their relative page of this doc
   
 - Clone Core Package
 

@@ -71,7 +71,8 @@ Some packages are necessary to run ROS End-Effector with this gripper. Follow th
 
 Then run the nodes as usually but with :code:`hand_name:=schunk` as argument.
 
-  **Note**: the SVH's URDF does not have dynamic parameters, so at the moment it can not be simulated with gazebo (so do not use :code:`gazebo:=true`).
+.. note::
+  the SVH's URDF does not have dynamic parameters, so at the moment it can not be simulated with gazebo (so do not use :code:`gazebo:=true`).
   
   
 .. _`qb SoftHand`: 
@@ -126,7 +127,8 @@ Necessary steps before running ROS End-Effector with this gripper:
   
 Then run the nodes with :code:`hand_name:=robotiq_3f` as argument  
 
-  **Note** The original urdf from robotiq has been modified a bit. First, some joints have been put as mimic. Then, friction and damping of joints parameters have been inserted so the model could be used in gazebo. Other addition are contact coefficents (of tips) and colors. These parameters obviosly can be very different from the real ones.
+.. note::
+  The original urdf from robotiq has been modified a bit. First, some joints have been put as mimic. Then, friction and damping of joints parameters have been inserted so the model could be used in gazebo. Other addition are contact coefficents (of tips) and colors. These parameters obviosly can be very different from the real ones.
 
 
 .. _`Robotiq 2F-140 Gripper`:

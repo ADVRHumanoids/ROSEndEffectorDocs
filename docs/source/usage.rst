@@ -86,15 +86,16 @@ Find Grasping Actions (offline phase)
 ######################################
 Before control a new end-effector, the first step is to let **UniversalFindActions** explore your model and extract the grasping primitive actions. So, run the dedicated launch:
 
-  **WARNING**: old *yaml* files of grasping actions will be ovewritten every time you run again this node.
-  :raw-html:`<br />`
-  **NOTE**: As you may known, :code:`roslaunch` starts :code:`roscore` it is not already running; so when findActions is finished, :code:`roscore` may continue running in the terminal. It is safe to :code:`ctrl+c` in the terminal as soon it prints something like : :code:`[UniversalFindActions-2] process has finished cleanly`.
-
-
 .. code-block:: bash
 
   # source the setup.bash of package where robot meshes are
   roslaunch ros_end_effector findActions.launch hand_name:=my_hand
+
+.. warning::
+  old *yaml* files of grasping actions will be ovewritten every time you run again this node.
+
+.. note::
+  As you may known, :code:`roslaunch` starts :code:`roscore` it is not already running; so when findActions is finished, :code:`roscore` may continue running in the terminal. It is safe to :code:`ctrl+c` in the terminal as soon it prints something like : :code:`[UniversalFindActions-2] process has finished cleanly`.
 
 
   
@@ -119,7 +120,8 @@ To launch this, please run:
   
 This command will load ROSEE controller node (called *UniversalROSEndEffector*) with rviz for visualization purposes.
 
-  **Note**: If you want to not run ROSEE controller but load the ROS joint publisher GUI to command directly each joint position, you can simply run :code:`roslaunch ros_end_effector jsp_startup.launch hand_name:=my_hand` . This can be useful to visualize the end-effector and try to move it setting joints positions thanks to ROS tools.
+.. note::
+  If you want to not run ROSEE controller but load the ROS joint publisher GUI to command directly each joint position, you can simply run :code:`roslaunch ros_end_effector jsp_startup.launch hand_name:=my_hand` . This can be useful to visualize the end-effector and try to move it setting joints positions thanks to ROS tools.
 
 In another terminal, you can run the ROS End-Effector GUI to command the grasping actions. Only be sure to have *rosee_gui* package installed (that you should have if you have followed :ref:`Installation <install>` section).
 :raw-html:`<br />`
@@ -165,7 +167,8 @@ For example, to publish run this:
       selectable_items: ['index', 'thumb']
       percentage: 1.0" 
 
-**NOTE** the important lines are the last ones.
+.. note::
+  the important lines are the last ones.
 
 And to receive feedback, run (in another terminal):
 
@@ -180,7 +183,8 @@ Dynamic Simulation with Gazebo
 
 Be sure to have installed the *rosee_gazebo_plugins* package (that you should have if you have followed :ref:`Installation <install>` section). Be also sure that and your urdf model is ready to be used with Gazebo, as explained :ref:`Prepare your Model for Gazebo <prepare4Gazebo>` section. 
 
-  **Note** Also remember that you have to run the :ref:`offline phase <offPhase>` once if you have never run it for your end-effector.
+.. note::
+  Also remember that you have to run the :ref:`offline phase <offPhase>` once if you have never run it for your end-effector.
 
 Launch the main node with the :code:`gazebo:=true` argument, in this way:
 
