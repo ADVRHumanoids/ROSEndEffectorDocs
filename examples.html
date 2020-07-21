@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ready to use examples with tested hands &mdash; ROSEndEffector 1.0 documentation</title>
+  <title>Examples with ready to use end-effectors &mdash; ROSEndEffector 1.0 documentation</title>
   
 
   
@@ -38,7 +38,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="ROS End-Effector Grasping Actions" href="actions.html" />
-    <link rel="prev" title="How to use ROS End-Effector with your End-Effector" href="usage.html" /> 
+    <link rel="prev" title="How to use ROS End-Effector with your end-effector" href="usage.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,8 +90,8 @@
               <p class="caption"><span class="caption-text">Usage</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">How to use ROS End-Effector with your End-Effector</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Ready to use examples with tested hands</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">How to use ROS End-Effector with your end-effector</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples with ready to use end-effectors</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#heri-ii">HERI II</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#schunk-svh-5-finger-hand">Schunk SVH 5-finger hand</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qb-softhand">qb SoftHand</a></li>
@@ -164,7 +164,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Ready to use examples with tested hands</li>
+      <li>Examples with ready to use end-effectors</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -183,22 +183,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="ready-to-use-examples-with-tested-hands">
-<span id="examples"></span><h1>Ready to use examples with tested hands<a class="headerlink" href="#ready-to-use-examples-with-tested-hands" title="Permalink to this headline">¶</a></h1>
-<p>You can run experiments with ready-to-use hands. The simplest one are geometrical grippers created only for showing purposes:</p>
+  <div class="section" id="examples-with-ready-to-use-end-effectors">
+<span id="examples"></span><h1>Examples with ready to use end-effectors<a class="headerlink" href="#examples-with-ready-to-use-end-effectors" title="Permalink to this headline">¶</a></h1>
+<p>In this section, there are guidelines on how to run some examples with tested end-effectors.</p>
+<p>In the ROS End-Effector packages, there are some simple geometrical grippers created only for showing purposes:</p>
 <ul class="simple">
 <li>test_ee</li>
 <li>two_finger</li>
 <li>two_finger_mimic</li>
 </ul>
-<p>Simply run <em>UniversalFindActions</em> node and <em>UniversalROSEndEffector</em> as described in <a class="reference internal" href="usage.html#usage"><span class="std std-ref">How to use ROS End-Effector with your End-Effector</span></a> section, reported again briefly below :</p>
+<p>To try examples with these grippers, you need to run <em>UniversalFindActions</em> and <em>UniversalROSEndEffector</em> nodes as described in <a class="reference internal" href="usage.html#usage"><span class="std std-ref">How to use ROS End-Effector with your End-Effector</span></a> section. We report here the necessary commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#substitute test_ee accordigly</span>
 
-roslaunch ros_end_effector findActions.launch hand_name:<span class="o">=</span>test_ee <span class="c1">#offline phase</span>
-roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</span>test_ee <span class="c1">#online phase</span>
+roslaunch ros_end_effector findActions.launch hand_name:<span class="o">=</span>test_ee <span class="c1">#for the offline phase</span>
+roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</span>test_ee <span class="c1">#for the online phase</span>
 </pre></div>
 </div>
-<p>There are also some examples done with models from real hands, at the moment there are:</p>
+<p>We have also tested the framework with real end-effectors’ model. To test them, you need the meshes, so you need to install their specific packages. See below the instructions on how to download them.</p>
+<p>Until now, the tested end-effectors are:</p>
 <ul class="simple">
 <li><a class="reference internal" href="#heri-ii">HERI II</a></li>
 <li><a class="reference internal" href="#schunk-svh-5-finger-hand">Schunk SVH 5-finger hand</a></li>
@@ -206,7 +208,6 @@ roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</spa
 <li><a class="reference internal" href="#robotiq-3-finger-gripper">Robotiq 3-Finger Gripper</a></li>
 <li><a class="reference internal" href="#robotiq-2f-140-gripper">Robotiq 2F-140 Gripper</a></li>
 </ul>
-<p>See below for istruction on how to install packages for these hand (because their meshes are needed)</p>
 <div class="section" id="heri-ii">
 <span id="id1"></span><h2>HERI II<a class="headerlink" href="#heri-ii" title="Permalink to this headline">¶</a></h2>
 <p>The files for this hand are already in the ROS End-Effector main package. So simply run:</p>
@@ -214,15 +215,13 @@ roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</spa
 roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</span>heri_II <span class="c1">#online phase</span>
 </pre></div>
 </div>
-<p>Remember to add <code class="code docutils literal notranslate"><span class="pre">gazebo:=true</span></code> to the second command if you want to launch the dynamic simulation with gazebo</p>
-<blockquote>
-<div><strong>NOTE</strong> Experiments with the real hardware are coming soon!</div></blockquote>
+<p>Remember to add <code class="code docutils literal notranslate"><span class="pre">gazebo:=true</span></code> to the second command if you want to launch the dynamic simulation with gazebo.</p>
 </div>
 <div class="section" id="schunk-svh-5-finger-hand">
 <span id="id2"></span><h2>Schunk SVH 5-finger hand<a class="headerlink" href="#schunk-svh-5-finger-hand" title="Permalink to this headline">¶</a></h2>
-<p>This a complex humanoids hand with lot of actuted joints and DOFs. More details about it can be found
+<p>This is a complex human-like end-effector with lot of actuted joints and DOFs. More details about it can be found
 in <a class="reference external" href="https://schunk.com/it_en/gripping-systems/highlights/svh/">Schunk website</a>.</p>
-<p>Necessary steps before run ROS End-Effector with this hand:</p>
+<p>Some packages are necessary to run ROS End-Effector with this gripper. Follow the instructions to download and compile them:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir ~/schunk_ws
 mkdir ~/schunk_ws/src
 <span class="nb">cd</span> ~/schunk_ws/src
@@ -234,15 +233,14 @@ catkin_make_isolated
 <span class="nb">source</span> devel_isolated/setup.bash
 </pre></div>
 </div>
-<p>Then run codes with <code class="code docutils literal notranslate"><span class="pre">hand_name:=schunk</span></code> as argument</p>
+<p>Then run the nodes as usually but with <code class="code docutils literal notranslate"><span class="pre">hand_name:=schunk</span></code> as argument.</p>
 <blockquote>
-<div><strong>Note</strong> the schunk URDF does not have dynamic params, so at the moment it can not be simulated with gazebo
-(so do not use <code class="code docutils literal notranslate"><span class="pre">gazebo:=true</span></code>)</div></blockquote>
+<div><strong>Note</strong>: the SVH’s URDF does not have dynamic parameters, so at the moment it can not be simulated with gazebo (so do not use <code class="code docutils literal notranslate"><span class="pre">gazebo:=true</span></code>).</div></blockquote>
 </div>
 <div class="section" id="qb-softhand">
 <span id="id3"></span><h2>qb SoftHand<a class="headerlink" href="#qb-softhand" title="Permalink to this headline">¶</a></h2>
-<p>This hand has a humanoid structure but it has only a single actuated joint that close all the fingers togheter in a compliant way. More info at <a class="reference external" href="https://qbrobotics.com/products/qb-softhand-research/">qb robotics website</a>.</p>
-<p>Necessary steps before run ROS End-Effector with this hand:</p>
+<p>This end-effector has a humanoid structure but it has only a single actuated joint. It can close all the fingers together in a compliant way. More information can be found at <a class="reference external" href="https://qbrobotics.com/products/qb-softhand-research/">qb robotics website</a>.</p>
+<p>Necessary steps before running ROS End-Effector with this hand:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/qbhand/src
 git clone --branch production-kinetic https://bitbucket.org/qbrobotics/qbdevice-ros.git
 git clone --branch production-kinetic https://bitbucket.org/qbrobotics/qbhand-ros.git
@@ -251,14 +249,12 @@ git clone --branch production-kinetic https://bitbucket.org/qbrobotics/qbhand-ro
 catkin_make
 </pre></div>
 </div>
-<p>Then run codes with <code class="code docutils literal notranslate"><span class="pre">hand_name:=qbhand</span></code> as argument</p>
-<blockquote>
-<div><strong>Note</strong> This hand will be tested for real soon (not simulation only)</div></blockquote>
+<p>Then run the nodes as usually but with <code class="code docutils literal notranslate"><span class="pre">hand_name:=qbahnd</span></code> as argument.</p>
 </div>
 <div class="section" id="robotiq-3-finger-gripper">
 <span id="id4"></span><h2>Robotiq 3-Finger Gripper<a class="headerlink" href="#robotiq-3-finger-gripper" title="Permalink to this headline">¶</a></h2>
-<p>This is a gripper with 3-Fingers. More information at at <a class="reference external" href="https://robotiq.com/products/3-finger-adaptive-robot-gripper/">Robotiq website</a>.</p>
-<p>Necessary steps before run ROS End-Effector with this hand:</p>
+<p>This is a gripper with 3 fingers and two actuators. The first one close all the fingers, the other one spread the two adiacent fingers. More information can be found in the <a class="reference external" href="https://robotiq.com/products/3-finger-adaptive-robot-gripper/">Robotiq website</a>.</p>
+<p>Necessary steps before running ROS End-Effector with this gripper:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir ~/robotiq_ws
 <span class="nb">cd</span> robotiq_ws
 mkdir src
@@ -275,16 +271,16 @@ catkin_make
 <span class="nb">source</span> devel/setup.bash
 </pre></div>
 </div>
-<p>Then run codes with <code class="code docutils literal notranslate"><span class="pre">hand_name:=robotiq_3f</span></code> as argument</p>
+<p>Then run the nodes with <code class="code docutils literal notranslate"><span class="pre">hand_name:=robotiq_3f</span></code> as argument</p>
 <blockquote>
-<div><strong>Note</strong> The original urdf from robotiq has been modified. In their file, all joints are actuated. In truth, watching video of how the hand moves, there should be a unique joint that close all the fingers and another one that spread the two fingers on on side of the palm. So mimic tag for phalanges were added. Friction and damping were inserted for the joints so the model can be used in gazebo. Other addition are contact coefficent (of tips) and colors. These parameters obviosly can be very different from the real hand.</div></blockquote>
+<div><strong>Note</strong> The original urdf from robotiq has been modified a bit. First, some joints have been put as mimic. Then, friction and damping of joints parameters have been inserted so the model could be used in gazebo. Other addition are contact coefficents (of tips) and colors. These parameters obviosly can be very different from the real ones.</div></blockquote>
 </div>
 <div class="section" id="robotiq-2f-140-gripper">
 <span id="id5"></span><h2>Robotiq 2F-140 Gripper<a class="headerlink" href="#robotiq-2f-140-gripper" title="Permalink to this headline">¶</a></h2>
-<p>This is an industrial parallel gripper with a single actuated joint.
-More information at at <a class="reference external" href="https://robotiq.com/products/2f85-140-adaptive-robot-gripper/">Robotiq website</a>.</p>
-<p>Necessary files are in the same repository of <a class="reference internal" href="#robotiq-3-finger-gripper"><span class="std std-ref">Robotiq 3-Finger Gripper</span></a> so follow these steps.</p>
-<p>Then launch the nodes as usual with <code class="code docutils literal notranslate"><span class="pre">hand_name:=robotiq_2f_140</span></code> as argument</p>
+<p>This is an industrial parallel gripper with two pads and a single actuator to close them.
+More information can be found in the <a class="reference external" href="https://robotiq.com/products/2f85-140-adaptive-robot-gripper/">Robotiq website</a>.</p>
+<p>Necessary files are in the same repository of <a class="reference internal" href="#robotiq-3-finger-gripper"><span class="std std-ref">Robotiq 3-Finger Gripper</span></a> so follow those steps if you did not do it before.</p>
+<p>You can try this gripper as usual running the nodes with <code class="code docutils literal notranslate"><span class="pre">hand_name:=robotiq_2f_140</span></code> as argument.</p>
 </div>
 </div>
 
@@ -299,7 +295,7 @@ More information at at <a class="reference external" href="https://robotiq.com/p
         <a href="actions.html" class="btn btn-neutral float-right" title="ROS End-Effector Grasping Actions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="usage.html" class="btn btn-neutral float-left" title="How to use ROS End-Effector with your End-Effector" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="usage.html" class="btn btn-neutral float-left" title="How to use ROS End-Effector with your end-effector" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

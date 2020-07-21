@@ -37,7 +37,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="How to use ROS End-Effector with your End-Effector" href="usage.html" />
+    <link rel="next" title="How to use ROS End-Effector with your end-effector" href="usage.html" />
     <link rel="prev" title="Welcome to ROS End-Effector’s documentation!" href="index.html" /> 
 </head>
 
@@ -91,7 +91,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#full-installation-suggested">Full Installation (suggested)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#custom-installation">Custom Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#custom-installation-this-could-be-not-updated">Custom Installation (this could be not updated)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#install-external-system-dependencies">Install External System Dependencies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#install-ros-end-effector-package-from-sources">Install ROS End-Effector package from sources</a></li>
 </ul>
@@ -99,8 +99,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#installation-issues">Installation issues</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">How to use ROS End-Effector with your End-Effector</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Ready to use examples with tested hands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">How to use ROS End-Effector with your end-effector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples with ready to use end-effectors</a></li>
 </ul>
 <p class="caption"><span class="caption-text">The Main Component</span></p>
 <ul>
@@ -207,23 +207,26 @@ rosws update
 catkin_make
 </pre></div>
 </div>
-<p><em>Note</em> The sh script will install external necessary dependencies with apt-get
+<p><em>Note</em>: The sh script will install external necessary dependencies with apt-get
 <span class="raw-html"><br /></span>
-<em>Note</em> In future, if you want to pull the last updates, you can use <code class="code docutils literal notranslate"><span class="pre">rosws</span> <span class="pre">update</span></code> to pull all the updates of each repository with this unique command!</p>
+<em>Note</em>: In future, if you want to pull the last updates, you can use <code class="code docutils literal notranslate"><span class="pre">rosws</span> <span class="pre">update</span></code> to pull all the updates of each repository with this unique command!</p>
 </div>
-<div class="section" id="custom-installation">
-<h2>Custom Installation<a class="headerlink" href="#custom-installation" title="Permalink to this headline">¶</a></h2>
-<p>If you want, you can clone only the single ROSEE packages, without using the rosintall. Here are the steps</p>
+<div class="section" id="custom-installation-this-could-be-not-updated">
+<h2>Custom Installation (this could be not updated)<a class="headerlink" href="#custom-installation-this-could-be-not-updated" title="Permalink to this headline">¶</a></h2>
+<p>If you want, you can clone only the single ROSEE packages, without using the rosintall.
+<span class="raw-html"><br /></span>
+In this sections there are the steps.</p>
 <div class="section" id="install-external-system-dependencies">
 <h3>Install External System Dependencies<a class="headerlink" href="#install-external-system-dependencies" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install ros-kinetic-moveit <span class="c1">#moveit</span>
+sudo apt install ros-kinetic-control-toolbox <span class="c1">#to control the robot in gazebo</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="install-ros-end-effector-package-from-sources">
 <h3>Install ROS End-Effector package from sources<a class="headerlink" href="#install-ros-end-effector-package-from-sources" title="Permalink to this headline">¶</a></h3>
-<p><strong>IMPORTANT</strong> : ROSEE is a project under development. When cloning, be sure to download the branch you really want. Currently the newest features can be found in the <em>devel</em> branch (so, in the commands below substitute &lt;branch_you_want&gt; with devel. Note that also the other ROSEEE related packages should be used with the right branch.</p>
-<p>The next steps will guide you to the creation of a new catkin_workspace, for clone all the necessary repository and compile them all</p>
+<p><strong>IMPORTANT</strong>: ROSEE is a project under development. When cloning, be sure to download the branch you really want. Currently the newest features can be found in the <em>devel</em> branch; so, in the commands below substitute &lt;branch_you_want&gt; with devel. Note that also the other ROSEE related packages should be used with the right branch.</p>
+<p>The next steps will guide you to the creation of a new catkin_workspace, the cloning of all the necessary repository, and their compilation.</p>
 <ul>
 <li><p class="first">Create a catkin workspace</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir ~/ROSEE
@@ -253,7 +256,7 @@ git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/rosee_gaze
 </div>
 </li>
 </ul>
-<p><strong>NOTE</strong> you can see details on each optional plugin in their relative page of this doc
+<p><strong>NOTE</strong>: you can see details on each optional plugin in their relative page of this doc
 <span class="raw-html"><br /></span>
 <span class="raw-html"><br /></span></p>
 </li>
@@ -285,7 +288,7 @@ catkin_make
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="usage.html" class="btn btn-neutral float-right" title="How to use ROS End-Effector with your End-Effector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="usage.html" class="btn btn-neutral float-right" title="How to use ROS End-Effector with your end-effector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to ROS End-Effector’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

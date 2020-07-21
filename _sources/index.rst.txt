@@ -20,7 +20,7 @@ Package List (links to github repositories) :
 
 - `ROS End-Effector GUI <https://github.com/ADVRHumanoids/rosee_gui>`_ - specific GUI for ROSEndEffector
 
-- `ROS End-Effector Gazebo Plugins <https://github.com/ADVRHumanoids/rosee_gazebo_plugins>`_ - gazebo plugins to simply use the dnyamic simulato with ROSEndEffector
+- `ROS End-Effector Gazebo Plugins <https://github.com/ADVRHumanoids/rosee_gazebo_plugins>`_ - gazebo plugins to use ROS End-Effector with Gazebo
 
 - `rosee_msg <https://github.com/ADVRHumanoids/rosee_msg>`_ - custom ROS messages specific for ROSEndEffector
 
