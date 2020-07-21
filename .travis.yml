@@ -13,9 +13,10 @@ notifications:
 before_install:
 
 install:
+  - sudo apt-get install python3-pip
   - sudo apt-get install python3-sphinx
   - sudo pip install sphinx_rtd_theme #readthedocs theme
-  - sudo pip install sphinx-copybutton
+  - sudo pip3 install sphinx-copybutton
 
 script: 
 
