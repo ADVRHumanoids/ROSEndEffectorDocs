@@ -12,7 +12,7 @@ Welcome to ROS End-Effector's documentation!
 ======================================================
 
 
-ROS End-Effector package: provides a ROS-based set of standard interfaces to command robotics end-effectors in an agnostic fashion.
+ROS End-Effector package provides a ROS-based set of standard interfaces to command robotics end-effectors in an agnostic fashion.
 
 Documentation about the API of ROS End-Effector can be found at https://advrhumanoids.github.io/ROSEndEffector/index.html
 
@@ -66,19 +66,40 @@ For reference, here there are listed all the packages involved in this project (
   CI powered by Travis CI (.org) 
   :raw-html:`<br />`
   |travisLogo| https://travis-ci.org/ADVRHumanoids/ROSEndEffector
+  :raw-html:`<br />`
+  :raw-html:`<br />`
 
 - `ROS End-Effector GUI <https://github.com/ADVRHumanoids/rosee_gui>`_ - specific GUI for ROSEndEffector
+  :raw-html:`<br />`
+  :raw-html:`<br />`
 
 - `ROS End-Effector Gazebo Plugins <https://github.com/ADVRHumanoids/rosee_gazebo_plugins>`_ - gazebo plugins to use ROS End-Effector with Gazebo
+  :raw-html:`<br />`
+  :raw-html:`<br />`
 
 - `ROS End-Effector msgs <https://github.com/ADVRHumanoids/rosee_msg>`_ - custom ROS messages specific for ROS End-Effector
+  :raw-html:`<br />`
+  :raw-html:`<br />`
 
 - `ROS End-Effector Documentation <https://github.com/ADVRHumanoids/ROSEndEffectorDocs>`_ - the repository where this documentation is hosted
+  :raw-html:`<br />`
+  CI powered by Travis CI (.org) 
+  :raw-html:`<br />`
+  |travisLogoDocs| https://travis-ci.org/github/ADVRHumanoids/ROSEndEffectorDocs
+  :raw-html:`<br />`
+  :raw-html:`<br />`
 
 - `ROS End-Effector Package Manager <https://github.com/ADVRHumanoids/ROSEndEffectorPackageManager>`_ - metapackage to easy installation
+  :raw-html:`<br />`
+  :raw-html:`<br />`
 
 .. |travisLogo| image:: https://travis-ci.org/ADVRHumanoids/ROSEndEffector.svg?branch=master
   :target: https://travis-ci.org/ADVRHumanoids/ROSEndEffector
+  :alt: Build Status
+  :width: 70
+
+.. |travisLogoDocs| image:: https://travis-ci.org/ADVRHumanoids/ROSEndEffectorDocs.svg?branch=master
+  :target: https://travis-ci.org/github/ADVRHumanoids/ROSEndEffectorDocs
   :alt: Build Status
   :width: 70
 
