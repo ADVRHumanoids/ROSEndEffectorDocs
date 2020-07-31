@@ -1,0 +1,824 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - main_coverage.info - test/test_send_action.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">test</a> - test_send_action.cpp<span style="font-size: 80%;"> (source / <a href="test_send_action.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">main_coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">309</td>
+            <td class="headerCovTableEntry">352</td>
+            <td class="headerCovTableEntryMed">87.8 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2020-07-31 15:30:30</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">69</td>
+            <td class="headerCovTableEntry">69</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #include &lt;gtest/gtest.h&gt;</a>
+<span class="lineNum">       2 </span>            : #include &quot;testUtils.h&quot;
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &lt;ros/ros.h&gt;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;ros_end_effector/Parser.h&gt;
+<span class="lineNum">       7 </span>            : #include &lt;ros_end_effector/ParserMoveIt.h&gt;
+<span class="lineNum">       8 </span>            : #include &lt;ros_end_effector/FindActions.h&gt;
+<span class="lineNum">       9 </span>            : #include &lt;ros_end_effector/EEInterface.h&gt;
+<span class="lineNum">      10 </span>            : #include &lt;ros_end_effector/ActionGeneric.h&gt;
+<span class="lineNum">      11 </span>            : #include &lt;ros_end_effector/Utils.h&gt;
+<span class="lineNum">      12 </span>            : #include &lt;ros_end_effector/YamlWorker.h&gt;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : #include &lt;rosee_msg/ROSEECommandAction.h&gt;
+<span class="lineNum">      15 </span>            : #include &lt;actionlib/client/simple_action_client.h&gt;
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : namespace {
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : /**
+<span class="lineNum">      22 </span>            :  * @brief This Tests are to check if actions are sent correctly. Check each TEST_F for better explanation
+<span class="lineNum">      23 </span>            :  * 
+<span class="lineNum">      24 </span>            :  * @warning @todo There are a lot of prints that seems to be not in the right order. Probably is because we use 
+<span class="lineNum">      25 </span>            :  *   the ROS STREAM that effectively prints only when the spin is called...
+<span class="lineNum">      26 </span>            :  *   BTW it is strange that the parser prints are printed at the end, and not while setup function is running (where they
+<span class="lineNum">      27 </span>            :  *   should be because we init the parser there. This does not cause problems at the test.
+<span class="lineNum">      28 </span>            :  */
+<span class="lineNum">      29 </span>            : class testSendAction: public ::testing::Test {
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            :     
+<span class="lineNum">      32 </span>            : 
+<a name="33"><span class="lineNum">      33 </span>            : protected:</a>
+<span class="lineNum">      34 </span>            : 
+<span class="lineNum">      35 </span><span class="lineCov">         39 :     testSendAction()  {</span>
+<a name="36"><span class="lineNum">      36 </span><span class="lineCov">         39 :     }</span></a>
+<span class="lineNum">      37 </span>            : 
+<span class="lineNum">      38 </span><span class="lineCov">         39 :     virtual ~testSendAction() {</span>
+<a name="39"><span class="lineNum">      39 </span><span class="lineCov">         39 :     }</span></a>
+<span class="lineNum">      40 </span>            : 
+<span class="lineNum">      41 </span><span class="lineCov">         39 :     virtual void SetUp() override {</span>
+<span class="lineNum">      42 </span>            :         
+<span class="lineNum">      43 </span><span class="lineCov">         39 :         if (! nh.hasParam(&quot;robot_name&quot;)) {</span>
+<span class="lineNum">      44 </span><span class="lineNoCov">          0 :             std::cout &lt;&lt; &quot;[TEST FAIL: robot name not set on server]&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">      45 </span><span class="lineNoCov">          0 :             return;</span>
+<span class="lineNum">      46 </span>            :         }
+<span class="lineNum">      47 </span>            :         
+<span class="lineNum">      48 </span><span class="lineCov">         78 :         std::string robot_name = &quot;&quot;;</span>
+<span class="lineNum">      49 </span><span class="lineCov">         39 :         nh.getParam(&quot;robot_name&quot;, robot_name);</span>
+<span class="lineNum">      50 </span>            :         
+<span class="lineNum">      51 </span><span class="lineCov">         78 :         ROSEE::Parser p ( nh );</span>
+<span class="lineNum">      52 </span><span class="lineCov">         39 :         if (! p.init (  ROSEE::Utils::getPackagePath() + &quot;/configs/&quot; + robot_name + &quot;.yaml&quot; )) {</span>
+<span class="lineNum">      53 </span>            :             
+<span class="lineNum">      54 </span><span class="lineNoCov">          0 :             std::cout &lt;&lt; &quot;[TEST SEND ACTIONS]parser FAIL: some config file missing]&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 :             return;</span>
+<span class="lineNum">      56 </span>            :         }
+<span class="lineNum">      57 </span>            :         
+<span class="lineNum">      58 </span><span class="lineCov">         39 :         ee = std::make_shared&lt;ROSEE::EEInterface&gt;(p);</span>
+<span class="lineNum">      59 </span>            :         
+<span class="lineNum">      60 </span><span class="lineCov">         39 :         folderForActions = p.getActionPath();</span>
+<span class="lineNum">      61 </span><span class="lineCov">         39 :         if ( folderForActions.size() == 0 ){ //if no action path is set in the yaml file...</span>
+<span class="lineNum">      62 </span><span class="lineNoCov">          0 :             folderForActions = ROSEE::Utils::getPackagePath() + &quot;/configs/actions/&quot; + ee-&gt;getName();</span>
+<span class="lineNum">      63 </span>            :         }
+<span class="lineNum">      64 </span>            : 
+<span class="lineNum">      65 </span>            :         /** Find all the actions **/
+<span class="lineNum">      66 </span>            :         //note: test on the findActions part is done in other test files
+<span class="lineNum">      67 </span><span class="lineCov">         39 :         parserMoveIt = std::make_shared&lt;ROSEE::ParserMoveIt&gt;();</span>
+<span class="lineNum">      68 </span><span class="lineCov">         39 :         if (! parserMoveIt-&gt;init (&quot;robot_description&quot;, false) ) {</span>
+<span class="lineNum">      69 </span>            : 
+<span class="lineNum">      70 </span><span class="lineNoCov">          0 :             std::cout &lt;&lt; &quot;[TEST SEND ACTIONS] FAILED parserMoveit Init, stopping execution&quot;  &lt;&lt; std::endl; </span>
+<span class="lineNum">      71 </span><span class="lineNoCov">          0 :             return;</span>
+<span class="lineNum">      72 </span>            :         }
+<span class="lineNum">      73 </span>            :                 
+<span class="lineNum">      74 </span><span class="lineCov">         39 :         actionsFinder = std::make_shared&lt;ROSEE::FindActions&gt;(parserMoveIt);</span>
+<span class="lineNum">      75 </span>            : 
+<span class="lineNum">      76 </span>            :                                                                           
+<a name="77"><span class="lineNum">      77 </span>            :         }</a>
+<span class="lineNum">      78 </span>            : 
+<span class="lineNum">      79 </span><span class="lineCov">         39 :     virtual void TearDown() override {</span>
+<span class="lineNum">      80 </span><span class="lineCov">         39 :     }</span>
+<span class="lineNum">      81 </span>            :     
+<span class="lineNum">      82 </span>            :     void sendAndTest(ROSEE::Action::Ptr action, double percentageWanted = 1.0);
+<span class="lineNum">      83 </span>            : 
+<span class="lineNum">      84 </span>            :     ros::NodeHandle nh;
+<span class="lineNum">      85 </span>            :     std::string folderForActions;
+<span class="lineNum">      86 </span>            :     std::unique_ptr&lt;ROSEE::TestUtils::Process&gt; roseeExecutor;
+<span class="lineNum">      87 </span>            :     ROSEE::EEInterface::Ptr ee;
+<span class="lineNum">      88 </span>            :     ros::Publisher sendActionPub;
+<span class="lineNum">      89 </span>            :     ros::Subscriber receiveRobStateSub;
+<span class="lineNum">      90 </span>            :     ROSEE::YamlWorker yamlWorker;
+<span class="lineNum">      91 </span>            :     std::shared_ptr &lt;actionlib::SimpleActionClient &lt;rosee_msg::ROSEECommandAction&gt; &gt; action_client;
+<span class="lineNum">      92 </span>            :     ROSEE::ParserMoveIt::Ptr parserMoveIt;
+<a name="93"><span class="lineNum">      93 </span>            :     std::shared_ptr&lt;ROSEE::FindActions&gt; actionsFinder;</a>
+<span class="lineNum">      94 </span>            :     
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">         39 :     struct ClbkHelper {</span></a>
+<span class="lineNum">      96 </span>            :     
+<a name="97"><span class="lineNum">      97 </span><span class="lineCov">         39 :         ClbkHelper() : js(), completed(false) {};</span></a>
+<span class="lineNum">      98 </span>            :     
+<span class="lineNum">      99 </span><span class="lineCov">        154 :         void jointStateClbk(const sensor_msgs::JointState::ConstPtr&amp; msg) {</span>
+<span class="lineNum">     100 </span>            :             
+<span class="lineNum">     101 </span><span class="lineCov">        154 :             js.name = msg-&gt;name;</span>
+<span class="lineNum">     102 </span><span class="lineCov">        154 :             js.position = msg-&gt;position;</span>
+<span class="lineNum">     103 </span><span class="lineCov">        154 :             js.velocity = msg-&gt;velocity;</span>
+<span class="lineNum">     104 </span><span class="lineCov">        154 :             js.effort = msg-&gt;effort;</span>
+<span class="lineNum">     105 </span>            :         
+<a name="106"><span class="lineNum">     106 </span><span class="lineCov">        154 :         }</span></a>
+<span class="lineNum">     107 </span>            : 
+<span class="lineNum">     108 </span><span class="lineCov">         24 :         void actionDoneClbk(const actionlib::SimpleClientGoalState&amp; state,</span>
+<span class="lineNum">     109 </span>            :                     const rosee_msg::ROSEECommandResultConstPtr&amp; result) { 
+<span class="lineNum">     110 </span>            :             
+<span class="lineNum">     111 </span><span class="lineCov">         24 :             completed = true; </span>
+<span class="lineNum">     112 </span><span class="lineCov">         24 :             goalState = state.state_;</span>
+<span class="lineNum">     113 </span><span class="lineCov">         24 :             actionCompleted = result-&gt;completed_action;</span>
+<a name="114"><span class="lineNum">     114 </span><span class="lineCov">         24 :         }</span></a>
+<span class="lineNum">     115 </span>            : 
+<span class="lineNum">     116 </span><span class="lineCov">       1487 :         void actionFeedbackClbk(const rosee_msg::ROSEECommandFeedbackConstPtr&amp; feedback) {</span>
+<span class="lineNum">     117 </span>            :             
+<span class="lineNum">     118 </span><span class="lineCov">       1487 :             feedback_percentage = feedback-&gt;completation_percentage;   </span>
+<a name="119"><span class="lineNum">     119 </span><span class="lineCov">       1487 :         }</span></a>
+<span class="lineNum">     120 </span>            : 
+<span class="lineNum">     121 </span><span class="lineCov">         24 :         void actionActiveClbk() { completed = false; }</span>
+<span class="lineNum">     122 </span>            :         
+<span class="lineNum">     123 </span>            :         sensor_msgs::JointState js;
+<span class="lineNum">     124 </span>            :         bool completed;
+<span class="lineNum">     125 </span>            :         double feedback_percentage;
+<span class="lineNum">     126 </span>            :         rosee_msg::ROSEEActionControl actionCompleted;
+<span class="lineNum">     127 </span>            :         actionlib::SimpleClientGoalState::StateEnum goalState; 
+<span class="lineNum">     128 </span>            :         
+<span class="lineNum">     129 </span>            :             
+<span class="lineNum">     130 </span>            :     };
+<span class="lineNum">     131 </span>            : 
+<span class="lineNum">     132 </span>            :     ClbkHelper clbkHelper;
+<span class="lineNum">     133 </span>            :     
+<span class="lineNum">     134 </span>            : protected:
+<span class="lineNum">     135 </span>            :     void setMainNode();
+<span class="lineNum">     136 </span>            :     void sendAction( ROSEE::Action::Ptr action, double percentageWanted);
+<span class="lineNum">     137 </span>            :     void testAction( ROSEE::Action::Ptr actionSent, double percentageWanted);
+<span class="lineNum">     138 </span>            :     
+<a name="139"><span class="lineNum">     139 </span>            : };</a>
+<span class="lineNum">     140 </span>            : 
+<span class="lineNum">     141 </span><span class="lineCov">         24 : void testSendAction::setMainNode() {</span>
+<span class="lineNum">     142 </span>            :     
+<span class="lineNum">     143 </span><span class="lineCov">         48 :     std::string handNameArg = &quot;hand_name:=&quot; + ee-&gt;getName();</span>
+<span class="lineNum">     144 </span><span class="lineCov">         24 :     roseeExecutor.reset(new ROSEE::TestUtils::Process({&quot;roslaunch&quot;, &quot;ros_end_effector&quot;, &quot;test_rosee_startup.launch&quot;, handNameArg}));</span>
+<span class="lineNum">     145 </span>            : 
+<span class="lineNum">     146 </span>            :     //TODO put a checkReady service instead of sleeping?
+<span class="lineNum">     147 </span><span class="lineCov">         24 :     sleep(5); // lets wait for test_rosee_startup to be ready</span>
+<span class="lineNum">     148 </span><span class="lineCov">         48 :     std::string topic_name_js;</span>
+<span class="lineNum">     149 </span>            : 
+<span class="lineNum">     150 </span><span class="lineCov">         24 :     nh.param&lt;std::string&gt;(&quot;/rosee/joint_states_topic&quot;, topic_name_js, &quot;&quot;);</span>
+<span class="lineNum">     151 </span>            :     
+<span class="lineNum">     152 </span><span class="lineCov">         24 :     ASSERT_TRUE ( topic_name_js.size() &gt; 0);</span>
+<span class="lineNum">     153 </span>            :     
+<span class="lineNum">     154 </span><span class="lineCov">         24 :     receiveRobStateSub = nh.subscribe (topic_name_js, 1, &amp;ClbkHelper::jointStateClbk, &amp;clbkHelper);</span>
+<span class="lineNum">     155 </span>            :     
+<span class="lineNum">     156 </span><span class="lineCov">         24 :     action_client = </span>
+<span class="lineNum">     157 </span>            :         std::make_shared &lt;actionlib::SimpleActionClient &lt;rosee_msg::ROSEECommandAction&gt;&gt;
+<span class="lineNum">     158 </span><span class="lineCov">         48 :         (nh, &quot;/ros_end_effector/action_command&quot;, true); //TODO check this action command</span>
+<span class="lineNum">     159 </span>            : 
+<span class="lineNum">     160 </span><span class="lineCov">         24 :     action_client-&gt;waitForServer();</span>
+<span class="lineNum">     161 </span>            :         
+<a name="162"><span class="lineNum">     162 </span>            : }</a>
+<span class="lineNum">     163 </span>            :     
+<span class="lineNum">     164 </span><span class="lineCov">         24 : void testSendAction::sendAction( ROSEE::Action::Ptr action, double percentageWanted) {</span>
+<span class="lineNum">     165 </span>            : 
+<span class="lineNum">     166 </span><span class="lineCov">         48 :     rosee_msg::ROSEECommandGoal goal;</span>
+<span class="lineNum">     167 </span><span class="lineCov">         24 :     goal.goal_action.seq = 0 ;</span>
+<span class="lineNum">     168 </span><span class="lineCov">         24 :     goal.goal_action.stamp = ros::Time::now();</span>
+<span class="lineNum">     169 </span><span class="lineCov">         24 :     goal.goal_action.percentage = percentageWanted;</span>
+<span class="lineNum">     170 </span><span class="lineCov">         24 :     goal.goal_action.action_name = action-&gt;getName();</span>
+<span class="lineNum">     171 </span><span class="lineCov">         24 :     goal.goal_action.action_type = action-&gt;getType() ;</span>
+<span class="lineNum">     172 </span>            : 
+<span class="lineNum">     173 </span><span class="lineCov">         24 :     if (action-&gt;getType() == ROSEE::Action::Type::Primitive) {</span>
+<span class="lineNum">     174 </span><span class="lineCov">         18 :         ROSEE::ActionPrimitive::Ptr primitivePtr = std::static_pointer_cast&lt;ROSEE::ActionPrimitive&gt;(action);</span>
+<span class="lineNum">     175 </span><span class="lineCov">          9 :         goal.goal_action.actionPrimitive_type = primitivePtr-&gt;getPrimitiveType() ;</span>
+<span class="lineNum">     176 </span>            : 
+<span class="lineNum">     177 </span><span class="lineCov">         20 :         for (auto it : primitivePtr-&gt;getKeyElements()) {</span>
+<span class="lineNum">     178 </span><span class="lineCov">         11 :             goal.goal_action.selectable_items.push_back(it);</span>
+<span class="lineNum">     179 </span>            :         }
+<span class="lineNum">     180 </span>            :     }
+<span class="lineNum">     181 </span>            : 
+<span class="lineNum">     182 </span><span class="lineCov">         48 :     action_client-&gt;sendGoal (goal, boost::bind(&amp;ClbkHelper::actionDoneClbk, &amp;clbkHelper, _1, _2),</span>
+<span class="lineNum">     183 </span><span class="lineCov">         24 :         boost::bind(&amp;ClbkHelper::actionActiveClbk, &amp;clbkHelper), boost::bind(&amp;ClbkHelper::actionFeedbackClbk, &amp;clbkHelper, _1)) ;</span>
+<span class="lineNum">     184 </span>            :         
+<a name="185"><span class="lineNum">     185 </span><span class="lineCov">         24 : }</span></a>
+<span class="lineNum">     186 </span>            : 
+<span class="lineNum">     187 </span><span class="lineCov">         24 : void testSendAction::testAction(ROSEE::Action::Ptr actionSent, double percentageWanted) {</span>
+<span class="lineNum">     188 </span>            :          
+<span class="lineNum">     189 </span><span class="lineCov">         48 :     ros::Rate r(10); // 10 hz</span>
+<span class="lineNum">     190 </span><span class="lineCov">        348 :     while (!clbkHelper.completed) {</span>
+<span class="lineNum">     191 </span><span class="lineCov">        162 :         ROS_INFO_STREAM_ONCE(&quot;Test Send Actions: Waiting for action completion...&quot;);</span>
+<span class="lineNum">     192 </span><span class="lineCov">        162 :         ros::spinOnce();</span>
+<span class="lineNum">     193 </span><span class="lineCov">        162 :         r.sleep();</span>
+<span class="lineNum">     194 </span>            :     }
+<span class="lineNum">     195 </span>            :     
+<span class="lineNum">     196 </span>            :     //finally, lets test if the pos set in the actions are the same of the robot when the action is completed
+<span class="lineNum">     197 </span><span class="lineCov">        136 :     for (int i=0; i &lt; clbkHelper.js.name.size(); i++) {</span>
+<span class="lineNum">     198 </span>            :         
+<span class="lineNum">     199 </span><span class="lineCov">        203 :         auto wantedJointsPosMap = actionSent-&gt;getJointPos();</span>
+<span class="lineNum">     200 </span>            :         
+<span class="lineNum">     201 </span><span class="lineCov">        112 :         auto findJoint = wantedJointsPosMap.find(clbkHelper.js.name[i]);</span>
+<span class="lineNum">     202 </span>            :         
+<span class="lineNum">     203 </span><span class="lineCov">        112 :         if (findJoint == wantedJointsPosMap.end()){</span>
+<span class="lineNum">     204 </span><span class="lineCov">         21 :             continue; //this is not an error, in clbkHelper we have joint pos of all joints, not only actuated</span>
+<span class="lineNum">     205 </span>            :         }
+<span class="lineNum">     206 </span>            :         
+<span class="lineNum">     207 </span><span class="lineCov">         91 :         double wantedPos = (findJoint-&gt;second.at(0))*percentageWanted;</span>
+<span class="lineNum">     208 </span><span class="lineCov">         91 :         double realPos = clbkHelper.js.position[i];</span>
+<span class="lineNum">     209 </span>            :         
+<span class="lineNum">     210 </span><span class="lineCov">         91 :         EXPECT_NEAR (wantedPos, realPos, 0.02);  //norm of the accepted error in roseeExecutor is &lt;0.01</span>
+<span class="lineNum">     211 </span>            : 
+<span class="lineNum">     212 </span>            :         //the percentage must be exaclty 100 instead (apart double precisions errors, handled by the macro)
+<span class="lineNum">     213 </span><span class="lineCov">         91 :         EXPECT_DOUBLE_EQ (clbkHelper.feedback_percentage, 100); </span>
+<span class="lineNum">     214 </span><span class="lineCov">         91 :         EXPECT_EQ (actionlib::SimpleClientGoalState::SUCCEEDED, clbkHelper.goalState);</span>
+<span class="lineNum">     215 </span>            :         
+<span class="lineNum">     216 </span>            :         //test if the action completed is the same sent
+<span class="lineNum">     217 </span><span class="lineCov">         91 :         EXPECT_DOUBLE_EQ (percentageWanted, clbkHelper.actionCompleted.percentage);</span>
+<span class="lineNum">     218 </span><span class="lineCov">         91 :         EXPECT_EQ (actionSent-&gt;getName(), clbkHelper.actionCompleted.action_name);</span>
+<span class="lineNum">     219 </span><span class="lineCov">         91 :         EXPECT_EQ (actionSent-&gt;getType(), clbkHelper.actionCompleted.action_type);</span>
+<span class="lineNum">     220 </span><span class="lineCov">         91 :         if (actionSent-&gt;getType() == ROSEE::Action::Type::Primitive) {</span>
+<span class="lineNum">     221 </span><span class="lineCov">         72 :             ROSEE::ActionPrimitive::Ptr primitivePtr = std::static_pointer_cast&lt;ROSEE::ActionPrimitive&gt;(actionSent);</span>
+<span class="lineNum">     222 </span><span class="lineCov">         36 :             EXPECT_EQ (primitivePtr-&gt;getPrimitiveType(), clbkHelper.actionCompleted.actionPrimitive_type);</span>
+<span class="lineNum">     223 </span>            :         }
+<span class="lineNum">     224 </span>            :     }
+<a name="225"><span class="lineNum">     225 </span><span class="lineCov">         24 : }</span></a>
+<span class="lineNum">     226 </span>            : 
+<span class="lineNum">     227 </span><span class="lineCov">         24 : void testSendAction::sendAndTest(ROSEE::Action::Ptr action, double percentageWanted) {</span>
+<span class="lineNum">     228 </span>            :     
+<span class="lineNum">     229 </span><span class="lineCov">         24 :     setMainNode();</span>
+<span class="lineNum">     230 </span><span class="lineCov">         24 :     sendAction(action, percentageWanted);</span>
+<span class="lineNum">     231 </span><span class="lineCov">         24 :     testAction(action, percentageWanted);</span>
+<span class="lineNum">     232 </span>            :     
+<span class="lineNum">     233 </span><span class="lineCov">         24 : }</span>
+<span class="lineNum">     234 </span>            : 
+<span class="lineNum">     235 </span>            : /**
+<span class="lineNum">     236 </span>            :  * @brief These Tests create a Generic Action and see if it is sent correctly.
+<span class="lineNum">     237 </span>            :  *  1 - An ActionGeneric is created, where the actuated Joints are set
+<span class="lineNum">     238 </span>            :  * 
+<span class="lineNum">     239 </span>            :  *  2 - The sendAndTest function is called:
+<span class="lineNum">     240 </span>            :  * 
+<span class="lineNum">     241 </span>            :  *    -[setMainNode] The ROSEE main node (which receives action commands and output specific joint pos references) is launched
+<span class="lineNum">     242 </span>            :  *       such that the action created is parsed by him
+<span class="lineNum">     243 </span>            :  *    -[sendAction] The action is commanded.
+<span class="lineNum">     244 </span>            :  *    -[testAction] After rosee says the action is completed, some checks are done to see if the final state is the same as the 
+<span class="lineNum">     245 </span>            :  *      action created
+<a name="246"><span class="lineNum">     246 </span>            :  */</a>
+<span class="lineNum">     247 </span>            : 
+<span class="lineNum">     248 </span><span class="lineCov">         15 : TEST_F ( testSendAction, sendSimpleGeneric ) {</span>
+<span class="lineNum">     249 </span>            :     
+<span class="lineNum">     250 </span>            :     
+<span class="lineNum">     251 </span><span class="lineCov">          6 :     ROSEE::JointPos jp;</span>
+<span class="lineNum">     252 </span><span class="lineCov">          6 :     ROSEE::JointsInvolvedCount jpc;</span>
+<span class="lineNum">     253 </span>            : 
+<span class="lineNum">     254 </span><span class="lineCov">          6 :     std::vector&lt;std::string&gt; actJoints = ee-&gt;getActuatedJoints();</span>
+<span class="lineNum">     255 </span>            :     
+<span class="lineNum">     256 </span><span class="lineCov">          3 :     ASSERT_FALSE (actJoints.empty());</span>
+<span class="lineNum">     257 </span>            :     
+<span class="lineNum">     258 </span><span class="lineCov">         14 :     for (int i = 0; i&lt;actJoints.size(); i++) {</span>
+<span class="lineNum">     259 </span>            :                 
+<span class="lineNum">     260 </span><span class="lineCov">         11 :         int id = -1;</span>
+<span class="lineNum">     261 </span><span class="lineCov">         11 :         ee-&gt;getInternalIdForJoint(actJoints.at(i), id);</span>
+<span class="lineNum">     262 </span>            :         
+<span class="lineNum">     263 </span>            :         //create an action where all joints move toward their upper limit
+<span class="lineNum">     264 </span><span class="lineCov">         22 :         std::vector&lt;double&gt; one_dof;</span>
+<span class="lineNum">     265 </span><span class="lineCov">         11 :         one_dof.push_back ( ee-&gt;getUpperPositionLimits()[id] );</span>
+<span class="lineNum">     266 </span><span class="lineCov">         11 :         jp.insert ( std::make_pair(actJoints.at(i), one_dof) );</span>
+<span class="lineNum">     267 </span><span class="lineCov">         11 :         jpc.insert (std::make_pair(actJoints.at(i), 1));</span>
+<span class="lineNum">     268 </span>            :         
+<span class="lineNum">     269 </span>            :     }
+<span class="lineNum">     270 </span>            : 
+<span class="lineNum">     271 </span><span class="lineCov">          6 :     ROSEE::Action::Ptr action = std::make_shared&lt;ROSEE::ActionGeneric&gt;(&quot;testAllUpperLim&quot;, jp, jpc);</span>
+<span class="lineNum">     272 </span>            :     //emit the yaml so roseeExecutor can find the action
+<span class="lineNum">     273 </span><span class="lineCov">          3 :     yamlWorker.createYamlFile( action.get(), folderForActions + &quot;/generics/&quot; );</span>
+<span class="lineNum">     274 </span>            : 
+<span class="lineNum">     275 </span><span class="lineCov">          3 :     sendAndTest(action);</span>
+<span class="lineNum">     276 </span>            :     
+<a name="277"><span class="lineNum">     277 </span>            : }</a>
+<span class="lineNum">     278 </span>            : 
+<span class="lineNum">     279 </span><span class="lineCov">         15 : TEST_F ( testSendAction, sendSimpleGeneric2 ) {</span>
+<span class="lineNum">     280 </span>            :     
+<span class="lineNum">     281 </span>            :     
+<span class="lineNum">     282 </span><span class="lineCov">          6 :     ROSEE::JointPos jp;</span>
+<span class="lineNum">     283 </span><span class="lineCov">          6 :     ROSEE::JointsInvolvedCount jpc;</span>
+<span class="lineNum">     284 </span>            : 
+<span class="lineNum">     285 </span><span class="lineCov">          6 :     std::vector&lt;std::string&gt; actJoints = ee-&gt;getActuatedJoints();</span>
+<span class="lineNum">     286 </span>            :     
+<span class="lineNum">     287 </span><span class="lineCov">          3 :     ASSERT_FALSE (actJoints.empty());</span>
+<span class="lineNum">     288 </span>            :     
+<span class="lineNum">     289 </span><span class="lineCov">         14 :     for (int i = 0; i&lt;actJoints.size(); i++) {</span>
+<span class="lineNum">     290 </span>            :                 
+<span class="lineNum">     291 </span><span class="lineCov">         11 :         int id = -1;</span>
+<span class="lineNum">     292 </span><span class="lineCov">         11 :         ee-&gt;getInternalIdForJoint(actJoints.at(i), id);</span>
+<span class="lineNum">     293 </span>            :         
+<span class="lineNum">     294 </span>            :         //create an action where all joints move toward their lower limit
+<span class="lineNum">     295 </span><span class="lineCov">         22 :         std::vector&lt;double&gt; one_dof;</span>
+<span class="lineNum">     296 </span><span class="lineCov">         11 :         one_dof.push_back ( ee-&gt;getLowerPositionLimits()[id] );</span>
+<span class="lineNum">     297 </span><span class="lineCov">         11 :         jp.insert ( std::make_pair(actJoints.at(i), one_dof) );</span>
+<span class="lineNum">     298 </span><span class="lineCov">         11 :         jpc.insert (std::make_pair(actJoints.at(i), 1));</span>
+<span class="lineNum">     299 </span>            :         
+<span class="lineNum">     300 </span>            :     }
+<span class="lineNum">     301 </span>            : 
+<span class="lineNum">     302 </span><span class="lineCov">          6 :     ROSEE::Action::Ptr action = std::make_shared&lt;ROSEE::ActionGeneric&gt;(&quot;testAllLowerLim&quot;, jp, jpc);</span>
+<span class="lineNum">     303 </span>            :     //emit the yaml so roseeExecutor can find the action
+<span class="lineNum">     304 </span><span class="lineCov">          3 :     yamlWorker.createYamlFile( action.get(), folderForActions + &quot;/generics/&quot; );</span>
+<span class="lineNum">     305 </span>            : 
+<span class="lineNum">     306 </span><span class="lineCov">          3 :     sendAndTest(action);</span>
+<span class="lineNum">     307 </span>            :     
+<span class="lineNum">     308 </span>            : }
+<a name="309"><span class="lineNum">     309 </span>            : </a>
+<span class="lineNum">     310 </span>            : 
+<span class="lineNum">     311 </span><span class="lineCov">         15 : TEST_F ( testSendAction, sendSimpleGeneric3 ) {</span>
+<span class="lineNum">     312 </span>            :     
+<span class="lineNum">     313 </span><span class="lineCov">          6 :     ROSEE::JointPos jp;</span>
+<span class="lineNum">     314 </span><span class="lineCov">          6 :     ROSEE::JointsInvolvedCount jpc;</span>
+<span class="lineNum">     315 </span>            : 
+<span class="lineNum">     316 </span><span class="lineCov">          6 :     std::vector&lt;std::string&gt; actJoints = ee-&gt;getActuatedJoints();</span>
+<span class="lineNum">     317 </span>            :     
+<span class="lineNum">     318 </span><span class="lineCov">          3 :     ASSERT_FALSE (actJoints.empty());</span>
+<span class="lineNum">     319 </span>            :     
+<span class="lineNum">     320 </span><span class="lineCov">         14 :     for (int i = 0; i&lt;actJoints.size(); i++) {</span>
+<span class="lineNum">     321 </span>            :                 
+<span class="lineNum">     322 </span><span class="lineCov">         11 :         int id = -1;</span>
+<span class="lineNum">     323 </span><span class="lineCov">         11 :         ee-&gt;getInternalIdForJoint(actJoints.at(i), id);</span>
+<span class="lineNum">     324 </span>            :         
+<span class="lineNum">     325 </span>            :         //create an action where all joints move, but make sure to stay within limits
+<span class="lineNum">     326 </span><span class="lineCov">         22 :         std::vector&lt;double&gt; one_dof;</span>
+<span class="lineNum">     327 </span><span class="lineCov">         11 :         one_dof.push_back ( ee-&gt;getLowerPositionLimits()[id]*0.15 + 0.1 );</span>
+<span class="lineNum">     328 </span><span class="lineCov">         11 :         jp.insert ( std::make_pair(actJoints.at(i), one_dof) );</span>
+<span class="lineNum">     329 </span><span class="lineCov">         11 :         jpc.insert (std::make_pair(actJoints.at(i), 1));</span>
+<span class="lineNum">     330 </span>            :         
+<span class="lineNum">     331 </span>            :     }
+<span class="lineNum">     332 </span>            : 
+<span class="lineNum">     333 </span><span class="lineCov">          6 :     ROSEE::Action::Ptr action = std::make_shared&lt;ROSEE::ActionGeneric&gt;(&quot;testAllUpperLim&quot;, jp, jpc);</span>
+<span class="lineNum">     334 </span>            :     //emit the yaml so roseeExecutor can find the action
+<span class="lineNum">     335 </span><span class="lineCov">          3 :     yamlWorker.createYamlFile( action.get(), folderForActions + &quot;/generics/&quot; );</span>
+<span class="lineNum">     336 </span>            : 
+<span class="lineNum">     337 </span><span class="lineCov">          3 :     sendAndTest(action, 0.33);</span>
+<span class="lineNum">     338 </span>            :     
+<span class="lineNum">     339 </span>            : }
+<span class="lineNum">     340 </span>            : 
+<span class="lineNum">     341 </span>            : /**
+<span class="lineNum">     342 </span>            :  * @brief This test take a random trig (among the one found for the ee loaded) and command it
+<span class="lineNum">     343 </span>            :  * The check is done after the action completion as before (in the sendAndTest function), 
+<span class="lineNum">     344 </span>            :  * but here we also check that the final pose of the moved finger finds all the actuated joint of that finger
+<a name="345"><span class="lineNum">     345 </span>            :  * in the bigger bound (as it should be by definition of trig)</a>
+<span class="lineNum">     346 </span>            :  */
+<span class="lineNum">     347 </span><span class="lineCov">         15 : TEST_F ( testSendAction, sendTrig ) {</span>
+<span class="lineNum">     348 </span>            : 
+<span class="lineNum">     349 </span><span class="lineCov">          6 :     ROSEE::ActionTrig::Map trigMap = actionsFinder-&gt;findTrig (ROSEE::ActionPrimitive::Type::Trig, folderForActions + &quot;/primitives/&quot;) ;</span>
+<span class="lineNum">     350 </span>            : 
+<span class="lineNum">     351 </span><span class="lineCov">          3 :     if (trigMap.size()&gt;0){</span>
+<span class="lineNum">     352 </span><span class="lineCov">          4 :         std::vector&lt;std::string&gt; keys = ROSEE::Utils::extract_keys(trigMap);</span>
+<span class="lineNum">     353 </span>            :         //lets pick a random trig
+<span class="lineNum">     354 </span><span class="lineCov">          2 :         srand((unsigned int)time(NULL));</span>
+<span class="lineNum">     355 </span><span class="lineCov">          2 :         int i = rand() % keys.size();</span>
+<span class="lineNum">     356 </span><span class="lineCov">          4 :         ROSEE::Action::Ptr action = std::make_shared&lt;ROSEE::ActionTrig&gt;(trigMap.at(keys.at(i)));</span>
+<span class="lineNum">     357 </span>            : 
+<span class="lineNum">     358 </span><span class="lineCov">          2 :         sendAndTest(action);</span>
+<span class="lineNum">     359 </span>            :         
+<span class="lineNum">     360 </span>            :         //other than &quot;default&quot; check done in sendAndTest, we check that effectively the trig joints are gone
+<span class="lineNum">     361 </span>            :         //toward their limit (from definition of trig)
+<span class="lineNum">     362 </span><span class="lineCov">          4 :         std::vector&lt;std::string&gt; actJointsInvolved;</span>
+<span class="lineNum">     363 </span><span class="lineCov">          2 :         ee-&gt;getActuatedJointsInFinger(keys.at(i), actJointsInvolved);</span>
+<span class="lineNum">     364 </span>            :         
+<span class="lineNum">     365 </span><span class="lineCov">          6 :         for (auto jointName : actJointsInvolved) {</span>
+<span class="lineNum">     366 </span>            :             //at O single dof joint
+<span class="lineNum">     367 </span><span class="lineCov">          4 :             double bigBound = parserMoveIt-&gt;getBiggerBoundFromZero(jointName).at(0);</span>
+<span class="lineNum">     368 </span>            :             
+<span class="lineNum">     369 </span><span class="lineCov">         14 :             for (int k = 0; k&lt;clbkHelper.js.name.size(); k++) {</span>
+<span class="lineNum">     370 </span>            :                 
+<span class="lineNum">     371 </span><span class="lineCov">         12 :                 if (clbkHelper.js.name[i].compare(jointName) == 0 ) {</span>
+<span class="lineNum">     372 </span><span class="lineCov">          2 :                     EXPECT_NEAR(bigBound, clbkHelper.js.position[i], 0.02);</span>
+<span class="lineNum">     373 </span><span class="lineCov">          2 :                     break;</span>
+<span class="lineNum">     374 </span>            :                 } 
+<span class="lineNum">     375 </span>            :             }
+<span class="lineNum">     376 </span>            :         }
+<span class="lineNum">     377 </span>            :     }
+<a name="378"><span class="lineNum">     378 </span><span class="lineCov">          3 : }</span></a>
+<span class="lineNum">     379 </span>            : 
+<span class="lineNum">     380 </span><span class="lineCov">         15 : TEST_F ( testSendAction, sendTipFlex ) {</span>
+<span class="lineNum">     381 </span>            :     
+<span class="lineNum">     382 </span><span class="lineCov">          6 :     auto tipFlexMap = actionsFinder-&gt;findTrig (ROSEE::ActionPrimitive::Type::TipFlex, folderForActions + &quot;/primitives/&quot;);</span>
+<span class="lineNum">     383 </span>            : 
+<span class="lineNum">     384 </span><span class="lineCov">          3 :     if (tipFlexMap.size()&gt;0) {</span>
+<span class="lineNum">     385 </span><span class="lineCov">          4 :         std::vector&lt;std::string&gt; keys = ROSEE::Utils::extract_keys(tipFlexMap);</span>
+<span class="lineNum">     386 </span>            :         //lets pick a random 
+<span class="lineNum">     387 </span><span class="lineCov">          2 :         srand((unsigned int)time(NULL));</span>
+<span class="lineNum">     388 </span><span class="lineCov">          2 :         int i = rand() % keys.size();</span>
+<span class="lineNum">     389 </span><span class="lineCov">          4 :         ROSEE::Action::Ptr action = std::make_shared&lt;ROSEE::ActionTrig&gt;(tipFlexMap.at(keys.at(i)));</span>
+<span class="lineNum">     390 </span>            : 
+<span class="lineNum">     391 </span><span class="lineCov">          2 :         sendAndTest(action);</span>
+<span class="lineNum">     392 </span>            :         
+<span class="lineNum">     393 </span>            :         //other than &quot;default&quot; check done in sendAndTest, we check that effectively the joint is gone to the limit
+<span class="lineNum">     394 </span>            :         
+<span class="lineNum">     395 </span>            :         //Workaround to take the single joint used by this action
+<span class="lineNum">     396 </span><span class="lineCov">          4 :         auto jic = action-&gt;getJointsInvolvedCount();</span>
+<span class="lineNum">     397 </span><span class="lineCov">          4 :         std::string jointInvolved;</span>
+<span class="lineNum">     398 </span><span class="lineCov">         12 :         for (auto it : jic) {</span>
+<span class="lineNum">     399 </span><span class="lineCov">         10 :             if (it.second == 1 ){</span>
+<span class="lineNum">     400 </span><span class="lineCov">          2 :                 jointInvolved = it.first;</span>
+<span class="lineNum">     401 </span>            :             }
+<span class="lineNum">     402 </span>            :         }
+<span class="lineNum">     403 </span>            :         
+<span class="lineNum">     404 </span><span class="lineCov">          2 :         EXPECT_TRUE(jointInvolved.size() &gt; 0);</span>
+<span class="lineNum">     405 </span>            :         
+<span class="lineNum">     406 </span>            :         //at O single dof joint
+<span class="lineNum">     407 </span><span class="lineCov">          2 :         double bigBound = parserMoveIt-&gt;getBiggerBoundFromZero(jointInvolved).at(0);</span>
+<span class="lineNum">     408 </span>            :         
+<span class="lineNum">     409 </span><span class="lineCov">         12 :         for (int k = 0; k&lt;clbkHelper.js.name.size(); k++) {</span>
+<span class="lineNum">     410 </span>            :             
+<span class="lineNum">     411 </span><span class="lineCov">         10 :             if (clbkHelper.js.name[i].compare(jointInvolved) == 0 ) {</span>
+<span class="lineNum">     412 </span><span class="lineNoCov">          0 :                 EXPECT_NEAR(bigBound, clbkHelper.js.position[i], 0.02);</span>
+<span class="lineNum">     413 </span><span class="lineNoCov">          0 :                 break;</span>
+<span class="lineNum">     414 </span>            :                 
+<span class="lineNum">     415 </span>            :             }
+<span class="lineNum">     416 </span>            :         }        
+<span class="lineNum">     417 </span>            :     }
+<a name="418"><span class="lineNum">     418 </span><span class="lineCov">          3 : }</span></a>
+<span class="lineNum">     419 </span>            : 
+<span class="lineNum">     420 </span><span class="lineCov">         15 : TEST_F ( testSendAction, sendFingFlex ) {</span>
+<span class="lineNum">     421 </span>            : 
+<span class="lineNum">     422 </span><span class="lineCov">          6 :     auto fingFlexMap = actionsFinder-&gt;findTrig (ROSEE::ActionPrimitive::Type::FingFlex, folderForActions + &quot;/primitives/&quot;);</span>
+<span class="lineNum">     423 </span>            : 
+<span class="lineNum">     424 </span><span class="lineCov">          3 :     if (fingFlexMap.size()&gt;0) {</span>
+<span class="lineNum">     425 </span><span class="lineCov">          4 :         std::vector&lt;std::string&gt; keys = ROSEE::Utils::extract_keys(fingFlexMap);</span>
+<span class="lineNum">     426 </span>            :         //lets pick a random 
+<span class="lineNum">     427 </span><span class="lineCov">          2 :         srand((unsigned int)time(NULL));</span>
+<span class="lineNum">     428 </span><span class="lineCov">          2 :         int i = rand() % keys.size();</span>
+<span class="lineNum">     429 </span><span class="lineCov">          4 :         ROSEE::Action::Ptr action = std::make_shared&lt;ROSEE::ActionTrig&gt;(fingFlexMap.at(keys.at(i)));</span>
+<span class="lineNum">     430 </span>            : 
+<span class="lineNum">     431 </span><span class="lineCov">          2 :         sendAndTest(action);</span>
+<span class="lineNum">     432 </span>            :         
+<span class="lineNum">     433 </span>            :        //other than &quot;default&quot; check done in sendAndTest, we check that effectively the joint is gone to the limit
+<span class="lineNum">     434 </span>            :         
+<span class="lineNum">     435 </span>            :         //Workaround to take the single joint used by this action
+<span class="lineNum">     436 </span><span class="lineCov">          4 :         auto jic = action-&gt;getJointsInvolvedCount();</span>
+<span class="lineNum">     437 </span><span class="lineCov">          4 :         std::string jointInvolved;</span>
+<span class="lineNum">     438 </span><span class="lineCov">         12 :         for (auto it : jic) {</span>
+<span class="lineNum">     439 </span><span class="lineCov">         10 :             if (it.second == 1 ){</span>
+<span class="lineNum">     440 </span><span class="lineCov">          2 :                 jointInvolved = it.first;</span>
+<span class="lineNum">     441 </span>            :             }
+<span class="lineNum">     442 </span>            :         }
+<span class="lineNum">     443 </span>            :         
+<span class="lineNum">     444 </span><span class="lineCov">          2 :         EXPECT_TRUE(jointInvolved.size() &gt; 0);</span>
+<span class="lineNum">     445 </span>            :         
+<span class="lineNum">     446 </span>            :         //at O single dof joint
+<span class="lineNum">     447 </span><span class="lineCov">          2 :         double bigBound = parserMoveIt-&gt;getBiggerBoundFromZero(jointInvolved).at(0);</span>
+<span class="lineNum">     448 </span>            :         
+<span class="lineNum">     449 </span><span class="lineCov">          2 :         for (int k = 0; k&lt;clbkHelper.js.name.size(); k++) {</span>
+<span class="lineNum">     450 </span>            :             
+<span class="lineNum">     451 </span><span class="lineCov">          2 :             if (clbkHelper.js.name[i].compare(jointInvolved) == 0 ) {</span>
+<span class="lineNum">     452 </span><span class="lineCov">          2 :                 EXPECT_NEAR(bigBound, clbkHelper.js.position[i], 0.02);</span>
+<span class="lineNum">     453 </span><span class="lineCov">          2 :                 break;</span>
+<span class="lineNum">     454 </span>            :                 
+<span class="lineNum">     455 </span>            :             }
+<span class="lineNum">     456 </span>            :         }
+<span class="lineNum">     457 </span>            :     }
+<span class="lineNum">     458 </span><span class="lineCov">          3 : }</span>
+<a name="459"><span class="lineNum">     459 </span>            : </a>
+<span class="lineNum">     460 </span>            : 
+<span class="lineNum">     461 </span><span class="lineCov">         15 : TEST_F ( testSendAction, sendPinches ) {</span>
+<span class="lineNum">     462 </span>            :     
+<span class="lineNum">     463 </span><span class="lineCov">          6 :     auto pinchTightMap = actionsFinder-&gt;findPinch(folderForActions + &quot;/primitives/&quot;).first;</span>
+<span class="lineNum">     464 </span>            : 
+<span class="lineNum">     465 </span><span class="lineCov">          3 :     if (pinchTightMap.size()&gt;0){</span>
+<span class="lineNum">     466 </span><span class="lineCov">          4 :         std::vector&lt;std::pair&lt;std::string,std::string&gt;&gt; keys = ROSEE::Utils::extract_keys(pinchTightMap);</span>
+<span class="lineNum">     467 </span>            :         //lets pick a random 
+<span class="lineNum">     468 </span><span class="lineCov">          2 :         srand((unsigned int)time(NULL));</span>
+<span class="lineNum">     469 </span><span class="lineCov">          2 :         int i = rand() % keys.size();</span>
+<span class="lineNum">     470 </span><span class="lineCov">          4 :         ROSEE::Action::Ptr action = std::make_shared&lt;ROSEE::ActionPinchTight&gt;(pinchTightMap.at(keys.at(i)));</span>
+<span class="lineNum">     471 </span>            : 
+<span class="lineNum">     472 </span><span class="lineCov">          2 :         sendAndTest(action);</span>
+<span class="lineNum">     473 </span>            :         
+<span class="lineNum">     474 </span>            :     }
+<a name="475"><span class="lineNum">     475 </span><span class="lineCov">          3 : }</span></a>
+<span class="lineNum">     476 </span>            : 
+<span class="lineNum">     477 </span><span class="lineCov">         15 : TEST_F ( testSendAction, sendPinchLoose ) {</span>
+<span class="lineNum">     478 </span>            :     
+<span class="lineNum">     479 </span><span class="lineCov">          6 :     auto pinchLooseMap = actionsFinder-&gt;findPinch(folderForActions + &quot;/primitives/&quot;).second;</span>
+<span class="lineNum">     480 </span>            : 
+<span class="lineNum">     481 </span><span class="lineCov">          3 :     if (pinchLooseMap.size()&gt;0){</span>
+<span class="lineNum">     482 </span><span class="lineNoCov">          0 :         std::vector&lt;std::pair&lt;std::string,std::string&gt;&gt; keys = ROSEE::Utils::extract_keys(pinchLooseMap);</span>
+<span class="lineNum">     483 </span>            :         //lets pick a random 
+<span class="lineNum">     484 </span><span class="lineNoCov">          0 :         srand((unsigned int)time(NULL));</span>
+<span class="lineNum">     485 </span><span class="lineNoCov">          0 :         int i = rand() % keys.size();</span>
+<span class="lineNum">     486 </span><span class="lineNoCov">          0 :         ROSEE::Action::Ptr action = std::make_shared&lt;ROSEE::ActionPinchLoose&gt;(pinchLooseMap.at(keys.at(i)));</span>
+<span class="lineNum">     487 </span>            : 
+<span class="lineNum">     488 </span><span class="lineNoCov">          0 :         sendAndTest(action);</span>
+<span class="lineNum">     489 </span>            :         
+<span class="lineNum">     490 </span>            :     }
+<a name="491"><span class="lineNum">     491 </span><span class="lineCov">          3 : }</span></a>
+<span class="lineNum">     492 </span>            : 
+<span class="lineNum">     493 </span><span class="lineCov">         15 : TEST_F (testSendAction, sendMultiplePinchStrict ) {</span>
+<span class="lineNum">     494 </span>            :     
+<span class="lineNum">     495 </span>            :             
+<span class="lineNum">     496 </span><span class="lineCov">          6 :     std::vector &lt; ROSEE::ActionMultiplePinchTight::Map &gt; multiplePinchMapsStrict;</span>
+<span class="lineNum">     497 </span><span class="lineCov">          4 :     for (int i = 3; i &lt;= ee-&gt;getFingersNumber(); i++) {</span>
+<span class="lineNum">     498 </span><span class="lineCov">          2 :         auto multiplePinchMapStrict = actionsFinder-&gt;findMultiplePinch(i, folderForActions + &quot;/primitives/&quot;, true );</span>
+<span class="lineNum">     499 </span>            :         
+<span class="lineNum">     500 </span>            :         //keep only if it is not empty
+<span class="lineNum">     501 </span><span class="lineCov">          1 :         if (multiplePinchMapStrict.size() &gt; 0 ) {</span>
+<span class="lineNum">     502 </span><span class="lineNoCov">          0 :             multiplePinchMapsStrict.push_back (multiplePinchMapStrict);</span>
+<span class="lineNum">     503 </span>            :         }    
+<span class="lineNum">     504 </span>            :     }
+<span class="lineNum">     505 </span>            : 
+<span class="lineNum">     506 </span><span class="lineCov">          3 :     if ( multiplePinchMapsStrict.size() &gt; 0 ) {</span>
+<span class="lineNum">     507 </span>            :         
+<span class="lineNum">     508 </span><span class="lineNoCov">          0 :         srand((unsigned int)time(NULL));</span>
+<span class="lineNum">     509 </span><span class="lineNoCov">          0 :         int j = rand() % multiplePinchMapsStrict.size();</span>
+<span class="lineNum">     510 </span>            :         
+<span class="lineNum">     511 </span><span class="lineNoCov">          0 :         std::vector&lt;std::set&lt;std::string&gt;&gt; keys = ROSEE::Utils::extract_keys( multiplePinchMapsStrict.at(j) );</span>
+<span class="lineNum">     512 </span>            :         //lets pick a random trig
+<span class="lineNum">     513 </span><span class="lineNoCov">          0 :         srand((unsigned int)time(NULL));</span>
+<span class="lineNum">     514 </span><span class="lineNoCov">          0 :         int i = rand() % keys.size();</span>
+<span class="lineNum">     515 </span><span class="lineNoCov">          0 :         ROSEE::Action::Ptr action = std::make_shared&lt;ROSEE::ActionMultiplePinchTight&gt;(multiplePinchMapsStrict.at(j).at(keys.at(i)));</span>
+<span class="lineNum">     516 </span>            : 
+<span class="lineNum">     517 </span><span class="lineNoCov">          0 :         sendAndTest(action);</span>
+<span class="lineNum">     518 </span>            :         
+<span class="lineNum">     519 </span>            :     }
+<span class="lineNum">     520 </span>            :     
+<a name="521"><span class="lineNum">     521 </span><span class="lineCov">          3 : }</span></a>
+<span class="lineNum">     522 </span>            : 
+<span class="lineNum">     523 </span><span class="lineCov">         15 : TEST_F (testSendAction, sendMultiplePinchNoStrict ) {</span>
+<span class="lineNum">     524 </span>            :     
+<span class="lineNum">     525 </span>            :             
+<span class="lineNum">     526 </span><span class="lineCov">          6 :     std::vector &lt; ROSEE::ActionMultiplePinchTight::Map &gt; multiplePinchMapsNOStrict;</span>
+<span class="lineNum">     527 </span><span class="lineCov">          4 :     for (int i = 3; i &lt;= ee-&gt;getFingersNumber(); i++) {</span>
+<span class="lineNum">     528 </span><span class="lineCov">          2 :         auto multiplePinchMapNOStrict = actionsFinder-&gt;findMultiplePinch(i, folderForActions + &quot;/primitives/&quot;, false );</span>
+<span class="lineNum">     529 </span>            :         
+<span class="lineNum">     530 </span>            :         //keep only if it is not empty
+<span class="lineNum">     531 </span><span class="lineCov">          1 :         if (multiplePinchMapNOStrict.size() &gt; 0 ) {</span>
+<span class="lineNum">     532 </span><span class="lineNoCov">          0 :             multiplePinchMapsNOStrict.push_back (multiplePinchMapNOStrict);</span>
+<span class="lineNum">     533 </span>            :         }
+<span class="lineNum">     534 </span>            : 
+<span class="lineNum">     535 </span>            :     }
+<span class="lineNum">     536 </span>            : 
+<span class="lineNum">     537 </span><span class="lineCov">          3 :     if ( multiplePinchMapsNOStrict.size() &gt; 0 ) {</span>
+<span class="lineNum">     538 </span>            :         
+<span class="lineNum">     539 </span><span class="lineNoCov">          0 :         srand((unsigned int)time(NULL));</span>
+<span class="lineNum">     540 </span><span class="lineNoCov">          0 :         int j = rand() % multiplePinchMapsNOStrict.size();</span>
+<span class="lineNum">     541 </span>            :         
+<span class="lineNum">     542 </span><span class="lineNoCov">          0 :         std::vector&lt;std::set&lt;std::string&gt;&gt; keys = ROSEE::Utils::extract_keys( multiplePinchMapsNOStrict.at(j) );</span>
+<span class="lineNum">     543 </span>            :         //lets pick a random trig
+<span class="lineNum">     544 </span><span class="lineNoCov">          0 :         srand((unsigned int)time(NULL));</span>
+<span class="lineNum">     545 </span><span class="lineNoCov">          0 :         int i = rand() % keys.size();</span>
+<span class="lineNum">     546 </span><span class="lineNoCov">          0 :         ROSEE::Action::Ptr action = std::make_shared&lt;ROSEE::ActionMultiplePinchTight&gt;(multiplePinchMapsNOStrict.at(j).at(keys.at(i)));</span>
+<span class="lineNum">     547 </span>            : 
+<span class="lineNum">     548 </span><span class="lineNoCov">          0 :         sendAndTest(action);</span>
+<span class="lineNum">     549 </span>            :         
+<span class="lineNum">     550 </span>            :     }
+<span class="lineNum">     551 </span>            :     
+<a name="552"><span class="lineNum">     552 </span><span class="lineCov">          3 : }</span></a>
+<span class="lineNum">     553 </span>            : 
+<span class="lineNum">     554 </span><span class="lineCov">         15 : TEST_F (testSendAction, sendSingleJointMultipleTips ) {</span>
+<span class="lineNum">     555 </span>            :     
+<span class="lineNum">     556 </span><span class="lineCov">          6 :     std::vector &lt; ROSEE::ActionSingleJointMultipleTips::Map &gt; singleJointMultipleTipsMaps;</span>
+<span class="lineNum">     557 </span>            :     
+<span class="lineNum">     558 </span><span class="lineCov">         10 :     for (int i = 1; i&lt;=ee-&gt;getFingersNumber(); i++) {</span>
+<span class="lineNum">     559 </span>            :             
+<span class="lineNum">     560 </span>            :         std::map &lt; std::string, ROSEE::ActionSingleJointMultipleTips&gt; singleJointMultipleTipsMap = 
+<span class="lineNum">     561 </span><span class="lineCov">         14 :             actionsFinder-&gt;findSingleJointMultipleTips (i, folderForActions + &quot;/primitives/&quot;) ;</span>
+<span class="lineNum">     562 </span>            :             
+<span class="lineNum">     563 </span><span class="lineCov">          7 :         if (singleJointMultipleTipsMap.size()&gt;0) {</span>
+<span class="lineNum">     564 </span><span class="lineCov">          1 :             singleJointMultipleTipsMaps.push_back(singleJointMultipleTipsMap);</span>
+<span class="lineNum">     565 </span>            :         }
+<span class="lineNum">     566 </span>            : 
+<span class="lineNum">     567 </span>            :     }
+<span class="lineNum">     568 </span>            : 
+<span class="lineNum">     569 </span><span class="lineCov">          3 :     if ( singleJointMultipleTipsMaps.size() &gt; 0 ) {</span>
+<span class="lineNum">     570 </span>            :         
+<span class="lineNum">     571 </span><span class="lineCov">          1 :         srand((unsigned int)time(NULL));</span>
+<span class="lineNum">     572 </span><span class="lineCov">          1 :         int j = rand() % singleJointMultipleTipsMaps.size();</span>
+<span class="lineNum">     573 </span>            :         
+<span class="lineNum">     574 </span><span class="lineCov">          2 :         std::vector&lt;std::string&gt; keys = ROSEE::Utils::extract_keys( singleJointMultipleTipsMaps.at(j) );</span>
+<span class="lineNum">     575 </span>            :         //lets pick a random trig
+<span class="lineNum">     576 </span><span class="lineCov">          1 :         srand((unsigned int)time(NULL));</span>
+<span class="lineNum">     577 </span><span class="lineCov">          1 :         int i = rand() % keys.size();</span>
+<span class="lineNum">     578 </span><span class="lineCov">          2 :         ROSEE::Action::Ptr action = std::make_shared&lt;ROSEE::ActionSingleJointMultipleTips&gt;(singleJointMultipleTipsMaps.at(j).at(keys.at(i)));</span>
+<span class="lineNum">     579 </span>            : 
+<span class="lineNum">     580 </span><span class="lineCov">          1 :         sendAndTest(action);</span>
+<span class="lineNum">     581 </span>            :             
+<span class="lineNum">     582 </span>            :     }
+<span class="lineNum">     583 </span><span class="lineCov">          3 : }</span>
+<span class="lineNum">     584 </span>            : 
+<span class="lineNum">     585 </span>            : 
+<span class="lineNum">     586 </span>            : /***
+<a name="587"><span class="lineNum">     587 </span>            :  * @brief Here we create a randomic action composed by some primitives</a>
+<span class="lineNum">     588 </span>            :  */
+<span class="lineNum">     589 </span><span class="lineCov">         15 : TEST_F (testSendAction, sendComposedAction ) {</span>
+<span class="lineNum">     590 </span>            : 
+<span class="lineNum">     591 </span><span class="lineCov">          6 :     ROSEE::ActionTrig::Map trigMap = actionsFinder-&gt;findTrig (ROSEE::ActionPrimitive::Type::Trig, folderForActions + &quot;/primitives/&quot;) ;</span>
+<span class="lineNum">     592 </span><span class="lineCov">          6 :     auto fingFlexMap = actionsFinder-&gt;findTrig (ROSEE::ActionPrimitive::Type::FingFlex, folderForActions + &quot;/primitives/&quot;);</span>
+<span class="lineNum">     593 </span><span class="lineCov">          6 :     auto pinchTightMap = actionsFinder-&gt;findPinch(folderForActions + &quot;/primitives/&quot;).first;</span>
+<span class="lineNum">     594 </span>            :     
+<span class="lineNum">     595 </span><span class="lineCov">          6 :     ROSEE::ActionComposed actionComposed ( &quot;TestComposed&quot;, false) ;</span>
+<span class="lineNum">     596 </span>            :     
+<span class="lineNum">     597 </span><span class="lineCov">          8 :     for (auto trig : trigMap) {</span>
+<span class="lineNum">     598 </span>            :         std::shared_ptr &lt;ROSEE::ActionPrimitive&gt; pointer = 
+<span class="lineNum">     599 </span><span class="lineCov">         10 :             std::make_shared &lt;ROSEE::ActionTrig&gt; ( trig.second );</span>
+<span class="lineNum">     600 </span>            :             
+<span class="lineNum">     601 </span><span class="lineCov">          5 :         double lower_bound = 0;</span>
+<span class="lineNum">     602 </span><span class="lineCov">          5 :         double upper_bound = 0.8; //low, we do not want to go out of joint limits</span>
+<span class="lineNum">     603 </span><span class="lineCov">          5 :         std::uniform_real_distribution&lt;double&gt; unif(lower_bound, upper_bound);</span>
+<span class="lineNum">     604 </span><span class="lineCov">          5 :         std::default_random_engine re;</span>
+<span class="lineNum">     605 </span><span class="lineCov">          5 :         double random = unif(re);</span>
+<span class="lineNum">     606 </span><span class="lineCov">          5 :         EXPECT_TRUE(actionComposed.sumAction ( pointer, random )); </span>
+<span class="lineNum">     607 </span>            :     }
+<span class="lineNum">     608 </span>            :     
+<span class="lineNum">     609 </span><span class="lineCov">          8 :     for (auto trig : fingFlexMap) {</span>
+<span class="lineNum">     610 </span>            :         std::shared_ptr &lt;ROSEE::ActionPrimitive&gt; pointer = 
+<span class="lineNum">     611 </span><span class="lineCov">         10 :             std::make_shared &lt;ROSEE::ActionTrig&gt; ( trig.second );</span>
+<span class="lineNum">     612 </span>            :             
+<span class="lineNum">     613 </span><span class="lineCov">          5 :         double lower_bound = 0;</span>
+<span class="lineNum">     614 </span><span class="lineCov">          5 :         double upper_bound = 0.7; //low, we do not want to go out of joint limits</span>
+<span class="lineNum">     615 </span><span class="lineCov">          5 :         std::uniform_real_distribution&lt;double&gt; unif(lower_bound, upper_bound);</span>
+<span class="lineNum">     616 </span><span class="lineCov">          5 :         std::default_random_engine re;</span>
+<span class="lineNum">     617 </span><span class="lineCov">          5 :         double random = unif(re);</span>
+<span class="lineNum">     618 </span><span class="lineCov">          5 :         EXPECT_TRUE(actionComposed.sumAction ( pointer, random )); </span>
+<span class="lineNum">     619 </span>            :     }
+<span class="lineNum">     620 </span>            :     
+<span class="lineNum">     621 </span><span class="lineCov">          5 :     for (auto pinch : pinchTightMap) {</span>
+<span class="lineNum">     622 </span>            :         
+<span class="lineNum">     623 </span>            :         std::shared_ptr &lt;ROSEE::ActionPrimitive&gt; pointer = 
+<span class="lineNum">     624 </span><span class="lineCov">          4 :             std::make_shared &lt;ROSEE::ActionPinchTight&gt; ( pinch.second );</span>
+<span class="lineNum">     625 </span>            :             
+<span class="lineNum">     626 </span><span class="lineCov">          2 :         double lower_bound = 0;</span>
+<span class="lineNum">     627 </span><span class="lineCov">          2 :         double upper_bound = 0.29; //low, we do not want to go out of joint limits</span>
+<span class="lineNum">     628 </span><span class="lineCov">          2 :         std::uniform_real_distribution&lt;double&gt; unif(lower_bound, upper_bound);</span>
+<span class="lineNum">     629 </span><span class="lineCov">          2 :         std::default_random_engine re;</span>
+<span class="lineNum">     630 </span><span class="lineCov">          2 :         double random = unif(re);</span>
+<span class="lineNum">     631 </span><span class="lineCov">          2 :         EXPECT_TRUE(actionComposed.sumAction ( pointer, random, 2 )); </span>
+<span class="lineNum">     632 </span>            :     }
+<span class="lineNum">     633 </span>            :     
+<span class="lineNum">     634 </span><span class="lineCov">          3 :     if (actionComposed.numberOfInnerActions() &gt; 0) {</span>
+<span class="lineNum">     635 </span><span class="lineCov">          6 :         ROSEE::Action::Ptr actionPtr = std::make_shared&lt;ROSEE::ActionGeneric&gt;(actionComposed);</span>
+<span class="lineNum">     636 </span>            :         
+<span class="lineNum">     637 </span>            :         //do not forget to emit the file, in sendAndTest the rosee main node need to parse it
+<span class="lineNum">     638 </span><span class="lineCov">          3 :         yamlWorker.createYamlFile( actionPtr.get(), folderForActions + &quot;/generics/&quot; );</span>
+<span class="lineNum">     639 </span>            : 
+<span class="lineNum">     640 </span><span class="lineCov">          3 :         sendAndTest(actionPtr, 0.95);</span>
+<span class="lineNum">     641 </span>            :     }
+<span class="lineNum">     642 </span>            :  
+<span class="lineNum">     643 </span><span class="lineCov">          3 : }</span>
+<a name="644"><span class="lineNum">     644 </span>            : </a>
+<span class="lineNum">     645 </span>            : 
+<span class="lineNum">     646 </span><span class="lineCov">         15 : TEST_F (testSendAction, sendTimedAction ) {</span>
+<span class="lineNum">     647 </span>            : 
+<span class="lineNum">     648 </span><span class="lineCov">          6 :     ROSEE::ActionTrig::Map trigMap = actionsFinder-&gt;findTrig (ROSEE::ActionPrimitive::Type::Trig, folderForActions + &quot;/primitives/&quot;) ;</span>
+<span class="lineNum">     649 </span><span class="lineCov">          6 :     auto tipFlexMap = actionsFinder-&gt;findTrig (ROSEE::ActionPrimitive::Type::TipFlex, folderForActions + &quot;/primitives/&quot;);</span>
+<span class="lineNum">     650 </span><span class="lineCov">          6 :     auto pinchMaps = actionsFinder-&gt;findPinch(folderForActions + &quot;/primitives/&quot;);</span>
+<span class="lineNum">     651 </span>            :     
+<span class="lineNum">     652 </span><span class="lineCov">          6 :     ROSEE::ActionTimed actionTimed ( &quot;TestTimed&quot; ) ;</span>
+<span class="lineNum">     653 </span>            :     
+<span class="lineNum">     654 </span><span class="lineCov">          3 :     if  (trigMap.size()&gt;0) {</span>
+<span class="lineNum">     655 </span>            :         std::shared_ptr &lt;ROSEE::ActionPrimitive&gt; pointer = 
+<span class="lineNum">     656 </span><span class="lineCov">          4 :             std::make_shared &lt;ROSEE::ActionTrig&gt; ( trigMap.begin()-&gt;second );</span>
+<span class="lineNum">     657 </span>            :             
+<span class="lineNum">     658 </span><span class="lineCov">          2 :         double lower_bound = 0;</span>
+<span class="lineNum">     659 </span><span class="lineCov">          2 :         double upper_bound = 0.8; //low, we do not want to go out of joint limits</span>
+<span class="lineNum">     660 </span><span class="lineCov">          2 :         std::uniform_real_distribution&lt;double&gt; unif(lower_bound, upper_bound);</span>
+<span class="lineNum">     661 </span><span class="lineCov">          2 :         std::default_random_engine re;</span>
+<span class="lineNum">     662 </span><span class="lineCov">          2 :         double random = unif(re);</span>
+<span class="lineNum">     663 </span><span class="lineCov">          2 :         EXPECT_TRUE(actionTimed.insertAction(pointer, 0, 0.7, 0, random)); </span>
+<span class="lineNum">     664 </span>            :     }
+<span class="lineNum">     665 </span>            :     
+<span class="lineNum">     666 </span><span class="lineCov">          3 :     if (tipFlexMap.size() &gt; 0) {</span>
+<span class="lineNum">     667 </span>            :         std::shared_ptr &lt;ROSEE::ActionPrimitive&gt; pointer = 
+<span class="lineNum">     668 </span><span class="lineCov">          4 :             std::make_shared &lt;ROSEE::ActionTrig&gt; ( tipFlexMap.rbegin()-&gt;second); //rbegin is the last element</span>
+<span class="lineNum">     669 </span>            :             
+<span class="lineNum">     670 </span><span class="lineCov">          2 :         double lower_bound = 0;</span>
+<span class="lineNum">     671 </span><span class="lineCov">          2 :         double upper_bound = 0.95;</span>
+<span class="lineNum">     672 </span><span class="lineCov">          2 :         std::uniform_real_distribution&lt;double&gt; unif(lower_bound, upper_bound);</span>
+<span class="lineNum">     673 </span><span class="lineCov">          2 :         std::default_random_engine re;</span>
+<span class="lineNum">     674 </span><span class="lineCov">          2 :         double random = unif(re);</span>
+<span class="lineNum">     675 </span><span class="lineCov">          2 :         EXPECT_TRUE(actionTimed.insertAction(pointer, 0.2, 0.32, 0, random)); </span>
+<span class="lineNum">     676 </span>            :     }
+<span class="lineNum">     677 </span>            :     
+<span class="lineNum">     678 </span><span class="lineCov">          3 :     if (! pinchMaps.first.empty()) {</span>
+<span class="lineNum">     679 </span>            :         
+<span class="lineNum">     680 </span>            :         std::shared_ptr &lt;ROSEE::ActionPrimitive&gt; pointer = 
+<span class="lineNum">     681 </span><span class="lineCov">          4 :             std::make_shared &lt;ROSEE::ActionPinchTight&gt; ( pinchMaps.first.begin()-&gt;second );</span>
+<span class="lineNum">     682 </span>            :             
+<span class="lineNum">     683 </span><span class="lineCov">          2 :         double lower_bound = 0.6;</span>
+<span class="lineNum">     684 </span><span class="lineCov">          2 :         double upper_bound = 1; </span>
+<span class="lineNum">     685 </span><span class="lineCov">          2 :         std::uniform_real_distribution&lt;double&gt; unif(lower_bound, upper_bound);</span>
+<span class="lineNum">     686 </span><span class="lineCov">          2 :         std::default_random_engine re;</span>
+<span class="lineNum">     687 </span><span class="lineCov">          2 :         double random = unif(re);</span>
+<span class="lineNum">     688 </span><span class="lineCov">          2 :         EXPECT_TRUE(actionTimed.insertAction(pointer, 0.2, 0.32, 1, random)); </span>
+<span class="lineNum">     689 </span>            :     }
+<span class="lineNum">     690 </span>            :     
+<span class="lineNum">     691 </span><span class="lineCov">          3 :     if (! pinchMaps.second.empty()) {        </span>
+<span class="lineNum">     692 </span>            :         std::shared_ptr &lt;ROSEE::ActionPrimitive&gt; pointer = 
+<span class="lineNum">     693 </span><span class="lineNoCov">          0 :             std::make_shared &lt;ROSEE::ActionPinchLoose&gt; ( pinchMaps.second.rbegin()-&gt;second );</span>
+<span class="lineNum">     694 </span>            :             
+<span class="lineNum">     695 </span><span class="lineNoCov">          0 :         double lower_bound = 0;</span>
+<span class="lineNum">     696 </span><span class="lineNoCov">          0 :         double upper_bound = 1;</span>
+<span class="lineNum">     697 </span><span class="lineNoCov">          0 :         std::uniform_real_distribution&lt;double&gt; unif(lower_bound, upper_bound);</span>
+<span class="lineNum">     698 </span><span class="lineNoCov">          0 :         std::default_random_engine re;</span>
+<span class="lineNum">     699 </span><span class="lineNoCov">          0 :         double random = unif(re);</span>
+<span class="lineNum">     700 </span><span class="lineNoCov">          0 :         EXPECT_TRUE(actionTimed.insertAction(pointer, 0, 0, 0, random)); </span>
+<span class="lineNum">     701 </span>            :     }
+<span class="lineNum">     702 </span>            :     
+<span class="lineNum">     703 </span><span class="lineCov">          3 :     if (actionTimed.getInnerActionsNames().size() &gt; 0) {</span>
+<span class="lineNum">     704 </span><span class="lineCov">          6 :         ROSEE::Action::Ptr actionPtr = std::make_shared&lt;ROSEE::ActionTimed&gt;(actionTimed);</span>
+<span class="lineNum">     705 </span>            :         
+<span class="lineNum">     706 </span>            :         //do not forget to emit the file, in sendAndTest the rosee main node need to parse it
+<span class="lineNum">     707 </span><span class="lineCov">          3 :         yamlWorker.createYamlFile( actionPtr.get(), folderForActions + &quot;/timeds/&quot; );</span>
+<span class="lineNum">     708 </span>            :         
+<span class="lineNum">     709 </span><span class="lineCov">          3 :         sendAndTest(actionPtr);</span>
+<span class="lineNum">     710 </span>            :     }
+<span class="lineNum">     711 </span>            :  
+<span class="lineNum">     712 </span><span class="lineCov">          3 : }</span>
+<span class="lineNum">     713 </span>            : 
+<span class="lineNum">     714 </span>            : 
+<span class="lineNum">     715 </span>            : 
+<a name="716"><span class="lineNum">     716 </span>            : } //namespace</a>
+<span class="lineNum">     717 </span>            : 
+<span class="lineNum">     718 </span><span class="lineCov">          3 : int main ( int argc, char **argv ) {</span>
+<span class="lineNum">     719 </span>            :     
+<span class="lineNum">     720 </span><span class="lineCov">          3 :     if (argc &lt; 2 ){</span>
+<span class="lineNum">     721 </span>            :         
+<span class="lineNum">     722 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[TEST ERROR] Insert hand name as argument&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     723 </span><span class="lineNoCov">          0 :         return -1;</span>
+<span class="lineNum">     724 </span>            :     }
+<span class="lineNum">     725 </span>            :     
+<span class="lineNum">     726 </span>            :     /******************* Run tests on an isolated roscore ********************************************************/
+<span class="lineNum">     727 </span>            :     /* COMMENT ALL THIS block if you want to use roscore command by hand (useful for debugging the test) */
+<span class="lineNum">     728 </span>            :     //TODO I do not really understand why everything fails if I put this block at the beginning of prepareROSForTests function
+<span class="lineNum">     729 </span><span class="lineCov">          3 :     if(setenv(&quot;ROS_MASTER_URI&quot;, &quot;http://localhost:11322&quot;, 1) == -1)</span>
+<span class="lineNum">     730 </span>            :     {
+<span class="lineNum">     731 </span><span class="lineNoCov">          0 :        perror(&quot;setenv&quot;);</span>
+<span class="lineNum">     732 </span><span class="lineNoCov">          0 :        return 1;</span>
+<span class="lineNum">     733 </span>            :     }
+<span class="lineNum">     734 </span>            : 
+<span class="lineNum">     735 </span>            :     //run roscore
+<span class="lineNum">     736 </span><span class="lineCov">          6 :     std::unique_ptr&lt;ROSEE::TestUtils::Process&gt; roscore;</span>
+<span class="lineNum">     737 </span><span class="lineCov">          3 :     roscore.reset(new ROSEE::TestUtils::Process({&quot;roscore&quot;, &quot;-p&quot;, &quot;11322&quot;}));</span>
+<span class="lineNum">     738 </span>            :     /****************************************************************************************************/
+<span class="lineNum">     739 </span>            :     
+<span class="lineNum">     740 </span><span class="lineCov">          3 :     if ( ROSEE::TestUtils::prepareROSForTests ( argc, argv, &quot;testSendAction&quot; ) != 0 ) {</span>
+<span class="lineNum">     741 </span>            :         
+<span class="lineNum">     742 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[TEST ERROR] Prepare Function failed&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     743 </span><span class="lineNoCov">          0 :         return -1;</span>
+<span class="lineNum">     744 </span>            :     }
+<span class="lineNum">     745 </span>            :     
+<a name="746"><span class="lineNum">     746 </span><span class="lineCov">          3 :     ::testing::InitGoogleTest ( &amp;argc, argv );</span></a>
+<span class="lineNum">     747 </span><span class="lineCov">          3 :     return RUN_ALL_TESTS();</span>
+<span class="lineNum">     748 </span><span class="lineCov">          9 : }</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

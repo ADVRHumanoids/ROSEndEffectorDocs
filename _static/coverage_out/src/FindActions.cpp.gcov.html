@@ -1,0 +1,958 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - main_coverage.info - src/FindActions.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">src</a> - FindActions.cpp<span style="font-size: 80%;"> (source / <a href="FindActions.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">main_coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">300</td>
+            <td class="headerCovTableEntry">434</td>
+            <td class="headerCovTableEntryLo">69.1 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2020-07-31 15:30:30</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">21</td>
+            <td class="headerCovTableEntry">24</td>
+            <td class="headerCovTableEntryMed">87.5 %</td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #include &lt;ros_end_effector/FindActions.h&gt;</a>
+<span class="lineNum">       2 </span>            : 
+<span class="lineNum">       3 </span><span class="lineCov">        126 : ROSEE::FindActions::FindActions ( std::shared_ptr &lt; ROSEE::ParserMoveIt &gt; parserMoveIt ){</span>
+<span class="lineNum">       4 </span>            : 
+<span class="lineNum">       5 </span><span class="lineCov">        126 :     this-&gt;parserMoveIt = parserMoveIt;</span>
+<span class="lineNum">       6 </span><span class="lineCov">        126 : }</span>
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : 
+<a name="9"><span class="lineNum">       9 </span>            : std::pair &lt;  std::map &lt; std::pair &lt;std::string, std::string&gt; , ROSEE::ActionPinchTight &gt;, </a>
+<span class="lineNum">      10 </span>            :              std::map &lt; std::pair &lt;std::string, std::string&gt; , ROSEE::ActionPinchLoose &gt; &gt;
+<span class="lineNum">      11 </span><span class="lineCov">         51 :              ROSEE::FindActions::findPinch ( std::string path2saveYaml ){</span>
+<span class="lineNum">      12 </span>            :     
+<span class="lineNum">      13 </span><span class="lineCov">        102 :     std::map &lt; std::pair &lt;std::string, std::string&gt; , ActionPinchTight &gt; mapOfPinches = checkCollisions();</span>
+<span class="lineNum">      14 </span><span class="lineCov">        102 :     std::map &lt; std::pair &lt;std::string, std::string&gt; , ROSEE::ActionPinchLoose &gt; mapOfLoosePinches;</span>
+<span class="lineNum">      15 </span><span class="lineCov">         51 :     fillNotCollidingTips(&amp;mapOfLoosePinches, &amp;mapOfPinches);</span>
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span><span class="lineCov">         51 :     checkWhichTipsCollideWithoutBounds ( &amp;mapOfLoosePinches ) ;</span>
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span><span class="lineCov">         51 :     if (mapOfLoosePinches.size() != 0 ){</span>
+<span class="lineNum">      20 </span><span class="lineNoCov">          0 :         checkDistances (&amp;mapOfLoosePinches) ;</span>
+<span class="lineNum">      21 </span>            :     }
+<span class="lineNum">      22 </span>            :     
+<span class="lineNum">      23 </span>            :     /// EMITTING PART ................
+<span class="lineNum">      24 </span><span class="lineCov">         51 :     if (mapOfPinches.size() == 0 ) {  //print if no collision at all</span>
+<span class="lineNum">      25 </span><span class="lineCov">         17 :         std::cout &lt;&lt; &quot;[FINDACTIONS::&quot; &lt;&lt; __func__ &lt;&lt; &quot;]: I found no collisions between tips. Are you sure your hand&quot;</span>
+<span class="lineNum">      26 </span><span class="lineCov">         17 :             &lt;&lt; &quot; has some fingertips that can collide? If yes, check your urdf/srdf, or be sure to&quot;</span>
+<span class="lineNum">      27 </span><span class="lineCov">         17 :             &lt;&lt; &quot; have set the mesh or some collision geometry for the links, or&quot; </span>
+<span class="lineNum">      28 </span><span class="lineCov">         17 :             &lt;&lt; &quot; set a bigger value in N_EXP_COLLISION&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">      29 </span>            :             
+<span class="lineNum">      30 </span>            :     } else {
+<span class="lineNum">      31 </span>            :     
+<span class="lineNum">      32 </span><span class="lineCov">         34 :         ROSEE::YamlWorker yamlWorker;</span>
+<span class="lineNum">      33 </span><span class="lineCov">         68 :         std::map &lt; std::set &lt;std::string&gt; , ActionPrimitive* &gt; mapForWorker;</span>
+<span class="lineNum">      34 </span>            :         
+<span class="lineNum">      35 </span><span class="lineCov">         68 :         for (auto&amp; it : mapOfPinches) {  // auto&amp; and not auto alone!</span>
+<span class="lineNum">      36 </span>            : 
+<span class="lineNum">      37 </span><span class="lineCov">         34 :             ActionPrimitive* pointer = &amp;(it.second);</span>
+<span class="lineNum">      38 </span><span class="lineCov">         68 :             std::set &lt; std::string &gt; keys ;</span>
+<span class="lineNum">      39 </span><span class="lineCov">         34 :             keys.insert (it.first.first) ;</span>
+<span class="lineNum">      40 </span><span class="lineCov">         34 :             keys.insert (it.first.second) ;</span>
+<span class="lineNum">      41 </span><span class="lineCov">         34 :             mapForWorker.insert (std::make_pair ( keys, pointer ) );                </span>
+<span class="lineNum">      42 </span>            :         }
+<span class="lineNum">      43 </span>            : 
+<span class="lineNum">      44 </span><span class="lineCov">         34 :         yamlWorker.createYamlFile(mapForWorker, &quot;pinchTight&quot;, path2saveYaml);</span>
+<span class="lineNum">      45 </span>            :     }
+<span class="lineNum">      46 </span>            :     
+<span class="lineNum">      47 </span><span class="lineCov">         51 :     if (mapOfLoosePinches.size() == 0 ) { </span>
+<span class="lineNum">      48 </span><span class="lineCov">         51 :         std::cout &lt;&lt; &quot;[FINDACTIONS::&quot; &lt;&lt; __func__ &lt;&lt; &quot;]: I found no loose pinches. This mean that some error happened or that&quot; &lt;&lt;</span>
+<span class="lineNum">      49 </span><span class="lineCov">         51 :         &quot; all the tips pairs collide with each other for at least one hand configuration.&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">      50 </span>            :         
+<span class="lineNum">      51 </span>            :     } else {
+<span class="lineNum">      52 </span>            :         
+<span class="lineNum">      53 </span><span class="lineNoCov">          0 :         ROSEE::YamlWorker yamlWorker;</span>
+<span class="lineNum">      54 </span><span class="lineNoCov">          0 :         std::map &lt; std::set &lt;std::string&gt; , ActionPrimitive* &gt; mapForWorker;  </span>
+<span class="lineNum">      55 </span>            :         
+<span class="lineNum">      56 </span><span class="lineNoCov">          0 :         for (auto&amp; it : mapOfLoosePinches) {  // auto&amp; and not auto alone!</span>
+<span class="lineNum">      57 </span>            : 
+<span class="lineNum">      58 </span><span class="lineNoCov">          0 :             ActionPrimitive* pointer = &amp;(it.second);</span>
+<span class="lineNum">      59 </span><span class="lineNoCov">          0 :             std::set &lt; std::string &gt; keys ;</span>
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 :             keys.insert (it.first.first) ;</span>
+<span class="lineNum">      61 </span><span class="lineNoCov">          0 :             keys.insert (it.first.second) ;</span>
+<span class="lineNum">      62 </span><span class="lineNoCov">          0 :             mapForWorker.insert (std::make_pair ( keys, pointer ) );                </span>
+<span class="lineNum">      63 </span>            :         }
+<span class="lineNum">      64 </span>            : 
+<span class="lineNum">      65 </span><span class="lineNoCov">          0 :         yamlWorker.createYamlFile(mapForWorker, &quot;pinchLoose&quot;, path2saveYaml);</span>
+<span class="lineNum">      66 </span>            :     }
+<span class="lineNum">      67 </span>            :     
+<span class="lineNum">      68 </span><span class="lineCov">        102 :     return std::make_pair(mapOfPinches, mapOfLoosePinches);</span>
+<a name="69"><span class="lineNum">      69 </span>            : }</a>
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span><span class="lineCov">        117 : std::map &lt;std::string, ROSEE::ActionTrig&gt; ROSEE::FindActions::findTrig ( ROSEE::ActionPrimitive::Type actionType,</span>
+<span class="lineNum">      72 </span>            :     std::string path2saveYaml) {
+<span class="lineNum">      73 </span>            :     
+<span class="lineNum">      74 </span>            : 
+<span class="lineNum">      75 </span><span class="lineCov">        117 :     std::map &lt;std::string, ActionTrig&gt; trigMap;</span>
+<span class="lineNum">      76 </span>            :     
+<span class="lineNum">      77 </span><span class="lineCov">        117 :     switch (actionType) {</span>
+<span class="lineNum">      78 </span>            :     case ROSEE::ActionPrimitive::Type::Trig : {
+<span class="lineNum">      79 </span><span class="lineCov">         63 :         trigMap = trig();</span>
+<span class="lineNum">      80 </span><span class="lineCov">         63 :         break;</span>
+<span class="lineNum">      81 </span>            :     }
+<span class="lineNum">      82 </span>            :     case ROSEE::ActionPrimitive::Type::TipFlex : {
+<span class="lineNum">      83 </span><span class="lineCov">         27 :         trigMap = tipFlex();</span>
+<span class="lineNum">      84 </span><span class="lineCov">         27 :         break;</span>
+<span class="lineNum">      85 </span>            :     }
+<span class="lineNum">      86 </span>            :     case ROSEE::ActionPrimitive::Type::FingFlex : {
+<span class="lineNum">      87 </span><span class="lineCov">         27 :         trigMap = fingFlex();</span>
+<span class="lineNum">      88 </span><span class="lineCov">         27 :         break;</span>
+<span class="lineNum">      89 </span>            :     }
+<span class="lineNum">      90 </span>            :     default: {
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[ERROR FINDACTIONS::&quot; &lt;&lt; __func__ &lt;&lt; &quot;]: Passing as argument a action type which is not a type of trig. &quot; &lt;&lt; std::endl </span>
+<span class="lineNum">      92 </span><span class="lineNoCov">          0 :         &lt;&lt; &quot;I am returing an empty map&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">      93 </span><span class="lineNoCov">          0 :         return trigMap;</span>
+<span class="lineNum">      94 </span>            :     }
+<span class="lineNum">      95 </span>            :     }
+<span class="lineNum">      96 </span>            :     
+<span class="lineNum">      97 </span><span class="lineCov">        117 :     if (trigMap.size() == 0 ) { //if so, no sense to continue</span>
+<span class="lineNum">      98 </span><span class="lineCov">         39 :         return trigMap;</span>
+<span class="lineNum">      99 </span>            :     }
+<span class="lineNum">     100 </span>            :     
+<span class="lineNum">     101 </span>            :     //for involvedJoints. Ok here because I know that for the trigs, a non setted joint is 
+<span class="lineNum">     102 </span>            :     //a joint which is in a default position
+<span class="lineNum">     103 </span><span class="lineCov">        273 :     for (auto &amp; mapEl : trigMap) {</span>
+<span class="lineNum">     104 </span>            : 
+<span class="lineNum">     105 </span><span class="lineCov">        390 :         ROSEE::JointsInvolvedCount jointsInvolvedCount;</span>
+<span class="lineNum">     106 </span><span class="lineCov">       1209 :         for ( auto joint : mapEl.second.getJointPos() ) {</span>
+<span class="lineNum">     107 </span><span class="lineCov">       1014 :             jointsInvolvedCount.insert (std::make_pair(joint.first, 0));</span>
+<span class="lineNum">     108 </span><span class="lineCov">       1728 :             for (auto dof : joint.second) {</span>
+<span class="lineNum">     109 </span><span class="lineCov">       1014 :                 if (dof != DEFAULT_JOINT_POS){</span>
+<span class="lineNum">     110 </span><span class="lineCov">        300 :                     jointsInvolvedCount.at(joint.first) = 1;</span>
+<span class="lineNum">     111 </span><span class="lineCov">        300 :                     break;</span>
+<span class="lineNum">     112 </span>            :                 }
+<span class="lineNum">     113 </span>            :             }            
+<span class="lineNum">     114 </span>            :         }
+<span class="lineNum">     115 </span><span class="lineCov">        195 :         mapEl.second.setJointsInvolvedCount (jointsInvolvedCount);</span>
+<span class="lineNum">     116 </span>            :     }
+<span class="lineNum">     117 </span>            :         
+<span class="lineNum">     118 </span><span class="lineCov">        156 :     std::map &lt; std::set &lt;std::string&gt; , ActionPrimitive* &gt; mapForWorker;</span>
+<span class="lineNum">     119 </span>            : 
+<span class="lineNum">     120 </span><span class="lineCov">        273 :     for (auto&amp; it : trigMap) {  // auto&amp; and not auto alone!</span>
+<span class="lineNum">     121 </span>            : 
+<span class="lineNum">     122 </span><span class="lineCov">        195 :         ActionPrimitive* pointer = &amp;(it.second);</span>
+<span class="lineNum">     123 </span><span class="lineCov">        390 :         std::set &lt; std::string &gt; keys ;</span>
+<span class="lineNum">     124 </span><span class="lineCov">        195 :         keys.insert (it.first) ;</span>
+<span class="lineNum">     125 </span><span class="lineCov">        195 :         mapForWorker.insert (std::make_pair ( keys, pointer ) );</span>
+<span class="lineNum">     126 </span>            :     }
+<span class="lineNum">     127 </span>            :     
+<span class="lineNum">     128 </span><span class="lineCov">         78 :     ROSEE::YamlWorker yamlWorker;</span>
+<span class="lineNum">     129 </span><span class="lineCov">         78 :     yamlWorker.createYamlFile(mapForWorker, trigMap.begin()-&gt;second.getName(), path2saveYaml);</span>
+<span class="lineNum">     130 </span>            : 
+<span class="lineNum">     131 </span><span class="lineCov">         78 :     return trigMap;</span>
+<span class="lineNum">     132 </span>            : }  
+<a name="133"><span class="lineNum">     133 </span>            : </a>
+<span class="lineNum">     134 </span>            : 
+<span class="lineNum">     135 </span><span class="lineCov">          7 : std::map &lt;std::string, ROSEE::ActionSingleJointMultipleTips&gt; ROSEE::FindActions::findSingleJointMultipleTips(unsigned int nFinger, std::string path2saveYaml) {</span>
+<span class="lineNum">     136 </span>            :     
+<span class="lineNum">     137 </span><span class="lineCov">          7 :     std::map &lt;std::string, ROSEE::ActionSingleJointMultipleTips&gt; mapOfSingleJointMultipleTips;</span>
+<span class="lineNum">     138 </span>            :     
+<span class="lineNum">     139 </span><span class="lineCov">          7 :     if (nFinger &lt;= 0) {</span>
+<span class="lineNum">     140 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[ERROR FINDACTIONS::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] please pass a positive number &quot; &lt;&lt; </span>
+<span class="lineNum">     141 </span><span class="lineNoCov">          0 :         &quot; as number of fingers. You passed &quot; &lt;&lt; nFinger &lt;&lt; &quot; ! &quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     142 </span><span class="lineNoCov">          0 :         return mapOfSingleJointMultipleTips; </span>
+<span class="lineNum">     143 </span>            :     }
+<span class="lineNum">     144 </span>            :     
+<span class="lineNum">     145 </span><span class="lineCov">          7 :     if (nFinger == 1) {</span>
+<span class="lineNum">     146 </span><span class="lineCov">          3 :         std::cout &lt;&lt; &quot;[ERROR FINDACTIONS::&quot; &lt;&lt; __func__ &lt;&lt; &quot;]  with 1 finger, you are looking for a ActionTrig, &quot;</span>
+<span class="lineNum">     147 </span><span class="lineCov">          3 :             &lt;&lt; &quot;and not a ActionSingleJointMultipleTips. Returning an empty map&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     148 </span><span class="lineCov">          3 :         return mapOfSingleJointMultipleTips;</span>
+<span class="lineNum">     149 </span>            :     }
+<span class="lineNum">     150 </span>            :     
+<span class="lineNum">     151 </span><span class="lineCov">          4 :     if (nFinger &gt; parserMoveIt-&gt;getNFingers() ) {</span>
+<span class="lineNum">     152 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[ERROR FINDACTIONS::&quot; &lt;&lt; __func__ &lt;&lt; &quot;]  I can not find an action which moves &quot; &lt;&lt; nFinger &lt;&lt; </span>
+<span class="lineNum">     153 </span><span class="lineNoCov">          0 :         &quot; fingers if the hand has only &quot; &lt;&lt; parserMoveIt-&gt;getNFingers() &lt;&lt; &quot; fingers. Returning an empty map&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     154 </span><span class="lineNoCov">          0 :         return mapOfSingleJointMultipleTips;</span>
+<span class="lineNum">     155 </span>            :     }
+<span class="lineNum">     156 </span>            :        
+<span class="lineNum">     157 </span><span class="lineCov">          8 :     std::string actionName = &quot;singleJointMultipleTips_&quot; + std::to_string(nFinger); //action name same for each action</span>
+<span class="lineNum">     158 </span>            : 
+<span class="lineNum">     159 </span><span class="lineCov">          5 :     for (auto mapEl : parserMoveIt-&gt;getFingertipsOfJointMap() ) {</span>
+<span class="lineNum">     160 </span>            :         
+<span class="lineNum">     161 </span><span class="lineCov">         17 :         if (mapEl.second.size() != nFinger ) {</span>
+<span class="lineNum">     162 </span><span class="lineCov">         16 :             continue;</span>
+<span class="lineNum">     163 </span>            :         }
+<span class="lineNum">     164 </span>            :         
+<span class="lineNum">     165 </span><span class="lineCov">          2 :         std::vector&lt;double&gt; furtherPos = parserMoveIt-&gt;getBiggerBoundFromZero(mapEl.first);</span>
+<span class="lineNum">     166 </span><span class="lineCov">          2 :         std::vector&lt;double&gt; nearerPos = parserMoveIt-&gt;getSmallerBoundFromZero(mapEl.first);</span>
+<span class="lineNum">     167 </span>            :         
+<span class="lineNum">     168 </span>            :         //create and initialize JointPos map
+<span class="lineNum">     169 </span><span class="lineCov">          2 :         JointPos jpFar;</span>
+<span class="lineNum">     170 </span><span class="lineCov">          2 :         for (auto it : parserMoveIt-&gt;getActiveJointModels()){</span>
+<span class="lineNum">     171 </span><span class="lineCov">          2 :             std::vector &lt;double&gt; jPos (it-&gt;getVariableCount(), DEFAULT_JOINT_POS);</span>
+<span class="lineNum">     172 </span><span class="lineCov">          1 :             jpFar.insert ( std::make_pair ( it-&gt;getName(), jPos ));</span>
+<span class="lineNum">     173 </span>            :         }
+<span class="lineNum">     174 </span><span class="lineCov">          2 :         JointPos jpNear = jpFar;</span>
+<span class="lineNum">     175 </span>            :         
+<span class="lineNum">     176 </span><span class="lineCov">          1 :         jpFar.at ( mapEl.first ) = furtherPos;</span>
+<span class="lineNum">     177 </span><span class="lineCov">          1 :         jpNear.at ( mapEl.first ) = nearerPos;</span>
+<span class="lineNum">     178 </span>            :         
+<span class="lineNum">     179 </span><span class="lineCov">          2 :         std::vector&lt;std::string&gt; fingersInvolved;</span>
+<span class="lineNum">     180 </span><span class="lineCov">          3 :         for (auto tip : mapEl.second){</span>
+<span class="lineNum">     181 </span><span class="lineCov">          2 :             fingersInvolved.push_back(parserMoveIt-&gt;getFingerOfFingertip (tip) );</span>
+<span class="lineNum">     182 </span>            :         }
+<span class="lineNum">     183 </span>            :         
+<span class="lineNum">     184 </span><span class="lineCov">          2 :         ActionSingleJointMultipleTips action (actionName, fingersInvolved, mapEl.first, jpFar, jpNear);</span>
+<span class="lineNum">     185 </span>            :         
+<span class="lineNum">     186 </span><span class="lineCov">          1 :         mapOfSingleJointMultipleTips.insert (std::make_pair(mapEl.first, action));</span>
+<span class="lineNum">     187 </span>            :     }
+<span class="lineNum">     188 </span>            :     
+<span class="lineNum">     189 </span>            :     //// EMITTING
+<span class="lineNum">     190 </span><span class="lineCov">          4 :     if (mapOfSingleJointMultipleTips.size() == 0 ) {</span>
+<span class="lineNum">     191 </span><span class="lineCov">          3 :         std::cout &lt;&lt; &quot;[FINDACTIONS::&quot; &lt;&lt; __func__ &lt;&lt; &quot;]  no singleJointMultipleTips with &quot; &lt;&lt; nFinger &lt;&lt; &quot; found&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     192 </span><span class="lineCov">          3 :         return mapOfSingleJointMultipleTips;</span>
+<span class="lineNum">     193 </span>            :     }
+<span class="lineNum">     194 </span>            :     
+<span class="lineNum">     195 </span><span class="lineCov">          2 :     std::map &lt; std::set &lt;std::string&gt; , ActionPrimitive* &gt; mapForWorker;</span>
+<span class="lineNum">     196 </span>            : 
+<span class="lineNum">     197 </span><span class="lineCov">          2 :     for (auto&amp; it : mapOfSingleJointMultipleTips) {  // auto&amp; and not auto alone!</span>
+<span class="lineNum">     198 </span>            : 
+<span class="lineNum">     199 </span><span class="lineCov">          1 :         ActionPrimitive* pointer = &amp;(it.second);</span>
+<span class="lineNum">     200 </span><span class="lineCov">          2 :         std::set&lt;std::string&gt; set;</span>
+<span class="lineNum">     201 </span><span class="lineCov">          1 :         set.insert (it.first);</span>
+<span class="lineNum">     202 </span><span class="lineCov">          1 :         mapForWorker.insert (std::make_pair ( set, pointer ) );</span>
+<span class="lineNum">     203 </span>            :     }
+<span class="lineNum">     204 </span>            :     
+<span class="lineNum">     205 </span><span class="lineCov">          1 :     ROSEE::YamlWorker yamlWorker;</span>
+<span class="lineNum">     206 </span><span class="lineCov">          1 :     yamlWorker.createYamlFile(mapForWorker, actionName, path2saveYaml);</span>
+<span class="lineNum">     207 </span>            :     
+<span class="lineNum">     208 </span><span class="lineCov">          1 :     return mapOfSingleJointMultipleTips;</span>
+<span class="lineNum">     209 </span>            : }
+<a name="210"><span class="lineNum">     210 </span>            : </a>
+<span class="lineNum">     211 </span>            : 
+<span class="lineNum">     212 </span><span class="lineCov">          2 : std::map&lt;std::set&lt;std::string&gt;, ROSEE::ActionMultiplePinchTight&gt; ROSEE::FindActions::findMultiplePinch(unsigned int nFinger, std::string path2saveYaml,</span>
+<span class="lineNum">     213 </span>            :                                                                                                         bool strict ) {
+<span class="lineNum">     214 </span>            :     
+<span class="lineNum">     215 </span><span class="lineCov">          2 :     std::map&lt;std::set&lt;std::string&gt;, ROSEE::ActionMultiplePinchTight&gt; multiplePinchMap;</span>
+<span class="lineNum">     216 </span><span class="lineCov">          2 :     if (nFinger &lt; 3 ) {</span>
+<span class="lineNum">     217 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot;[ERROR &quot; &lt;&lt; __func__ &lt;&lt; &quot;] for this find pass at least 3 as number &quot; &lt;&lt;</span>
+<span class="lineNum">     218 </span><span class="lineNoCov">          0 :         &quot; of fingertips for the pinch&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     219 </span><span class="lineNoCov">          0 :         return multiplePinchMap;</span>
+<span class="lineNum">     220 </span>            :     }
+<span class="lineNum">     221 </span>            :     
+<span class="lineNum">     222 </span><span class="lineCov">          2 :     multiplePinchMap = checkCollisionsForMultiplePinch(nFinger, strict);</span>
+<span class="lineNum">     223 </span>            :         
+<span class="lineNum">     224 </span>            :     //// EMITTING YAML
+<span class="lineNum">     225 </span><span class="lineCov">          2 :     if (multiplePinchMap.size() == 0 ) {</span>
+<span class="lineNum">     226 </span><span class="lineCov">          2 :         return multiplePinchMap;</span>
+<span class="lineNum">     227 </span>            :     }
+<span class="lineNum">     228 </span><span class="lineNoCov">          0 :     std::map &lt; std::set &lt;std::string&gt; , ActionPrimitive* &gt; mapForWorker;</span>
+<span class="lineNum">     229 </span>            : 
+<span class="lineNum">     230 </span><span class="lineNoCov">          0 :     for (auto&amp; it : multiplePinchMap) {  // auto&amp; and not auto alone!</span>
+<span class="lineNum">     231 </span>            : 
+<span class="lineNum">     232 </span><span class="lineNoCov">          0 :         ActionPrimitive* pointer = &amp;(it.second);</span>
+<span class="lineNum">     233 </span><span class="lineNoCov">          0 :         mapForWorker.insert (std::make_pair ( it.first, pointer ) );</span>
+<span class="lineNum">     234 </span>            :     }
+<span class="lineNum">     235 </span>            :     
+<span class="lineNum">     236 </span><span class="lineNoCov">          0 :     ROSEE::YamlWorker yamlWorker;</span>
+<span class="lineNum">     237 </span><span class="lineNoCov">          0 :     yamlWorker.createYamlFile(mapForWorker, multiplePinchMap.begin()-&gt;second.getName(), path2saveYaml);</span>
+<span class="lineNum">     238 </span>            :     
+<span class="lineNum">     239 </span><span class="lineNoCov">          0 :     return multiplePinchMap;</span>
+<span class="lineNum">     240 </span>            : }
+<span class="lineNum">     241 </span>            : 
+<span class="lineNum">     242 </span>            : 
+<span class="lineNum">     243 </span>            : 
+<span class="lineNum">     244 </span>            : /*********************************** PRIVATE FUNCTIONS ***********************************************************************/
+<a name="245"><span class="lineNum">     245 </span>            : /**************************************** PINCHES ***********************************************************************/</a>
+<span class="lineNum">     246 </span>            : 
+<span class="lineNum">     247 </span><span class="lineCov">         51 : std::map &lt; std::pair &lt;std::string, std::string&gt; , ROSEE::ActionPinchTight &gt; ROSEE::FindActions::checkCollisions () {</span>
+<span class="lineNum">     248 </span>            :     
+<span class="lineNum">     249 </span><span class="lineCov">         51 :     std::map &lt; std::pair &lt;std::string, std::string&gt; , ROSEE::ActionPinchTight &gt; mapOfPinches;</span>
+<span class="lineNum">     250 </span>            :     
+<span class="lineNum">     251 </span><span class="lineCov">        102 :     planning_scene::PlanningScene planning_scene ( parserMoveIt-&gt;getRobotModel() );</span>
+<span class="lineNum">     252 </span><span class="lineCov">        102 :     collision_detection::CollisionRequest collision_request;</span>
+<span class="lineNum">     253 </span><span class="lineCov">        102 :     collision_detection::CollisionResult collision_result;</span>
+<span class="lineNum">     254 </span><span class="lineCov">         51 :     collision_request.contacts = true;  //set to compute collisions</span>
+<span class="lineNum">     255 </span><span class="lineCov">         51 :     collision_request.max_contacts = 1000;</span>
+<span class="lineNum">     256 </span>            :     
+<span class="lineNum">     257 </span>            :     // Consider only collisions among fingertips 
+<span class="lineNum">     258 </span>            :     // If an object pair does not appear in the acm, it is assumed that collisions between those 
+<span class="lineNum">     259 </span>            :     // objects is no tolerated. So we must fill it with all the nonFingertips
+<span class="lineNum">     260 </span>            :     
+<span class="lineNum">     261 </span><span class="lineCov">        102 :     collision_detection::AllowedCollisionMatrix acm;</span>
+<span class="lineNum">     262 </span><span class="lineCov">        102 :     acm.setEntry(parserMoveIt-&gt;getRobotModel()-&gt;getLinkModelNames(), </span>
+<span class="lineNum">     263 </span><span class="lineCov">        153 :                  parserMoveIt-&gt;getRobotModel()-&gt;getLinkModelNames(), true); //true==not considered collisions</span>
+<span class="lineNum">     264 </span><span class="lineCov">        102 :     acm.setEntry(parserMoveIt-&gt;getFingertipNames(), </span>
+<span class="lineNum">     265 </span><span class="lineCov">        153 :                  parserMoveIt-&gt;getFingertipNames(), false); //false== considered collisions</span>
+<span class="lineNum">     266 </span>            : 
+<span class="lineNum">     267 </span><span class="lineCov">        102 :     robot_state::RobotState kinematic_state(parserMoveIt-&gt;getRobotModel());</span>
+<span class="lineNum">     268 </span>            :         
+<span class="lineNum">     269 </span><span class="lineCov">     255051 :     for (int i = 0; i &lt; N_EXP_COLLISION; i++){</span>
+<span class="lineNum">     270 </span>            :         
+<span class="lineNum">     271 </span><span class="lineCov">     510000 :         std::stringstream logCollision;</span>
+<span class="lineNum">     272 </span><span class="lineCov">     255000 :         collision_result.clear();</span>
+<span class="lineNum">     273 </span><span class="lineCov">     255000 :         kinematic_state.setToRandomPositions();</span>
+<span class="lineNum">     274 </span><span class="lineCov">     255000 :         setToDefaultPositionPassiveJoints(&amp;kinematic_state);</span>
+<span class="lineNum">     275 </span><span class="lineCov">     255000 :         planning_scene.checkSelfCollision(collision_request, collision_result, kinematic_state, acm);</span>
+<span class="lineNum">     276 </span>            :         
+<span class="lineNum">     277 </span><span class="lineCov">     255000 :         if (collision_result.collision) { </span>
+<span class="lineNum">     278 </span>            :             
+<span class="lineNum">     279 </span>            :             //for each collision with this joints state...
+<span class="lineNum">     280 </span><span class="lineCov">      51194 :             for (auto cont : collision_result.contacts){</span>
+<span class="lineNum">     281 </span>            :                 
+<span class="lineNum">     282 </span>            :                 //store joint states
+<span class="lineNum">     283 </span><span class="lineCov">      51194 :                 JointPos jointPos = getConvertedJointPos(&amp;kinematic_state);</span>
+<span class="lineNum">     284 </span>            : 
+<span class="lineNum">     285 </span>            :                 //moveit contacts is a map between a pair (2 strings with link names) and a vector of Contact object ?? I don't know why the contact is a vector, I have always find only one element            
+<span class="lineNum">     286 </span><span class="lineCov">      25597 :                 logCollision &lt;&lt; &quot;[FINDACTIONS::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] Collision between &quot; &lt;&lt; cont.first.first &lt;&lt; &quot; and &quot; &lt;&lt; </span>
+<span class="lineNum">     287 </span><span class="lineCov">      25597 :                                                     cont.first.second &lt;&lt; std::endl;                                </span>
+<span class="lineNum">     288 </span>            : 
+<span class="lineNum">     289 </span><span class="lineCov">      51194 :                 for (auto contInfo : cont.second){ </span>
+<span class="lineNum">     290 </span><span class="lineCov">      25597 :                     logCollision &lt;&lt; &quot;\tWith a depth of contact: &quot; &lt;&lt; contInfo.depth;</span>
+<span class="lineNum">     291 </span>            :                 }
+<span class="lineNum">     292 </span>            : 
+<span class="lineNum">     293 </span><span class="lineCov">      51194 :                 JointsInvolvedCount jointsInvolvedCount = setOnlyDependentJoints(cont.first, &amp;jointPos);</span>
+<span class="lineNum">     294 </span>            : 
+<span class="lineNum">     295 </span>            :                 ///create the actionPinch
+<span class="lineNum">     296 </span>            :                 
+<span class="lineNum">     297 </span>            :                 // get the finger name
+<span class="lineNum">     298 </span><span class="lineCov">      51194 :                 auto fingerPair = getFingersPair(cont.first);</span>
+<span class="lineNum">     299 </span>            : 
+<span class="lineNum">     300 </span><span class="lineCov">      51194 :                 ActionPinchTight pinch (fingerPair, jointPos, cont.second.at(0) );</span>
+<span class="lineNum">     301 </span><span class="lineCov">      25597 :                 pinch.setJointsInvolvedCount ( jointsInvolvedCount );</span>
+<span class="lineNum">     302 </span><span class="lineCov">      25597 :                 auto itFind = mapOfPinches.find ( fingerPair );</span>
+<span class="lineNum">     303 </span><span class="lineCov">      25597 :                 if ( itFind == mapOfPinches.end() ) {</span>
+<span class="lineNum">     304 </span>            :                     //if here, we have to create store the new created action
+<span class="lineNum">     305 </span><span class="lineCov">         34 :                     mapOfPinches.insert ( std::make_pair (fingerPair, pinch) );</span>
+<span class="lineNum">     306 </span><span class="lineCov">         34 :                     logCollision &lt;&lt; &quot;, NEW INSERTION&quot;;</span>
+<span class="lineNum">     307 </span>            : 
+<span class="lineNum">     308 </span>            :                 } else { //Check if it is the best depth among the found collision among that pair
+<span class="lineNum">     309 </span><span class="lineCov">      25563 :                     if (itFind-&gt;second.insertActionState( jointPos, cont.second.at(0)) ) {</span>
+<span class="lineNum">     310 </span><span class="lineCov">        417 :                          logCollision &lt;&lt; &quot;, NEW INSERTION&quot;;</span>
+<span class="lineNum">     311 </span>            :                     }
+<span class="lineNum">     312 </span>            :                 }
+<span class="lineNum">     313 </span><span class="lineCov">      25597 :                 logCollision &lt;&lt; std::endl;</span>
+<span class="lineNum">     314 </span><span class="lineCov">      25597 :                 logCollision &lt;&lt; jointPos;</span>
+<span class="lineNum">     315 </span>            :             }
+<span class="lineNum">     316 </span>            :             //this print is for debugging purposes
+<span class="lineNum">     317 </span>            :             //std::cout &lt;&lt; logCollision.str() &lt;&lt; std::endl;
+<span class="lineNum">     318 </span>            :         }            
+<span class="lineNum">     319 </span>            :     }
+<span class="lineNum">     320 </span>            :     
+<span class="lineNum">     321 </span><span class="lineCov">        102 :     return mapOfPinches;</span>
+<span class="lineNum">     322 </span>            : }
+<a name="323"><span class="lineNum">     323 </span>            : </a>
+<span class="lineNum">     324 </span>            : 
+<span class="lineNum">     325 </span><span class="lineNoCov">          0 : void ROSEE::FindActions::checkDistances (std::map &lt; std::pair &lt;std::string, std::string&gt; , ROSEE::ActionPinchLoose &gt;* mapOfLoosePinches) {</span>
+<span class="lineNum">     326 </span>            :         
+<span class="lineNum">     327 </span><span class="lineNoCov">          0 :     robot_state::RobotState kinematic_state(parserMoveIt-&gt;getRobotModel());</span>
+<span class="lineNum">     328 </span>            :         
+<span class="lineNum">     329 </span><span class="lineNoCov">          0 :     for (int i = 0; i &lt; N_EXP_DISTANCES; i++){</span>
+<span class="lineNum">     330 </span>            :         
+<span class="lineNum">     331 </span><span class="lineNoCov">          0 :         kinematic_state.setToRandomPositions();</span>
+<span class="lineNum">     332 </span><span class="lineNoCov">          0 :         setToDefaultPositionPassiveJoints(&amp;kinematic_state);</span>
+<span class="lineNum">     333 </span>            : 
+<span class="lineNum">     334 </span>            :         //for each pair remaining in notCollidingTips, check if a new min distance is found
+<span class="lineNum">     335 </span><span class="lineNoCov">          0 :         for (auto &amp;mapEl : *mapOfLoosePinches) { </span>
+<span class="lineNum">     336 </span>            :             
+<span class="lineNum">     337 </span>            :             // restore all joint pos
+<span class="lineNum">     338 </span><span class="lineNoCov">          0 :             JointPos jointPosLoose = getConvertedJointPos(&amp;kinematic_state);</span>
+<span class="lineNum">     339 </span>            :             
+<span class="lineNum">     340 </span><span class="lineNoCov">          0 :             auto tips = getFingertipsPair(mapEl.first);</span>
+<span class="lineNum">     341 </span>            :             
+<span class="lineNum">     342 </span><span class="lineNoCov">          0 :             JointsInvolvedCount jointsInvolvedCount = setOnlyDependentJoints(tips, &amp;jointPosLoose);</span>
+<span class="lineNum">     343 </span>            :             
+<span class="lineNum">     344 </span><span class="lineNoCov">          0 :             Eigen::Affine3d tip1Trasf = kinematic_state.getGlobalLinkTransform(tips.first);</span>
+<span class="lineNum">     345 </span><span class="lineNoCov">          0 :             Eigen::Affine3d tip2Trasf = kinematic_state.getGlobalLinkTransform(tips.second);</span>
+<span class="lineNum">     346 </span><span class="lineNoCov">          0 :             double distance = (tip1Trasf.translation() - tip2Trasf.translation() ) .norm() ;</span>
+<span class="lineNum">     347 </span>            :                                 
+<span class="lineNum">     348 </span><span class="lineNoCov">          0 :             mapEl.second.insertActionState( jointPosLoose, distance ) ;</span>
+<span class="lineNum">     349 </span><span class="lineNoCov">          0 :             mapEl.second.setJointsInvolvedCount ( jointsInvolvedCount );</span>
+<span class="lineNum">     350 </span>            :         }
+<span class="lineNum">     351 </span>            :     }
+<span class="lineNum">     352 </span><span class="lineNoCov">          0 : }</span>
+<a name="353"><span class="lineNum">     353 </span>            : </a>
+<span class="lineNum">     354 </span>            : 
+<span class="lineNum">     355 </span><span class="lineCov">         51 : void ROSEE::FindActions::removeBoundsOfNotCollidingTips ( </span>
+<span class="lineNum">     356 </span>            :     const std::map &lt; std::pair &lt;std::string, std::string&gt; , ROSEE::ActionPinchLoose &gt;* mapOfLoosePinches,
+<span class="lineNum">     357 </span>            :     robot_model::RobotModelPtr kinematic_model_noBound) {
+<span class="lineNum">     358 </span>            : 
+<span class="lineNum">     359 </span><span class="lineCov">        102 :     for (auto mapEl : *mapOfLoosePinches ) {</span>
+<span class="lineNum">     360 </span>            :         
+<span class="lineNum">     361 </span>            :         //for each joint of first tip...
+<span class="lineNum">     362 </span><span class="lineCov">        102 :         auto tips = getFingertipsPair(mapEl.first);</span>
+<span class="lineNum">     363 </span>            :         /// C++ Question: WHY if I use directly parser....at() in the for the string joint is corrupted?
+<span class="lineNum">     364 </span><span class="lineCov">        102 :         auto joints = parserMoveIt-&gt;getJointsOfFingertipMap().at (tips.first);</span>
+<span class="lineNum">     365 </span><span class="lineCov">        153 :         for ( std::string joint : joints ) { </span>
+<span class="lineNum">     366 </span><span class="lineCov">        102 :             auto jointModel = kinematic_model_noBound -&gt;getJointModel(joint);</span>
+<span class="lineNum">     367 </span>            : 
+<span class="lineNum">     368 </span><span class="lineCov">        102 :             auto type = jointModel-&gt;getType() ;</span>
+<span class="lineNum">     369 </span><span class="lineCov">        102 :             if (type == moveit::core::JointModel::REVOLUTE ) {</span>
+<span class="lineNum">     370 </span>            :                 //at(0) because we are sure to have 1 dof being revolute
+<span class="lineNum">     371 </span><span class="lineCov">        102 :                 auto bound = jointModel-&gt;getVariableBounds().at(0);</span>
+<span class="lineNum">     372 </span><span class="lineCov">        102 :                 bound.max_position_ = EIGEN_PI;</span>
+<span class="lineNum">     373 </span><span class="lineCov">        102 :                 bound.min_position_ = -EIGEN_PI;</span>
+<span class="lineNum">     374 </span>            :                 //at(0) because we are sure to have 1 dof being revolute
+<span class="lineNum">     375 </span><span class="lineCov">        102 :                 jointModel-&gt;setVariableBounds ( jointModel-&gt;getVariableNames().at(0), bound );</span>
+<span class="lineNum">     376 </span>            :                 
+<span class="lineNum">     377 </span><span class="lineNoCov">          0 :             } else if ( type == moveit::core::JointModel::PRISMATIC ) {</span>
+<span class="lineNum">     378 </span>            :                 // we cant set infinite here... lets double the limits?
+<span class="lineNum">     379 </span><span class="lineNoCov">          0 :                 std::cout &lt;&lt; &quot;[WARNING FINDACTIONS::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] I am doubling the bounds for your prismatic joint &quot; </span>
+<span class="lineNum">     380 </span><span class="lineNoCov">          0 :                     &lt;&lt; &quot;but I am not sure it is enough to make the tips colliding to find the loose pinches &quot; &lt;&lt;</span>
+<span class="lineNum">     381 </span><span class="lineNoCov">          0 :                     std::endl;</span>
+<span class="lineNum">     382 </span><span class="lineNoCov">          0 :                 auto bound = jointModel-&gt;getVariableBounds().at(0);</span>
+<span class="lineNum">     383 </span><span class="lineNoCov">          0 :                 bound.max_position_ *= 2;</span>
+<span class="lineNum">     384 </span><span class="lineNoCov">          0 :                 bound.min_position_ *= 2;</span>
+<span class="lineNum">     385 </span>            :                 //at(0) because we are sure to have 1 dof being prismatic
+<span class="lineNum">     386 </span><span class="lineNoCov">          0 :                 jointModel-&gt;setVariableBounds ( jointModel-&gt;getVariableNames().at(0), bound );</span>
+<span class="lineNum">     387 </span>            :                 
+<span class="lineNum">     388 </span>            :             } else {
+<span class="lineNum">     389 </span>            :                     
+<span class="lineNum">     390 </span><span class="lineNoCov">          0 :                 std::cout &lt;&lt; &quot;[FINDACTIONS::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] Why are you using a type &quot; </span>
+<span class="lineNum">     391 </span><span class="lineNoCov">          0 :                     &lt;&lt; kinematic_model_noBound -&gt;getJointModel(joint)-&gt;getType()</span>
+<span class="lineNum">     392 </span><span class="lineNoCov">          0 :                     &lt;&lt; &quot; joint? Code not ready to temporarily delete the multiple dof bounds&quot;</span>
+<span class="lineNum">     393 </span><span class="lineNoCov">          0 :                     &lt;&lt; &quot; in the job done to find the loose pinches &quot; &lt;&lt; std::endl &lt;&lt; std::endl;</span>
+<span class="lineNum">     394 </span>            :                 
+<span class="lineNum">     395 </span><span class="lineNoCov">          0 :                 continue;</span>
+<span class="lineNum">     396 </span>            :             }
+<span class="lineNum">     397 </span>            :         }
+<span class="lineNum">     398 </span>            :         
+<span class="lineNum">     399 </span>            :         //for each joint of second tip...
+<span class="lineNum">     400 </span><span class="lineCov">        102 :         auto joints2 = parserMoveIt-&gt;getJointsOfFingertipMap().at (tips.second);</span>
+<span class="lineNum">     401 </span><span class="lineCov">        153 :         for ( auto joint : joints2 ) { </span>
+<span class="lineNum">     402 </span>            :             
+<span class="lineNum">     403 </span><span class="lineCov">        102 :             auto jointModel = kinematic_model_noBound -&gt;getJointModel(joint);</span>
+<span class="lineNum">     404 </span><span class="lineCov">        102 :             auto type = jointModel-&gt;getType() ;</span>
+<span class="lineNum">     405 </span><span class="lineCov">        102 :             if (type == moveit::core::JointModel::REVOLUTE ) {</span>
+<span class="lineNum">     406 </span>            :                 //at(0) because we are sure to have 1 dof being revolute
+<span class="lineNum">     407 </span><span class="lineCov">        102 :                 auto bound = jointModel-&gt;getVariableBounds().at(0);</span>
+<span class="lineNum">     408 </span><span class="lineCov">        102 :                 bound.max_position_ = EIGEN_PI;</span>
+<span class="lineNum">     409 </span><span class="lineCov">        102 :                 bound.min_position_ = -EIGEN_PI;</span>
+<span class="lineNum">     410 </span>            :                 //at(0) because we are sure to have 1 dof being revolute
+<span class="lineNum">     411 </span><span class="lineCov">        102 :                 jointModel-&gt;setVariableBounds ( jointModel-&gt;getVariableNames().at(0), bound );</span>
+<span class="lineNum">     412 </span>            :                 
+<span class="lineNum">     413 </span><span class="lineNoCov">          0 :             } else if ( type == moveit::core::JointModel::PRISMATIC ) {</span>
+<span class="lineNum">     414 </span>            :                 // we cant set infinite here... lets double the limits?
+<span class="lineNum">     415 </span><span class="lineNoCov">          0 :                 std::cout &lt;&lt; &quot;[WARNING FINDACTIONS::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] I am doubling the bounds for your prismatic joint &quot; </span>
+<span class="lineNum">     416 </span><span class="lineNoCov">          0 :                     &lt;&lt; &quot;but I am not sure it is enough to make the tips colliding to find the loose pinches &quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     417 </span><span class="lineNoCov">          0 :                 auto bound = jointModel-&gt;getVariableBounds().at(0);</span>
+<span class="lineNum">     418 </span><span class="lineNoCov">          0 :                 bound.max_position_ *= 2;</span>
+<span class="lineNum">     419 </span><span class="lineNoCov">          0 :                 bound.min_position_ *= 2;</span>
+<span class="lineNum">     420 </span>            :                 //at(0) because we are sure to have 1 dof being revolute
+<span class="lineNum">     421 </span><span class="lineNoCov">          0 :                 jointModel-&gt;setVariableBounds ( jointModel-&gt;getVariableNames().at(0), bound );</span>
+<span class="lineNum">     422 </span>            :                 
+<span class="lineNum">     423 </span>            :             } else {
+<span class="lineNum">     424 </span>            :                     
+<span class="lineNum">     425 </span><span class="lineNoCov">          0 :                 std::cout &lt;&lt; &quot;[FINDACTIONS::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] Why are you using a type &quot; </span>
+<span class="lineNum">     426 </span><span class="lineNoCov">          0 :                     &lt;&lt; kinematic_model_noBound -&gt;getJointModel(joint)-&gt;getType()</span>
+<span class="lineNum">     427 </span><span class="lineNoCov">          0 :                     &lt;&lt; &quot; joint? Code not ready to temporarily delete the multiple dof bounds&quot;</span>
+<span class="lineNum">     428 </span><span class="lineNoCov">          0 :                     &lt;&lt; &quot; in the working done to find the loose pinches &quot; &lt;&lt; std::endl &lt;&lt; std::endl;</span>
+<span class="lineNum">     429 </span>            :                 
+<span class="lineNum">     430 </span><span class="lineNoCov">          0 :                 continue;</span>
+<span class="lineNum">     431 </span>            :             }
+<span class="lineNum">     432 </span>            :         }
+<span class="lineNum">     433 </span>            :     }
+<span class="lineNum">     434 </span><span class="lineCov">         51 : }</span>
+<a name="435"><span class="lineNum">     435 </span>            : </a>
+<span class="lineNum">     436 </span>            : 
+<span class="lineNum">     437 </span><span class="lineCov">         51 : void ROSEE::FindActions::checkWhichTipsCollideWithoutBounds (</span>
+<span class="lineNum">     438 </span>            :     std::map &lt; std::pair &lt;std::string, std::string&gt;, ROSEE::ActionPinchLoose &gt;* mapOfLoosePinches ) {
+<span class="lineNum">     439 </span>            :     
+<span class="lineNum">     440 </span><span class="lineCov">        102 :     robot_model::RobotModelPtr kinematic_model_noBound = parserMoveIt-&gt;getCopyModel();</span>
+<span class="lineNum">     441 </span>            :     
+<span class="lineNum">     442 </span><span class="lineCov">         51 :     removeBoundsOfNotCollidingTips (mapOfLoosePinches, kinematic_model_noBound );</span>
+<span class="lineNum">     443 </span>            : 
+<span class="lineNum">     444 </span><span class="lineCov">        102 :     collision_detection::AllowedCollisionMatrix acm;</span>
+<span class="lineNum">     445 </span><span class="lineCov">         51 :     acm.setEntry(kinematic_model_noBound-&gt;getLinkModelNames(), </span>
+<span class="lineNum">     446 </span><span class="lineCov">        102 :                  kinematic_model_noBound-&gt;getLinkModelNames(), true); //true == not considered collisions</span>
+<span class="lineNum">     447 </span>            :     
+<span class="lineNum">     448 </span><span class="lineCov">        102 :     for( auto  it : *mapOfLoosePinches) {</span>
+<span class="lineNum">     449 </span>            :         //we want to look for collision only on the pair inside the map
+<span class="lineNum">     450 </span>            :         //take the tip from the keys (that now are fingers)
+<span class="lineNum">     451 </span><span class="lineCov">        102 :         std::string tip1 = parserMoveIt-&gt;getFingertipOfFinger(it.first.first);</span>
+<span class="lineNum">     452 </span><span class="lineCov">        102 :         std::string tip2 = parserMoveIt-&gt;getFingertipOfFinger(it.first.second);</span>
+<span class="lineNum">     453 </span><span class="lineCov">         51 :         acm.setEntry(tip1, tip2, false); //false == considered collisions   </span>
+<span class="lineNum">     454 </span>            :     }
+<span class="lineNum">     455 </span>            : 
+<span class="lineNum">     456 </span><span class="lineCov">        102 :     planning_scene::PlanningScene planning_scene(kinematic_model_noBound);</span>
+<span class="lineNum">     457 </span>            : 
+<span class="lineNum">     458 </span><span class="lineCov">        102 :     collision_detection::CollisionRequest collision_request;</span>
+<span class="lineNum">     459 </span><span class="lineCov">        102 :     collision_detection::CollisionResult collision_result;</span>
+<span class="lineNum">     460 </span><span class="lineCov">         51 :     collision_request.contacts = true;  //set to compute collisions</span>
+<span class="lineNum">     461 </span><span class="lineCov">         51 :     collision_request.max_contacts = 1000;</span>
+<span class="lineNum">     462 </span>            : 
+<span class="lineNum">     463 </span><span class="lineCov">        102 :     robot_state::RobotState kinematic_state(kinematic_model_noBound);</span>
+<span class="lineNum">     464 </span>            : 
+<span class="lineNum">     465 </span>            :     // similar to checkcollisions here, but we dont want to store anything, only check if collision happen
+<span class="lineNum">     466 </span><span class="lineCov">        102 :     std::set &lt; std::pair&lt;std::string, std::string&gt; &gt; collidingFingers ;</span>
+<span class="lineNum">     467 </span><span class="lineCov">     255051 :     for (int i = 0; i &lt; N_EXP_COLLISION; i++){</span>
+<span class="lineNum">     468 </span><span class="lineCov">     255000 :         collision_result.clear();</span>
+<span class="lineNum">     469 </span><span class="lineCov">     255000 :         kinematic_state.setToRandomPositions();</span>
+<span class="lineNum">     470 </span><span class="lineCov">     255000 :         setToDefaultPositionPassiveJoints(&amp;kinematic_state);</span>
+<span class="lineNum">     471 </span>            : 
+<span class="lineNum">     472 </span><span class="lineCov">     255000 :         planning_scene.checkSelfCollision(collision_request, collision_result, kinematic_state, acm);</span>
+<span class="lineNum">     473 </span>            :         
+<span class="lineNum">     474 </span><span class="lineCov">     255000 :         for (auto cont : collision_result.contacts){</span>
+<span class="lineNum">     475 </span>            :             //moveit contacts is a map between a pair (2 strings with link names) and a vector of Contact object , so cont.first contain the pair of fingerTIPS which collide.
+<span class="lineNum">     476 </span><span class="lineNoCov">          0 :             collidingFingers.insert ( getFingersPair (cont.first) );   </span>
+<span class="lineNum">     477 </span>            :         }
+<span class="lineNum">     478 </span>            :     }
+<span class="lineNum">     479 </span>            : 
+<span class="lineNum">     480 </span>            :     //erase from loose map the not colliding tips (: not colliding even without bounds)
+<span class="lineNum">     481 </span><span class="lineCov">        102 :     for (auto mapEl = mapOfLoosePinches-&gt;cbegin(); mapEl != mapOfLoosePinches-&gt;cend() ; /*no increment*/ ) {</span>
+<span class="lineNum">     482 </span>            : 
+<span class="lineNum">     483 </span><span class="lineCov">         51 :         if (collidingFingers.count(mapEl-&gt;first) == 0 ) {</span>
+<span class="lineNum">     484 </span><span class="lineCov">         51 :             mapOfLoosePinches-&gt;erase(mapEl++);</span>
+<span class="lineNum">     485 </span>            :         } else { 
+<span class="lineNum">     486 </span><span class="lineNoCov">          0 :             ++mapEl;</span>
+<span class="lineNum">     487 </span>            :         }
+<span class="lineNum">     488 </span>            :     }
+<span class="lineNum">     489 </span><span class="lineCov">         51 : }</span>
+<a name="490"><span class="lineNum">     490 </span>            : </a>
+<span class="lineNum">     491 </span>            : 
+<span class="lineNum">     492 </span><span class="lineCov">          2 : std::map&lt;std::set&lt;std::string&gt;, ROSEE::ActionMultiplePinchTight&gt; ROSEE::FindActions::checkCollisionsForMultiplePinch(unsigned int nFinger, bool strict) {</span>
+<span class="lineNum">     493 </span>            :     
+<span class="lineNum">     494 </span><span class="lineCov">          2 :     std::map &lt; std::set &lt;std::string&gt; , ROSEE::ActionMultiplePinchTight &gt; mapOfMultPinches;</span>
+<span class="lineNum">     495 </span>            :     
+<span class="lineNum">     496 </span>            :     unsigned int nMinCollision =  strict ? 
+<span class="lineNum">     497 </span><span class="lineCov">          2 :             ROSEE::Utils::binomial_coefficent(nFinger, 2) : (nFinger-1);</span>
+<span class="lineNum">     498 </span>            :     
+<span class="lineNum">     499 </span><span class="lineCov">          4 :     planning_scene::PlanningScene planning_scene ( parserMoveIt-&gt;getRobotModel() );</span>
+<span class="lineNum">     500 </span><span class="lineCov">          4 :     collision_detection::CollisionRequest collision_request;</span>
+<span class="lineNum">     501 </span><span class="lineCov">          4 :     collision_detection::CollisionResult collision_result;</span>
+<span class="lineNum">     502 </span><span class="lineCov">          2 :     collision_request.contacts = true;  //set to compute collisions</span>
+<span class="lineNum">     503 </span><span class="lineCov">          2 :     collision_request.max_contacts = 1000;</span>
+<span class="lineNum">     504 </span>            :     
+<span class="lineNum">     505 </span>            :     // Consider only collisions among fingertips 
+<span class="lineNum">     506 </span>            :     // If an object pair does not appear in the acm, it is assumed that collisions between those 
+<span class="lineNum">     507 </span>            :     // objects is no tolerated. So we must fill it with all the nonFingertips
+<span class="lineNum">     508 </span><span class="lineCov">          4 :     collision_detection::AllowedCollisionMatrix acm;</span>
+<span class="lineNum">     509 </span><span class="lineCov">          4 :     acm.setEntry(parserMoveIt-&gt;getRobotModel()-&gt;getLinkModelNames(), </span>
+<span class="lineNum">     510 </span><span class="lineCov">          6 :                  parserMoveIt-&gt;getRobotModel()-&gt;getLinkModelNames(), true); //true==not considered collisions</span>
+<span class="lineNum">     511 </span><span class="lineCov">          4 :     acm.setEntry(parserMoveIt-&gt;getFingertipNames(), </span>
+<span class="lineNum">     512 </span><span class="lineCov">          6 :                  parserMoveIt-&gt;getFingertipNames(), false); //false== considered collisions</span>
+<span class="lineNum">     513 </span>            : 
+<span class="lineNum">     514 </span><span class="lineCov">          4 :     robot_state::RobotState kinematic_state(parserMoveIt-&gt;getRobotModel());</span>
+<span class="lineNum">     515 </span>            :         
+<span class="lineNum">     516 </span><span class="lineCov">       6002 :     for (int i = 0; i &lt; N_EXP_COLLISION_MULTPINCH; i++){</span>
+<span class="lineNum">     517 </span>            :         
+<span class="lineNum">     518 </span><span class="lineCov">       6000 :         collision_result.clear();</span>
+<span class="lineNum">     519 </span><span class="lineCov">       6000 :         kinematic_state.setToRandomPositions();</span>
+<span class="lineNum">     520 </span><span class="lineCov">       6000 :         setToDefaultPositionPassiveJoints(&amp;kinematic_state);</span>
+<span class="lineNum">     521 </span>            : 
+<span class="lineNum">     522 </span><span class="lineCov">       6000 :         planning_scene.checkSelfCollision(collision_request, collision_result, kinematic_state, acm);</span>
+<span class="lineNum">     523 </span>            :         
+<span class="lineNum">     524 </span><span class="lineCov">       6000 :         if (collision_result.contacts.size() &gt;= nMinCollision ) { </span>
+<span class="lineNum">     525 </span>            :         
+<span class="lineNum">     526 </span><span class="lineNoCov">          0 :             double depthSum = 0;</span>
+<span class="lineNum">     527 </span><span class="lineNoCov">          0 :             std::set &lt;std::string&gt; tipsColliding;</span>
+<span class="lineNum">     528 </span><span class="lineNoCov">          0 :             for (auto cont : collision_result.contacts){</span>
+<span class="lineNum">     529 </span>            :                 
+<span class="lineNum">     530 </span><span class="lineNoCov">          0 :                 tipsColliding.insert(cont.first.first);</span>
+<span class="lineNum">     531 </span><span class="lineNoCov">          0 :                 tipsColliding.insert(cont.first.second);</span>
+<span class="lineNum">     532 </span><span class="lineNoCov">          0 :                 depthSum += std::abs(cont.second.at(0).depth);</span>
+<span class="lineNum">     533 </span>            :             }
+<span class="lineNum">     534 </span>            :             
+<span class="lineNum">     535 </span>            :             //eg with 2 collision we can have 4 finger colliding because there are two
+<span class="lineNum">     536 </span>            :             //normal distinct pinch and not a 3-pinch... so we exlude these collisions
+<span class="lineNum">     537 </span><span class="lineNoCov">          0 :             if (tipsColliding.size() != nFinger) {</span>
+<span class="lineNum">     538 </span><span class="lineNoCov">          0 :                 continue;</span>
+<span class="lineNum">     539 </span>            :             }
+<span class="lineNum">     540 </span>            :                 
+<span class="lineNum">     541 </span>            :             //store joint states
+<span class="lineNum">     542 </span><span class="lineNoCov">          0 :             JointPos jointPos = getConvertedJointPos(&amp;kinematic_state);</span>
+<span class="lineNum">     543 </span><span class="lineNoCov">          0 :             JointsInvolvedCount jointsInvolvedCount = setOnlyDependentJoints(tipsColliding, &amp;jointPos);</span>
+<span class="lineNum">     544 </span>            :             
+<span class="lineNum">     545 </span><span class="lineNoCov">          0 :             auto fingerColliding = getFingersSet(tipsColliding);</span>
+<span class="lineNum">     546 </span>            : 
+<span class="lineNum">     547 </span><span class="lineNoCov">          0 :             ActionMultiplePinchTight pinch (fingerColliding, jointPos, depthSum );</span>
+<span class="lineNum">     548 </span><span class="lineNoCov">          0 :             pinch.setJointsInvolvedCount ( jointsInvolvedCount );</span>
+<span class="lineNum">     549 </span><span class="lineNoCov">          0 :             auto itFind = mapOfMultPinches.find ( fingerColliding );</span>
+<span class="lineNum">     550 </span><span class="lineNoCov">          0 :             if ( itFind == mapOfMultPinches.end() ) {</span>
+<span class="lineNum">     551 </span>            :                 //if here, we have to create store the new created action
+<span class="lineNum">     552 </span><span class="lineNoCov">          0 :                 mapOfMultPinches.insert ( std::make_pair (fingerColliding, pinch) );</span>
+<span class="lineNum">     553 </span>            : 
+<span class="lineNum">     554 </span>            :             } else { //Check if it is the best depth among the found collision among that pair
+<span class="lineNum">     555 </span><span class="lineNoCov">          0 :                 if (itFind-&gt;second.insertActionState( jointPos, depthSum ) ) {</span>
+<span class="lineNum">     556 </span>            :                     //print debug
+<span class="lineNum">     557 </span>            :                 } else {
+<span class="lineNum">     558 </span>            :                     //pring debug
+<span class="lineNum">     559 </span>            :                 }
+<span class="lineNum">     560 </span>            :             }
+<span class="lineNum">     561 </span>            :         }            
+<span class="lineNum">     562 </span>            :     }
+<span class="lineNum">     563 </span><span class="lineCov">          4 :     return mapOfMultPinches;</span>
+<span class="lineNum">     564 </span>            : }
+<span class="lineNum">     565 </span>            : 
+<span class="lineNum">     566 </span>            : 
+<span class="lineNum">     567 </span>            : 
+<span class="lineNum">     568 </span>            : 
+<a name="569"><span class="lineNum">     569 </span>            : /**********************************************  TRIGS ***************************************************************/</a>
+<span class="lineNum">     570 </span>            : 
+<span class="lineNum">     571 </span><span class="lineCov">         63 : std::map &lt;std::string, ROSEE::ActionTrig&gt; ROSEE::FindActions::trig() {</span>
+<span class="lineNum">     572 </span>            : 
+<span class="lineNum">     573 </span><span class="lineCov">         63 :     std::map &lt;std::string, ActionTrig&gt; trigMap;</span>
+<span class="lineNum">     574 </span>            : 
+<span class="lineNum">     575 </span><span class="lineCov">        273 :     for (auto mapEl : parserMoveIt-&gt;getFingertipsOfJointMap()) {</span>
+<span class="lineNum">     576 </span>            :         
+<span class="lineNum">     577 </span><span class="lineCov">        231 :         if (mapEl.second.size() != 1) { //the joint must move ONLY a fingertip</span>
+<span class="lineNum">     578 </span><span class="lineCov">         21 :             continue;</span>
+<span class="lineNum">     579 </span>            :         }
+<span class="lineNum">     580 </span>            :         
+<span class="lineNum">     581 </span><span class="lineCov">        210 :         if ( parserMoveIt-&gt;checkIfContinuosJoint(mapEl.first) == true ) {</span>
+<span class="lineNum">     582 </span><span class="lineNoCov">          0 :             continue; //we dont want to use a continuos joint for the trig</span>
+<span class="lineNum">     583 </span>            :         }
+<span class="lineNum">     584 </span>            : 
+<span class="lineNum">     585 </span>            :         /// Go in the max range 
+<span class="lineNum">     586 </span><span class="lineCov">        210 :         double trigMax = parserMoveIt-&gt;getBiggerBoundFromZero(mapEl.first).at(0) ;</span>
+<span class="lineNum">     587 </span>            : 
+<span class="lineNum">     588 </span><span class="lineCov">        420 :         ActionTrig action (&quot;trig&quot;, ActionPrimitive::Type::Trig);</span>
+<span class="lineNum">     589 </span><span class="lineCov">        210 :         action.setFingerInvolved ( parserMoveIt-&gt;getFingerOfFingertip( mapEl.second.at(0)) ) ;</span>
+<span class="lineNum">     590 </span>            : 
+<span class="lineNum">     591 </span>            :         // mapEl.second.at(0) : sure to have only 1 element for the if before
+<span class="lineNum">     592 </span><span class="lineCov">        210 :         insertJointPosForTrigInMap(trigMap, action, mapEl.first, trigMax); </span>
+<span class="lineNum">     593 </span>            :     }
+<span class="lineNum">     594 </span>            :     
+<span class="lineNum">     595 </span><span class="lineCov">         63 :     return trigMap;</span>
+<span class="lineNum">     596 </span>            : }
+<a name="597"><span class="lineNum">     597 </span>            : </a>
+<span class="lineNum">     598 </span>            : 
+<span class="lineNum">     599 </span><span class="lineCov">         27 : std::map &lt;std::string, ROSEE::ActionTrig&gt; ROSEE::FindActions::tipFlex() {</span>
+<span class="lineNum">     600 </span>            :     
+<span class="lineNum">     601 </span><span class="lineCov">         27 :     std::map &lt;std::string, ROSEE::ActionTrig&gt; tipFlexMap;</span>
+<span class="lineNum">     602 </span>            :     
+<span class="lineNum">     603 </span><span class="lineCov">         72 :     for (auto tipName : parserMoveIt-&gt;getFingertipNames() ) {</span>
+<span class="lineNum">     604 </span>            : 
+<span class="lineNum">     605 </span><span class="lineCov">         63 :         if (parserMoveIt-&gt;getNExclusiveJointsOfTip ( tipName, false ) &lt; 2 ) { </span>
+<span class="lineNum">     606 </span>            :         //if so, we have a simple trig (or none if 0) and not also a tip/finger flex
+<span class="lineNum">     607 </span><span class="lineCov">         18 :             continue;</span>
+<span class="lineNum">     608 </span>            :         }
+<span class="lineNum">     609 </span>            : 
+<span class="lineNum">     610 </span><span class="lineCov">         90 :         std::string theInterestingJoint = parserMoveIt-&gt;getFirstActuatedParentJoint ( tipName, false );</span>
+<span class="lineNum">     611 </span><span class="lineCov">         45 :         double tipFlexMax = parserMoveIt-&gt;getBiggerBoundFromZero ( theInterestingJoint ).at(0) ;</span>
+<span class="lineNum">     612 </span>            :         
+<span class="lineNum">     613 </span>            :         
+<span class="lineNum">     614 </span><span class="lineCov">         90 :         ActionTrig action (&quot;tipFlex&quot;, ActionPrimitive::Type::TipFlex);</span>
+<span class="lineNum">     615 </span><span class="lineCov">         45 :         action.setFingerInvolved (parserMoveIt-&gt;getFingerOfFingertip(tipName)) ;</span>
+<span class="lineNum">     616 </span>            : 
+<span class="lineNum">     617 </span><span class="lineCov">         45 :         if (! insertJointPosForTrigInMap(tipFlexMap, action, theInterestingJoint, tipFlexMax) ) {</span>
+<span class="lineNum">     618 </span>            :             //if here, we have updated the joint position for a action that was already present in the map.
+<span class="lineNum">     619 </span>            :             //this is ok for normal trig because more joints are included in the action, but for the
+<span class="lineNum">     620 </span>            :             //tipflex and fingflex for definition only a joint is involved (the active one nearer to the tip)
+<span class="lineNum">     621 </span><span class="lineNoCov">          0 :             std::cout &lt;&lt; &quot;[FATAL ERROR FINDACTIONS::&quot; &lt;&lt; __func__ &lt;&lt; &quot;]: Inserting in tipFlexMap a tip already present??&quot; &lt;&lt; std::endl </span>
+<span class="lineNum">     622 </span><span class="lineNoCov">          0 :             &lt;&lt; &quot;I am returning a not completely filled map&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     623 </span><span class="lineNoCov">          0 :             return tipFlexMap;</span>
+<span class="lineNum">     624 </span>            :         }
+<span class="lineNum">     625 </span>            :     }
+<span class="lineNum">     626 </span>            : 
+<span class="lineNum">     627 </span><span class="lineCov">         27 :     return tipFlexMap;</span>
+<span class="lineNum">     628 </span>            : }
+<a name="629"><span class="lineNum">     629 </span>            : </a>
+<span class="lineNum">     630 </span>            : 
+<span class="lineNum">     631 </span><span class="lineCov">         27 : std::map &lt;std::string, ROSEE::ActionTrig&gt; ROSEE::FindActions::fingFlex() {</span>
+<span class="lineNum">     632 </span>            :     
+<span class="lineNum">     633 </span><span class="lineCov">         27 :     std::map &lt;std::string, ROSEE::ActionTrig&gt; fingFlexMap;</span>
+<span class="lineNum">     634 </span>            :     
+<span class="lineNum">     635 </span><span class="lineCov">         72 :     for (auto tipName : parserMoveIt-&gt;getFingertipNames() ) {</span>
+<span class="lineNum">     636 </span>            :         
+<span class="lineNum">     637 </span><span class="lineCov">         63 :         if (parserMoveIt-&gt;getNExclusiveJointsOfTip ( tipName, false ) &lt; 2 ) { </span>
+<span class="lineNum">     638 </span>            :         //if so, we have a simple trig (or none if 0) and not also a tip/finger flex
+<span class="lineNum">     639 </span><span class="lineCov">         18 :             continue;</span>
+<span class="lineNum">     640 </span>            :         }
+<span class="lineNum">     641 </span>            : 
+<span class="lineNum">     642 </span><span class="lineCov">         90 :         std::string theInterestingJoint = parserMoveIt-&gt;getFirstActuatedJointInFinger ( tipName );</span>
+<span class="lineNum">     643 </span><span class="lineCov">         45 :         double fingFlexMax = parserMoveIt-&gt;getBiggerBoundFromZero ( theInterestingJoint ).at(0) ;</span>
+<span class="lineNum">     644 </span>            : 
+<span class="lineNum">     645 </span><span class="lineCov">         90 :         ActionTrig action (&quot;fingFlex&quot;, ActionPrimitive::Type::FingFlex);</span>
+<span class="lineNum">     646 </span><span class="lineCov">         45 :         action.setFingerInvolved ( parserMoveIt-&gt;getFingerOfFingertip ( tipName) ) ;</span>
+<span class="lineNum">     647 </span><span class="lineCov">         45 :         if (! insertJointPosForTrigInMap(fingFlexMap, action, theInterestingJoint, fingFlexMax) ) {</span>
+<span class="lineNum">     648 </span>            :             //if here, we have updated the joint position for a action that was already present in the map.
+<span class="lineNum">     649 </span>            :             //this is ok for normal trig because more joints are included in the action, but for the
+<span class="lineNum">     650 </span>            :             //tipflex and fingflex for definition only a joint is involved (the active one farther from the tip
+<span class="lineNum">     651 </span>            :             //but still inside the finger)
+<span class="lineNum">     652 </span><span class="lineNoCov">          0 :             std::cout &lt;&lt; &quot;[FATAL ERROR FINDACTIONS::&quot; &lt;&lt; __func__ &lt;&lt; &quot;]: Inserting in fingFlexMap a tip already present??n&quot; &lt;&lt; std::endl </span>
+<span class="lineNum">     653 </span><span class="lineNoCov">          0 :             &lt;&lt; &quot;I am returning a not completely filled map&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     654 </span><span class="lineNoCov">          0 :             return fingFlexMap;</span>
+<span class="lineNum">     655 </span>            :         }
+<span class="lineNum">     656 </span>            :     }
+<span class="lineNum">     657 </span><span class="lineCov">         27 :     return fingFlexMap;</span>
+<span class="lineNum">     658 </span>            : }
+<a name="659"><span class="lineNum">     659 </span>            : </a>
+<span class="lineNum">     660 </span>            : 
+<span class="lineNum">     661 </span><span class="lineCov">        300 : bool ROSEE::FindActions::insertJointPosForTrigInMap ( std::map &lt;std::string, ActionTrig&gt;&amp; trigMap, </span>
+<span class="lineNum">     662 </span>            :     ROSEE::ActionTrig action, std::string jointName, double trigValue) {
+<span class="lineNum">     663 </span>            :     
+<span class="lineNum">     664 </span><span class="lineCov">        300 :     auto itMap = trigMap.find ( action.getFingerInvolved() );</span>
+<span class="lineNum">     665 </span><span class="lineCov">        300 :     if ( itMap == trigMap.end() ) {</span>
+<span class="lineNum">     666 </span>            :         //still no action for this finger in the map
+<span class="lineNum">     667 </span>            : 
+<span class="lineNum">     668 </span><span class="lineCov">        390 :         JointPos jp;</span>
+<span class="lineNum">     669 </span><span class="lineCov">       1209 :         for (auto it : parserMoveIt-&gt;getActiveJointModels()){</span>
+<span class="lineNum">     670 </span><span class="lineCov">       2028 :             std::vector &lt;double&gt; jPos (it-&gt;getVariableCount(), DEFAULT_JOINT_POS);</span>
+<span class="lineNum">     671 </span><span class="lineCov">       1014 :             jp.insert ( std::make_pair ( it-&gt;getName(), jPos ));</span>
+<span class="lineNum">     672 </span>            :         }
+<span class="lineNum">     673 </span>            :         
+<span class="lineNum">     674 </span>            :         //HACK at(0) because 1dof joint
+<span class="lineNum">     675 </span><span class="lineCov">        195 :         jp.at ( jointName ).at(0) = trigValue;</span>
+<span class="lineNum">     676 </span>            :  
+<span class="lineNum">     677 </span><span class="lineCov">        195 :         action.setJointPos(jp);</span>
+<span class="lineNum">     678 </span><span class="lineCov">        195 :         trigMap.insert ( std::make_pair ( action.getFingerInvolved(), action ) );</span>
+<span class="lineNum">     679 </span>            : 
+<span class="lineNum">     680 </span><span class="lineCov">        195 :         return true;</span>
+<span class="lineNum">     681 </span>            : 
+<span class="lineNum">     682 </span>            :     } else {
+<span class="lineNum">     683 </span>            :         //action already created, but we have to modify the position of a joint
+<span class="lineNum">     684 </span>            :         //itMap-&gt;second is an iterator to the already present element
+<span class="lineNum">     685 </span><span class="lineCov">        210 :         JointPos jp = itMap-&gt;second.getJointPos();</span>
+<span class="lineNum">     686 </span>            :         //HACK at(0) because 1dof joint
+<span class="lineNum">     687 </span><span class="lineCov">        105 :         jp.at (jointName).at(0) = trigValue;</span>
+<span class="lineNum">     688 </span><span class="lineCov">        105 :         itMap-&gt;second.setJointPos(jp);</span>
+<span class="lineNum">     689 </span>            :         
+<span class="lineNum">     690 </span><span class="lineCov">        105 :         return false;</span>
+<span class="lineNum">     691 </span>            :     }
+<span class="lineNum">     692 </span>            : 
+<span class="lineNum">     693 </span>            : }
+<span class="lineNum">     694 </span>            : 
+<span class="lineNum">     695 </span>            : 
+<span class="lineNum">     696 </span>            : /**********************************************  SUPPORT FUNCTIONS     ***************************************************************/
+<a name="697"><span class="lineNum">     697 </span>            : </a>
+<span class="lineNum">     698 </span>            : 
+<span class="lineNum">     699 </span><span class="lineCov">      25597 : ROSEE::JointPos ROSEE::FindActions::getConvertedJointPos(const robot_state::RobotState* kinematic_state) {</span>
+<span class="lineNum">     700 </span>            :     
+<span class="lineNum">     701 </span><span class="lineCov">      25597 :     JointPos jp;</span>
+<span class="lineNum">     702 </span><span class="lineCov">      67970 :     for ( auto actJ : parserMoveIt-&gt;getActiveJointModels()) {</span>
+<span class="lineNum">     703 </span>            :         //joint can have multiple pos, so double*, but we want to store in a vector 
+<span class="lineNum">     704 </span><span class="lineCov">      42373 :         const double* pos = kinematic_state-&gt;getJointPositions(actJ); </span>
+<span class="lineNum">     705 </span><span class="lineCov">      42373 :         unsigned posSize = sizeof(pos) / sizeof(double);</span>
+<span class="lineNum">     706 </span><span class="lineCov">      84746 :         std::vector &lt;double&gt; vecPos(pos, pos + posSize);</span>
+<span class="lineNum">     707 </span><span class="lineCov">      42373 :         jp.insert(std::make_pair(actJ-&gt;getName(), vecPos));</span>
+<span class="lineNum">     708 </span>            :     }
+<span class="lineNum">     709 </span><span class="lineCov">      25597 :     return jp;</span>
+<span class="lineNum">     710 </span>            : }
+<a name="711"><span class="lineNum">     711 </span>            : </a>
+<span class="lineNum">     712 </span>            : 
+<span class="lineNum">     713 </span><span class="lineCov">         51 : void ROSEE::FindActions::fillNotCollidingTips ( </span>
+<span class="lineNum">     714 </span>            :     std::map &lt; std::pair &lt;std::string, std::string&gt; , ROSEE::ActionPinchLoose &gt;* mapOfLoosePinches,
+<span class="lineNum">     715 </span>            :     const std::map &lt; std::pair &lt;std::string, std::string&gt; , ROSEE::ActionPinchTight &gt;* mapOfPinches) {
+<span class="lineNum">     716 </span>            :     
+<span class="lineNum">     717 </span>            :     // first fill mapOfLoosePinches with all pairs ...
+<span class="lineNum">     718 </span><span class="lineCov">        170 :     for ( auto fingerEl1 : parserMoveIt-&gt;getFingertipOfFingerMap() )  {</span>
+<span class="lineNum">     719 </span><span class="lineCov">        408 :         for ( auto fingerEl2 : parserMoveIt-&gt;getFingertipOfFingerMap() ) { </span>
+<span class="lineNum">     720 </span>            :             
+<span class="lineNum">     721 </span>            :             // important to put in order in the pair, then in the set thing are autoordered
+<span class="lineNum">     722 </span><span class="lineCov">        289 :             if (fingerEl1.first &lt; fingerEl2.first) {</span>
+<span class="lineNum">     723 </span><span class="lineCov">         85 :                 mapOfLoosePinches-&gt;insert (std::make_pair (std::make_pair (fingerEl1.first, fingerEl2.first), ActionPinchLoose(fingerEl1.first, fingerEl2.first)));</span>
+<span class="lineNum">     724 </span>            :                 
+<span class="lineNum">     725 </span><span class="lineCov">        204 :             } else if (fingerEl1.first &gt; fingerEl2.first) {</span>
+<span class="lineNum">     726 </span><span class="lineCov">         85 :                 mapOfLoosePinches-&gt;insert (std::make_pair (std::make_pair (fingerEl2.first, fingerEl1.first), ActionPinchLoose(fingerEl2.first, fingerEl1.first)));</span>
+<span class="lineNum">     727 </span>            :             }    
+<span class="lineNum">     728 </span>            :         }
+<span class="lineNum">     729 </span>            :     }  
+<span class="lineNum">     730 </span>            :     
+<span class="lineNum">     731 </span>            :     // ... then remove all the colliding tips
+<span class="lineNum">     732 </span><span class="lineCov">         85 :     for (const auto mapEl : *mapOfPinches){</span>
+<span class="lineNum">     733 </span><span class="lineCov">         34 :         mapOfLoosePinches-&gt;erase(mapEl.first);</span>
+<span class="lineNum">     734 </span>            :     }
+<span class="lineNum">     735 </span><span class="lineCov">         51 : }</span>
+<span class="lineNum">     736 </span>            : 
+<span class="lineNum">     737 </span>            : 
+<a name="738"><span class="lineNum">     738 </span>            : </a>
+<span class="lineNum">     739 </span>            : 
+<span class="lineNum">     740 </span><span class="lineCov">      25597 : ROSEE::JointsInvolvedCount ROSEE::FindActions::setOnlyDependentJoints(</span>
+<span class="lineNum">     741 </span>            :     std::pair &lt; std::string, std::string &gt; tipsNames, JointPos *jPos) {
+<span class="lineNum">     742 </span>            :     
+<span class="lineNum">     743 </span><span class="lineCov">      25597 :     JointsInvolvedCount jointsInvolvedCount;</span>
+<span class="lineNum">     744 </span>            :     
+<span class="lineNum">     745 </span><span class="lineCov">      67970 :     for (auto &amp;jp : *jPos) { //for each among ALL joints</span>
+<span class="lineNum">     746 </span>            :         
+<span class="lineNum">     747 </span><span class="lineCov">      42373 :         jointsInvolvedCount.insert ( std::make_pair (jp.first, 1) );</span>
+<span class="lineNum">     748 </span>            :         
+<span class="lineNum">     749 </span>            :         /** other way around, second is better?
+<span class="lineNum">     750 </span>            :         std::vector &lt;std::string&gt; jointOfTips1 = jointsOfFingertipMap.at(tipsNames.first);
+<span class="lineNum">     751 </span>            :         std::vector &lt;std::string&gt; jointOfTips2 = jointsOfFingertipMap.at(tipsNames.second);
+<span class="lineNum">     752 </span>            :         
+<span class="lineNum">     753 </span>            :         // if the joint is not linked with neither of the two colliding tips...
+<span class="lineNum">     754 </span>            :         if ( std::find( jointOfTips1.begin(), jointOfTips1.end(), jp.first) == jointOfTips1.end() &amp;&amp;
+<span class="lineNum">     755 </span>            :              std::find( jointOfTips2.begin(), jointOfTips2.end(), jp.first) == jointOfTips2.end() ) {
+<span class="lineNum">     756 </span>            :               
+<span class="lineNum">     757 </span>            :             std::fill ( jp.second.begin(), jp.second.end(), DEFAULT_JOINT_POS);   
+<span class="lineNum">     758 </span>            :         
+<span class="lineNum">     759 </span>            :             IF USE THIS JOINTINVOLVEDCOUNT REMEMBER
+<span class="lineNum">     760 </span>            :         }
+<span class="lineNum">     761 </span>            :         */
+<span class="lineNum">     762 </span>            :         
+<span class="lineNum">     763 </span>            :         //the tips of the joint
+<span class="lineNum">     764 </span><span class="lineCov">      84746 :         std::vector &lt; std::string&gt; tips = parserMoveIt-&gt;getFingertipsOfJointMap().at(jp.first); </span>
+<span class="lineNum">     765 </span>            :         
+<span class="lineNum">     766 </span>            :         //check if the two tips that collide are among the ones that the joint moves
+<span class="lineNum">     767 </span><span class="lineCov">     118298 :         if (std::find (tips.begin(), tips.end(), tipsNames.first) == tips.end() &amp;&amp;</span>
+<span class="lineNum">     768 </span><span class="lineCov">      75925 :             std::find (tips.begin(), tips.end(), tipsNames.second) == tips.end() ) {</span>
+<span class="lineNum">     769 </span>            :             // not dependant, set to default the position
+<span class="lineNum">     770 </span><span class="lineNoCov">          0 :             std::fill ( jp.second.begin(), jp.second.end(), DEFAULT_JOINT_POS); </span>
+<span class="lineNum">     771 </span><span class="lineNoCov">          0 :             jointsInvolvedCount.at ( jp.first ) = 0;</span>
+<span class="lineNum">     772 </span>            :         }
+<span class="lineNum">     773 </span>            :     } 
+<span class="lineNum">     774 </span>            :     
+<span class="lineNum">     775 </span><span class="lineCov">      25597 :     return jointsInvolvedCount;    </span>
+<span class="lineNum">     776 </span>            : }
+<a name="777"><span class="lineNum">     777 </span>            : </a>
+<span class="lineNum">     778 </span>            : 
+<span class="lineNum">     779 </span><span class="lineNoCov">          0 : ROSEE::JointsInvolvedCount ROSEE::FindActions::setOnlyDependentJoints(</span>
+<span class="lineNum">     780 </span>            :     std::set&lt; std::string &gt; tipsNames, JointPos *jPos) {
+<span class="lineNum">     781 </span>            :     
+<span class="lineNum">     782 </span><span class="lineNoCov">          0 :     JointsInvolvedCount jointsInvolvedCount;</span>
+<span class="lineNum">     783 </span>            :     
+<span class="lineNum">     784 </span><span class="lineNoCov">          0 :     for (auto &amp;jp : *jPos) { //for each among ALL joints</span>
+<span class="lineNum">     785 </span>            :         
+<span class="lineNum">     786 </span><span class="lineNoCov">          0 :         jointsInvolvedCount.insert ( std::make_pair (jp.first, 0) );</span>
+<span class="lineNum">     787 </span>            :         
+<span class="lineNum">     788 </span>            :         //the tips of the joint
+<span class="lineNum">     789 </span><span class="lineNoCov">          0 :         std::vector &lt; std::string&gt; tips = parserMoveIt-&gt;getFingertipsOfJointMap().at(jp.first); </span>
+<span class="lineNum">     790 </span>            :         
+<span class="lineNum">     791 </span>            :         // if at least one tip of tipsNames is moved by jp.first joint, set the counter
+<span class="lineNum">     792 </span>            :         // and break the loop (because useless to continue
+<span class="lineNum">     793 </span>            :         // if no tip of tipsNames is moved by the joint, the count remain to zero and the 
+<span class="lineNum">     794 </span>            :         // for ends normally
+<span class="lineNum">     795 </span><span class="lineNoCov">          0 :         for ( auto fingInv : tipsNames ) {</span>
+<span class="lineNum">     796 </span><span class="lineNoCov">          0 :             if (std::find (tips.begin(), tips.end(), fingInv) != tips.end()) {</span>
+<span class="lineNum">     797 </span><span class="lineNoCov">          0 :                 jointsInvolvedCount.at ( jp.first )  = 1 ;</span>
+<span class="lineNum">     798 </span><span class="lineNoCov">          0 :                 break;</span>
+<span class="lineNum">     799 </span>            :             }
+<span class="lineNum">     800 </span>            :         }
+<span class="lineNum">     801 </span>            :         
+<span class="lineNum">     802 </span><span class="lineNoCov">          0 :         if (jointsInvolvedCount.at ( jp.first ) == 0 ) {</span>
+<span class="lineNum">     803 </span><span class="lineNoCov">          0 :             std::fill ( jp.second.begin(), jp.second.end(), DEFAULT_JOINT_POS); </span>
+<span class="lineNum">     804 </span>            :             //not used joint, set to default state (all its dof)
+<span class="lineNum">     805 </span>            :         }
+<span class="lineNum">     806 </span>            : 
+<span class="lineNum">     807 </span>            :     } 
+<span class="lineNum">     808 </span><span class="lineNoCov">          0 :     return jointsInvolvedCount;    </span>
+<a name="809"><span class="lineNum">     809 </span>            : }</a>
+<span class="lineNum">     810 </span>            : 
+<span class="lineNum">     811 </span><span class="lineCov">     516000 : void ROSEE::FindActions::setToDefaultPositionPassiveJoints(moveit::core::RobotState * kinematic_state) {</span>
+<span class="lineNum">     812 </span>            :     
+<span class="lineNum">     813 </span><span class="lineCov">     516000 :     const double pos = DEFAULT_JOINT_POS; //idk why but setJointPositions want a pointer as 2nd arg</span>
+<span class="lineNum">     814 </span><span class="lineCov">     516000 :     for (auto joint : parserMoveIt-&gt;getPassiveJointNames()){</span>
+<span class="lineNum">     815 </span><span class="lineNoCov">          0 :         kinematic_state-&gt;setJointPositions(joint, &amp;pos);</span>
+<span class="lineNum">     816 </span>            :     }
+<span class="lineNum">     817 </span>            :     
+<a name="818"><span class="lineNum">     818 </span><span class="lineCov">     516000 : }</span></a>
+<span class="lineNum">     819 </span>            : 
+<span class="lineNum">     820 </span><span class="lineCov">      25597 : std::pair &lt;std::string, std::string&gt; ROSEE::FindActions::getFingersPair (std::pair &lt;std::string, std::string&gt; tipsPair) const {</span>
+<span class="lineNum">     821 </span>            :     
+<span class="lineNum">     822 </span>            :     std::pair &lt;std::string, std::string&gt; fingersPair = std::make_pair (
+<span class="lineNum">     823 </span><span class="lineCov">      51194 :         parserMoveIt-&gt;getFingerOfFingertip(tipsPair.first),</span>
+<span class="lineNum">     824 </span><span class="lineCov">     102388 :         parserMoveIt-&gt;getFingerOfFingertip(tipsPair.second)  );</span>
+<span class="lineNum">     825 </span>            : 
+<span class="lineNum">     826 </span>            :     //So we have the key pair always in lexicographical order
+<span class="lineNum">     827 </span><span class="lineCov">      25597 :     if ( fingersPair.first.compare (fingersPair.second) &gt; 0 ) {</span>
+<span class="lineNum">     828 </span><span class="lineNoCov">          0 :         auto temp = fingersPair.first;</span>
+<span class="lineNum">     829 </span><span class="lineNoCov">          0 :         fingersPair.first = fingersPair.second;</span>
+<span class="lineNum">     830 </span><span class="lineNoCov">          0 :         fingersPair.second = temp;</span>
+<span class="lineNum">     831 </span>            :         
+<span class="lineNum">     832 </span><span class="lineCov">      25597 :     } else if (fingersPair.first.compare (fingersPair.second) == 0 ) {</span>
+<span class="lineNum">     833 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[FINDACTIONS &quot; &lt;&lt; __func__ &lt;&lt; &quot;] STRANGE ERROR: '&quot; &lt;&lt; tipsPair.first &lt;&lt;</span>
+<span class="lineNum">     834 </span><span class="lineNoCov">          0 :           &quot;' and '&quot; &lt;&lt; tipsPair.second &lt;&lt; &quot;' are in the same finger '&quot; &lt;&lt; fingersPair.first &lt;&lt;</span>
+<span class="lineNum">     835 </span><span class="lineNoCov">          0 :           &quot;' so this pair can't perform a pinch&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     836 </span><span class="lineNoCov">          0 :         return std::pair&lt;std::string, std::string&gt;();</span>
+<span class="lineNum">     837 </span>            :     }
+<span class="lineNum">     838 </span>            :     
+<span class="lineNum">     839 </span><span class="lineCov">      25597 :     return fingersPair;</span>
+<a name="840"><span class="lineNum">     840 </span>            : }</a>
+<span class="lineNum">     841 </span>            : 
+<span class="lineNum">     842 </span><span class="lineNoCov">          0 : std::set &lt;std::string&gt; ROSEE::FindActions::getFingersSet (std::set &lt;std::string&gt; tipsSet) const {</span>
+<span class="lineNum">     843 </span>            :     
+<span class="lineNum">     844 </span><span class="lineNoCov">          0 :     std::set &lt;std::string&gt; fingersSet;</span>
+<span class="lineNum">     845 </span><span class="lineNoCov">          0 :     for (auto it : tipsSet) {</span>
+<span class="lineNum">     846 </span>            :         
+<span class="lineNum">     847 </span><span class="lineNoCov">          0 :         fingersSet.insert ( parserMoveIt-&gt;getFingerOfFingertip ( it ) );</span>
+<span class="lineNum">     848 </span>            :     }
+<span class="lineNum">     849 </span>            : 
+<span class="lineNum">     850 </span>            :     //If size is less, there is a finger that we have try to insert more than once.
+<span class="lineNum">     851 </span><span class="lineNoCov">          0 :     if ( fingersSet.size() &lt; tipsSet.size() ) {</span>
+<span class="lineNum">     852 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[FINDACTIONS &quot; &lt;&lt; __func__ &lt;&lt; &quot;] STRANGE ERROR: &quot; &lt;&lt;</span>
+<span class="lineNum">     853 </span><span class="lineNoCov">          0 :             &quot;the tipsSet passed has some fingertips that belong to the same finger.&quot;  </span>
+<span class="lineNum">     854 </span><span class="lineNoCov">          0 :             &lt;&lt; &quot; I will return an empty set &quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     855 </span>            :             
+<span class="lineNum">     856 </span><span class="lineNoCov">          0 :         return std::set &lt;std::string&gt;();</span>
+<span class="lineNum">     857 </span>            :     }
+<span class="lineNum">     858 </span>            :     
+<span class="lineNum">     859 </span><span class="lineNoCov">          0 :     return fingersSet;</span>
+<a name="860"><span class="lineNum">     860 </span>            : }</a>
+<span class="lineNum">     861 </span>            : 
+<span class="lineNum">     862 </span><span class="lineCov">         51 : std::pair &lt;std::string, std::string&gt; ROSEE::FindActions::getFingertipsPair (std::pair &lt;std::string, std::string&gt; fingersPair) const {</span>
+<span class="lineNum">     863 </span>            :     
+<span class="lineNum">     864 </span>            :     std::pair &lt;std::string, std::string&gt; tipsPair = std::make_pair (
+<span class="lineNum">     865 </span><span class="lineCov">        102 :         parserMoveIt-&gt;getFingertipOfFinger(fingersPair.first),</span>
+<span class="lineNum">     866 </span><span class="lineCov">        204 :         parserMoveIt-&gt;getFingertipOfFinger(fingersPair.second)  );</span>
+<span class="lineNum">     867 </span>            : 
+<span class="lineNum">     868 </span>            :     //So we have the key pair always in lexicographical order
+<span class="lineNum">     869 </span><span class="lineCov">         51 :     if ( tipsPair.first.compare (tipsPair.second) &gt; 0 ) {</span>
+<span class="lineNum">     870 </span><span class="lineNoCov">          0 :         auto temp = tipsPair.first;</span>
+<span class="lineNum">     871 </span><span class="lineNoCov">          0 :         tipsPair.first = tipsPair.second;</span>
+<span class="lineNum">     872 </span><span class="lineNoCov">          0 :         tipsPair.second = temp;</span>
+<span class="lineNum">     873 </span>            :         
+<span class="lineNum">     874 </span><span class="lineCov">         51 :     } else if (tipsPair.first.compare (tipsPair.second) == 0 ) {</span>
+<span class="lineNum">     875 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[FINDACTIONS &quot; &lt;&lt; __func__ &lt;&lt; &quot;] STRANGE ERROR: '&quot; &lt;&lt; fingersPair.first &lt;&lt;</span>
+<span class="lineNum">     876 </span><span class="lineNoCov">          0 :           &quot;' and '&quot; &lt;&lt; fingersPair.second &lt;&lt; &quot;' have the same fingertip '&quot; &lt;&lt; tipsPair.first &lt;&lt;</span>
+<span class="lineNum">     877 </span><span class="lineNoCov">          0 :           &quot;' so this pair can't perform a pinch&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     878 </span><span class="lineNoCov">          0 :         return std::pair&lt;std::string, std::string&gt;();</span>
+<span class="lineNum">     879 </span>            :     }
+<a name="880"><span class="lineNum">     880 </span>            :     </a>
+<span class="lineNum">     881 </span><span class="lineCov">         51 :     return tipsPair;</span>
+<span class="lineNum">     882 </span><span class="lineCov">         63 : }</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

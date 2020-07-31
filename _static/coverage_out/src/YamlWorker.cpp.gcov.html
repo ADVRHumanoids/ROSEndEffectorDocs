@@ -1,0 +1,377 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - main_coverage.info - src/YamlWorker.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">src</a> - YamlWorker.cpp<span style="font-size: 80%;"> (source / <a href="YamlWorker.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">main_coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">87</td>
+            <td class="headerCovTableEntry">137</td>
+            <td class="headerCovTableEntryLo">63.5 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2020-07-31 15:30:30</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">11</td>
+            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntryHi">91.7 %</td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : /*</a>
+<span class="lineNum">       2 </span>            :  * Copyright 2020 &lt;copyright holder&gt; &lt;email&gt;
+<span class="lineNum">       3 </span>            :  *
+<span class="lineNum">       4 </span>            :  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+<span class="lineNum">       5 </span>            :  * you may not use this file except in compliance with the License.
+<span class="lineNum">       6 </span>            :  * You may obtain a copy of the License at
+<span class="lineNum">       7 </span>            :  *
+<span class="lineNum">       8 </span>            :  *     http://www.apache.org/licenses/LICENSE-2.0
+<span class="lineNum">       9 </span>            :  *
+<span class="lineNum">      10 </span>            :  * Unless required by applicable law or agreed to in writing, software
+<span class="lineNum">      11 </span>            :  * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+<span class="lineNum">      12 </span>            :  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<span class="lineNum">      13 </span>            :  * See the License for the specific language governing permissions and
+<span class="lineNum">      14 </span>            :  * limitations under the License.
+<span class="lineNum">      15 </span>            :  */
+<span class="lineNum">      16 </span>            : 
+<a name="17"><span class="lineNum">      17 </span>            : #include &lt;ros_end_effector/YamlWorker.h&gt;</a>
+<span class="lineNum">      18 </span>            : 
+<a name="19"><span class="lineNum">      19 </span><span class="lineCov">        326 : ROSEE::YamlWorker::YamlWorker ( ) {}</span></a>
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span><span class="lineCov">         39 : std::string ROSEE::YamlWorker::createYamlFile( const ROSEE::Action* action, std::string pathFolder) {</span>
+<span class="lineNum">      22 </span>            :     
+<span class="lineNum">      23 </span><span class="lineCov">         39 :     ROSEE::Utils::create_directory ( pathFolder );</span>
+<span class="lineNum">      24 </span><span class="lineCov">         78 :     std::string output = emitYaml ( action );</span>
+<span class="lineNum">      25 </span><span class="lineCov">         39 :     ROSEE::Utils::out2file(pathFolder + action-&gt;getName() + &quot;.yaml&quot;, output);</span>
+<span class="lineNum">      26 </span><span class="lineCov">         78 :     return (pathFolder + action-&gt;getName() + &quot;.yaml&quot;);</span>
+<span class="lineNum">      27 </span>            :     
+<a name="28"><span class="lineNum">      28 </span>            : }</a>
+<span class="lineNum">      29 </span>            : 
+<span class="lineNum">      30 </span><span class="lineCov">        113 : std::string ROSEE::YamlWorker::createYamlFile(</span>
+<span class="lineNum">      31 </span>            :     const std::map &lt; std::set &lt;std::string&gt; , ActionPrimitive* &gt; mapOfActions,
+<span class="lineNum">      32 </span>            :     const std::string actionName, std::string pathFolder) {
+<span class="lineNum">      33 </span>            :     
+<span class="lineNum">      34 </span><span class="lineCov">        113 :     ROSEE::Utils::create_directory ( pathFolder );</span>
+<span class="lineNum">      35 </span><span class="lineCov">        226 :     std::string output = emitYaml ( mapOfActions );</span>
+<span class="lineNum">      36 </span><span class="lineCov">        113 :     ROSEE::Utils::out2file( pathFolder + actionName + &quot;.yaml&quot;, output);</span>
+<span class="lineNum">      37 </span><span class="lineCov">        226 :     return (pathFolder + actionName + &quot;.yaml&quot;);</span>
+<span class="lineNum">      38 </span>            :     
+<span class="lineNum">      39 </span>            :     
+<span class="lineNum">      40 </span>            : }
+<a name="41"><span class="lineNum">      41 </span>            : </a>
+<span class="lineNum">      42 </span>            : 
+<span class="lineNum">      43 </span><span class="lineCov">        113 : std::string ROSEE::YamlWorker::emitYaml ( </span>
+<span class="lineNum">      44 </span>            :     const std::map &lt; std::set &lt;std::string&gt; , ActionPrimitive* &gt; mapOfActions ) {
+<span class="lineNum">      45 </span>            :     
+<span class="lineNum">      46 </span><span class="lineCov">        226 :     YAML::Emitter out;</span>
+<span class="lineNum">      47 </span><span class="lineCov">        113 :     out &lt;&lt; YAML::BeginMap;</span>
+<span class="lineNum">      48 </span><span class="lineCov">        343 :     for (const auto &amp; mapEl : mapOfActions) {</span>
+<span class="lineNum">      49 </span><span class="lineCov">        230 :         mapEl.second-&gt;emitYaml(out);</span>
+<span class="lineNum">      50 </span><span class="lineCov">        230 :         out &lt;&lt; YAML::Newline &lt;&lt; YAML::Newline; //double to insert a blanck line between tips pair</span>
+<span class="lineNum">      51 </span>            :     }
+<span class="lineNum">      52 </span><span class="lineCov">        113 :     out &lt;&lt; YAML::EndMap;</span>
+<span class="lineNum">      53 </span><span class="lineCov">        226 :     return out.c_str();</span>
+<span class="lineNum">      54 </span>            :     
+<a name="55"><span class="lineNum">      55 </span>            : }</a>
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span><span class="lineCov">         39 : std::string ROSEE::YamlWorker::emitYaml  ( const ROSEE::Action* action ) {</span>
+<span class="lineNum">      58 </span>            :     
+<span class="lineNum">      59 </span><span class="lineCov">         78 :     YAML::Emitter out;</span>
+<span class="lineNum">      60 </span><span class="lineCov">         39 :     action-&gt;emitYaml(out);</span>
+<span class="lineNum">      61 </span><span class="lineCov">         39 :     out &lt;&lt; YAML::Newline &lt;&lt; YAML::Newline; //double to insert a blanck line</span>
+<span class="lineNum">      62 </span><span class="lineCov">         78 :     return out.c_str();</span>
+<span class="lineNum">      63 </span>            :     
+<a name="64"><span class="lineNum">      64 </span>            : }</a>
+<span class="lineNum">      65 </span>            : 
+<span class="lineNum">      66 </span><span class="lineNoCov">          0 : std::map&lt;std::set&lt;std::string&gt;, ROSEE::ActionPrimitive::Ptr&gt; ROSEE::YamlWorker::parseYamlPrimitive(</span>
+<span class="lineNum">      67 </span>            :         std::string fileWithPath, ROSEE::ActionPrimitive::Type actionType) {
+<span class="lineNum">      68 </span>            :     
+<span class="lineNum">      69 </span><span class="lineNoCov">          0 :     std::map &lt; std::set &lt; std::string&gt;, ROSEE::ActionPrimitive::Ptr &gt; parsedMap; </span>
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span>            :     //TODO check elsewhere if file exist or not?
+<span class="lineNum">      72 </span><span class="lineNoCov">          0 :     std::ifstream ifile(fileWithPath);</span>
+<span class="lineNum">      73 </span><span class="lineNoCov">          0 :     if (! ifile) {</span>
+<span class="lineNum">      74 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[ERROR YAMLPARSER:: &quot; &lt;&lt; __func__ &lt;&lt; &quot;]: file &quot; &lt;&lt; fileWithPath &lt;&lt; &quot; not found. &quot;  &lt;&lt; std::endl;</span>
+<span class="lineNum">      75 </span><span class="lineNoCov">          0 :             return parsedMap;</span>
+<span class="lineNum">      76 </span>            :     }
+<span class="lineNum">      77 </span>            :     
+<span class="lineNum">      78 </span><span class="lineNoCov">          0 :     YAML::Node node = YAML::LoadFile(fileWithPath);</span>
+<span class="lineNum">      79 </span>            :     
+<span class="lineNum">      80 </span><span class="lineNoCov">          0 :     for(YAML::const_iterator it4Action = node.begin(); it4Action != node.end(); ++it4Action) {</span>
+<span class="lineNum">      81 </span><span class="lineNoCov">          0 :         ActionPrimitive::Ptr ptr;</span>
+<span class="lineNum">      82 </span><span class="lineNoCov">          0 :         switch (actionType) {</span>
+<span class="lineNum">      83 </span>            :         case ActionPrimitive::Type::PinchTight: {
+<span class="lineNum">      84 </span><span class="lineNoCov">          0 :             ptr = std::make_shared &lt;ActionPinchTight&gt;();</span>
+<span class="lineNum">      85 </span><span class="lineNoCov">          0 :             break;</span>
+<span class="lineNum">      86 </span>            :         }
+<span class="lineNum">      87 </span>            :         case ActionPrimitive::Type::PinchLoose: {
+<span class="lineNum">      88 </span><span class="lineNoCov">          0 :             ptr = std::make_shared &lt;ActionPinchLoose&gt; ();</span>
+<span class="lineNum">      89 </span><span class="lineNoCov">          0 :             break;</span>
+<span class="lineNum">      90 </span>            :         }
+<span class="lineNum">      91 </span>            :         case ActionPrimitive::Type::Trig: {
+<span class="lineNum">      92 </span><span class="lineNoCov">          0 :             ptr = std::make_shared &lt;ActionTrig&gt;(&quot;trig&quot;, ActionPrimitive::Type::Trig);</span>
+<span class="lineNum">      93 </span><span class="lineNoCov">          0 :             break;</span>
+<span class="lineNum">      94 </span>            :         }
+<span class="lineNum">      95 </span>            :         case ActionPrimitive::Type::TipFlex: {
+<span class="lineNum">      96 </span><span class="lineNoCov">          0 :             ptr = std::make_shared &lt;ActionTrig&gt;(&quot;tipFlex&quot;, ActionPrimitive::Type::TipFlex);</span>
+<span class="lineNum">      97 </span><span class="lineNoCov">          0 :             break;</span>
+<span class="lineNum">      98 </span>            :         }
+<span class="lineNum">      99 </span>            :         case ActionPrimitive::Type::FingFlex: {
+<span class="lineNum">     100 </span><span class="lineNoCov">          0 :             ptr = std::make_shared &lt;ActionTrig&gt;(&quot;fingFlex&quot;, ActionPrimitive::Type::FingFlex);</span>
+<span class="lineNum">     101 </span><span class="lineNoCov">          0 :             break;</span>
+<span class="lineNum">     102 </span>            :         }
+<span class="lineNum">     103 </span>            :         case ActionPrimitive::Type::SingleJointMultipleTips: {
+<span class="lineNum">     104 </span><span class="lineNoCov">          0 :             ptr = std::make_shared &lt;ActionSingleJointMultipleTips&gt;();</span>
+<span class="lineNum">     105 </span><span class="lineNoCov">          0 :             break;</span>
+<span class="lineNum">     106 </span>            :         }
+<span class="lineNum">     107 </span>            :         case ActionPrimitive::Type::MultiplePinchTight: {
+<span class="lineNum">     108 </span><span class="lineNoCov">          0 :             ptr = std::make_shared &lt;ActionMultiplePinchTight&gt; ();</span>
+<span class="lineNum">     109 </span><span class="lineNoCov">          0 :             break;</span>
+<span class="lineNum">     110 </span>            :         }
+<span class="lineNum">     111 </span>            : 
+<span class="lineNum">     112 </span>            :         default : {
+<span class="lineNum">     113 </span><span class="lineNoCov">          0 :             std::cout &lt;&lt; &quot;[ERROR YAMLPARSER]: &quot; &lt;&lt; actionType &lt;&lt; &quot; : type not found&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     114 </span>            :         }
+<span class="lineNum">     115 </span>            :         }
+<span class="lineNum">     116 </span>            :         
+<span class="lineNum">     117 </span><span class="lineNoCov">          0 :         ptr-&gt;fillFromYaml ( it4Action );</span>
+<span class="lineNum">     118 </span>            :         
+<span class="lineNum">     119 </span><span class="lineNoCov">          0 :         parsedMap.insert ( std::make_pair ( ptr-&gt;getKeyElements(), ptr) );</span>
+<span class="lineNum">     120 </span>            :     }
+<span class="lineNum">     121 </span>            :         
+<span class="lineNum">     122 </span><span class="lineNoCov">          0 :     return parsedMap;</span>
+<span class="lineNum">     123 </span>            : }
+<a name="124"><span class="lineNum">     124 </span>            : </a>
+<span class="lineNum">     125 </span>            : 
+<span class="lineNum">     126 </span><span class="lineCov">        138 : std::map &lt; std::set &lt; std::string&gt;, ROSEE::ActionPrimitive::Ptr &gt; ROSEE::YamlWorker::parseYamlPrimitive (std::string fileWithPath) {</span>
+<span class="lineNum">     127 </span>            :     
+<span class="lineNum">     128 </span><span class="lineCov">        138 :     std::map &lt; std::set &lt; std::string&gt;, ROSEE::ActionPrimitive::Ptr &gt; parsedMap; </span>
+<span class="lineNum">     129 </span>            : 
+<span class="lineNum">     130 </span>            :     //TODO check elsewhere if file exist or not?
+<span class="lineNum">     131 </span><span class="lineCov">        276 :     std::ifstream ifile(fileWithPath);</span>
+<span class="lineNum">     132 </span><span class="lineCov">        138 :     if (! ifile) {</span>
+<span class="lineNum">     133 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[ERROR YAMLPARSER:: &quot; &lt;&lt; __func__ &lt;&lt; &quot;]: file &quot; &lt;&lt; fileWithPath &lt;&lt; &quot; not found. &quot;  &lt;&lt; std::endl;</span>
+<span class="lineNum">     134 </span><span class="lineNoCov">          0 :             return parsedMap;</span>
+<span class="lineNum">     135 </span>            :     }
+<span class="lineNum">     136 </span>            :     
+<span class="lineNum">     137 </span><span class="lineCov">        276 :     YAML::Node node = YAML::LoadFile(fileWithPath);</span>
+<span class="lineNum">     138 </span>            : 
+<span class="lineNum">     139 </span><span class="lineCov">        414 :     for(YAML::const_iterator it4Action = node.begin(); it4Action != node.end(); ++it4Action) {</span>
+<span class="lineNum">     140 </span>            :         
+<span class="lineNum">     141 </span><span class="lineCov">        552 :         std::string actionName;</span>
+<span class="lineNum">     142 </span><span class="lineCov">        276 :         ROSEE::ActionPrimitive::Type type = ROSEE::ActionPrimitive::Type::None;</span>
+<span class="lineNum">     143 </span>            :         
+<span class="lineNum">     144 </span>            :         //now look for the type of the action and for the name
+<span class="lineNum">     145 </span><span class="lineCov">        738 :         for ( YAML::const_iterator actionState = it4Action-&gt;second.begin(); actionState != it4Action-&gt;second.end(); ++actionState) {        </span>
+<span class="lineNum">     146 </span>            :         
+<span class="lineNum">     147 </span><span class="lineCov">        738 :             if (actionState-&gt;first.as&lt;std::string&gt;().compare(&quot;PrimitiveType&quot;) == 0) {</span>
+<span class="lineNum">     148 </span><span class="lineCov">        276 :                 type = static_cast&lt;ROSEE::ActionPrimitive::Type&gt; ( actionState-&gt;second.as &lt; int &gt; () );</span>
+<span class="lineNum">     149 </span><span class="lineCov">        276 :                 break; //we only need the type</span>
+<span class="lineNum">     150 </span>            :             }
+<span class="lineNum">     151 </span>            :         }
+<span class="lineNum">     152 </span>            :         
+<span class="lineNum">     153 </span>            :         //now use emit of specific action
+<span class="lineNum">     154 </span><span class="lineCov">        552 :         ActionPrimitive::Ptr ptr;</span>
+<span class="lineNum">     155 </span><span class="lineCov">        276 :         switch (type) {</span>
+<span class="lineNum">     156 </span>            :         case ActionPrimitive::Type::PinchTight: {
+<span class="lineNum">     157 </span><span class="lineCov">         38 :             ptr = std::make_shared &lt;ActionPinchTight&gt;();</span>
+<span class="lineNum">     158 </span><span class="lineCov">         38 :             break;</span>
+<span class="lineNum">     159 </span>            :         }
+<span class="lineNum">     160 </span>            :         case ActionPrimitive::Type::PinchLoose: {
+<span class="lineNum">     161 </span><span class="lineNoCov">          0 :             ptr = std::make_shared &lt;ActionPinchLoose&gt; ();</span>
+<span class="lineNum">     162 </span><span class="lineNoCov">          0 :             break;</span>
+<span class="lineNum">     163 </span>            :         }
+<span class="lineNum">     164 </span>            :         case ActionPrimitive::Type::Trig: {
+<span class="lineNum">     165 </span><span class="lineCov">         77 :             ptr = std::make_shared &lt;ActionTrig&gt;(&quot;trig&quot;, ActionPrimitive::Type::Trig);</span>
+<span class="lineNum">     166 </span><span class="lineCov">         77 :             break;</span>
+<span class="lineNum">     167 </span>            :         }
+<span class="lineNum">     168 </span>            :         case ActionPrimitive::Type::TipFlex: {
+<span class="lineNum">     169 </span><span class="lineCov">         77 :             ptr = std::make_shared &lt;ActionTrig&gt;(&quot;tipFlex&quot;, ActionPrimitive::Type::TipFlex);</span>
+<span class="lineNum">     170 </span><span class="lineCov">         77 :             break;</span>
+<span class="lineNum">     171 </span>            :         }
+<span class="lineNum">     172 </span>            :         case ActionPrimitive::Type::FingFlex: {
+<span class="lineNum">     173 </span><span class="lineCov">         77 :             ptr = std::make_shared &lt;ActionTrig&gt;(&quot;fingFlex&quot;, ActionPrimitive::Type::FingFlex);</span>
+<span class="lineNum">     174 </span><span class="lineCov">         77 :             break;</span>
+<span class="lineNum">     175 </span>            :         }
+<span class="lineNum">     176 </span>            :         case ActionPrimitive::Type::SingleJointMultipleTips: {
+<span class="lineNum">     177 </span><span class="lineCov">          7 :             ptr = std::make_shared &lt;ActionSingleJointMultipleTips&gt;();</span>
+<span class="lineNum">     178 </span><span class="lineCov">          7 :             break;</span>
+<span class="lineNum">     179 </span>            :         }
+<span class="lineNum">     180 </span>            :         case ActionPrimitive::Type::MultiplePinchTight: {
+<span class="lineNum">     181 </span><span class="lineNoCov">          0 :             ptr = std::make_shared &lt;ActionMultiplePinchTight&gt; ();</span>
+<span class="lineNum">     182 </span><span class="lineNoCov">          0 :             break;</span>
+<span class="lineNum">     183 </span>            :         }
+<span class="lineNum">     184 </span>            : 
+<span class="lineNum">     185 </span>            :         default : {
+<span class="lineNum">     186 </span><span class="lineNoCov">          0 :             std::cout &lt;&lt; &quot;[ERROR YAMLPARSER]: &quot; &lt;&lt; type &lt;&lt; &quot; : type not found&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     187 </span>            :         }
+<span class="lineNum">     188 </span>            :         }
+<span class="lineNum">     189 </span>            :         
+<span class="lineNum">     190 </span><span class="lineCov">        276 :         ptr-&gt;fillFromYaml ( it4Action );</span>
+<span class="lineNum">     191 </span>            :         
+<span class="lineNum">     192 </span><span class="lineCov">        276 :         parsedMap.insert ( std::make_pair ( ptr-&gt;getKeyElements(), ptr) );</span>
+<span class="lineNum">     193 </span>            :     }
+<span class="lineNum">     194 </span>            :         
+<span class="lineNum">     195 </span><span class="lineCov">        138 :     return parsedMap;</span>
+<span class="lineNum">     196 </span>            :     
+<span class="lineNum">     197 </span>            : }
+<a name="198"><span class="lineNum">     198 </span>            : </a>
+<span class="lineNum">     199 </span>            : 
+<span class="lineNum">     200 </span><span class="lineCov">         18 : ROSEE::ActionComposed ROSEE::YamlWorker::parseYamlComposed (std::string fileWithPath){</span>
+<span class="lineNum">     201 </span>            :     
+<span class="lineNum">     202 </span><span class="lineCov">         18 :     ROSEE::ActionComposed parsedAction; </span>
+<span class="lineNum">     203 </span>            : 
+<span class="lineNum">     204 </span>            :     //TODO check elsewhere if file exist or not?
+<span class="lineNum">     205 </span><span class="lineCov">         36 :     std::ifstream ifile(fileWithPath);</span>
+<span class="lineNum">     206 </span><span class="lineCov">         18 :     if (! ifile) {</span>
+<span class="lineNum">     207 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[ERROR YAMLPARSER:: &quot; &lt;&lt; __func__ &lt;&lt; &quot;]: file &quot; &lt;&lt; fileWithPath &lt;&lt; &quot; not found. &quot;  &lt;&lt; std::endl;</span>
+<span class="lineNum">     208 </span><span class="lineNoCov">          0 :             return parsedAction;</span>
+<span class="lineNum">     209 </span>            :     }
+<span class="lineNum">     210 </span>            :     
+<span class="lineNum">     211 </span><span class="lineCov">         36 :     YAML::Node node = YAML::LoadFile(fileWithPath);</span>
+<span class="lineNum">     212 </span><span class="lineCov">         36 :     YAML::const_iterator yamlIt = node.begin();</span>
+<span class="lineNum">     213 </span>            : 
+<span class="lineNum">     214 </span><span class="lineCov">         18 :     parsedAction.fillFromYaml ( yamlIt );</span>
+<span class="lineNum">     215 </span>            :     
+<span class="lineNum">     216 </span><span class="lineCov">         18 :     return parsedAction;</span>
+<span class="lineNum">     217 </span>            :     
+<a name="218"><span class="lineNum">     218 </span>            : }</a>
+<span class="lineNum">     219 </span>            : 
+<span class="lineNum">     220 </span><span class="lineCov">         89 : ROSEE::ActionGeneric::Ptr ROSEE::YamlWorker::parseYamlGeneric(std::string fileWithPath) {</span>
+<span class="lineNum">     221 </span>            :     
+<span class="lineNum">     222 </span><span class="lineCov">         89 :     ActionGeneric::Ptr ptrAction;</span>
+<span class="lineNum">     223 </span>            :     
+<span class="lineNum">     224 </span>            :     //TODO check elsewhere if file exist or not?
+<span class="lineNum">     225 </span><span class="lineCov">        178 :     std::ifstream ifile(fileWithPath);</span>
+<span class="lineNum">     226 </span><span class="lineCov">         89 :     if (! ifile) {</span>
+<span class="lineNum">     227 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[ERROR YAMLPARSER:: &quot; &lt;&lt; __func__ &lt;&lt; &quot;]: file &quot; &lt;&lt; fileWithPath &lt;&lt; &quot; not found. &quot;  &lt;&lt; std::endl;</span>
+<span class="lineNum">     228 </span><span class="lineNoCov">          0 :         return ptrAction;</span>
+<span class="lineNum">     229 </span>            :     }
+<span class="lineNum">     230 </span>            :     
+<span class="lineNum">     231 </span><span class="lineCov">        178 :     YAML::Node node = YAML::LoadFile(fileWithPath);</span>
+<span class="lineNum">     232 </span>            :     
+<span class="lineNum">     233 </span><span class="lineCov">        178 :     YAML::const_iterator it4Action = node.begin(); //for not primitive, only one action is inside the file</span>
+<span class="lineNum">     234 </span>            :         
+<span class="lineNum">     235 </span><span class="lineCov">         89 :     ROSEE::Action::Type type = ROSEE::Action::Type::None;</span>
+<span class="lineNum">     236 </span>            :     
+<span class="lineNum">     237 </span>            :     //now look for the type of the action
+<span class="lineNum">     238 </span><span class="lineCov">        270 :     for ( YAML::const_iterator el = it4Action-&gt;second.begin(); el != it4Action-&gt;second.end(); ++el) {        </span>
+<span class="lineNum">     239 </span>            :     
+<span class="lineNum">     240 </span><span class="lineCov">        270 :         if (el-&gt;first.as&lt;std::string&gt;().compare(&quot;Type&quot;) == 0) {</span>
+<span class="lineNum">     241 </span><span class="lineCov">         89 :             type = static_cast&lt;ROSEE::Action::Type&gt; ( el-&gt;second.as &lt; int &gt; () );</span>
+<span class="lineNum">     242 </span><span class="lineCov">         89 :             break; //we only need the type</span>
+<span class="lineNum">     243 </span>            :         }
+<span class="lineNum">     244 </span>            :     }
+<span class="lineNum">     245 </span>            :     
+<span class="lineNum">     246 </span><span class="lineCov">         89 :     switch (type) {</span>
+<span class="lineNum">     247 </span>            :     case Action::Type::Primitive : {
+<span class="lineNum">     248 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[ERROR YAMLPARSER:: &quot; &lt;&lt; __func__ &lt;&lt; &quot;]: file &quot; &lt;&lt; fileWithPath &lt;&lt; &quot; contains a primitive action, &quot;</span>
+<span class="lineNum">     249 </span><span class="lineNoCov">          0 :         &lt;&lt; &quot; please use parseYamlPrimitive to parse it &quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     250 </span><span class="lineNoCov">          0 :         return ptrAction;</span>
+<span class="lineNum">     251 </span>            :         break;
+<span class="lineNum">     252 </span>            :     }
+<span class="lineNum">     253 </span>            :     case Action::Type::Generic : {
+<span class="lineNum">     254 </span><span class="lineCov">         48 :         ptrAction = std::make_shared &lt;ActionGeneric&gt; ();</span>
+<span class="lineNum">     255 </span><span class="lineCov">         48 :         break;</span>
+<span class="lineNum">     256 </span>            :     }
+<span class="lineNum">     257 </span>            :     case Action::Type::Composed : {
+<span class="lineNum">     258 </span><span class="lineCov">         41 :         ptrAction = std::make_shared &lt;ActionComposed&gt; ();</span>
+<span class="lineNum">     259 </span><span class="lineCov">         41 :         break;</span>
+<span class="lineNum">     260 </span>            :     }
+<span class="lineNum">     261 </span>            :     case Action::Type::Timed : {
+<span class="lineNum">     262 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[ERROR YAMLPARSER:: &quot; &lt;&lt; __func__ &lt;&lt; &quot;]: file &quot; &lt;&lt; fileWithPath &lt;&lt; &quot; contains a timed action, &quot;</span>
+<span class="lineNum">     263 </span><span class="lineNoCov">          0 :         &lt;&lt; &quot; please use parseYamlTimed to parse it &quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     264 </span><span class="lineNoCov">          0 :         return ptrAction;</span>
+<span class="lineNum">     265 </span>            :         break;
+<span class="lineNum">     266 </span>            :     }
+<span class="lineNum">     267 </span>            :     default : {
+<span class="lineNum">     268 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[ERROR YAMLPARSER:: &quot; &lt;&lt; __func__ &lt;&lt; &quot;]: file &quot; &lt;&lt; fileWithPath &lt;&lt; &quot; contains an action of not know type &quot;</span>
+<span class="lineNum">     269 </span><span class="lineNoCov">          0 :         &lt;&lt; type &lt;&lt; std::endl;</span>
+<span class="lineNum">     270 </span><span class="lineNoCov">          0 :         return ptrAction; </span>
+<span class="lineNum">     271 </span>            :     }
+<span class="lineNum">     272 </span>            :     }
+<span class="lineNum">     273 </span>            : 
+<span class="lineNum">     274 </span><span class="lineCov">         89 :     ptrAction-&gt;fillFromYaml(it4Action);</span>
+<span class="lineNum">     275 </span>            :     
+<span class="lineNum">     276 </span><span class="lineCov">         89 :     return ptrAction;</span>
+<span class="lineNum">     277 </span>            :     
+<span class="lineNum">     278 </span>            :     
+<span class="lineNum">     279 </span>            : }
+<a name="280"><span class="lineNum">     280 </span>            : </a>
+<span class="lineNum">     281 </span>            : 
+<span class="lineNum">     282 </span><span class="lineCov">         54 : std::shared_ptr &lt; ROSEE::ActionTimed &gt; ROSEE::YamlWorker::parseYamlTimed (std::string fileWithPath){</span>
+<span class="lineNum">     283 </span>            :     
+<span class="lineNum">     284 </span><span class="lineCov">        108 :     std::shared_ptr &lt; ROSEE::ActionTimed &gt; ptrAction; </span>
+<span class="lineNum">     285 </span>            : 
+<span class="lineNum">     286 </span>            :     //TODO check elsewhere if file exist or not?
+<span class="lineNum">     287 </span><span class="lineCov">        108 :     std::ifstream ifile(fileWithPath);</span>
+<span class="lineNum">     288 </span><span class="lineCov">         54 :     if (! ifile) {</span>
+<span class="lineNum">     289 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[ERROR YAMLPARSER:: &quot; &lt;&lt; __func__ &lt;&lt; &quot;]: file &quot; &lt;&lt; fileWithPath &lt;&lt; &quot; not found. &quot;  &lt;&lt; std::endl;</span>
+<span class="lineNum">     290 </span><span class="lineNoCov">          0 :             return nullptr;</span>
+<span class="lineNum">     291 </span>            :     }
+<span class="lineNum">     292 </span>            :     
+<span class="lineNum">     293 </span><span class="lineCov">        108 :     YAML::Node node = YAML::LoadFile(fileWithPath);</span>
+<span class="lineNum">     294 </span><span class="lineCov">        108 :     YAML::const_iterator yamlIt = node.begin();</span>
+<span class="lineNum">     295 </span><span class="lineCov">         54 :     ptrAction = std::make_shared &lt;ActionTimed&gt; ();</span>
+<span class="lineNum">     296 </span>            : 
+<span class="lineNum">     297 </span><span class="lineCov">         54 :     ptrAction-&gt;fillFromYaml ( yamlIt );</span>
+<span class="lineNum">     298 </span>            :     
+<a name="299"><span class="lineNum">     299 </span><span class="lineCov">         54 :     return ptrAction;</span></a>
+<span class="lineNum">     300 </span>            :     
+<span class="lineNum">     301 </span><span class="lineCov">        135 : }</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
