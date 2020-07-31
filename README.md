@@ -12,6 +12,7 @@ Built with Sphix and readthedocs theme
   ~~~bash
   sudo apt-get install python3-sphinx
   sudo python -m pip install sphinx_rtd_theme
+  sudo python3 -m pip install sphinx-copybutton
   ~~~
 
 - Compile locally:
