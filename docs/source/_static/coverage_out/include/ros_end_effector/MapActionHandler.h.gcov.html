@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - main_coverage.info - include/ros_end_effector/MapActionHandler.h</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">include/ros_end_effector</a> - MapActionHandler.h<span style="font-size: 80%;"> (source / <a href="MapActionHandler.h.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">main_coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2020-07-31 15:30:30</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : /*</a>
+<span class="lineNum">       2 </span>            :  * Copyright 2020 &lt;copyright holder&gt; &lt;email&gt;
+<span class="lineNum">       3 </span>            :  *
+<span class="lineNum">       4 </span>            :  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+<span class="lineNum">       5 </span>            :  * you may not use this file except in compliance with the License.
+<span class="lineNum">       6 </span>            :  * You may obtain a copy of the License at
+<span class="lineNum">       7 </span>            :  *
+<span class="lineNum">       8 </span>            :  *     http://www.apache.org/licenses/LICENSE-2.0
+<span class="lineNum">       9 </span>            :  *
+<span class="lineNum">      10 </span>            :  * Unless required by applicable law or agreed to in writing, software
+<span class="lineNum">      11 </span>            :  * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+<span class="lineNum">      12 </span>            :  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<span class="lineNum">      13 </span>            :  * See the License for the specific language governing permissions and
+<span class="lineNum">      14 </span>            :  * limitations under the License.
+<span class="lineNum">      15 </span>            :  */
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : #ifndef MAPACTIONHANDLER_H
+<span class="lineNum">      18 </span>            : #define MAPACTIONHANDLER_H
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span>            : #include &lt;string&gt;
+<span class="lineNum">      21 </span>            : #include &lt;map&gt;
+<span class="lineNum">      22 </span>            : #include &lt;set&gt;
+<span class="lineNum">      23 </span>            : #include &lt;memory&gt;
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : #include &lt;ros_end_effector/YamlWorker.h&gt;
+<span class="lineNum">      26 </span>            : #include &lt;ros_end_effector/Utils.h&gt;
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span>            : #include &lt;ros_end_effector/Action.h&gt;
+<span class="lineNum">      29 </span>            : #include &lt;ros_end_effector/ActionPrimitive.h&gt;
+<span class="lineNum">      30 </span>            : #include &lt;ros_end_effector/ActionTimed.h&gt;
+<span class="lineNum">      31 </span>            : #include &lt;ros_end_effector/ActionGeneric.h&gt;
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span>            : 
+<span class="lineNum">      34 </span>            : 
+<span class="lineNum">      35 </span>            : namespace ROSEE {
+<span class="lineNum">      36 </span>            : /**
+<a name="37"><span class="lineNum">      37 </span>            :  * @todo write docs</a>
+<span class="lineNum">      38 </span>            :  */
+<span class="lineNum">      39 </span><span class="lineCov">         24 : class MapActionHandler {</span>
+<span class="lineNum">      40 </span>            : 
+<span class="lineNum">      41 </span>            : public:
+<span class="lineNum">      42 </span>            : 
+<span class="lineNum">      43 </span>            :     MapActionHandler();
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span>            :     typedef std::map &lt; std::set &lt; std::string &gt;, ROSEE::ActionPrimitive::Ptr &gt; ActionPrimitiveMap;
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span>            :     /**
+<span class="lineNum">      48 </span>            :      * @param folder where the action are. the action will be look in (&lt;pkg_path&gt; + pathFolder + &quot;/&quot; + handName + &quot;/&quot;) ;
+<span class="lineNum">      49 </span>            :      */
+<span class="lineNum">      50 </span>            :     bool parseAllPrimitives(std::string pathFolder);
+<span class="lineNum">      51 </span>            :     bool parseAllGenerics(std::string pathFolder);
+<span class="lineNum">      52 </span>            :     bool parseAllTimeds(std::string pathFolder);
+<span class="lineNum">      53 </span>            :     bool parseAllActions(std::string pathFolder);
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span>            :     /************************************* Generic Functions to get actions *************************/
+<span class="lineNum">      56 </span>            :     /**
+<span class="lineNum">      57 </span>            :      * @brief getter to take all the primitives maps of one type (\param type) 
+<span class="lineNum">      58 </span>            :      *      A primitive map is a map where key is the element involved (joints or fingers) and values the action primitive itself
+<span class="lineNum">      59 </span>            :      *      It returns a vector (differently from version with string as argument) because we can have more primitives
+<span class="lineNum">      60 </span>            :      *      with same type (e.g. a singleJointMultipleTips primitive, which are differente between them because of the joint they move 
+<span class="lineNum">      61 </span>            :      *      (singleJointMultipleTips_5 , singleJointMultipleTips_4 ... ) , or also multipinch)). This consideration is valid for all the other getPrimitive
+<span class="lineNum">      62 </span>            :      * @param type the primitive type of the action that we want
+<span class="lineNum">      63 </span>            :      * @return vector of all the primitives that are of type \param type
+<span class="lineNum">      64 </span>            :      * @warning Be sure to call parsing functions (parseAll*** ) otherwise no actions are returned never
+<span class="lineNum">      65 </span>            :      */
+<span class="lineNum">      66 </span>            :     std::vector&lt;ActionPrimitiveMap&gt; getPrimitiveMap( ROSEE::ActionPrimitive::Type type ) const;
+<span class="lineNum">      67 </span>            :     
+<span class="lineNum">      68 </span>            :     ActionPrimitiveMap getPrimitiveMap( std::string primitiveName )  const;
+<span class="lineNum">      69 </span>            :     std::map &lt;std::string, ActionPrimitiveMap&gt; getAllPrimitiveMaps () const;
+<span class="lineNum">      70 </span>            :     
+<span class="lineNum">      71 </span>            :     /**
+<span class="lineNum">      72 </span>            :      * @brief getter to take a single primitive, identified by the name and by the key (e.g. finger involved or joint involved)
+<span class="lineNum">      73 </span>            :      * 
+<span class="lineNum">      74 </span>            :      * There are various version of this get, if you pass the type a vector is returned. For some type, can be  
+<span class="lineNum">      75 </span>            :      * easier to use pair or single string as second argument instead of the set of string, when the type is associated with these
+<span class="lineNum">      76 </span>            :      * particular keys (e.g. trig has a single string (the finger used) as key, pinch has a pair (the 2 fingers used for the pinch) ... )
+<span class="lineNum">      77 </span>            :      *
+<span class="lineNum">      78 </span>            :      * @param primitiveName the name of the primitive that we want
+<span class="lineNum">      79 </span>            :      * @param key a set of strings to identify the primitive that we want among all the primitives that are called \param primitiveName
+<span class="lineNum">      80 </span>            :      * @example to get a pinch with thumb and index, we will pass &quot;pinch&quot; and a set of two element, &quot;thumb&quot; and &quot;index&quot;. Note that 
+<span class="lineNum">      81 </span>            :      *      for this case we can also pass a pair (and not a set) as second argument
+<span class="lineNum">      82 </span>            :      * 
+<span class="lineNum">      83 </span>            :      * @return pointer to the primitive that we were looking for. nullptr if action not found.
+<span class="lineNum">      84 </span>            :      * 
+<span class="lineNum">      85 </span>            :      */
+<span class="lineNum">      86 </span>            :     ROSEE::ActionPrimitive::Ptr getPrimitive (std::string primitiveName, std::set&lt;std::string&gt; key) const;
+<span class="lineNum">      87 </span>            :     std::vector&lt;ROSEE::ActionPrimitive::Ptr&gt; getPrimitive (ROSEE::ActionPrimitive::Type, std::set&lt;std::string&gt; key) const;
+<span class="lineNum">      88 </span>            :     ROSEE::ActionPrimitive::Ptr getPrimitive (std::string primitiveName, std::vector&lt;std::string&gt; key) const;
+<span class="lineNum">      89 </span>            :     std::vector&lt;ROSEE::ActionPrimitive::Ptr&gt; getPrimitive (ROSEE::ActionPrimitive::Type, std::vector&lt;std::string&gt; key) const;
+<span class="lineNum">      90 </span>            :     ROSEE::ActionPrimitive::Ptr getPrimitive (std::string primitiveName, std::pair&lt;std::string, std::string&gt; key) const;
+<span class="lineNum">      91 </span>            :     std::vector&lt;ROSEE::ActionPrimitive::Ptr&gt; getPrimitive (ROSEE::ActionPrimitive::Type, std::pair&lt;std::string, std::string&gt; key) const;
+<span class="lineNum">      92 </span>            :     ROSEE::ActionPrimitive::Ptr getPrimitive (std::string primitiveName, std::string key) const;
+<span class="lineNum">      93 </span>            :     std::vector&lt;ROSEE::ActionPrimitive::Ptr&gt; getPrimitive (ROSEE::ActionPrimitive::Type, std::string key) const;
+<span class="lineNum">      94 </span>            :     
+<span class="lineNum">      95 </span>            :     std::shared_ptr&lt;ROSEE::ActionGeneric&gt; getGeneric (std::string name) const;
+<span class="lineNum">      96 </span>            :     std::map &lt;std::string, std::shared_ptr&lt;ROSEE::ActionGeneric&gt;&gt; getAllGenerics () const;
+<span class="lineNum">      97 </span>            :     
+<span class="lineNum">      98 </span>            :     std::shared_ptr&lt;ROSEE::ActionTimed&gt; getTimed (std::string name) const;
+<span class="lineNum">      99 </span>            :     std::map &lt;std::string, std::shared_ptr&lt;ROSEE::ActionTimed&gt;&gt; getAllTimeds () const;
+<span class="lineNum">     100 </span>            :     
+<span class="lineNum">     101 </span>            :     /************************************* Specific functions for specific actions *************************/
+<span class="lineNum">     102 </span>            : 
+<span class="lineNum">     103 </span>            : 
+<span class="lineNum">     104 </span>            :     /**
+<span class="lineNum">     105 </span>            :      * @brief function to return the map that contains all the singleJointMultipleTips primitive with that moves the specific number
+<span class="lineNum">     106 </span>            :      *    of fingers \param nFingers. This is in practice, the file singleJointMultipleTips_*nFingers*.yaml
+<span class="lineNum">     107 </span>            :      * 
+<span class="lineNum">     108 </span>            :      * It return only one map because per definition we have only one ActionPrimitiveMap of type singleJointMultipleTips with a defined number of 
+<span class="lineNum">     109 </span>            :      * nFinger. (Then inside it we can have more primitives ( when we have a hand with more joints that moves more than 1 finger), but
+<span class="lineNum">     110 </span>            :      * always with the same number of nFinger)
+<span class="lineNum">     111 </span>            :      * 
+<span class="lineNum">     112 </span>            :      * @param nFingers the number of the finger that the singleJointMultipleTips primitives moves
+<span class="lineNum">     113 </span>            :      * @return A map with key the joint that moves the \param nFingers and as value the primitive with all the info to command it to the hand.
+<span class="lineNum">     114 </span>            :      *      Obvioulsy we can have more joints that move a certain number (\param nFingers) of fingers
+<span class="lineNum">     115 </span>            :      * @todo return with the key as set instead??? or leave as it is?
+<span class="lineNum">     116 </span>            :      */
+<span class="lineNum">     117 </span>            :     std::map &lt;std::string, ROSEE::ActionPrimitive::Ptr&gt; getPrimitiveSingleJointMultipleTipsMap ( unsigned int nFingers ) const;   
+<span class="lineNum">     118 </span>            :     
+<span class="lineNum">     119 </span>            :     /**
+<span class="lineNum">     120 </span>            :      * @brief This function try to get an action that should be a grasp
+<span class="lineNum">     121 </span>            :      * 
+<span class="lineNum">     122 </span>            :      * A real grasp, until now, can be two things: 
+<span class="lineNum">     123 </span>            :      *  - a generic/composed action, composed by trig with all the fingers
+<span class="lineNum">     124 </span>            :      *  - a SingleJointMultipleTips primitive action, where the number of fingers moved is obviously the number of finger of the hand
+<span class="lineNum">     125 </span>            :      * In the second case, if we have more joints that moves all the fingers, we return no action because we do not know which one is
+<span class="lineNum">     126 </span>            :      * &quot;the grasp&quot;. If we have only one joint that move all fingers, we return the singleJointMultipleTips action associated with this joint, even if
+<span class="lineNum">     127 </span>            :      * there is the possibility that this is not a grasp (but which hand has only one joint that moves all fingers and it is not for a grasp?)
+<span class="lineNum">     128 </span>            :      * 
+<span class="lineNum">     129 </span>            :      * This function look first for a generic (or composed, that is a derived class of generic) action with name \param graspName, 
+<span class="lineNum">     130 </span>            :      * that should have been created and emitted before calling the \ref parseAllActions (or \ref parseAllGenerics) 
+<span class="lineNum">     131 </span>            :      * (e.g. in UniversalFindActions putting all the trigs togheter, but we can also define the grasp in another way).
+<span class="lineNum">     132 </span>            :      *   
+<span class="lineNum">     133 </span>            :      * @param nFingers the number of the finger of the hand, that is an information that this class hasn't
+<span class="lineNum">     134 </span>            :      * @param graspName name given to the action grasp, default is &quot;grasp&quot;
+<span class="lineNum">     135 </span>            :      * @return pointer to Action, because the pointed object can be a primitive or a generic action.
+<span class="lineNum">     136 </span>            :      * @todo If not found, it tries to create a composed action, done with all trigs, and store this new action??   
+<span class="lineNum">     137 </span>            :      * @warning Generic and singleJointMultipleTips are different ros msg: singleJointMultipleTips want a element to be set (the joint) so this can cause problems..
+<span class="lineNum">     138 </span>            :      *   so maybe this function should not exist
+<span class="lineNum">     139 </span>            :      */
+<span class="lineNum">     140 </span>            :     ROSEE::Action::Ptr getGrasp ( unsigned int nFingers, std::string graspName = &quot;grasp&quot; ) ;
+<span class="lineNum">     141 </span>            :     
+<span class="lineNum">     142 </span>            :     /************************************* Other functions not returning actions themselves *************************/
+<span class="lineNum">     143 </span>            :     std::set&lt;std::string&gt; getFingertipsForPinch ( std::string finger, ROSEE::ActionPrimitive::Type pinchType) const;
+<span class="lineNum">     144 </span>            :     std::map &lt;std::string, std::set&lt;std::string&gt; &gt; getPinchTightPairsMap ( ) const;
+<span class="lineNum">     145 </span>            :     std::map &lt;std::string, std::set&lt;std::string&gt; &gt; getPinchLoosePairsMap ( ) const;
+<span class="lineNum">     146 </span>            : 
+<span class="lineNum">     147 </span>            : private:
+<span class="lineNum">     148 </span>            :     
+<span class="lineNum">     149 </span>            :     void findPinchPairsMap();
+<span class="lineNum">     150 </span>            :     
+<span class="lineNum">     151 </span>            :     std::string handName;
+<span class="lineNum">     152 </span>            : 
+<span class="lineNum">     153 </span>            :     std::map &lt;std::string, ActionPrimitiveMap&gt; primitives;
+<span class="lineNum">     154 </span>            :     std::map &lt;std::string, std::shared_ptr&lt;ROSEE::ActionGeneric&gt;&gt; generics;
+<span class="lineNum">     155 </span>            :     std::map &lt;std::string, std::shared_ptr&lt;ROSEE::ActionTimed&gt;&gt; timeds;
+<span class="lineNum">     156 </span>            :     
+<span class="lineNum">     157 </span>            :     std::map &lt;std::string, std::set&lt;std::string&gt; &gt; pinchTightPairsMap;
+<span class="lineNum">     158 </span>            :     std::map &lt;std::string, std::set&lt;std::string&gt; &gt; pinchLoosePairsMap;
+<span class="lineNum">     159 </span>            : 
+<span class="lineNum">     160 </span>            : 
+<span class="lineNum">     161 </span>            : };
+<span class="lineNum">     162 </span>            : 
+<span class="lineNum">     163 </span>            : } //namespace rosee
+<span class="lineNum">     164 </span>            : 
+<span class="lineNum">     165 </span>            : #endif // MAPACTIONHANDLER_H
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

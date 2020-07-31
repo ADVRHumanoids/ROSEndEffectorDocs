@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - main_coverage.info - src/EEInterface.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">src</a> - EEInterface.cpp<span style="font-size: 80%;"> (source / <a href="EEInterface.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">main_coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">48</td>
+            <td class="headerCovTableEntry">56</td>
+            <td class="headerCovTableEntryMed">85.7 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2020-07-31 15:30:30</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">15</td>
+            <td class="headerCovTableEntry">17</td>
+            <td class="headerCovTableEntryMed">88.2 %</td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : /*</a>
+<span class="lineNum">       2 </span>            :  * Copyright (C) 2019 IIT-HHCM
+<span class="lineNum">       3 </span>            :  * Author: Luca Muratore
+<span class="lineNum">       4 </span>            :  * email:  luca.muratore@iit.it
+<span class="lineNum">       5 </span>            :  * 
+<span class="lineNum">       6 </span>            :  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+<span class="lineNum">       7 </span>            :  * you may not use this file except in compliance with the License.
+<span class="lineNum">       8 </span>            :  * You may obtain a copy of the License at
+<span class="lineNum">       9 </span>            :  * http://www.apache.org/licenses/LICENSE-2.0
+<span class="lineNum">      10 </span>            :  * 
+<span class="lineNum">      11 </span>            :  * Unless required by applicable law or agreed to in writing, software
+<span class="lineNum">      12 </span>            :  * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+<span class="lineNum">      13 </span>            :  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<span class="lineNum">      14 </span>            :  * See the License for the specific language governing permissions and
+<span class="lineNum">      15 </span>            :  * limitations under the License.
+<span class="lineNum">      16 </span>            : */
+<span class="lineNum">      17 </span>            : 
+<a name="18"><span class="lineNum">      18 </span>            : #include &lt;ros_end_effector/EEInterface.h&gt;</a>
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span><span class="lineCov">         72 : ROSEE::EEInterface::EEInterface ( const ROSEE::Parser&amp; p  ) {</span>
+<span class="lineNum">      21 </span>            :     
+<span class="lineNum">      22 </span>            :     // get number of joints from parse and resize dynamic structure
+<span class="lineNum">      23 </span><span class="lineCov">         72 :     _joints_num = p.getActuatedJointsNumber();</span>
+<span class="lineNum">      24 </span><span class="lineCov">         72 :     _upper_limits.resize(_joints_num);</span>
+<span class="lineNum">      25 </span><span class="lineCov">         72 :     _lower_limits.resize(_joints_num);</span>
+<span class="lineNum">      26 </span>            :     
+<span class="lineNum">      27 </span>            :     // get the EE name
+<span class="lineNum">      28 </span><span class="lineCov">         72 :     _ee_name = p.getEndEffectorName();</span>
+<span class="lineNum">      29 </span>            :     
+<span class="lineNum">      30 </span>            :     // get the ee description
+<span class="lineNum">      31 </span><span class="lineCov">         72 :     _ee_description = p.getFingerJointMap();</span>
+<span class="lineNum">      32 </span>            :     
+<span class="lineNum">      33 </span>            :     // get he joints urdf description
+<span class="lineNum">      34 </span><span class="lineCov">         72 :     _urdf_joint_map = p.getUrdfJointMap();</span>
+<span class="lineNum">      35 </span>            :     
+<span class="lineNum">      36 </span><span class="lineCov">         72 :     int id = 0;</span>
+<span class="lineNum">      37 </span>            :     
+<span class="lineNum">      38 </span>            :     // save the finger names
+<span class="lineNum">      39 </span><span class="lineCov">        246 :     for( const auto&amp; finger_joints_pair : _ee_description ) {</span>
+<span class="lineNum">      40 </span>            :         
+<span class="lineNum">      41 </span>            :         // fingers
+<span class="lineNum">      42 </span><span class="lineCov">        348 :         std::string finger_name = finger_joints_pair.first;</span>
+<span class="lineNum">      43 </span><span class="lineCov">        174 :         _fingers_names.push_back(finger_name);</span>
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span><span class="lineCov">        462 :         for( const auto&amp; j : finger_joints_pair.second ) {</span>
+<span class="lineNum">      46 </span>            :             
+<span class="lineNum">      47 </span>            :             // joint name
+<span class="lineNum">      48 </span><span class="lineCov">        288 :             _actuated_joints.push_back(j);</span>
+<span class="lineNum">      49 </span>            :             
+<span class="lineNum">      50 </span>            :             // internal id
+<span class="lineNum">      51 </span><span class="lineCov">        288 :             _joints_internal_id_map[j] = id;</span>
+<span class="lineNum">      52 </span>            :             
+<span class="lineNum">      53 </span>            :             // finger internal id map 
+<span class="lineNum">      54 </span><span class="lineCov">        288 :             _finger_joints_internal_id_map[finger_name].push_back(id);</span>
+<span class="lineNum">      55 </span>            :             
+<span class="lineNum">      56 </span>            :             // upper limits
+<span class="lineNum">      57 </span><span class="lineCov">        288 :             _upper_limits[id] = _urdf_joint_map.at(j)-&gt;limits-&gt;upper;</span>
+<span class="lineNum">      58 </span>            :             
+<span class="lineNum">      59 </span>            :             // lower limits
+<span class="lineNum">      60 </span><span class="lineCov">        288 :             _lower_limits[id] = _urdf_joint_map.at(j)-&gt;limits-&gt;lower;</span>
+<span class="lineNum">      61 </span>            :             
+<span class="lineNum">      62 </span>            :             // increase internal id
+<span class="lineNum">      63 </span><span class="lineCov">        288 :             id++;</span>
+<span class="lineNum">      64 </span>            :         }
+<span class="lineNum">      65 </span>            :     }
+<span class="lineNum">      66 </span>            : 
+<a name="67"><span class="lineNum">      67 </span><span class="lineCov">         72 : }</span></a>
+<span class="lineNum">      68 </span>            : 
+<span class="lineNum">      69 </span><span class="lineCov">         24 : std::string ROSEE::EEInterface::getName() {</span>
+<span class="lineNum">      70 </span>            :     
+<span class="lineNum">      71 </span><span class="lineCov">         24 :     return _ee_name;</span>
+<span class="lineNum">      72 </span>            : }
+<a name="73"><span class="lineNum">      73 </span>            : </a>
+<span class="lineNum">      74 </span>            : 
+<span class="lineNum">      75 </span><span class="lineCov">         22 : Eigen::VectorXd ROSEE::EEInterface::getLowerPositionLimits() {</span>
+<span class="lineNum">      76 </span>            : 
+<span class="lineNum">      77 </span><span class="lineCov">         22 :     return _lower_limits;</span>
+<a name="78"><span class="lineNum">      78 </span>            : }</a>
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span><span class="lineCov">         11 : Eigen::VectorXd ROSEE::EEInterface::getUpperPositionLimits() {</span>
+<span class="lineNum">      81 </span>            : 
+<span class="lineNum">      82 </span><span class="lineCov">         11 :     return _upper_limits;</span>
+<a name="83"><span class="lineNum">      83 </span>            : }</a>
+<span class="lineNum">      84 </span>            : 
+<span class="lineNum">      85 </span><span class="lineCov">      48066 : bool ROSEE::EEInterface::getInternalIdForJoint ( std::string joint_name, int&amp; internal_id ) {</span>
+<span class="lineNum">      86 </span>            :         
+<span class="lineNum">      87 </span><span class="lineCov">      48066 :     if ( _joints_internal_id_map.count(joint_name) ) {</span>
+<span class="lineNum">      88 </span>            :         
+<span class="lineNum">      89 </span><span class="lineCov">      48066 :         internal_id = _joints_internal_id_map.at(joint_name);</span>
+<span class="lineNum">      90 </span><span class="lineCov">      48066 :         return true;</span>
+<span class="lineNum">      91 </span>            :     }
+<span class="lineNum">      92 </span>            :     
+<span class="lineNum">      93 </span><span class="lineNoCov">          0 :     return false;</span>
+<span class="lineNum">      94 </span>            : 
+<span class="lineNum">      95 </span>            : }
+<a name="96"><span class="lineNum">      96 </span>            : </a>
+<span class="lineNum">      97 </span>            : 
+<span class="lineNum">      98 </span><span class="lineNoCov">          0 : bool ROSEE::EEInterface::getInternalIdsForFinger ( std::string finger_name, std::vector&lt; int &gt;&amp; internal_ids ) {</span>
+<span class="lineNum">      99 </span>            : 
+<span class="lineNum">     100 </span><span class="lineNoCov">          0 :     if ( _finger_joints_internal_id_map.count(finger_name) ) {</span>
+<span class="lineNum">     101 </span>            :         
+<span class="lineNum">     102 </span><span class="lineNoCov">          0 :         internal_ids = _finger_joints_internal_id_map.at(finger_name);</span>
+<span class="lineNum">     103 </span><span class="lineNoCov">          0 :         return true;</span>
+<span class="lineNum">     104 </span>            :     }
+<span class="lineNum">     105 </span>            :     
+<span class="lineNum">     106 </span><span class="lineNoCov">          0 :     return false;</span>
+<span class="lineNum">     107 </span>            : 
+<a name="108"><span class="lineNum">     108 </span>            : }</a>
+<span class="lineNum">     109 </span>            : 
+<span class="lineNum">     110 </span><span class="lineCov">      11926 : const std::vector&lt; std::string &gt;&amp; ROSEE::EEInterface::getFingers() {</span>
+<span class="lineNum">     111 </span>            :     
+<span class="lineNum">     112 </span><span class="lineCov">      11926 :     return _fingers_names;</span>
+<a name="113"><span class="lineNum">     113 </span>            : }</a>
+<span class="lineNum">     114 </span>            : 
+<span class="lineNum">     115 </span><span class="lineCov">      27657 : bool ROSEE::EEInterface::isFinger ( std::string finger_name ) {</span>
+<span class="lineNum">     116 </span>            :     
+<span class="lineNum">     117 </span><span class="lineCov">      27657 :     return ( _ee_description.count(finger_name) &gt; 0 );</span>
+<span class="lineNum">     118 </span>            : }
+<span class="lineNum">     119 </span>            : 
+<a name="120"><span class="lineNum">     120 </span>            : </a>
+<span class="lineNum">     121 </span>            : 
+<span class="lineNum">     122 </span><span class="lineCov">         57 : const std::vector&lt; std::string &gt;&amp;  ROSEE::EEInterface::getActuatedJoints () {</span>
+<span class="lineNum">     123 </span>            :     
+<span class="lineNum">     124 </span><span class="lineCov">         57 :     return _actuated_joints;</span>
+<span class="lineNum">     125 </span>            : }
+<a name="126"><span class="lineNum">     126 </span>            : </a>
+<span class="lineNum">     127 </span>            : 
+<span class="lineNum">     128 </span><span class="lineCov">      27639 : bool ROSEE::EEInterface::getActuatedJointsInFinger ( std::string finger_name, std::vector&lt; std::string &gt;&amp; actuated_joints ) {</span>
+<span class="lineNum">     129 </span>            : 
+<span class="lineNum">     130 </span><span class="lineCov">      27639 :     if( !isFinger(finger_name) ) {</span>
+<span class="lineNum">     131 </span>            :         
+<span class="lineNum">     132 </span><span class="lineNoCov">          0 :         return false;</span>
+<span class="lineNum">     133 </span>            :     }
+<span class="lineNum">     134 </span>            :     
+<span class="lineNum">     135 </span><span class="lineCov">      27639 :     actuated_joints = _ee_description.at(finger_name);</span>
+<span class="lineNum">     136 </span><span class="lineCov">      27639 :     return true;</span>
+<a name="137"><span class="lineNum">     137 </span>            : }</a>
+<span class="lineNum">     138 </span>            : 
+<span class="lineNum">     139 </span><span class="lineCov">         30 : int ROSEE::EEInterface::getActuatedJointsNum() {</span>
+<span class="lineNum">     140 </span>            :     
+<span class="lineNum">     141 </span><span class="lineCov">         30 :     return _joints_num;</span>
+<a name="142"><span class="lineNum">     142 </span>            : }</a>
+<span class="lineNum">     143 </span>            : 
+<span class="lineNum">     144 </span><span class="lineCov">         12 : int ROSEE::EEInterface::getActuatedJointsNumInFinger ( std::string finger_name ) {</span>
+<span class="lineNum">     145 </span>            :     
+<span class="lineNum">     146 </span><span class="lineCov">         12 :     if( !isFinger(finger_name) ) {</span>
+<span class="lineNum">     147 </span>            :         
+<span class="lineNum">     148 </span><span class="lineNoCov">          0 :         return -1;</span>
+<span class="lineNum">     149 </span>            :     } 
+<span class="lineNum">     150 </span>            : 
+<span class="lineNum">     151 </span><span class="lineCov">         12 :     return _ee_description.at(finger_name).size();</span>
+<a name="152"><span class="lineNum">     152 </span>            : }</a>
+<span class="lineNum">     153 </span>            : 
+<span class="lineNum">     154 </span><span class="lineCov">         18 : int ROSEE::EEInterface::getFingersNumber() {</span>
+<span class="lineNum">     155 </span>            :     
+<span class="lineNum">     156 </span><span class="lineCov">         18 :     return _fingers_names.size();</span>
+<span class="lineNum">     157 </span>            : }
+<a name="158"><span class="lineNum">     158 </span>            : </a>
+<span class="lineNum">     159 </span>            : 
+<a name="160"><span class="lineNum">     160 </span><span class="lineCov">         72 : ROSEE::EEInterface::~EEInterface() {</span></a>
+<span class="lineNum">     161 </span>            : 
+<span class="lineNum">     162 </span><span class="lineCov">        162 : }</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

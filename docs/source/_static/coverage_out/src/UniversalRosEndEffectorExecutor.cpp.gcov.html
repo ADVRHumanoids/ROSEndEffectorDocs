@@ -1,0 +1,697 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - main_coverage.info - src/UniversalRosEndEffectorExecutor.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">src</a> - UniversalRosEndEffectorExecutor.cpp<span style="font-size: 80%;"> (source / <a href="UniversalRosEndEffectorExecutor.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">main_coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">241</td>
+            <td class="headerCovTableEntry">285</td>
+            <td class="headerCovTableEntryMed">84.6 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2020-07-31 15:30:30</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">16</td>
+            <td class="headerCovTableEntry">19</td>
+            <td class="headerCovTableEntryMed">84.2 %</td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : /*</a>
+<span class="lineNum">       2 </span>            :  * Copyright (C) 2019 IIT-HHCM
+<span class="lineNum">       3 </span>            :  * Author: Luca Muratore
+<span class="lineNum">       4 </span>            :  * email:  luca.muratore@iit.it
+<span class="lineNum">       5 </span>            :  *
+<span class="lineNum">       6 </span>            :  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+<span class="lineNum">       7 </span>            :  * you may not use this file except in compliance with the License.
+<span class="lineNum">       8 </span>            :  * You may obtain a copy of the License at
+<span class="lineNum">       9 </span>            :  * http://www.apache.org/licenses/LICENSE-2.0
+<span class="lineNum">      10 </span>            :  *
+<span class="lineNum">      11 </span>            :  * Unless required by applicable law or agreed to in writing, software
+<span class="lineNum">      12 </span>            :  * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+<span class="lineNum">      13 </span>            :  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<span class="lineNum">      14 </span>            :  * See the License for the specific language governing permissions and
+<span class="lineNum">      15 </span>            :  * limitations under the License.
+<span class="lineNum">      16 </span>            : */
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            : #include &lt;ros_end_effector/UniversalRosEndEffectorExecutor.h&gt;
+<a name="19"><span class="lineNum">      19 </span>            : </a>
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span><span class="lineCov">         24 : ROSEE::UniversalRosEndEffectorExecutor::UniversalRosEndEffectorExecutor ( std::string ns ) : _nh ( ns ) {</span>
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span><span class="lineCov">         24 :     if ( ! _nh.getParam ( &quot;/rate&quot;, _rate ) ) {</span>
+<span class="lineNum">      24 </span><span class="lineNoCov">          0 :         ROS_INFO_STREAM ( &quot;Ros parameter for rate not found, I'm setting the default rate of 100 Hz&quot; );</span>
+<span class="lineNum">      25 </span><span class="lineNoCov">          0 :         _rate = 100.0;</span>
+<span class="lineNum">      26 </span>            :     }
+<span class="lineNum">      27 </span><span class="lineCov">         24 :     _period = 1.0 / _rate;</span>
+<span class="lineNum">      28 </span><span class="lineCov">         48 :     _loop_timer = _nh.createTimer ( ros::Duration ( _period ),</span>
+<span class="lineNum">      29 </span>            :                                     &amp;UniversalRosEndEffectorExecutor::timer_callback,
+<span class="lineNum">      30 </span><span class="lineCov">         24 :                                     this, false, false );</span>
+<span class="lineNum">      31 </span><span class="lineCov">         24 :     _time = 0.0;</span>
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span><span class="lineCov">         48 :     ROSEE::Parser p ( _nh );</span>
+<span class="lineNum">      34 </span><span class="lineCov">         24 :     p.init (); //TBD check return</span>
+<span class="lineNum">      35 </span><span class="lineCov">         24 :     p.printEndEffectorFingerJointsMap();</span>
+<span class="lineNum">      36 </span>            :     
+<span class="lineNum">      37 </span>            : 
+<span class="lineNum">      38 </span>            :     // retrieve the ee interface
+<span class="lineNum">      39 </span><span class="lineCov">         24 :     _ee = std::make_shared&lt;ROSEE::EEInterface&gt; ( p );</span>
+<span class="lineNum">      40 </span><span class="lineCov">         24 :     ROS_INFO_STREAM ( &quot;Fingers in EEInterface: &quot; );</span>
+<span class="lineNum">      41 </span><span class="lineCov">         80 :     for ( auto&amp; f : _ee-&gt;getFingers() ) {</span>
+<span class="lineNum">      42 </span><span class="lineCov">         56 :         ROS_INFO_STREAM ( f );</span>
+<span class="lineNum">      43 </span>            :     }
+<span class="lineNum">      44 </span>            :     
+<span class="lineNum">      45 </span><span class="lineCov">         24 :     folderForActions = p.getActionPath();</span>
+<span class="lineNum">      46 </span><span class="lineCov">         24 :     if ( folderForActions.size() == 0 ){ //if no action path is set in the yaml file...</span>
+<span class="lineNum">      47 </span><span class="lineNoCov">          0 :         folderForActions = ROSEE::Utils::getPackagePath() + &quot;/configs/actions/&quot; + _ee-&gt;getName();</span>
+<span class="lineNum">      48 </span>            :     }
+<span class="lineNum">      49 </span>            :     
+<span class="lineNum">      50 </span><span class="lineCov">         24 :     _all_joints =_ee-&gt;getActuatedJoints();</span>
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span>            :     // prepare joint state publisher
+<span class="lineNum">      53 </span><span class="lineCov">         48 :     std::string jstate_topic_name  = &quot;joint_commands&quot;;</span>
+<span class="lineNum">      54 </span><span class="lineCov">         24 :     const int jstate_queue = 10;</span>
+<span class="lineNum">      55 </span>            : 
+<span class="lineNum">      56 </span><span class="lineCov">         24 :     _joint_state_pub = _nh.advertise&lt;sensor_msgs::JointState&gt; ( jstate_topic_name, jstate_queue );</span>
+<span class="lineNum">      57 </span>            : 
+<span class="lineNum">      58 </span><span class="lineCov">         24 :     _joint_num = _ee-&gt;getActuatedJointsNum();</span>
+<span class="lineNum">      59 </span><span class="lineCov">         24 :     _js_msg.name.resize ( _joint_num );</span>
+<span class="lineNum">      60 </span><span class="lineCov">         24 :     _js_msg.position.resize ( _joint_num );</span>
+<span class="lineNum">      61 </span><span class="lineCov">         24 :     _js_msg.velocity.resize ( _joint_num );</span>
+<span class="lineNum">      62 </span><span class="lineCov">         24 :     _js_msg.effort.resize ( _joint_num );</span>
+<span class="lineNum">      63 </span>            : 
+<span class="lineNum">      64 </span>            :     // allocate HAL TBD get from parser the lib to load
+<span class="lineNum">      65 </span><span class="lineCov">         24 :     _hal = std::make_shared&lt;ROSEE::DummyHal&gt; ( _ee );</span>
+<span class="lineNum">      66 </span>            : 
+<span class="lineNum">      67 </span>            :     // filter TBD select filter profile
+<span class="lineNum">      68 </span><span class="lineCov">         24 :     const double DAMPING_FACT = 1.0;</span>
+<span class="lineNum">      69 </span><span class="lineCov">         24 :     const double BW_MEDIUM = 2.0;</span>
+<span class="lineNum">      70 </span><span class="lineCov">         24 :     double omega = 2.0 * M_PI * BW_MEDIUM;</span>
+<span class="lineNum">      71 </span>            : 
+<span class="lineNum">      72 </span><span class="lineCov">         24 :     _filt_q.setDamping ( DAMPING_FACT );</span>
+<span class="lineNum">      73 </span><span class="lineCov">         24 :     _filt_q.setTimeStep ( _period );</span>
+<span class="lineNum">      74 </span><span class="lineCov">         24 :     _filt_q.setOmega ( omega );</span>
+<span class="lineNum">      75 </span>            : 
+<span class="lineNum">      76 </span>            :     // initialize references
+<span class="lineNum">      77 </span><span class="lineCov">         24 :     _qref.resize ( _joint_num );</span>
+<span class="lineNum">      78 </span>            :     // TBD init from current position reference
+<span class="lineNum">      79 </span><span class="lineCov">         24 :     _qref.setZero();</span>
+<span class="lineNum">      80 </span>            :     // reset filter
+<span class="lineNum">      81 </span><span class="lineCov">         24 :     _filt_q.reset ( _qref );</span>
+<span class="lineNum">      82 </span>            : 
+<span class="lineNum">      83 </span>            :     // primitives
+<span class="lineNum">      84 </span><span class="lineCov">         24 :     init_grapsing_primitive();</span>
+<span class="lineNum">      85 </span>            :     
+<span class="lineNum">      86 </span>            :     // actions
+<span class="lineNum">      87 </span><span class="lineCov">         24 :     init_action_server();</span>
+<span class="lineNum">      88 </span><span class="lineCov">         24 :     timed_requested = false;</span>
+<span class="lineNum">      89 </span><span class="lineCov">         24 :     timed_index = -1;</span>
+<span class="lineNum">      90 </span>            : 
+<span class="lineNum">      91 </span>            :     // services (only for gui now)
+<span class="lineNum">      92 </span><span class="lineCov">         24 :     init_actionsInfo_services();</span>
+<span class="lineNum">      93 </span>            : 
+<span class="lineNum">      94 </span>            :     // this should be done by hal?
+<span class="lineNum">      95 </span><span class="lineCov">         24 :     init_robotState_sub();</span>
+<span class="lineNum">      96 </span>            : 
+<a name="97"><span class="lineNum">      97 </span><span class="lineCov">         24 : }</span></a>
+<span class="lineNum">      98 </span>            : 
+<span class="lineNum">      99 </span><span class="lineCov">         24 : bool ROSEE::UniversalRosEndEffectorExecutor::init_grapsing_primitive() {</span>
+<span class="lineNum">     100 </span>            : 
+<span class="lineNum">     101 </span>            :     // parse YAML for End-Effector cconfiguration
+<span class="lineNum">     102 </span><span class="lineCov">         24 :     ROSEE::YamlWorker yamlWorker ;</span>
+<span class="lineNum">     103 </span>            :     
+<span class="lineNum">     104 </span><span class="lineCov">         48 :     std::string folderForActionsComposed = folderForActions + &quot;/generics/&quot;;</span>
+<span class="lineNum">     105 </span>            : 
+<span class="lineNum">     106 </span>            :     // get all action in the handler
+<span class="lineNum">     107 </span><span class="lineCov">         24 :     mapActionHandler.parseAllActions(folderForActions);</span>
+<span class="lineNum">     108 </span>            : 
+<span class="lineNum">     109 </span>            :     // pinch tight
+<span class="lineNum">     110 </span><span class="lineCov">         24 :     _pinchParsedMap = mapActionHandler.getPrimitiveMap(&quot;pinchTight&quot;);</span>
+<span class="lineNum">     111 </span>            :     
+<span class="lineNum">     112 </span>            :     // pinch loose
+<span class="lineNum">     113 </span><span class="lineCov">         24 :     if (mapActionHandler.getPrimitiveMap(ROSEE::ActionPrimitive::Type::PinchLoose).size()&gt;0) {</span>
+<span class="lineNum">     114 </span>            :         //another method to get the map
+<span class="lineNum">     115 </span><span class="lineNoCov">          0 :         _pinchLooseParsedMap = mapActionHandler.getPrimitiveMap(ROSEE::ActionPrimitive::Type::PinchLoose).at(0);</span>
+<span class="lineNum">     116 </span>            :     } 
+<span class="lineNum">     117 </span>            :     
+<span class="lineNum">     118 </span>            :     // trig, tip flex and fing flex
+<span class="lineNum">     119 </span><span class="lineCov">         24 :     _trigParsedMap = mapActionHandler.getPrimitiveMap(&quot;trig&quot;);</span>
+<span class="lineNum">     120 </span><span class="lineCov">         24 :     _tipFlexParsedMap = mapActionHandler.getPrimitiveMap(&quot;tipFlex&quot;);</span>
+<span class="lineNum">     121 </span><span class="lineCov">         24 :     _fingFlexParsedMap = mapActionHandler.getPrimitiveMap(&quot;fingFlex&quot;);</span>
+<span class="lineNum">     122 </span>            : 
+<span class="lineNum">     123 </span>            :     // NOTE maps useful just to recap
+<span class="lineNum">     124 </span><span class="lineCov">         24 :     ROS_INFO_STREAM ( &quot;PINCHES-TIGHT:&quot; );</span>
+<span class="lineNum">     125 </span><span class="lineCov">         40 :     for ( auto &amp;i : _pinchParsedMap ) {</span>
+<span class="lineNum">     126 </span><span class="lineCov">         16 :         i.second-&gt;print();</span>
+<span class="lineNum">     127 </span>            :     }
+<span class="lineNum">     128 </span><span class="lineCov">         24 :     ROS_INFO_STREAM ( &quot;PINCHES-LOOSE:&quot; );</span>
+<span class="lineNum">     129 </span><span class="lineCov">         24 :     for ( auto &amp;i : _pinchLooseParsedMap ) {</span>
+<span class="lineNum">     130 </span><span class="lineNoCov">          0 :         i.second-&gt;print();</span>
+<span class="lineNum">     131 </span>            :     }
+<span class="lineNum">     132 </span><span class="lineCov">         24 :     ROS_INFO_STREAM ( &quot;TRIGGERS:&quot; );</span>
+<span class="lineNum">     133 </span><span class="lineCov">         66 :     for ( auto &amp;i : _trigParsedMap ) {</span>
+<span class="lineNum">     134 </span><span class="lineCov">         42 :         i.second-&gt;print();</span>
+<span class="lineNum">     135 </span>            :     }
+<span class="lineNum">     136 </span><span class="lineCov">         24 :     ROS_INFO_STREAM ( &quot;TIP FLEX:&quot; );</span>
+<span class="lineNum">     137 </span><span class="lineCov">         66 :     for ( auto &amp;i : _tipFlexParsedMap ) {</span>
+<span class="lineNum">     138 </span><span class="lineCov">         42 :         i.second-&gt;print();</span>
+<span class="lineNum">     139 </span>            :     }
+<span class="lineNum">     140 </span><span class="lineCov">         24 :     ROS_INFO_STREAM ( &quot;FINGER FLEX:&quot; );</span>
+<span class="lineNum">     141 </span><span class="lineCov">         66 :     for ( auto &amp;i : _fingFlexParsedMap ) {</span>
+<span class="lineNum">     142 </span><span class="lineCov">         42 :         i.second-&gt;print();</span>
+<span class="lineNum">     143 </span>            :     }
+<span class="lineNum">     144 </span>            :     
+<span class="lineNum">     145 </span>            :     // composed actions
+<span class="lineNum">     146 </span><span class="lineCov">         24 :     _graspParsed = mapActionHandler.getGeneric(&quot;grasp&quot;);</span>
+<span class="lineNum">     147 </span>            :     
+<span class="lineNum">     148 </span>            :     // recap
+<span class="lineNum">     149 </span><span class="lineCov">         24 :     if (_graspParsed != nullptr) {</span>
+<span class="lineNum">     150 </span><span class="lineCov">         17 :         ROS_INFO_STREAM ( &quot;GRASP:&quot; );</span>
+<span class="lineNum">     151 </span><span class="lineCov">         17 :         _graspParsed-&gt;print();</span>
+<span class="lineNum">     152 </span>            :     }
+<span class="lineNum">     153 </span>            :     
+<span class="lineNum">     154 </span><span class="lineCov">         48 :     return true;</span>
+<a name="155"><span class="lineNum">     155 </span>            : }</a>
+<span class="lineNum">     156 </span>            : 
+<span class="lineNum">     157 </span><span class="lineCov">         24 : bool ROSEE::UniversalRosEndEffectorExecutor::init_action_server () {</span>
+<span class="lineNum">     158 </span>            :     
+<span class="lineNum">     159 </span><span class="lineCov">         24 :     _ros_action_server = std::make_shared&lt;RosActionServer&gt; (&quot;action_command&quot; , &amp;_nh);</span>
+<span class="lineNum">     160 </span><span class="lineCov">         24 :     return true;</span>
+<span class="lineNum">     161 </span>            : }
+<a name="162"><span class="lineNum">     162 </span>            : </a>
+<span class="lineNum">     163 </span>            : //**************************** TODO this should be in the hal? **********************************************//
+<span class="lineNum">     164 </span><span class="lineCov">         24 : void ROSEE::UniversalRosEndEffectorExecutor::init_robotState_sub () {</span>
+<span class="lineNum">     165 </span>            : 
+<span class="lineNum">     166 </span>            :     //to get joint state from gazebo, if used
+<span class="lineNum">     167 </span><span class="lineCov">         48 :     std::string topic_name_js;</span>
+<span class="lineNum">     168 </span><span class="lineCov">         24 :     _nh.param&lt;std::string&gt;(&quot;/rosee/joint_states_topic&quot;, topic_name_js, &quot;/ros_end_effector/joint_states&quot;);</span>
+<span class="lineNum">     169 </span>            :     
+<span class="lineNum">     170 </span><span class="lineCov">         24 :     ROS_INFO_STREAM ( &quot;Getting joint pos from '&quot; &lt;&lt; topic_name_js &lt;&lt; &quot;'&quot; );</span>
+<span class="lineNum">     171 </span>            :     
+<span class="lineNum">     172 </span><span class="lineCov">         48 :     jointPosSub = _nh.subscribe (topic_name_js, 1, </span>
+<span class="lineNum">     173 </span><span class="lineCov">         24 :                                  &amp;ROSEE::UniversalRosEndEffectorExecutor::jointStateClbk, this);</span>
+<a name="174"><span class="lineNum">     174 </span><span class="lineCov">         24 : }</span></a>
+<span class="lineNum">     175 </span>            : 
+<span class="lineNum">     176 </span><span class="lineCov">      10563 : void ROSEE::UniversalRosEndEffectorExecutor::jointStateClbk(const sensor_msgs::JointStateConstPtr&amp; msg) {</span>
+<span class="lineNum">     177 </span>            :     
+<span class="lineNum">     178 </span>            :     //store only joint pos now, this should not be here anyaway...
+<span class="lineNum">     179 </span>            :     //HACK if gazebo is used, here we store all joint info received, also the fixed and not actuated 
+<span class="lineNum">     180 </span>            :     // but anyway they will not be used, but check if size is used.
+<span class="lineNum">     181 </span><span class="lineCov">      59963 :     for (int i=0; i&lt; msg-&gt;name.size(); i++) {</span>
+<span class="lineNum">     182 </span><span class="lineCov">      98800 :         std::vector &lt;double&gt; one_dof { msg-&gt;position.at(i) };</span>
+<span class="lineNum">     183 </span><span class="lineCov">      49400 :         jointPos[msg-&gt;name.at(i)] = one_dof;</span>
+<span class="lineNum">     184 </span>            :         
+<span class="lineNum">     185 </span>            :     }
+<span class="lineNum">     186 </span><span class="lineCov">      10563 : }</span>
+<span class="lineNum">     187 </span>            : //**************************** above this should be in the hal? **********************************************//
+<span class="lineNum">     188 </span>            : 
+<a name="189"><span class="lineNum">     189 </span>            : </a>
+<span class="lineNum">     190 </span>            : // set q ref, similarly to pinch and grasp clbk
+<span class="lineNum">     191 </span><span class="lineCov">         24 : bool ROSEE::UniversalRosEndEffectorExecutor::updateGoal() {</span>
+<span class="lineNum">     192 </span>            :     
+<span class="lineNum">     193 </span><span class="lineCov">         48 :     rosee_msg::ROSEEActionControl goal = _ros_action_server-&gt;getGoal();</span>
+<span class="lineNum">     194 </span>            :     
+<span class="lineNum">     195 </span><span class="lineCov">         24 :     timed_requested = false;</span>
+<span class="lineNum">     196 </span>            :     
+<span class="lineNum">     197 </span><span class="lineCov">         24 :     if (goal.action_type != ROSEE::Action::Type::Timed){</span>
+<span class="lineNum">     198 </span><span class="lineCov">         21 :         if (goal.percentage &lt; 0 || goal.percentage &gt; 1) { </span>
+<span class="lineNum">     199 </span><span class="lineNoCov">          0 :             ROS_ERROR_STREAM ( &quot;Received an action-goal with percentage &quot; &lt;&lt; goal.percentage &lt;&lt; </span>
+<span class="lineNum">     200 </span>            :                 &quot; Please insert a value between 0 (for 0%) and 1 (for 100%) &quot;);
+<span class="lineNum">     201 </span><span class="lineNoCov">          0 :             _ros_action_server-&gt;abortGoal(&quot;Percentage not valid&quot;);</span>
+<span class="lineNum">     202 </span><span class="lineNoCov">          0 :             return false;</span>
+<span class="lineNum">     203 </span>            :             
+<span class="lineNum">     204 </span>            :         }
+<span class="lineNum">     205 </span>            :     }
+<span class="lineNum">     206 </span>            :     
+<span class="lineNum">     207 </span>            :     // we need this as global member because in send_feedback we need it...
+<span class="lineNum">     208 </span>            :     //JointsInvolvedCount joint_involved_mask;
+<span class="lineNum">     209 </span>            :     
+<span class="lineNum">     210 </span>            :     //Be sure that action_type of goal is defined well in msg, it is not a real enum
+<span class="lineNum">     211 </span><span class="lineCov">         24 :     switch (goal.action_type) {</span>
+<span class="lineNum">     212 </span>            :         
+<span class="lineNum">     213 </span>            :     case ROSEE::Action::Type::Primitive :
+<span class="lineNum">     214 </span>            :     {
+<span class="lineNum">     215 </span><span class="lineCov">          9 :         ROSEE::ActionPrimitive::Ptr primitive = mapActionHandler.getPrimitive (goal.action_name, goal.selectable_items);</span>
+<span class="lineNum">     216 </span>            :         
+<span class="lineNum">     217 </span><span class="lineCov">          9 :         if (primitive == nullptr) {</span>
+<span class="lineNum">     218 </span>            :             //error message already printed in getPrimitive
+<span class="lineNum">     219 </span><span class="lineNoCov">          0 :             _ros_action_server-&gt;abortGoal(&quot;Primitive Action not found&quot;);</span>
+<span class="lineNum">     220 </span><span class="lineNoCov">          0 :             return false;</span>
+<span class="lineNum">     221 </span>            :         }
+<span class="lineNum">     222 </span>            :         
+<span class="lineNum">     223 </span><span class="lineCov">          9 :         joint_position_goal = primitive-&gt;getJointPos();</span>
+<span class="lineNum">     224 </span><span class="lineCov">          9 :         joint_involved_mask = primitive-&gt;getJointsInvolvedCount();</span>
+<span class="lineNum">     225 </span>            : 
+<span class="lineNum">     226 </span><span class="lineCov">          9 :         break;</span>
+<span class="lineNum">     227 </span>            :     }
+<span class="lineNum">     228 </span>            :     case ROSEE::Action::Type::Generic : // same thing as composed
+<span class="lineNum">     229 </span>            :     case ROSEE::Action::Type::Composed :
+<span class="lineNum">     230 </span>            :     {
+<span class="lineNum">     231 </span><span class="lineCov">         12 :         ROSEE::ActionGeneric::Ptr generic = mapActionHandler.getGeneric(goal.action_name);</span>
+<span class="lineNum">     232 </span>            :         
+<span class="lineNum">     233 </span><span class="lineCov">         12 :         if (generic == nullptr) {</span>
+<span class="lineNum">     234 </span>            :             //error message already printed in getGeneric
+<span class="lineNum">     235 </span><span class="lineNoCov">          0 :             _ros_action_server-&gt;abortGoal(&quot;Generic Action not found&quot;);</span>
+<span class="lineNum">     236 </span><span class="lineNoCov">          0 :             return false;</span>
+<span class="lineNum">     237 </span>            :         }
+<span class="lineNum">     238 </span>            :         
+<span class="lineNum">     239 </span><span class="lineCov">         12 :         joint_position_goal = generic-&gt;getJointPos();</span>
+<span class="lineNum">     240 </span><span class="lineCov">         12 :         joint_involved_mask = generic-&gt;getJointsInvolvedCount();</span>
+<span class="lineNum">     241 </span>            :         
+<span class="lineNum">     242 </span><span class="lineCov">         12 :         break;</span>
+<span class="lineNum">     243 </span>            :     }
+<span class="lineNum">     244 </span>            :     case ROSEE::Action::Type::Timed : {
+<span class="lineNum">     245 </span>            :         // here we take the first of the timed action and we set refs for it
+<span class="lineNum">     246 </span>            :         //TODO first time margin (before) is not considered?
+<span class="lineNum">     247 </span>            : 
+<span class="lineNum">     248 </span><span class="lineCov">          3 :         timedAction = mapActionHandler.getTimed(goal.action_name);</span>
+<span class="lineNum">     249 </span>            :         
+<span class="lineNum">     250 </span><span class="lineCov">          3 :         if (timedAction == nullptr) {</span>
+<span class="lineNum">     251 </span>            :             //error message already printed in getTimed
+<span class="lineNum">     252 </span><span class="lineNoCov">          0 :             _ros_action_server-&gt;abortGoal(&quot;Timed Action not found&quot;);</span>
+<span class="lineNum">     253 </span><span class="lineNoCov">          0 :             return false;</span>
+<span class="lineNum">     254 </span>            :         }
+<span class="lineNum">     255 </span>            :         
+<span class="lineNum">     256 </span><span class="lineCov">          3 :         timed_requested = true;</span>
+<span class="lineNum">     257 </span><span class="lineCov">          3 :         timed_index = 0;</span>
+<span class="lineNum">     258 </span><span class="lineCov">          3 :         joint_position_goal = timedAction-&gt;getAllJointPos().at(0);</span>
+<span class="lineNum">     259 </span><span class="lineCov">          6 :         joint_involved_mask = timedAction-&gt;getJointCountAction(</span>
+<span class="lineNum">     260 </span><span class="lineCov">          9 :             timedAction-&gt;getInnerActionsNames().at(0));</span>
+<span class="lineNum">     261 </span>            : 
+<span class="lineNum">     262 </span><span class="lineCov">          3 :         goal.percentage = 1; //so we are sure it is set, for timed is always 100%</span>
+<span class="lineNum">     263 </span>            :         
+<span class="lineNum">     264 </span><span class="lineCov">          3 :         break;</span>
+<span class="lineNum">     265 </span>            :     }
+<span class="lineNum">     266 </span>            :     case ROSEE::Action::Type::None :
+<span class="lineNum">     267 </span>            :     {
+<span class="lineNum">     268 </span><span class="lineNoCov">          0 :         ROS_ERROR_STREAM ( &quot;Received an action-goal of type None (&quot; &lt;&lt; goal.action_type &lt;&lt; </span>
+<span class="lineNum">     269 </span>            :             &quot;) which is a no-type. Please use valid Action::Type &quot;);
+<span class="lineNum">     270 </span><span class="lineNoCov">          0 :         _ros_action_server-&gt;abortGoal(&quot;Invalid type NONE&quot;);</span>
+<span class="lineNum">     271 </span><span class="lineNoCov">          0 :         return false;</span>
+<span class="lineNum">     272 </span>            :         break;
+<span class="lineNum">     273 </span>            :     }
+<span class="lineNum">     274 </span>            :     default : {
+<span class="lineNum">     275 </span><span class="lineNoCov">          0 :         ROS_ERROR_STREAM ( &quot;Received an action-goal of type &quot; &lt;&lt; goal.action_type &lt;&lt; </span>
+<span class="lineNum">     276 </span>            :             &quot; which I do not recognize. Please use valid Action::Type &quot;);
+<span class="lineNum">     277 </span><span class="lineNoCov">          0 :         _ros_action_server-&gt;abortGoal(&quot;Invalid type &quot; + std::to_string(goal.action_type) );</span>
+<span class="lineNum">     278 </span><span class="lineNoCov">          0 :         return false;</span>
+<span class="lineNum">     279 </span>            :     }
+<span class="lineNum">     280 </span>            :     } 
+<span class="lineNum">     281 </span>            :     
+<span class="lineNum">     282 </span><span class="lineCov">         24 :     return updateRefGoal(goal.percentage);</span>
+<span class="lineNum">     283 </span>            :     
+<a name="284"><span class="lineNum">     284 </span>            : }</a>
+<span class="lineNum">     285 </span>            : 
+<span class="lineNum">     286 </span><span class="lineCov">         27 : bool ROSEE::UniversalRosEndEffectorExecutor::updateRefGoal(double percentage) {</span>
+<span class="lineNum">     287 </span>            :     
+<span class="lineNum">     288 </span><span class="lineCov">         27 :     normGoalFromInitialPos = 0;</span>
+<span class="lineNum">     289 </span><span class="lineCov">        132 :     for ( auto it : joint_involved_mask ) {</span>
+<span class="lineNum">     290 </span>            : 
+<span class="lineNum">     291 </span><span class="lineCov">        105 :         if ( it.second  != 0 ) {</span>
+<span class="lineNum">     292 </span><span class="lineCov">         69 :             int id = -1;</span>
+<span class="lineNum">     293 </span><span class="lineCov">         69 :             _ee-&gt;getInternalIdForJoint ( it.first, id );</span>
+<span class="lineNum">     294 </span>            :             
+<span class="lineNum">     295 </span><span class="lineCov">         69 :             if( id &gt;= 0 ) {</span>
+<span class="lineNum">     296 </span>            :                 // NOTE assume single joint
+<span class="lineNum">     297 </span><span class="lineCov">         69 :                 _qref[id] = joint_position_goal.at ( it.first ).at ( 0 ) * percentage;</span>
+<span class="lineNum">     298 </span>            :                 // to give the % as feedback, we store the initial distance from the goal
+<span class="lineNum">     299 </span>            :                 //TODO take care that initially jointPos can be empty...
+<span class="lineNum">     300 </span><span class="lineCov">         69 :                 normGoalFromInitialPos +=  pow (_qref[id] - jointPos.at(it.first).at(0), 2 )  ;</span>
+<span class="lineNum">     301 </span>            :             }
+<span class="lineNum">     302 </span>            :             else {
+<span class="lineNum">     303 </span><span class="lineNoCov">          0 :                 ROS_WARN_STREAM ( &quot;Trying to move Joint: &quot; &lt;&lt; it.first &lt;&lt; &quot; with ID: &quot; &lt;&lt; id );</span>
+<span class="lineNum">     304 </span><span class="lineNoCov">          0 :                 _ros_action_server-&gt;abortGoal(&quot;Invalid Joint id&quot; );</span>
+<span class="lineNum">     305 </span><span class="lineNoCov">          0 :                 return false;</span>
+<span class="lineNum">     306 </span>            :             }
+<span class="lineNum">     307 </span>            :         }
+<span class="lineNum">     308 </span>            :     }
+<span class="lineNum">     309 </span><span class="lineCov">         27 :     normGoalFromInitialPos = sqrt(normGoalFromInitialPos); </span>
+<span class="lineNum">     310 </span>            :     
+<span class="lineNum">     311 </span><span class="lineCov">         27 :     if (timed_requested) {</span>
+<span class="lineNum">     312 </span>            :         
+<span class="lineNum">     313 </span>            :         //we are in this function BEFORE the begin of execution of a inner... so
+<span class="lineNum">     314 </span>            :         //we set the toWait to (afterMargin of previous inner + beforeMargin of actual (todo) inner)
+<span class="lineNum">     315 </span>            :         //except when timed_index == 0 where we have only the before
+<span class="lineNum">     316 </span>            :         //the after margin of last inner is not considered.
+<span class="lineNum">     317 </span><span class="lineCov">          6 :         if (timed_index == 0) {</span>
+<span class="lineNum">     318 </span><span class="lineCov">          3 :             msToWait = timedAction-&gt;getAllActionMargins().at(timed_index).first;</span>
+<span class="lineNum">     319 </span>            :             
+<span class="lineNum">     320 </span><span class="lineCov">          3 :         } else if (timed_index &lt; timedAction-&gt;getInnerActionsNames().size()) {</span>
+<span class="lineNum">     321 </span><span class="lineCov">          9 :             msToWait = timedAction-&gt;getAllActionMargins().at(timed_index-1).second + </span>
+<span class="lineNum">     322 </span><span class="lineCov">          6 :                      timedAction-&gt;getAllActionMargins().at(timed_index).first;</span>
+<span class="lineNum">     323 </span>            :         }
+<span class="lineNum">     324 </span><span class="lineCov">          6 :         msToWait *= 1000;</span>
+<span class="lineNum">     325 </span><span class="lineCov">          6 :         timer.reset();</span>
+<span class="lineNum">     326 </span>            :     }
+<span class="lineNum">     327 </span>            :     
+<span class="lineNum">     328 </span><span class="lineCov">         27 :     return true;</span>
+<a name="329"><span class="lineNum">     329 </span>            : }</a>
+<span class="lineNum">     330 </span>            : 
+<span class="lineNum">     331 </span><span class="lineCov">       1487 : double ROSEE::UniversalRosEndEffectorExecutor::sendFeedbackGoal(std::string currentAction) {</span>
+<span class="lineNum">     332 </span>            :     //norm between goal and initial (when the goal arrived) position, but only considering the jointInvolved
+<span class="lineNum">     333 </span>            :     
+<span class="lineNum">     334 </span><span class="lineCov">       1487 :     double actualNorm = 0;</span>
+<span class="lineNum">     335 </span>            :     
+<span class="lineNum">     336 </span><span class="lineCov">       7732 :     for ( auto it : joint_involved_mask ) {</span>
+<span class="lineNum">     337 </span>            : 
+<span class="lineNum">     338 </span><span class="lineCov">       6245 :         if ( it.second  != 0 ) {</span>
+<span class="lineNum">     339 </span><span class="lineCov">       3643 :             int id = -1;</span>
+<span class="lineNum">     340 </span><span class="lineCov">       3643 :             _ee-&gt;getInternalIdForJoint ( it.first, id );</span>
+<span class="lineNum">     341 </span>            :             
+<span class="lineNum">     342 </span><span class="lineCov">       3643 :             if( id &gt;= 0 ) {</span>
+<span class="lineNum">     343 </span>            :                 // NOTE assume single joint
+<span class="lineNum">     344 </span>            :                 //TODO qref or qref_filtered?
+<span class="lineNum">     345 </span><span class="lineCov">       3643 :                 actualNorm += pow ( _qref[id] - jointPos.at(it.first).at(0) , 2 );</span>
+<span class="lineNum">     346 </span>            :             }
+<span class="lineNum">     347 </span>            :             
+<span class="lineNum">     348 </span>            :             else {
+<span class="lineNum">     349 </span><span class="lineNoCov">          0 :                 ROS_ERROR_STREAM ( &quot;YOU SHOULD NOT BE HERE, previous error should stop execution&quot;);</span>
+<span class="lineNum">     350 </span>            :             }
+<span class="lineNum">     351 </span>            :         }
+<span class="lineNum">     352 </span>            :     }
+<span class="lineNum">     353 </span><span class="lineCov">       1487 :     actualNorm = sqrt(actualNorm);</span>
+<span class="lineNum">     354 </span>            :     
+<span class="lineNum">     355 </span>            :     double actualCompletationPercentage;
+<span class="lineNum">     356 </span>            : 
+<span class="lineNum">     357 </span><span class="lineCov">       1487 :     if (actualNorm &lt; 0.01) { </span>
+<span class="lineNum">     358 </span><span class="lineCov">         97 :         actualCompletationPercentage = 100;</span>
+<span class="lineNum">     359 </span>            :     } else {
+<span class="lineNum">     360 </span>            :         
+<span class="lineNum">     361 </span>            :     //NewValue = (((OldValue - OldMin) * (NewMax - NewMin)) / (OldMax - OldMin)) + NewMin
+<span class="lineNum">     362 </span>            :         actualCompletationPercentage =
+<span class="lineNum">     363 </span><span class="lineCov">       1390 :         (((actualNorm - normGoalFromInitialPos) * (100-0)) / (0 - normGoalFromInitialPos)) + 0;</span>
+<span class="lineNum">     364 </span>            :     }
+<span class="lineNum">     365 </span>            : 
+<span class="lineNum">     366 </span><span class="lineCov">       1487 :     _ros_action_server-&gt;sendFeedback(actualCompletationPercentage, currentAction);</span>
+<span class="lineNum">     367 </span><span class="lineCov">       1487 :     return actualCompletationPercentage;</span>
+<a name="368"><span class="lineNum">     368 </span>            : }</a>
+<span class="lineNum">     369 </span>            : 
+<span class="lineNum">     370 </span><span class="lineCov">         24 : bool ROSEE::UniversalRosEndEffectorExecutor::init_actionsInfo_services() {</span>
+<span class="lineNum">     371 </span>            :         
+<span class="lineNum">     372 </span><span class="lineCov">         98 :     for (auto primitiveContainers : mapActionHandler.getAllPrimitiveMaps() ) {</span>
+<span class="lineNum">     373 </span>            :         
+<span class="lineNum">     374 </span><span class="lineCov">        148 :         rosee_msg::ActionInfo actInfo;</span>
+<span class="lineNum">     375 </span><span class="lineCov">         74 :         actInfo.action_name = primitiveContainers.first;</span>
+<span class="lineNum">     376 </span><span class="lineCov">         74 :         actInfo.action_type = ROSEE::Action::Type::Primitive;</span>
+<span class="lineNum">     377 </span><span class="lineCov">         74 :         actInfo.actionPrimitive_type = primitiveContainers.second.begin()-&gt;second-&gt;getPrimitiveType();</span>
+<span class="lineNum">     378 </span><span class="lineCov">         74 :         actInfo.seq = 0; //TODO check if necessary the seq in this msg</span>
+<span class="lineNum">     379 </span>            :         //until now, there is not a primitive that does not have &quot;something&quot; to select
+<span class="lineNum">     380 </span>            :         // (eg pinch has 2 fing, trig one fing, singleJointMultipleTips 1 joint...). 
+<span class="lineNum">     381 </span>            :         //Instead generic action has always no thing to select (next for loop)
+<span class="lineNum">     382 </span><span class="lineCov">         74 :         actInfo.max_selectable = primitiveContainers.second.begin()-&gt;first.size();</span>
+<span class="lineNum">     383 </span>            :         //TODO extract the keys with another mapActionHandler function?
+<span class="lineNum">     384 </span>            :         actInfo.selectable_names =
+<span class="lineNum">     385 </span><span class="lineCov">        148 :             ROSEE::Utils::extract_keys_merged(primitiveContainers.second,</span>
+<span class="lineNum">     386 </span><span class="lineCov">        148 :                                               _ee-&gt;getFingers().size());</span>
+<span class="lineNum">     387 </span><span class="lineCov">         74 :         _actionsInfoVect.push_back(actInfo);</span>
+<span class="lineNum">     388 </span>            : 
+<span class="lineNum">     389 </span>            :     }
+<span class="lineNum">     390 </span>            : 
+<span class="lineNum">     391 </span><span class="lineCov">        113 :     for (auto genericMap : mapActionHandler.getAllGenerics() ) {</span>
+<span class="lineNum">     392 </span>            : 
+<span class="lineNum">     393 </span><span class="lineCov">        178 :         rosee_msg::ActionInfo actInfo;</span>
+<span class="lineNum">     394 </span><span class="lineCov">         89 :         actInfo.action_name = genericMap.first;</span>
+<span class="lineNum">     395 </span><span class="lineCov">         89 :         actInfo.action_type = genericMap.second-&gt;getType();</span>
+<span class="lineNum">     396 </span><span class="lineCov">         89 :         actInfo.actionPrimitive_type = ROSEE::ActionPrimitive::Type::None;</span>
+<span class="lineNum">     397 </span><span class="lineCov">         89 :         actInfo.seq = 0; //TODO check if necessary the seq in this msg</span>
+<span class="lineNum">     398 </span>            :         //Generic action has always no thing to select UNTIL NOW
+<span class="lineNum">     399 </span><span class="lineCov">         89 :         actInfo.max_selectable = 0;</span>
+<span class="lineNum">     400 </span>            : 
+<span class="lineNum">     401 </span><span class="lineCov">         89 :         _actionsInfoVect.push_back(actInfo);</span>
+<span class="lineNum">     402 </span>            : 
+<span class="lineNum">     403 </span>            :     }
+<span class="lineNum">     404 </span>            :     
+<span class="lineNum">     405 </span><span class="lineCov">         72 :     for (auto timedMap : mapActionHandler.getAllTimeds() ) {</span>
+<span class="lineNum">     406 </span>            :         
+<span class="lineNum">     407 </span><span class="lineCov">         96 :         rosee_msg::ActionInfo actInfo;</span>
+<span class="lineNum">     408 </span><span class="lineCov">         48 :         actInfo.action_name = timedMap.first;</span>
+<span class="lineNum">     409 </span><span class="lineCov">         48 :         actInfo.action_type = timedMap.second-&gt;getType();</span>
+<span class="lineNum">     410 </span><span class="lineCov">         48 :         actInfo.actionPrimitive_type = ROSEE::ActionPrimitive::Type::None;</span>
+<span class="lineNum">     411 </span><span class="lineCov">         48 :         actInfo.seq = 0; //TODO check if necessary the seq in this msg</span>
+<span class="lineNum">     412 </span><span class="lineCov">         48 :         actInfo.max_selectable = 0;</span>
+<span class="lineNum">     413 </span>            :         // we use selectable items info to store in it the action that compose this timed
+<span class="lineNum">     414 </span><span class="lineCov">        173 :         for (std::string act : timedMap.second-&gt;getInnerActionsNames()) {</span>
+<span class="lineNum">     415 </span><span class="lineCov">        125 :             actInfo.inner_actions.push_back(act);</span>
+<span class="lineNum">     416 </span><span class="lineCov">        125 :             auto margin = timedMap.second-&gt;getActionMargins(act);</span>
+<span class="lineNum">     417 </span><span class="lineCov">        125 :             actInfo.before_margins.push_back(margin.first);</span>
+<span class="lineNum">     418 </span><span class="lineCov">        125 :             actInfo.after_margins.push_back(margin.second);</span>
+<span class="lineNum">     419 </span>            :         }
+<span class="lineNum">     420 </span>            :         
+<span class="lineNum">     421 </span>            : 
+<span class="lineNum">     422 </span><span class="lineCov">         48 :         _actionsInfoVect.push_back(actInfo);</span>
+<span class="lineNum">     423 </span>            :         
+<span class="lineNum">     424 </span>            :     }
+<span class="lineNum">     425 </span>            :     
+<span class="lineNum">     426 </span><span class="lineCov">         48 :     _ros_server_actionsInfo = _nh.advertiseService(&quot;ActionsInfo&quot;, </span>
+<span class="lineNum">     427 </span><span class="lineCov">         24 :         &amp;ROSEE::UniversalRosEndEffectorExecutor::actionsInfoCallback, this);</span>
+<span class="lineNum">     428 </span>            :     
+<span class="lineNum">     429 </span><span class="lineCov">         48 :     _ros_server_selectablePairInfo = _nh.advertiseService(&quot;SelectablePairInfo&quot;, </span>
+<span class="lineNum">     430 </span><span class="lineCov">         24 :         &amp;ROSEE::UniversalRosEndEffectorExecutor::selectablePairInfoCallback, this);</span>
+<span class="lineNum">     431 </span>            :     
+<span class="lineNum">     432 </span><span class="lineCov">         24 :     return true;</span>
+<span class="lineNum">     433 </span>            : 
+<span class="lineNum">     434 </span>            : }
+<a name="435"><span class="lineNum">     435 </span>            : </a>
+<span class="lineNum">     436 </span>            : 
+<span class="lineNum">     437 </span><span class="lineNoCov">          0 : bool ROSEE::UniversalRosEndEffectorExecutor::actionsInfoCallback(</span>
+<span class="lineNum">     438 </span>            :     rosee_msg::ActionsInfo::Request&amp; request,
+<span class="lineNum">     439 </span>            :     rosee_msg::ActionsInfo::Response&amp; response) {
+<span class="lineNum">     440 </span>            :     
+<span class="lineNum">     441 </span>            :     //here we only send the actionsInfo vector, it is better to build it not in this clbk
+<span class="lineNum">     442 </span>            :     
+<span class="lineNum">     443 </span>            :     //TODO timestamp necessary?
+<span class="lineNum">     444 </span><span class="lineNoCov">          0 :     for (auto &amp;act : _actionsInfoVect) {</span>
+<span class="lineNum">     445 </span><span class="lineNoCov">          0 :         act.stamp = ros::Time::now();</span>
+<span class="lineNum">     446 </span>            :     }
+<span class="lineNum">     447 </span><span class="lineNoCov">          0 :     response.actionsInfo = _actionsInfoVect;</span>
+<span class="lineNum">     448 </span><span class="lineNoCov">          0 :     return true;</span>
+<span class="lineNum">     449 </span>            :     
+<a name="450"><span class="lineNum">     450 </span>            : }</a>
+<span class="lineNum">     451 </span>            : 
+<span class="lineNum">     452 </span><span class="lineNoCov">          0 : bool ROSEE::UniversalRosEndEffectorExecutor::selectablePairInfoCallback(</span>
+<span class="lineNum">     453 </span>            :     rosee_msg::SelectablePairInfo::Request&amp; request,
+<span class="lineNum">     454 </span>            :     rosee_msg::SelectablePairInfo::Response&amp; response) {
+<span class="lineNum">     455 </span>            :     
+<span class="lineNum">     456 </span><span class="lineNoCov">          0 :     std::set&lt;std::string&gt; companionFingers;</span>
+<span class="lineNum">     457 </span><span class="lineNoCov">          0 :     if (request.action_name.compare (&quot;pinchTight&quot;) == 0) {</span>
+<span class="lineNum">     458 </span>            :         companionFingers =
+<span class="lineNum">     459 </span><span class="lineNoCov">          0 :             mapActionHandler.getFingertipsForPinch(request.element_name,</span>
+<span class="lineNum">     460 </span><span class="lineNoCov">          0 :                 ROSEE::ActionPrimitive::Type::PinchTight) ;</span>
+<span class="lineNum">     461 </span>            :                 
+<span class="lineNum">     462 </span><span class="lineNoCov">          0 :     } else if (request.action_name.compare (&quot;pinchLoose&quot;) == 0) {</span>
+<span class="lineNum">     463 </span>            :         companionFingers =
+<span class="lineNum">     464 </span><span class="lineNoCov">          0 :             mapActionHandler.getFingertipsForPinch(request.element_name,</span>
+<span class="lineNum">     465 </span><span class="lineNoCov">          0 :                 ROSEE::ActionPrimitive::Type::PinchLoose) ;</span>
+<span class="lineNum">     466 </span>            :                 
+<span class="lineNum">     467 </span>            :     } else {
+<span class="lineNum">     468 </span><span class="lineNoCov">          0 :         ROS_ERROR_STREAM ( &quot;Received&quot; &lt;&lt; request.action_name &lt;&lt; &quot; that is not&quot; &lt;&lt;</span>
+<span class="lineNum">     469 </span>            :             &quot;a recognizible action name to look for finger companions&quot; );
+<span class="lineNum">     470 </span><span class="lineNoCov">          0 :         return false;</span>
+<span class="lineNum">     471 </span>            :     }
+<span class="lineNum">     472 </span>            :     
+<span class="lineNum">     473 </span><span class="lineNoCov">          0 :     if (companionFingers.size() == 0) {</span>
+<span class="lineNum">     474 </span><span class="lineNoCov">          0 :         return false;</span>
+<span class="lineNum">     475 </span>            :     }
+<span class="lineNum">     476 </span>            :     
+<span class="lineNum">     477 </span>            :     //push the elements of set into the vector
+<span class="lineNum">     478 </span><span class="lineNoCov">          0 :     for (auto fing : companionFingers ) {</span>
+<span class="lineNum">     479 </span><span class="lineNoCov">          0 :         response.pair_elements.push_back (fing);</span>
+<span class="lineNum">     480 </span>            :     }
+<span class="lineNum">     481 </span>            :     
+<span class="lineNum">     482 </span><span class="lineNoCov">          0 :     return true;</span>
+<span class="lineNum">     483 </span>            :         
+<a name="484"><span class="lineNum">     484 </span>            : }</a>
+<span class="lineNum">     485 </span>            : 
+<span class="lineNum">     486 </span><span class="lineCov">      11822 : void ROSEE::UniversalRosEndEffectorExecutor::fill_publish_joint_states() {</span>
+<span class="lineNum">     487 </span>            : 
+<span class="lineNum">     488 </span><span class="lineCov">      11822 :     _js_msg.header.stamp = ros::Time::now();</span>
+<span class="lineNum">     489 </span><span class="lineCov">      11822 :     _js_msg.header.seq = _seq_id++;</span>
+<span class="lineNum">     490 </span>            : 
+<span class="lineNum">     491 </span><span class="lineCov">      11822 :     int c = 0;</span>
+<span class="lineNum">     492 </span><span class="lineCov">      39459 :     for ( auto&amp; f : _ee-&gt;getFingers() ) {</span>
+<span class="lineNum">     493 </span>            : 
+<span class="lineNum">     494 </span><span class="lineCov">      27637 :         _ee-&gt;getActuatedJointsInFinger ( f, _joints );</span>
+<span class="lineNum">     495 </span>            : 
+<span class="lineNum">     496 </span><span class="lineCov">      27637 :         double value = 0;</span>
+<span class="lineNum">     497 </span><span class="lineCov">      73101 :         for ( auto&amp; j : _joints ) {</span>
+<span class="lineNum">     498 </span>            : 
+<span class="lineNum">     499 </span><span class="lineCov">      45464 :             _js_msg.name[c] = j;</span>
+<span class="lineNum">     500 </span>            : 
+<span class="lineNum">     501 </span><span class="lineCov">      45464 :             _hal-&gt;getMotorPosition ( j, value );</span>
+<span class="lineNum">     502 </span><span class="lineCov">      45464 :             _js_msg.position[c] = value;</span>
+<span class="lineNum">     503 </span>            : 
+<span class="lineNum">     504 </span><span class="lineCov">      45464 :             _hal-&gt;getMotorVelocity ( j, value );</span>
+<span class="lineNum">     505 </span><span class="lineCov">      45464 :             _js_msg.velocity[c] = value;</span>
+<span class="lineNum">     506 </span>            : 
+<span class="lineNum">     507 </span><span class="lineCov">      45464 :             _hal-&gt;getMotorEffort ( j, value );</span>
+<span class="lineNum">     508 </span><span class="lineCov">      45464 :             _js_msg.effort[c] = value;</span>
+<span class="lineNum">     509 </span>            : 
+<span class="lineNum">     510 </span><span class="lineCov">      45464 :             c++;</span>
+<span class="lineNum">     511 </span>            :         }
+<span class="lineNum">     512 </span><span class="lineCov">      27637 :         _joints.clear();</span>
+<span class="lineNum">     513 </span>            :     }
+<span class="lineNum">     514 </span>            : 
+<span class="lineNum">     515 </span><span class="lineCov">      11822 :     _joint_state_pub.publish ( _js_msg );</span>
+<a name="516"><span class="lineNum">     516 </span><span class="lineCov">      11822 : }</span></a>
+<span class="lineNum">     517 </span>            : 
+<span class="lineNum">     518 </span><span class="lineCov">      11566 : void ROSEE::UniversalRosEndEffectorExecutor::set_references() {</span>
+<span class="lineNum">     519 </span>            : 
+<span class="lineNum">     520 </span><span class="lineCov">      11566 :     _qref_filtered = _filt_q.process ( _qref );</span>
+<span class="lineNum">     521 </span><span class="lineCov">      11566 :     int id = -1;</span>
+<span class="lineNum">     522 </span>            : 
+<span class="lineNum">     523 </span><span class="lineCov">      55887 :     for ( const auto&amp; j : _all_joints ) {</span>
+<span class="lineNum">     524 </span>            : 
+<span class="lineNum">     525 </span><span class="lineCov">      44321 :         _ee-&gt;getInternalIdForJoint ( j, id );</span>
+<span class="lineNum">     526 </span><span class="lineCov">      44321 :         _hal-&gt;setPositionReference ( j, _qref_filtered[id] );</span>
+<span class="lineNum">     527 </span>            :     }
+<span class="lineNum">     528 </span>            : 
+<span class="lineNum">     529 </span><span class="lineCov">      11566 : }</span>
+<a name="530"><span class="lineNum">     530 </span>            : </a>
+<span class="lineNum">     531 </span>            : 
+<span class="lineNum">     532 </span><span class="lineCov">      11822 : void ROSEE::UniversalRosEndEffectorExecutor::timer_callback ( const ros::TimerEvent&amp; timer_ev ) {</span>
+<span class="lineNum">     533 </span>            : 
+<span class="lineNum">     534 </span>            :     //TODO check the order of these functions...
+<span class="lineNum">     535 </span>            :         
+<span class="lineNum">     536 </span><span class="lineCov">      11822 :     _hal-&gt;sense();</span>
+<span class="lineNum">     537 </span>            : 
+<span class="lineNum">     538 </span><span class="lineCov">      11822 :     fill_publish_joint_states();</span>
+<span class="lineNum">     539 </span>            :     
+<span class="lineNum">     540 </span>            :     //this is true only when a new goal has arrived... so new goal ovewrite the old one
+<span class="lineNum">     541 </span><span class="lineCov">      11822 :     if (_ros_action_server-&gt;hasNewGoal()) {</span>
+<span class="lineNum">     542 </span>            :         
+<span class="lineNum">     543 </span><span class="lineCov">         24 :         updateGoal(); //store jp of goal and update qref</span>
+<span class="lineNum">     544 </span>            :         
+<span class="lineNum">     545 </span><span class="lineCov">      11798 :     } else if (_ros_action_server-&gt;hasGoal()) {</span>
+<span class="lineNum">     546 </span>            : 
+<span class="lineNum">     547 </span><span class="lineCov">       1487 :         if (! timed_requested ) {</span>
+<span class="lineNum">     548 </span>            : 
+<span class="lineNum">     549 </span><span class="lineCov">        925 :             if (sendFeedbackGoal() &gt;= 100) {</span>
+<span class="lineNum">     550 </span>            :                 
+<span class="lineNum">     551 </span><span class="lineCov">         21 :                 _ros_action_server-&gt;sendComplete();</span>
+<span class="lineNum">     552 </span>            :             }
+<span class="lineNum">     553 </span>            :             
+<span class="lineNum">     554 </span>            :         } else { //a timed is running
+<span class="lineNum">     555 </span>            :             
+<span class="lineNum">     556 </span><span class="lineCov">        562 :             if ( sendFeedbackGoal(timedAction-&gt;getInnerActionsNames().at(timed_index)) &gt;= 100 ) {</span>
+<span class="lineNum">     557 </span>            :                 
+<span class="lineNum">     558 </span><span class="lineCov">         76 :                 if (timed_index == timedAction-&gt;getInnerActionsNames().size()-1)  {</span>
+<span class="lineNum">     559 </span>            :                 // completed all the timed action (the last inner has finished)
+<span class="lineNum">     560 </span>            : 
+<span class="lineNum">     561 </span><span class="lineCov">          3 :                     _ros_action_server-&gt;sendComplete();</span>
+<span class="lineNum">     562 </span><span class="lineCov">          3 :                     timed_requested = false;</span>
+<span class="lineNum">     563 </span>            :                     
+<span class="lineNum">     564 </span><span class="lineCov">        146 :                 } else if ( </span>
+<span class="lineNum">     565 </span><span class="lineCov">         73 :                     timer.elapsed_time&lt;double, std::chrono::milliseconds&gt;() &gt;</span>
+<span class="lineNum">     566 </span><span class="lineCov">        146 :                         (timedAction-&gt;getAllActionMargins().at(timed_index).second*1000) ) {</span>
+<span class="lineNum">     567 </span>            :                     
+<span class="lineNum">     568 </span>            :                 // if the time passed is greater than the .after margin of the last executed,
+<span class="lineNum">     569 </span>            :                 // then pass to the other action. This is done so we continue to send feedback
+<span class="lineNum">     570 </span>            :                 // of a inner (with value 100) until the margin after is passed. If we are here,
+<span class="lineNum">     571 </span>            :                 // a inner action (but not the last one) is completed (included after margin),
+<span class="lineNum">     572 </span>            :                 // so we have to execute the next one now
+<span class="lineNum">     573 </span>            :                     
+<span class="lineNum">     574 </span><span class="lineCov">          3 :                     timed_index++;</span>
+<span class="lineNum">     575 </span><span class="lineCov">          3 :                     joint_position_goal = timedAction-&gt;getAllJointPos().at(timed_index);</span>
+<span class="lineNum">     576 </span><span class="lineCov">          3 :                     joint_involved_mask = timedAction-&gt;getAllJointCountAction().at(timed_index);</span>
+<span class="lineNum">     577 </span><span class="lineCov">          3 :                     updateRefGoal();</span>
+<span class="lineNum">     578 </span>            :                     
+<span class="lineNum">     579 </span>            :                 } 
+<span class="lineNum">     580 </span>            :             }
+<span class="lineNum">     581 </span>            :         }  
+<span class="lineNum">     582 </span>            :     }
+<span class="lineNum">     583 </span>            : 
+<span class="lineNum">     584 </span>            : 
+<span class="lineNum">     585 </span><span class="lineCov">      11822 :     if (timed_requested) {</span>
+<span class="lineNum">     586 </span>            :         //TODO is better a mini state machine to deal with timed action?
+<span class="lineNum">     587 </span><span class="lineCov">        562 :         if (timer.elapsed_time&lt;double, std::chrono::milliseconds&gt;()  &gt;  msToWait )  {</span>
+<span class="lineNum">     588 </span>            :             //TODO fow now it is this function that make robot moves, and not _hal-&gt;move()
+<span class="lineNum">     589 </span><span class="lineCov">        306 :             set_references(); </span>
+<span class="lineNum">     590 </span>            :                 
+<span class="lineNum">     591 </span>            :         } else {
+<span class="lineNum">     592 </span><span class="lineCov">        256 :             ROS_INFO_STREAM (&quot;Waiting time to execute timed action...&quot;);</span>
+<span class="lineNum">     593 </span>            :         }
+<span class="lineNum">     594 </span>            :             
+<span class="lineNum">     595 </span>            :         
+<span class="lineNum">     596 </span>            :     } else {
+<span class="lineNum">     597 </span>            :         //TODO fow now it is this function that make robot moves, and not _hal-&gt;move()
+<span class="lineNum">     598 </span><span class="lineCov">      11260 :         set_references(); </span>
+<span class="lineNum">     599 </span>            :     }
+<span class="lineNum">     600 </span>            : 
+<span class="lineNum">     601 </span><span class="lineCov">      11822 :     _hal-&gt;move();</span>
+<span class="lineNum">     602 </span>            : 
+<span class="lineNum">     603 </span>            :     // update time
+<span class="lineNum">     604 </span><span class="lineCov">      11822 :     _time += _period;</span>
+<span class="lineNum">     605 </span><span class="lineCov">      11822 : }</span>
+<a name="606"><span class="lineNum">     606 </span>            : </a>
+<span class="lineNum">     607 </span>            : 
+<span class="lineNum">     608 </span><span class="lineCov">         24 : void ROSEE::UniversalRosEndEffectorExecutor::spin() {</span>
+<span class="lineNum">     609 </span>            : 
+<span class="lineNum">     610 </span><span class="lineCov">         24 :     _loop_timer.start();</span>
+<span class="lineNum">     611 </span>            : 
+<span class="lineNum">     612 </span><span class="lineCov">         24 :     ROS_INFO_STREAM ( &quot;Started looping @ &quot; &lt;&lt; 1./_period &lt;&lt; &quot;Hz&quot; );</span>
+<span class="lineNum">     613 </span>            : 
+<span class="lineNum">     614 </span><span class="lineCov">         24 :     ros::spin();</span>
+<span class="lineNum">     615 </span><span class="lineCov">         24 : }</span>
+<span class="lineNum">     616 </span>            : 
+<a name="617"><span class="lineNum">     617 </span>            : </a>
+<span class="lineNum">     618 </span>            : 
+<a name="619"><span class="lineNum">     619 </span><span class="lineCov">         24 : ROSEE::UniversalRosEndEffectorExecutor::~UniversalRosEndEffectorExecutor() {</span></a>
+<span class="lineNum">     620 </span>            : 
+<span class="lineNum">     621 </span><span class="lineCov">         96 : }</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

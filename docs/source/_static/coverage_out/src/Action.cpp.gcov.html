@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - main_coverage.info - src/Action.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">src</a> - Action.cpp<span style="font-size: 80%;"> (source / <a href="Action.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">main_coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">52</td>
+            <td class="headerCovTableEntry">64</td>
+            <td class="headerCovTableEntryMed">81.2 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2020-07-31 15:30:30</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">14</td>
+            <td class="headerCovTableEntry">16</td>
+            <td class="headerCovTableEntryMed">87.5 %</td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : /*</a>
+<span class="lineNum">       2 </span>            :  * Copyright (C) 2020 IIT-HHCM
+<span class="lineNum">       3 </span>            :  * Author: Davide Torielli
+<span class="lineNum">       4 </span>            :  * email:  davide.torielli@iit.it
+<span class="lineNum">       5 </span>            :  *
+<span class="lineNum">       6 </span>            :  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+<span class="lineNum">       7 </span>            :  * you may not use this file except in compliance with the License.
+<span class="lineNum">       8 </span>            :  * You may obtain a copy of the License at
+<span class="lineNum">       9 </span>            :  *
+<span class="lineNum">      10 </span>            :  *     http://www.apache.org/licenses/LICENSE-2.0
+<span class="lineNum">      11 </span>            :  *
+<span class="lineNum">      12 </span>            :  * Unless required by applicable law or agreed to in writing, software
+<span class="lineNum">      13 </span>            :  * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+<span class="lineNum">      14 </span>            :  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<span class="lineNum">      15 </span>            :  * See the License for the specific language governing permissions and
+<span class="lineNum">      16 </span>            :  * limitations under the License.
+<span class="lineNum">      17 </span>            :  */
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : #include &lt;ros_end_effector/Action.h&gt;
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : /******************************** OPERATORS OVERLOAD FOR TYPEDEFS ***********************************/
+<a name="22"><span class="lineNum">      22 </span>            : </a>
+<span class="lineNum">      23 </span>            : /** operator overload for JointPos so it is easier to print */
+<span class="lineNum">      24 </span><span class="lineCov">      25788 : std::ostream&amp; ROSEE::operator &lt;&lt; (std::ostream&amp; output, const ROSEE::JointPos jp) {</span>
+<span class="lineNum">      25 </span><span class="lineCov">      69022 :     for (const auto &amp;jsEl : jp) {</span>
+<span class="lineNum">      26 </span><span class="lineCov">      43234 :         output &lt;&lt; &quot;\t\t&quot;&lt;&lt;jsEl.first &lt;&lt; &quot; : &quot;; //joint name</span>
+<span class="lineNum">      27 </span><span class="lineCov">      86468 :         for(const auto &amp;jValue : jsEl.second){</span>
+<span class="lineNum">      28 </span><span class="lineCov">      43234 :             output &lt;&lt; jValue &lt;&lt; &quot;, &quot;; //joint position (vector because can have multiple dof)</span>
+<span class="lineNum">      29 </span>            :         }
+<span class="lineNum">      30 </span><span class="lineCov">      43234 :         output.seekp (-2, output.cur); //to remove the last comma (and space)</span>
+<span class="lineNum">      31 </span><span class="lineCov">      43234 :         output &lt;&lt; std::endl;       </span>
+<span class="lineNum">      32 </span>            :     }
+<span class="lineNum">      33 </span><span class="lineCov">      25788 :     return output;</span>
+<a name="34"><span class="lineNum">      34 </span>            : }</a>
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span><span class="lineCov">         24 : ROSEE::JointPos ROSEE::operator * ( double multiplier,  ROSEE::JointPos jp) {</span>
+<span class="lineNum">      37 </span>            :     
+<span class="lineNum">      38 </span><span class="lineCov">         24 :     return jp *= multiplier;</span>
+<a name="39"><span class="lineNum">      39 </span>            : }</a>
+<span class="lineNum">      40 </span>            : 
+<span class="lineNum">      41 </span><span class="lineCov">         67 : ROSEE::JointPos ROSEE::operator * ( ROSEE::JointPos jp,  double multiplier ) {</span>
+<span class="lineNum">      42 </span>            :     
+<span class="lineNum">      43 </span><span class="lineCov">         67 :     return jp *= multiplier;</span>
+<a name="44"><span class="lineNum">      44 </span>            : }</a>
+<span class="lineNum">      45 </span>            : 
+<span class="lineNum">      46 </span><span class="lineCov">         91 : ROSEE::JointPos&amp; ROSEE::operator *= ( ROSEE::JointPos&amp; jp, double multiplier) {</span>
+<span class="lineNum">      47 </span>            :     
+<span class="lineNum">      48 </span><span class="lineCov">        541 :     for ( auto &amp;jsEl : jp) {</span>
+<span class="lineNum">      49 </span><span class="lineCov">        900 :         for (int i = 0; i&lt; jsEl.second.size(); i++) {</span>
+<span class="lineNum">      50 </span><span class="lineCov">        450 :             jsEl.second.at(i) *= multiplier;</span>
+<span class="lineNum">      51 </span>            :         }
+<span class="lineNum">      52 </span>            :     }
+<span class="lineNum">      53 </span>            :     
+<span class="lineNum">      54 </span><span class="lineCov">         91 :     return jp;</span>
+<a name="55"><span class="lineNum">      55 </span>            : }</a>
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span><span class="lineNoCov">          0 : ROSEE::JointPos ROSEE::operator + ( ROSEE::JointPos jp1, ROSEE::JointPos jp2) {</span>
+<span class="lineNum">      58 </span>            :     
+<span class="lineNum">      59 </span><span class="lineNoCov">          0 :     return jp1 += jp2;</span>
+<a name="60"><span class="lineNum">      60 </span>            : }</a>
+<span class="lineNum">      61 </span>            : 
+<span class="lineNum">      62 </span><span class="lineNoCov">          0 : ROSEE::JointPos&amp; ROSEE::operator += (ROSEE::JointPos&amp; jp1, ROSEE::JointPos jp2) {</span>
+<span class="lineNum">      63 </span>            :     
+<span class="lineNum">      64 </span><span class="lineNoCov">          0 :     if ( ! ROSEE::Utils::keys_equal(jp1, jp2) ) {</span>
+<span class="lineNum">      65 </span><span class="lineNoCov">          0 :         throw ROSEE::Utils::DifferentKeysException&lt;ROSEE::JointPos, ROSEE::JointPos&gt;(&amp;jp1, &amp;jp2);</span>
+<span class="lineNum">      66 </span>            :     }
+<span class="lineNum">      67 </span>            :     
+<span class="lineNum">      68 </span><span class="lineNoCov">          0 :     for (auto &amp;jsEl : jp1) {</span>
+<span class="lineNum">      69 </span><span class="lineNoCov">          0 :         if (jsEl.second.size() != jp2.at(jsEl.first).size() ) {</span>
+<span class="lineNum">      70 </span><span class="lineNoCov">          0 :             throw &quot;Dofs not same&quot;;</span>
+<span class="lineNum">      71 </span>            :         }
+<span class="lineNum">      72 </span>            : 
+<span class="lineNum">      73 </span><span class="lineNoCov">          0 :         for (int i = 0; i &lt; jsEl.second.size(); i++) {</span>
+<span class="lineNum">      74 </span><span class="lineNoCov">          0 :             jsEl.second.at(i) += jp2.at(jsEl.first).at(i); </span>
+<span class="lineNum">      75 </span>            :         }
+<span class="lineNum">      76 </span>            :     }
+<span class="lineNum">      77 </span>            :     
+<span class="lineNum">      78 </span><span class="lineNoCov">          0 :     return jp1;</span>
+<a name="79"><span class="lineNum">      79 </span>            : }</a>
+<span class="lineNum">      80 </span>            : 
+<span class="lineNum">      81 </span><span class="lineCov">        159 : std::ostream&amp; ROSEE::operator &lt;&lt; (std::ostream&amp; output, const ROSEE::JointsInvolvedCount jic) {</span>
+<span class="lineNum">      82 </span><span class="lineCov">        934 :     for (const auto &amp;jicEl : jic) {</span>
+<span class="lineNum">      83 </span><span class="lineCov">        775 :         output &lt;&lt; &quot;\t&quot;&lt;&lt; jicEl.first &lt;&lt; &quot; : &quot; &lt;&lt; jicEl.second;</span>
+<span class="lineNum">      84 </span><span class="lineCov">        775 :         output &lt;&lt; std::endl;       </span>
+<span class="lineNum">      85 </span>            :     }
+<span class="lineNum">      86 </span><span class="lineCov">        159 :     return output;</span>
+<span class="lineNum">      87 </span>            : }
+<a name="88"><span class="lineNum">      88 </span>            : </a>
+<span class="lineNum">      89 </span>            : /********************************************* CLASS ACTION **************************************/
+<span class="lineNum">      90 </span><span class="lineCov">        188 : ROSEE::Action::Action () {</span>
+<span class="lineNum">      91 </span>            : 
+<span class="lineNum">      92 </span><span class="lineCov">        188 : }</span>
+<a name="93"><span class="lineNum">      93 </span>            : </a>
+<span class="lineNum">      94 </span>            : 
+<span class="lineNum">      95 </span><span class="lineCov">      26398 : ROSEE::Action::Action ( std::string name, Action::Type type ) {</span>
+<span class="lineNum">      96 </span><span class="lineCov">      26398 :     this-&gt;name = name;</span>
+<span class="lineNum">      97 </span><span class="lineCov">      26398 :     this-&gt;type = type;</span>
+<a name="98"><span class="lineNum">      98 </span><span class="lineCov">      26398 : }</span></a>
+<span class="lineNum">      99 </span>            : 
+<span class="lineNum">     100 </span><span class="lineCov">        649 : std::string ROSEE::Action::getName() const {</span>
+<span class="lineNum">     101 </span><span class="lineCov">        649 :     return name;</span>
+<a name="102"><span class="lineNum">     102 </span>            : }</a>
+<span class="lineNum">     103 </span>            : 
+<span class="lineNum">     104 </span><span class="lineCov">        419 : ROSEE::Action::Type ROSEE::Action::getType() const {</span>
+<span class="lineNum">     105 </span><span class="lineCov">        419 :     return type;</span>
+<span class="lineNum">     106 </span>            : }
+<a name="107"><span class="lineNum">     107 </span>            : </a>
+<span class="lineNum">     108 </span>            : 
+<span class="lineNum">     109 </span><span class="lineCov">        177 : std::set&lt;std::string&gt; ROSEE::Action::getFingersInvolved() const {</span>
+<span class="lineNum">     110 </span><span class="lineCov">        177 :     return fingersInvolved;</span>
+<span class="lineNum">     111 </span>            : }
+<a name="112"><span class="lineNum">     112 </span>            : </a>
+<span class="lineNum">     113 </span>            : 
+<span class="lineNum">     114 </span><span class="lineCov">        294 : ROSEE::JointsInvolvedCount ROSEE::Action::getJointsInvolvedCount() const {</span>
+<span class="lineNum">     115 </span><span class="lineCov">        294 :     return jointsInvolvedCount;</span>
+<span class="lineNum">     116 </span>            : }
+<a name="117"><span class="lineNum">     117 </span>            : </a>
+<span class="lineNum">     118 </span>            : 
+<span class="lineNum">     119 </span><span class="lineCov">        126 : void ROSEE::Action::print () const {</span>
+<span class="lineNum">     120 </span>            :     
+<span class="lineNum">     121 </span><span class="lineCov">        252 :     std::stringstream output;</span>
+<span class="lineNum">     122 </span><span class="lineCov">        126 :     output &lt;&lt; &quot;ActionName: &quot; &lt;&lt; name &lt;&lt; std::endl;</span>
+<span class="lineNum">     123 </span>            :     
+<span class="lineNum">     124 </span><span class="lineCov">        126 :     if (fingersInvolved.size() &gt; 0 ){</span>
+<span class="lineNum">     125 </span><span class="lineCov">        126 :         output &lt;&lt; &quot;FingersInvolved: [&quot;;</span>
+<span class="lineNum">     126 </span><span class="lineCov">        252 :         for (auto fingName : fingersInvolved){</span>
+<span class="lineNum">     127 </span><span class="lineCov">        126 :             output &lt;&lt; fingName &lt;&lt; &quot;, &quot; ;</span>
+<span class="lineNum">     128 </span>            :         }
+<span class="lineNum">     129 </span><span class="lineCov">        126 :         output.seekp (-2, output.cur); //to remove the last comma (and space)</span>
+<span class="lineNum">     130 </span><span class="lineCov">        126 :         output &lt;&lt; &quot;]&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     131 </span>            :         
+<span class="lineNum">     132 </span>            :     } else {
+<span class="lineNum">     133 </span><span class="lineNoCov">          0 :         output &lt;&lt; &quot;FingersInvolved: &lt;not inserted&gt;&quot; &lt;&lt; std::endl; // can happen, for ex for genericAction</span>
+<span class="lineNum">     134 </span>            :     }
+<span class="lineNum">     135 </span>            : 
+<span class="lineNum">     136 </span>            :     
+<span class="lineNum">     137 </span><span class="lineCov">        126 :     output &lt;&lt; &quot;JointsInvolvedCount: &quot; &lt;&lt; std::endl;;</span>
+<span class="lineNum">     138 </span><span class="lineCov">        126 :     output &lt;&lt; jointsInvolvedCount &lt;&lt; std::endl;</span>
+<span class="lineNum">     139 </span>            :     
+<span class="lineNum">     140 </span><span class="lineCov">        126 :     output &lt;&lt; &quot;JointPos:&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     141 </span><span class="lineCov">        126 :     output &lt;&lt; getJointPos() &lt;&lt; std::endl;</span>
+<span class="lineNum">     142 </span>            : 
+<span class="lineNum">     143 </span><span class="lineCov">        126 :     output &lt;&lt; std::endl;</span>
+<a name="144"><span class="lineNum">     144 </span>            : </a>
+<span class="lineNum">     145 </span><span class="lineCov">        126 :     std::cout &lt;&lt; output.str();</span>
+<span class="lineNum">     146 </span><span class="lineCov">        261 : }</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
