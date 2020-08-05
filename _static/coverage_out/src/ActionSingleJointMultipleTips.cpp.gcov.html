@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2020-07-31 15:30:30</td>
+            <td class="headerValue">2020-08-05 12:21:01</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">8</td>
@@ -78,29 +78,29 @@
 <span class="lineNum">      16 </span>            : 
 <a name="17"><span class="lineNum">      17 </span>            : #include &lt;ros_end_effector/ActionSingleJointMultipleTips.h&gt;</a>
 <span class="lineNum">      18 </span>            : 
-<span class="lineNum">      19 </span><span class="lineCov">          7 : ROSEE::ActionSingleJointMultipleTips::ActionSingleJointMultipleTips() : </span>
-<a name="20"><span class="lineNum">      20 </span><span class="lineCov">          7 :     ActionPrimitive ( &quot;singleJointMultipleTips&quot;, 1, ROSEE::ActionPrimitive::Type::SingleJointMultipleTips ) {}</span></a>
+<span class="lineNum">      19 </span><span class="lineCov">         33 : ROSEE::ActionSingleJointMultipleTips::ActionSingleJointMultipleTips() : </span>
+<a name="20"><span class="lineNum">      20 </span><span class="lineCov">         33 :     ActionPrimitive ( &quot;singleJointMultipleTips&quot;, 1, ROSEE::ActionPrimitive::Type::SingleJointMultipleTips ) {}</span></a>
 <span class="lineNum">      21 </span>            : 
 <span class="lineNum">      22 </span><span class="lineNoCov">          0 : ROSEE::ActionSingleJointMultipleTips::ActionSingleJointMultipleTips(std::string actionName, unsigned int nFingers ) : </span>
 <a name="23"><span class="lineNum">      23 </span><span class="lineNoCov">          0 :     ActionPrimitive ( actionName, nFingers, 1, ROSEE::ActionPrimitive::Type::SingleJointMultipleTips ) {}</span></a>
 <span class="lineNum">      24 </span>            : 
-<span class="lineNum">      25 </span><span class="lineCov">          1 : ROSEE::ActionSingleJointMultipleTips::ActionSingleJointMultipleTips (std::string actionName, std::vector&lt;std::string&gt; fingers, std::string jointName, </span>
+<span class="lineNum">      25 </span><span class="lineCov">          6 : ROSEE::ActionSingleJointMultipleTips::ActionSingleJointMultipleTips (std::string actionName, std::vector&lt;std::string&gt; fingers, std::string jointName, </span>
 <span class="lineNum">      26 </span>            :                                        JointPos jpFurther, JointPos jpNearer) : 
-<span class="lineNum">      27 </span><span class="lineCov">          1 :     ActionPrimitive ( actionName, fingers.size(), 1, ROSEE::ActionPrimitive::Type::SingleJointMultipleTips ) {</span>
+<span class="lineNum">      27 </span><span class="lineCov">          6 :     ActionPrimitive ( actionName, fingers.size(), 1, ROSEE::ActionPrimitive::Type::SingleJointMultipleTips ) {</span>
 <span class="lineNum">      28 </span>            :         
-<span class="lineNum">      29 </span><span class="lineCov">          1 :     this-&gt;jointInvolved = jointName;</span>
-<span class="lineNum">      30 </span><span class="lineCov">          1 :     fingersInvolved.insert (fingers.begin(), fingers.end());</span>
+<span class="lineNum">      29 </span><span class="lineCov">          6 :     this-&gt;jointInvolved = jointName;</span>
+<span class="lineNum">      30 </span><span class="lineCov">          6 :     fingersInvolved.insert (fingers.begin(), fingers.end());</span>
 <span class="lineNum">      31 </span>            :     
-<span class="lineNum">      32 </span><span class="lineCov">          1 :     this-&gt;jointPosFurther = jpFurther;</span>
-<span class="lineNum">      33 </span><span class="lineCov">          1 :     this-&gt;jointPosNearer = jpNearer;</span>
+<span class="lineNum">      32 </span><span class="lineCov">          6 :     this-&gt;jointPosFurther = jpFurther;</span>
+<span class="lineNum">      33 </span><span class="lineCov">          6 :     this-&gt;jointPosNearer = jpNearer;</span>
 <span class="lineNum">      34 </span>            :     
 <span class="lineNum">      35 </span>            :     // still need to do this, that can be done in costructor because we know that only one joint will be used, per definition of this action
-<span class="lineNum">      36 </span><span class="lineCov">          2 :     for (auto it : jpFurther ) {</span>
-<span class="lineNum">      37 </span><span class="lineCov">          1 :         jointsInvolvedCount.insert (std::make_pair (it.first, 0) );</span>
+<span class="lineNum">      36 </span><span class="lineCov">         12 :     for (auto it : jpFurther ) {</span>
+<span class="lineNum">      37 </span><span class="lineCov">          6 :         jointsInvolvedCount.insert (std::make_pair (it.first, 0) );</span>
 <span class="lineNum">      38 </span>            :     }
-<span class="lineNum">      39 </span><span class="lineCov">          1 :     jointsInvolvedCount.at (jointName) = 1;</span>
+<span class="lineNum">      39 </span><span class="lineCov">          6 :     jointsInvolvedCount.at (jointName) = 1;</span>
 <span class="lineNum">      40 </span>            :         
-<a name="41"><span class="lineNum">      41 </span><span class="lineCov">          1 : }</span></a>
+<a name="41"><span class="lineNum">      41 </span><span class="lineCov">          6 : }</span></a>
 <span class="lineNum">      42 </span>            : 
 <span class="lineNum">      43 </span><span class="lineNoCov">          0 : std::vector&lt;ROSEE::JointPos&gt; ROSEE::ActionSingleJointMultipleTips::getAllJointPos() const {</span>
 <span class="lineNum">      44 </span>            :     
@@ -110,8 +110,8 @@
 <span class="lineNum">      48 </span><span class="lineNoCov">          0 :     return vect;</span>
 <a name="49"><span class="lineNum">      49 </span>            : }</a>
 <span class="lineNum">      50 </span>            : 
-<span class="lineNum">      51 </span><span class="lineCov">          5 : ROSEE::JointPos ROSEE::ActionSingleJointMultipleTips::getJointPos() const {</span>
-<span class="lineNum">      52 </span><span class="lineCov">          5 :     return jointPosFurther;</span>
+<span class="lineNum">      51 </span><span class="lineCov">         35 : ROSEE::JointPos ROSEE::ActionSingleJointMultipleTips::getJointPos() const {</span>
+<span class="lineNum">      52 </span><span class="lineCov">         35 :     return jointPosFurther;</span>
 <a name="53"><span class="lineNum">      53 </span>            : }</a>
 <span class="lineNum">      54 </span>            : 
 <span class="lineNum">      55 </span><span class="lineNoCov">          0 : ROSEE::JointPos ROSEE::ActionSingleJointMultipleTips::getJointPosFurther() const {</span>
@@ -126,10 +126,10 @@
 <span class="lineNum">      64 </span><span class="lineNoCov">          0 :     return jointInvolved;</span>
 <a name="65"><span class="lineNum">      65 </span>            : }</a>
 <span class="lineNum">      66 </span>            : 
-<span class="lineNum">      67 </span><span class="lineCov">          9 : std::set&lt;std::string&gt; ROSEE::ActionSingleJointMultipleTips::getKeyElements() const {</span>
-<span class="lineNum">      68 </span><span class="lineCov">          9 :     std::set &lt;std::string&gt; set;</span>
-<span class="lineNum">      69 </span><span class="lineCov">          9 :     set.insert(jointInvolved);</span>
-<span class="lineNum">      70 </span><span class="lineCov">          9 :     return set;</span>
+<span class="lineNum">      67 </span><span class="lineCov">         50 : std::set&lt;std::string&gt; ROSEE::ActionSingleJointMultipleTips::getKeyElements() const {</span>
+<span class="lineNum">      68 </span><span class="lineCov">         50 :     std::set &lt;std::string&gt; set;</span>
+<span class="lineNum">      69 </span><span class="lineCov">         50 :     set.insert(jointInvolved);</span>
+<span class="lineNum">      70 </span><span class="lineCov">         50 :     return set;</span>
 <a name="71"><span class="lineNum">      71 </span>            : }</a>
 <span class="lineNum">      72 </span>            : 
 <span class="lineNum">      73 </span><span class="lineNoCov">          0 : void ROSEE::ActionSingleJointMultipleTips::print() const {</span>
@@ -158,61 +158,61 @@
 <span class="lineNum">      96 </span>            :     
 <a name="97"><span class="lineNum">      97 </span><span class="lineNoCov">          0 : }</span></a>
 <span class="lineNum">      98 </span>            : 
-<span class="lineNum">      99 </span><span class="lineCov">          1 : void ROSEE::ActionSingleJointMultipleTips::emitYaml(YAML::Emitter&amp; out) const {</span>
+<span class="lineNum">      99 </span><span class="lineCov">          6 : void ROSEE::ActionSingleJointMultipleTips::emitYaml(YAML::Emitter&amp; out) const {</span>
 <span class="lineNum">     100 </span>            :     
-<span class="lineNum">     101 </span><span class="lineCov">          1 :     out &lt;&lt; YAML::Key &lt;&lt; jointInvolved;</span>
-<span class="lineNum">     102 </span><span class="lineCov">          1 :     out &lt;&lt; YAML::Value &lt;&lt; YAML::BeginMap;</span>
+<span class="lineNum">     101 </span><span class="lineCov">          6 :     out &lt;&lt; YAML::Key &lt;&lt; jointInvolved;</span>
+<span class="lineNum">     102 </span><span class="lineCov">          6 :     out &lt;&lt; YAML::Value &lt;&lt; YAML::BeginMap;</span>
 <span class="lineNum">     103 </span>            :     
-<span class="lineNum">     104 </span><span class="lineCov">          1 :         out &lt;&lt; YAML::Key &lt;&lt; &quot;PrimitiveType&quot; &lt;&lt; YAML::Value &lt;&lt; primitiveType;</span>
-<span class="lineNum">     105 </span><span class="lineCov">          1 :         out &lt;&lt; YAML::Key &lt;&lt; &quot;ActionName&quot; &lt;&lt; YAML::Value &lt;&lt; name;</span>
-<span class="lineNum">     106 </span><span class="lineCov">          1 :         out &lt;&lt; YAML::Key &lt;&lt; &quot;FingersInvolved&quot; &lt;&lt; YAML::Value &lt;&lt; YAML::Flow &lt;&lt; fingersInvolved;</span>
+<span class="lineNum">     104 </span><span class="lineCov">          6 :         out &lt;&lt; YAML::Key &lt;&lt; &quot;PrimitiveType&quot; &lt;&lt; YAML::Value &lt;&lt; primitiveType;</span>
+<span class="lineNum">     105 </span><span class="lineCov">          6 :         out &lt;&lt; YAML::Key &lt;&lt; &quot;ActionName&quot; &lt;&lt; YAML::Value &lt;&lt; name;</span>
+<span class="lineNum">     106 </span><span class="lineCov">          6 :         out &lt;&lt; YAML::Key &lt;&lt; &quot;FingersInvolved&quot; &lt;&lt; YAML::Value &lt;&lt; YAML::Flow &lt;&lt; fingersInvolved;</span>
 <span class="lineNum">     107 </span>            :         
-<span class="lineNum">     108 </span><span class="lineCov">          1 :         out &lt;&lt; YAML::Key &lt;&lt; &quot;JointPosFurther&quot; &lt;&lt; YAML::Value &lt;&lt; YAML::BeginMap;</span>
-<span class="lineNum">     109 </span><span class="lineCov">          2 :         for (const auto &amp;joint : jointPosFurther) {</span>
-<span class="lineNum">     110 </span><span class="lineCov">          1 :             out &lt;&lt; YAML::Key &lt;&lt; joint.first;</span>
-<span class="lineNum">     111 </span><span class="lineCov">          1 :             out &lt;&lt; YAML::Value &lt;&lt; YAML::Flow &lt;&lt; joint.second; //vector of double is emitted like Seq</span>
+<span class="lineNum">     108 </span><span class="lineCov">          6 :         out &lt;&lt; YAML::Key &lt;&lt; &quot;JointPosFurther&quot; &lt;&lt; YAML::Value &lt;&lt; YAML::BeginMap;</span>
+<span class="lineNum">     109 </span><span class="lineCov">         12 :         for (const auto &amp;joint : jointPosFurther) {</span>
+<span class="lineNum">     110 </span><span class="lineCov">          6 :             out &lt;&lt; YAML::Key &lt;&lt; joint.first;</span>
+<span class="lineNum">     111 </span><span class="lineCov">          6 :             out &lt;&lt; YAML::Value &lt;&lt; YAML::Flow &lt;&lt; joint.second; //vector of double is emitted like Seq</span>
 <span class="lineNum">     112 </span>            :         }
-<span class="lineNum">     113 </span><span class="lineCov">          1 :         out &lt;&lt; YAML::EndMap;</span>
+<span class="lineNum">     113 </span><span class="lineCov">          6 :         out &lt;&lt; YAML::EndMap;</span>
 <span class="lineNum">     114 </span>            :         
-<span class="lineNum">     115 </span><span class="lineCov">          1 :         out &lt;&lt; YAML::Key &lt;&lt; &quot;JointPosNearer&quot; &lt;&lt; YAML::Value &lt;&lt; YAML::BeginMap;</span>
-<span class="lineNum">     116 </span><span class="lineCov">          2 :         for (const auto &amp;joint : jointPosNearer) {</span>
-<span class="lineNum">     117 </span><span class="lineCov">          1 :             out &lt;&lt; YAML::Key &lt;&lt; joint.first;</span>
-<span class="lineNum">     118 </span><span class="lineCov">          1 :             out &lt;&lt; YAML::Value &lt;&lt; YAML::Flow &lt;&lt; joint.second; //vector of double is emitted like Seq</span>
+<span class="lineNum">     115 </span><span class="lineCov">          6 :         out &lt;&lt; YAML::Key &lt;&lt; &quot;JointPosNearer&quot; &lt;&lt; YAML::Value &lt;&lt; YAML::BeginMap;</span>
+<span class="lineNum">     116 </span><span class="lineCov">         12 :         for (const auto &amp;joint : jointPosNearer) {</span>
+<span class="lineNum">     117 </span><span class="lineCov">          6 :             out &lt;&lt; YAML::Key &lt;&lt; joint.first;</span>
+<span class="lineNum">     118 </span><span class="lineCov">          6 :             out &lt;&lt; YAML::Value &lt;&lt; YAML::Flow &lt;&lt; joint.second; //vector of double is emitted like Seq</span>
 <span class="lineNum">     119 </span>            :         }
-<span class="lineNum">     120 </span><span class="lineCov">          1 :         out &lt;&lt; YAML::EndMap;</span>
+<span class="lineNum">     120 </span><span class="lineCov">          6 :         out &lt;&lt; YAML::EndMap;</span>
 <span class="lineNum">     121 </span>            :     
-<span class="lineNum">     122 </span><span class="lineCov">          1 :     out &lt;&lt; YAML::EndMap;</span>
+<span class="lineNum">     122 </span><span class="lineCov">          6 :     out &lt;&lt; YAML::EndMap;</span>
 <span class="lineNum">     123 </span>            :     
-<span class="lineNum">     124 </span><span class="lineCov">          1 : }</span>
+<span class="lineNum">     124 </span><span class="lineCov">          6 : }</span>
 <span class="lineNum">     125 </span>            : 
 <a name="126"><span class="lineNum">     126 </span>            : </a>
 <span class="lineNum">     127 </span>            : 
-<span class="lineNum">     128 </span><span class="lineCov">          7 : bool ROSEE::ActionSingleJointMultipleTips::fillFromYaml(YAML::const_iterator yamlIt) {</span>
+<span class="lineNum">     128 </span><span class="lineCov">         33 : bool ROSEE::ActionSingleJointMultipleTips::fillFromYaml(YAML::const_iterator yamlIt) {</span>
 <span class="lineNum">     129 </span>            :     
-<span class="lineNum">     130 </span><span class="lineCov">          7 :     jointInvolved = yamlIt-&gt;first.as &lt; std::string &gt; ();</span>
+<span class="lineNum">     130 </span><span class="lineCov">         33 :     jointInvolved = yamlIt-&gt;first.as &lt; std::string &gt; ();</span>
 <span class="lineNum">     131 </span>            :     
-<span class="lineNum">     132 </span><span class="lineCov">         42 :     for ( YAML::const_iterator keyValue = yamlIt-&gt;second.begin(); keyValue != yamlIt-&gt;second.end(); ++keyValue) {</span>
-<span class="lineNum">     133 </span><span class="lineCov">         70 :         std::string key = keyValue-&gt;first.as&lt;std::string&gt;();</span>
+<span class="lineNum">     132 </span><span class="lineCov">        198 :     for ( YAML::const_iterator keyValue = yamlIt-&gt;second.begin(); keyValue != yamlIt-&gt;second.end(); ++keyValue) {</span>
+<span class="lineNum">     133 </span><span class="lineCov">        330 :         std::string key = keyValue-&gt;first.as&lt;std::string&gt;();</span>
 <span class="lineNum">     134 </span>            :         
-<span class="lineNum">     135 </span><span class="lineCov">         35 :         if ( key.compare (&quot;ActionName&quot;) == 0 ){</span>
-<span class="lineNum">     136 </span><span class="lineCov">          7 :             name = keyValue-&gt;second.as &lt; std::string &gt; ();</span>
+<span class="lineNum">     135 </span><span class="lineCov">        165 :         if ( key.compare (&quot;ActionName&quot;) == 0 ){</span>
+<span class="lineNum">     136 </span><span class="lineCov">         33 :             name = keyValue-&gt;second.as &lt; std::string &gt; ();</span>
 <span class="lineNum">     137 </span>            :             
-<span class="lineNum">     138 </span><span class="lineCov">         28 :         } else if (key.compare(&quot;FingersInvolved&quot;) == 0) {</span>
-<span class="lineNum">     139 </span><span class="lineCov">         14 :             std::vector &lt;std::string&gt; fingInvolvedVect = keyValue-&gt;second.as &lt;std::vector &lt; std::string &gt;&gt; ();</span>
-<span class="lineNum">     140 </span><span class="lineCov">         21 :             for (const auto &amp;it : fingInvolvedVect) {</span>
-<span class="lineNum">     141 </span><span class="lineCov">         14 :                 fingersInvolved.insert(it);</span>
+<span class="lineNum">     138 </span><span class="lineCov">        132 :         } else if (key.compare(&quot;FingersInvolved&quot;) == 0) {</span>
+<span class="lineNum">     139 </span><span class="lineCov">         66 :             std::vector &lt;std::string&gt; fingInvolvedVect = keyValue-&gt;second.as &lt;std::vector &lt; std::string &gt;&gt; ();</span>
+<span class="lineNum">     140 </span><span class="lineCov">         99 :             for (const auto &amp;it : fingInvolvedVect) {</span>
+<span class="lineNum">     141 </span><span class="lineCov">         66 :                 fingersInvolved.insert(it);</span>
 <span class="lineNum">     142 </span>            :             }
 <span class="lineNum">     143 </span>            :             
-<span class="lineNum">     144 </span><span class="lineCov">         21 :         } else if (key.compare (&quot;JointPosNearer&quot;) == 0) {</span>
-<span class="lineNum">     145 </span><span class="lineCov">          7 :             jointPosNearer = keyValue-&gt;second.as &lt;JointPos&gt;();</span>
+<span class="lineNum">     144 </span><span class="lineCov">         99 :         } else if (key.compare (&quot;JointPosNearer&quot;) == 0) {</span>
+<span class="lineNum">     145 </span><span class="lineCov">         33 :             jointPosNearer = keyValue-&gt;second.as &lt;JointPos&gt;();</span>
 <span class="lineNum">     146 </span>            :             
-<span class="lineNum">     147 </span><span class="lineCov">         14 :         } else if (key.compare (&quot;JointPosFurther&quot;) == 0) {</span>
-<span class="lineNum">     148 </span><span class="lineCov">          7 :             jointPosFurther = keyValue-&gt;second.as &lt;JointPos&gt;();</span>
+<span class="lineNum">     147 </span><span class="lineCov">         66 :         } else if (key.compare (&quot;JointPosFurther&quot;) == 0) {</span>
+<span class="lineNum">     148 </span><span class="lineCov">         33 :             jointPosFurther = keyValue-&gt;second.as &lt;JointPos&gt;();</span>
 <span class="lineNum">     149 </span>            :         
-<span class="lineNum">     150 </span><span class="lineCov">          7 :         } else if (key.compare (&quot;PrimitiveType&quot;) == 0) {</span>
+<span class="lineNum">     150 </span><span class="lineCov">         33 :         } else if (key.compare (&quot;PrimitiveType&quot;) == 0) {</span>
 <span class="lineNum">     151 </span>            :             ROSEE::ActionPrimitive::Type parsedType = static_cast&lt;ROSEE::ActionPrimitive::Type&gt; ( 
-<span class="lineNum">     152 </span><span class="lineCov">          7 :                 keyValue-&gt;second.as &lt;unsigned int&gt;() );</span>
-<span class="lineNum">     153 </span><span class="lineCov">          7 :             if (parsedType != primitiveType ) {</span>
+<span class="lineNum">     152 </span><span class="lineCov">         33 :                 keyValue-&gt;second.as &lt;unsigned int&gt;() );</span>
+<span class="lineNum">     153 </span><span class="lineCov">         33 :             if (parsedType != primitiveType ) {</span>
 <span class="lineNum">     154 </span><span class="lineNoCov">          0 :                 std::cerr &lt;&lt; &quot;[ERROR ActionSingleJointMultipleTips::&quot; &lt;&lt; __func__ &lt;&lt; &quot; parsed a type &quot; &lt;&lt; parsedType &lt;&lt; </span>
 <span class="lineNum">     155 </span><span class="lineNoCov">          0 :                     &quot; but this object has primitive type &quot; &lt;&lt; primitiveType &lt;&lt; std::endl; </span>
 <span class="lineNum">     156 </span><span class="lineNoCov">          0 :                 return false;</span>
@@ -226,16 +226,16 @@
 <span class="lineNum">     164 </span>            :     }
 <span class="lineNum">     165 </span>            :     
 <span class="lineNum">     166 </span>            :     // we have also to fill this structure, that is not present on yaml file because redundant 
-<span class="lineNum">     167 </span><span class="lineCov">         14 :     for (auto it : jointPosFurther ) {</span>
-<span class="lineNum">     168 </span><span class="lineCov">          7 :         jointsInvolvedCount.insert (std::make_pair (it.first, 0) );</span>
+<span class="lineNum">     167 </span><span class="lineCov">         66 :     for (auto it : jointPosFurther ) {</span>
+<span class="lineNum">     168 </span><span class="lineCov">         33 :         jointsInvolvedCount.insert (std::make_pair (it.first, 0) );</span>
 <span class="lineNum">     169 </span>            :     }
-<span class="lineNum">     170 </span><span class="lineCov">          7 :     jointsInvolvedCount.at (jointInvolved) = 1;</span>
+<span class="lineNum">     170 </span><span class="lineCov">         33 :     jointsInvolvedCount.at (jointInvolved) = 1;</span>
 <span class="lineNum">     171 </span>            :     
-<span class="lineNum">     172 </span><span class="lineCov">          7 :     nFingersInvolved = fingersInvolved.size();</span>
+<span class="lineNum">     172 </span><span class="lineCov">         33 :     nFingersInvolved = fingersInvolved.size();</span>
 <span class="lineNum">     173 </span>            : 
-<a name="174"><span class="lineNum">     174 </span><span class="lineCov">          7 :     return true;</span></a>
+<a name="174"><span class="lineNum">     174 </span><span class="lineCov">         33 :     return true;</span></a>
 <span class="lineNum">     175 </span>            :     
-<span class="lineNum">     176 </span><span class="lineCov">        135 : }</span>
+<span class="lineNum">     176 </span><span class="lineCov">        498 : }</span>
 <span class="lineNum">     177 </span>            : 
 <span class="lineNum">     178 </span>            : 
 <span class="lineNum">     179 </span>            : 

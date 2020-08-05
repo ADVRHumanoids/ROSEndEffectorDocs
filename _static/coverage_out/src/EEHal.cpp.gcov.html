@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2020-07-31 15:30:30</td>
+            <td class="headerValue">2020-08-05 12:21:01</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">8</td>
@@ -79,25 +79,25 @@
 <span class="lineNum">      17 </span>            : 
 <a name="18"><span class="lineNum">      18 </span>            : #include &lt;ros_end_effector/EEHal.h&gt;</a>
 <span class="lineNum">      19 </span>            : 
-<span class="lineNum">      20 </span><span class="lineCov">         24 : ROSEE::EEHal::EEHal ( ROSEE::EEInterface::Ptr ee_interface ) : _ee_inteface ( ee_interface ) {</span>
+<span class="lineNum">      20 </span><span class="lineCov">        119 : ROSEE::EEHal::EEHal ( ROSEE::EEInterface::Ptr ee_interface ) : _ee_inteface ( ee_interface ) {</span>
 <span class="lineNum">      21 </span>            : 
-<span class="lineNum">      22 </span><span class="lineCov">         48 :     std::vector&lt;std::string&gt; joints = _ee_inteface-&gt;getActuatedJoints ();</span>
-<span class="lineNum">      23 </span><span class="lineCov">        115 :     for ( auto&amp; j: joints ) {</span>
+<span class="lineNum">      22 </span><span class="lineCov">        238 :     std::vector&lt;std::string&gt; joints = _ee_inteface-&gt;getActuatedJoints ();</span>
+<span class="lineNum">      23 </span><span class="lineCov">        687 :     for ( auto&amp; j: joints ) {</span>
 <span class="lineNum">      24 </span>            : 
-<span class="lineNum">      25 </span><span class="lineCov">         91 :         _joint_postion[j] = 0;</span>
-<span class="lineNum">      26 </span><span class="lineCov">         91 :         _joint_velocity[j] = 0;</span>
-<span class="lineNum">      27 </span><span class="lineCov">         91 :         _joint_effort[j] = 0;</span>
+<span class="lineNum">      25 </span><span class="lineCov">        568 :         _joint_postion[j] = 0;</span>
+<span class="lineNum">      26 </span><span class="lineCov">        568 :         _joint_velocity[j] = 0;</span>
+<span class="lineNum">      27 </span><span class="lineCov">        568 :         _joint_effort[j] = 0;</span>
 <span class="lineNum">      28 </span>            :     };
 <span class="lineNum">      29 </span>            : 
-<span class="lineNum">      30 </span><span class="lineCov">         24 : }</span>
+<span class="lineNum">      30 </span><span class="lineCov">        119 : }</span>
 <a name="31"><span class="lineNum">      31 </span>            : </a>
 <span class="lineNum">      32 </span>            : 
-<span class="lineNum">      33 </span><span class="lineCov">      44321 : bool ROSEE::EEHal::setJointPosition ( std::string joint_name, double joint_position ) {</span>
+<span class="lineNum">      33 </span><span class="lineCov">     391296 : bool ROSEE::EEHal::setJointPosition ( std::string joint_name, double joint_position ) {</span>
 <span class="lineNum">      34 </span>            : 
-<span class="lineNum">      35 </span><span class="lineCov">      44321 :     if ( _joint_postion.count ( joint_name ) ) {</span>
+<span class="lineNum">      35 </span><span class="lineCov">     391296 :     if ( _joint_postion.count ( joint_name ) ) {</span>
 <span class="lineNum">      36 </span>            : 
-<span class="lineNum">      37 </span><span class="lineCov">      44321 :         _joint_postion.at ( joint_name ) = joint_position;</span>
-<span class="lineNum">      38 </span><span class="lineCov">      44321 :         return true;</span>
+<span class="lineNum">      37 </span><span class="lineCov">     391296 :         _joint_postion.at ( joint_name ) = joint_position;</span>
+<span class="lineNum">      38 </span><span class="lineCov">     391296 :         return true;</span>
 <span class="lineNum">      39 </span>            :     }
 <span class="lineNum">      40 </span>            : 
 <span class="lineNum">      41 </span><span class="lineNoCov">          0 :     return false;</span>
@@ -125,36 +125,36 @@
 <span class="lineNum">      63 </span><span class="lineNoCov">          0 :     return false;</span>
 <a name="64"><span class="lineNum">      64 </span>            : }</a>
 <span class="lineNum">      65 </span>            : 
-<span class="lineNum">      66 </span><span class="lineCov">      45464 : bool ROSEE::EEHal::getJointPosition ( std::string joint_name, double&amp; joint_position ) {</span>
+<span class="lineNum">      66 </span><span class="lineCov">     398609 : bool ROSEE::EEHal::getJointPosition ( std::string joint_name, double&amp; joint_position ) {</span>
 <span class="lineNum">      67 </span>            : 
-<span class="lineNum">      68 </span><span class="lineCov">      45464 :     if ( _joint_postion.count ( joint_name ) ) {</span>
+<span class="lineNum">      68 </span><span class="lineCov">     398609 :     if ( _joint_postion.count ( joint_name ) ) {</span>
 <span class="lineNum">      69 </span>            : 
-<span class="lineNum">      70 </span><span class="lineCov">      45464 :         joint_position = _joint_postion.at ( joint_name );</span>
-<span class="lineNum">      71 </span><span class="lineCov">      45464 :         return true;</span>
+<span class="lineNum">      70 </span><span class="lineCov">     398609 :         joint_position = _joint_postion.at ( joint_name );</span>
+<span class="lineNum">      71 </span><span class="lineCov">     398609 :         return true;</span>
 <span class="lineNum">      72 </span>            :     }
 <span class="lineNum">      73 </span>            : 
 <span class="lineNum">      74 </span><span class="lineNoCov">          0 :     return false;</span>
 <span class="lineNum">      75 </span>            :     
 <a name="76"><span class="lineNum">      76 </span>            : }</a>
 <span class="lineNum">      77 </span>            : 
-<span class="lineNum">      78 </span><span class="lineCov">      45464 : bool ROSEE::EEHal::getJointVelocity ( std::string joint_name, double&amp; joint_velocity ) {</span>
+<span class="lineNum">      78 </span><span class="lineCov">     398609 : bool ROSEE::EEHal::getJointVelocity ( std::string joint_name, double&amp; joint_velocity ) {</span>
 <span class="lineNum">      79 </span>            : 
-<span class="lineNum">      80 </span><span class="lineCov">      45464 :     if ( _joint_velocity.count ( joint_name ) ) {</span>
+<span class="lineNum">      80 </span><span class="lineCov">     398609 :     if ( _joint_velocity.count ( joint_name ) ) {</span>
 <span class="lineNum">      81 </span>            : 
-<span class="lineNum">      82 </span><span class="lineCov">      45464 :         joint_velocity = _joint_velocity.at ( joint_name );</span>
-<span class="lineNum">      83 </span><span class="lineCov">      45464 :         return true;</span>
+<span class="lineNum">      82 </span><span class="lineCov">     398609 :         joint_velocity = _joint_velocity.at ( joint_name );</span>
+<span class="lineNum">      83 </span><span class="lineCov">     398609 :         return true;</span>
 <span class="lineNum">      84 </span>            :     }
 <span class="lineNum">      85 </span>            : 
 <span class="lineNum">      86 </span><span class="lineNoCov">          0 :     return false;</span>
 <span class="lineNum">      87 </span>            :     
 <a name="88"><span class="lineNum">      88 </span>            : }</a>
 <span class="lineNum">      89 </span>            : 
-<span class="lineNum">      90 </span><span class="lineCov">      45464 : bool ROSEE::EEHal::getJointEffort ( std::string joint_name, double&amp; joint_effort ) {</span>
+<span class="lineNum">      90 </span><span class="lineCov">     398609 : bool ROSEE::EEHal::getJointEffort ( std::string joint_name, double&amp; joint_effort ) {</span>
 <span class="lineNum">      91 </span>            : 
-<span class="lineNum">      92 </span><span class="lineCov">      45464 :     if ( _joint_effort.count ( joint_name ) ) {</span>
+<span class="lineNum">      92 </span><span class="lineCov">     398609 :     if ( _joint_effort.count ( joint_name ) ) {</span>
 <span class="lineNum">      93 </span>            : 
-<span class="lineNum">      94 </span><span class="lineCov">      45464 :         joint_effort = _joint_effort.at ( joint_name );</span>
-<span class="lineNum">      95 </span><span class="lineCov">      45464 :         return true;</span>
+<span class="lineNum">      94 </span><span class="lineCov">     398609 :         joint_effort = _joint_effort.at ( joint_name );</span>
+<span class="lineNum">      95 </span><span class="lineCov">     398609 :         return true;</span>
 <span class="lineNum">      96 </span>            :     }
 <span class="lineNum">      97 </span>            : 
 <span class="lineNum">      98 </span><span class="lineNoCov">          0 :     return false;</span>
@@ -163,9 +163,9 @@
 <span class="lineNum">     101 </span>            : 
 <a name="102"><span class="lineNum">     102 </span>            : </a>
 <span class="lineNum">     103 </span>            : 
-<a name="104"><span class="lineNum">     104 </span><span class="lineCov">         24 : ROSEE::EEHal::~EEHal() {</span></a>
+<a name="104"><span class="lineNum">     104 </span><span class="lineCov">        119 : ROSEE::EEHal::~EEHal() {</span></a>
 <span class="lineNum">     105 </span>            : 
-<span class="lineNum">     106 </span><span class="lineCov">         96 : }</span>
+<span class="lineNum">     106 </span><span class="lineCov">        476 : }</span>
 </pre>
       </td>
     </tr>

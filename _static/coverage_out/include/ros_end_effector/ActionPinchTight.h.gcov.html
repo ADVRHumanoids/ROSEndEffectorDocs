@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2020-07-31 15:30:30</td>
+            <td class="headerValue">2020-08-05 12:21:01</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">4</td>
@@ -99,7 +99,7 @@
 <span class="lineNum">      37 </span>            :  *    It is used to order the actions in the \ref actionStates set, to have a &quot;quality&quot; measure 
 <a name="38"><span class="lineNum">      38 </span>            :  *    (make sense if \ref maxStoredActionStates &gt; 1 ): the more the depth of compenetration is, the more we say the pinchTight is good</a>
 <span class="lineNum">      39 </span>            :  */
-<span class="lineNum">      40 </span><span class="lineCov">      25987 : class ActionPinchTight : public ActionPinchGeneric</span>
+<span class="lineNum">      40 </span><span class="lineCov">      26834 : class ActionPinchTight : public ActionPinchGeneric</span>
 <span class="lineNum">      41 </span>            : {
 <span class="lineNum">      42 </span>            :     
 <span class="lineNum">      43 </span>            : public:
@@ -159,8 +159,8 @@
 <span class="lineNum">      97 </span>            :      * contact with the same depth (if joint statuses are different), they will be equally good
 <a name="98"><span class="lineNum">      98 </span>            :      */</a>
 <span class="lineNum">      99 </span>            :     struct depthComp {
-<span class="lineNum">     100 </span><span class="lineCov">      88091 :         bool operator() (const StateWithContact&amp; a, const StateWithContact&amp; b) const</span>
-<span class="lineNum">     101 </span><span class="lineCov">      88091 :         {return (std::abs(a.second.depth) &gt; std::abs(b.second.depth) );}</span>
+<span class="lineNum">     100 </span><span class="lineCov">     126568 :         bool operator() (const StateWithContact&amp; a, const StateWithContact&amp; b) const</span>
+<span class="lineNum">     101 </span><span class="lineCov">     126568 :         {return (std::abs(a.second.depth) &gt; std::abs(b.second.depth) );}</span>
 <span class="lineNum">     102 </span>            :     };
 <span class="lineNum">     103 </span>            :     
 <span class="lineNum">     104 </span>            :     /** 

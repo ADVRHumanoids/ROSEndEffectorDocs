@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2020-07-31 15:30:30</td>
+            <td class="headerValue">2020-08-05 12:21:01</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">19</td>
@@ -81,17 +81,17 @@
 <span class="lineNum">      19 </span>            : 
 <a name="20"><span class="lineNum">      20 </span>            : #define CHAIN_PER_GROUP 1</a>
 <span class="lineNum">      21 </span>            : 
-<span class="lineNum">      22 </span><span class="lineCov">         72 : ROSEE::Parser::Parser ( const ros::NodeHandle&amp; nh ) :</span>
-<span class="lineNum">      23 </span><span class="lineCov">         72 :     _nh ( nh ) {</span>
+<span class="lineNum">      22 </span><span class="lineCov">        338 : ROSEE::Parser::Parser ( const ros::NodeHandle&amp; nh ) :</span>
+<span class="lineNum">      23 </span><span class="lineCov">        338 :     _nh ( nh ) {</span>
 <span class="lineNum">      24 </span>            : 
-<span class="lineNum">      25 </span><span class="lineCov">         72 : }</span>
+<span class="lineNum">      25 </span><span class="lineCov">        338 : }</span>
 <a name="26"><span class="lineNum">      26 </span>            : </a>
 <span class="lineNum">      27 </span>            : 
-<span class="lineNum">      28 </span><span class="lineCov">         72 : ROSEE::Parser::~Parser() {</span>
+<span class="lineNum">      28 </span><span class="lineCov">        338 : ROSEE::Parser::~Parser() {</span>
 <span class="lineNum">      29 </span>            : 
-<a name="30"><span class="lineNum">      30 </span><span class="lineCov">         72 : }</span></a>
+<a name="30"><span class="lineNum">      30 </span><span class="lineCov">        338 : }</span></a>
 <span class="lineNum">      31 </span>            : 
-<span class="lineNum">      32 </span><span class="lineCov">        174 : bool ROSEE::Parser::getJointsInFinger ( std::string base_link,</span>
+<span class="lineNum">      32 </span><span class="lineCov">        833 : bool ROSEE::Parser::getJointsInFinger ( std::string base_link,</span>
 <span class="lineNum">      33 </span>            :                                         std::string tip_link,
 <span class="lineNum">      34 </span>            :                                         std::string finger_name
 <span class="lineNum">      35 </span>            :                                       ) {
@@ -99,42 +99,42 @@
 <span class="lineNum">      37 </span>            :     //we add here the finger to the map because later is added only if the joint is actuated.
 <span class="lineNum">      38 </span>            :     //Instead we want in the map all the fingers, even if they have no actuated joint in.
 <span class="lineNum">      39 </span>            :     //this is necessary to not cause later problem due to have the right number of finger
-<span class="lineNum">      40 </span><span class="lineCov">        174 :     _finger_joint_map.insert(std::make_pair(finger_name, std::vector&lt;std::string&gt;())); </span>
+<span class="lineNum">      40 </span><span class="lineCov">        833 :     _finger_joint_map.insert(std::make_pair(finger_name, std::vector&lt;std::string&gt;())); </span>
 <span class="lineNum">      41 </span>            :     
 <span class="lineNum">      42 </span>            :     
-<span class="lineNum">      43 </span><span class="lineCov">        348 :     KDL::Chain actual_chain;</span>
-<span class="lineNum">      44 </span><span class="lineCov">        174 :     if ( _robot_tree.getChain ( base_link, tip_link, actual_chain ) ) {</span>
+<span class="lineNum">      43 </span><span class="lineCov">       1666 :     KDL::Chain actual_chain;</span>
+<span class="lineNum">      44 </span><span class="lineCov">        833 :     if ( _robot_tree.getChain ( base_link, tip_link, actual_chain ) ) {</span>
 <span class="lineNum">      45 </span>            : 
-<span class="lineNum">      46 </span><span class="lineCov">        174 :         int segments_num = actual_chain.getNrOfSegments();</span>
-<span class="lineNum">      47 </span><span class="lineCov">        522 :         for ( int i = 0; i &lt; segments_num; i++ ) {</span>
+<span class="lineNum">      46 </span><span class="lineCov">        833 :         int segments_num = actual_chain.getNrOfSegments();</span>
+<span class="lineNum">      47 </span><span class="lineCov">       2709 :         for ( int i = 0; i &lt; segments_num; i++ ) {</span>
 <span class="lineNum">      48 </span>            : 
-<span class="lineNum">      49 </span><span class="lineCov">        696 :             KDL::Segment actual_segment = actual_chain.getSegment ( i );</span>
-<span class="lineNum">      50 </span><span class="lineCov">        696 :             KDL::Joint actual_joint = actual_segment.getJoint();</span>
+<span class="lineNum">      49 </span><span class="lineCov">       3752 :             KDL::Segment actual_segment = actual_chain.getSegment ( i );</span>
+<span class="lineNum">      50 </span><span class="lineCov">       3752 :             KDL::Joint actual_joint = actual_segment.getJoint();</span>
 <span class="lineNum">      51 </span>            : 
-<span class="lineNum">      52 </span><span class="lineCov">        348 :             bool is_valid_joint = false;</span>
+<span class="lineNum">      52 </span><span class="lineCov">       1876 :             bool is_valid_joint = false;</span>
 <span class="lineNum">      53 </span>            : 
 <span class="lineNum">      54 </span>            :             // Check if joint is revolute or prismatic
-<span class="lineNum">      55 </span><span class="lineCov">        348 :             is_valid_joint = actual_joint.getTypeName() == &quot;RotAxis&quot;;   </span>
+<span class="lineNum">      55 </span><span class="lineCov">       1876 :             is_valid_joint = actual_joint.getTypeName() == &quot;RotAxis&quot;;   </span>
 <span class="lineNum">      56 </span>            :             
 <span class="lineNum">      57 </span>            : //                              || actual_joint.getTypeName() == &quot;TransAxis&quot;;
 <span class="lineNum">      58 </span>            :             
-<span class="lineNum">      59 </span><span class="lineCov">        696 :             auto urdf_joint = _urdf_model-&gt;getJoint(actual_joint.getName());</span>
-<span class="lineNum">      60 </span><span class="lineCov">        348 :             bool is_mimic_joint = (urdf_joint-&gt;mimic == nullptr) ? false : true;</span>
+<span class="lineNum">      59 </span><span class="lineCov">       3752 :             auto urdf_joint = _urdf_model-&gt;getJoint(actual_joint.getName());</span>
+<span class="lineNum">      60 </span><span class="lineCov">       1876 :             bool is_mimic_joint = (urdf_joint-&gt;mimic == nullptr) ? false : true;</span>
 <span class="lineNum">      61 </span>            :             
 <span class="lineNum">      62 </span>            : 
 <span class="lineNum">      63 </span>            :             // if the joint is revolute or prismatic AND not a mimic (mimic joint is a not actuated joint)
-<span class="lineNum">      64 </span><span class="lineCov">        348 :             if ( is_valid_joint &amp;&amp; (!is_mimic_joint) ) {</span>
+<span class="lineNum">      64 </span><span class="lineCov">       1876 :             if ( is_valid_joint &amp;&amp; (!is_mimic_joint) ) {</span>
 <span class="lineNum">      65 </span>            : 
-<span class="lineNum">      66 </span><span class="lineCov">        288 :                 _finger_joint_map[finger_name].push_back ( actual_joint.getName() );</span>
-<span class="lineNum">      67 </span><span class="lineCov">        288 :                 _joint_finger_map[actual_joint.getName()] = finger_name;</span>
-<span class="lineNum">      68 </span><span class="lineCov">        288 :                 _urdf_joint_map[actual_joint.getName()] = _urdf_model-&gt;getJoint ( actual_joint.getName() );</span>
+<span class="lineNum">      66 </span><span class="lineCov">       1531 :                 _finger_joint_map[finger_name].push_back ( actual_joint.getName() );</span>
+<span class="lineNum">      67 </span><span class="lineCov">       1531 :                 _joint_finger_map[actual_joint.getName()] = finger_name;</span>
+<span class="lineNum">      68 </span><span class="lineCov">       1531 :                 _urdf_joint_map[actual_joint.getName()] = _urdf_model-&gt;getJoint ( actual_joint.getName() );</span>
 <span class="lineNum">      69 </span>            : 
-<span class="lineNum">      70 </span><span class="lineCov">        288 :                 _joints_num++;</span>
+<span class="lineNum">      70 </span><span class="lineCov">       1531 :                 _joints_num++;</span>
 <span class="lineNum">      71 </span>            : 
 <span class="lineNum">      72 </span>            :             }
 <span class="lineNum">      73 </span>            :         }
 <span class="lineNum">      74 </span>            : 
-<span class="lineNum">      75 </span><span class="lineCov">        174 :         return true;</span>
+<span class="lineNum">      75 </span><span class="lineCov">        833 :         return true;</span>
 <span class="lineNum">      76 </span>            :     }
 <span class="lineNum">      77 </span>            : 
 <span class="lineNum">      78 </span><span class="lineNoCov">          0 :     ROS_ERROR_STREAM ( &quot;chain from base_link &quot; &lt;&lt; base_link &lt;&lt; &quot; to tip_link &quot; &lt;&lt; tip_link &lt;&lt; &quot; not found in the URDF&quot; );</span>
@@ -144,64 +144,64 @@
 <span class="lineNum">      82 </span>            : 
 <a name="83"><span class="lineNum">      83 </span>            : </a>
 <span class="lineNum">      84 </span>            : 
-<span class="lineNum">      85 </span><span class="lineCov">         72 : bool ROSEE::Parser::parseSRDF() {</span>
+<span class="lineNum">      85 </span><span class="lineCov">        338 : bool ROSEE::Parser::parseSRDF() {</span>
 <span class="lineNum">      86 </span>            : 
 <span class="lineNum">      87 </span>            :     // initialize srdfdom
-<span class="lineNum">      88 </span><span class="lineCov">         72 :     _srdfdom.initFile ( *_urdf_model, _srdf_path );</span>
+<span class="lineNum">      88 </span><span class="lineCov">        338 :     _srdfdom.initFile ( *_urdf_model, _srdf_path );</span>
 <span class="lineNum">      89 </span>            : 
 <span class="lineNum">      90 </span>            :     // get the end-effectors in the SRDF file
-<span class="lineNum">      91 </span><span class="lineCov">        144 :     std::vector&lt;srdf::Model::EndEffector&gt; srdf_end_effectors = _srdfdom.getEndEffectors();</span>
+<span class="lineNum">      91 </span><span class="lineCov">        676 :     std::vector&lt;srdf::Model::EndEffector&gt; srdf_end_effectors = _srdfdom.getEndEffectors();</span>
 <span class="lineNum">      92 </span>            : 
 <span class="lineNum">      93 </span>            :     // NOTE only one end-effectors supported
 <span class="lineNum">      94 </span>            :     // TBD support multiple end-effectors
-<span class="lineNum">      95 </span><span class="lineCov">         72 :     if ( srdf_end_effectors.size() != 1 ) {</span>
+<span class="lineNum">      95 </span><span class="lineCov">        338 :     if ( srdf_end_effectors.size() != 1 ) {</span>
 <span class="lineNum">      96 </span>            : 
 <span class="lineNum">      97 </span><span class="lineNoCov">          0 :         return false;</span>
 <span class="lineNum">      98 </span>            :     }
 <span class="lineNum">      99 </span>            : 
-<span class="lineNum">     100 </span><span class="lineCov">         72 :     ROS_INFO_STREAM ( &quot;ros_end_effector Parser found end_effector: &quot; &lt;&lt; srdf_end_effectors.at ( 0 ).name_ );</span>
+<span class="lineNum">     100 </span><span class="lineCov">        338 :     ROS_INFO_STREAM ( &quot;ros_end_effector Parser found end_effector: &quot; &lt;&lt; srdf_end_effectors.at ( 0 ).name_ );</span>
 <span class="lineNum">     101 </span>            : 
 <span class="lineNum">     102 </span>            :     // get all the groups in the SRDF
-<span class="lineNum">     103 </span><span class="lineCov">        144 :     std::vector&lt;srdf::Model::Group&gt; srdf_groups = _srdfdom.getGroups();</span>
+<span class="lineNum">     103 </span><span class="lineCov">        676 :     std::vector&lt;srdf::Model::Group&gt; srdf_groups = _srdfdom.getGroups();</span>
 <span class="lineNum">     104 </span>            : 
 <span class="lineNum">     105 </span>            :     // TBD will be a vector
-<span class="lineNum">     106 </span><span class="lineCov">        144 :     srdf::Model::Group fingers_group;</span>
+<span class="lineNum">     106 </span><span class="lineCov">        676 :     srdf::Model::Group fingers_group;</span>
 <span class="lineNum">     107 </span>            :     // find end effector fingers chains group
 <span class="lineNum">     108 </span>            :     // TBD will be a vector
-<span class="lineNum">     109 </span><span class="lineCov">         72 :     int group_num = srdf_groups.size();</span>
+<span class="lineNum">     109 </span><span class="lineCov">        338 :     int group_num = srdf_groups.size();</span>
 <span class="lineNum">     110 </span>            :     // TBD will be a vector
-<span class="lineNum">     111 </span><span class="lineCov">        144 :     std::string end_effector_group_name = srdf_end_effectors.at ( 0 ).component_group_;</span>
-<span class="lineNum">     112 </span><span class="lineCov">        318 :     for ( int i = 0; i &lt; group_num; i++ ) {</span>
-<span class="lineNum">     113 </span><span class="lineCov">        246 :         if ( srdf_groups[i].name_ == end_effector_group_name ) {</span>
-<span class="lineNum">     114 </span><span class="lineCov">         72 :             fingers_group = srdf_groups[i];</span>
-<span class="lineNum">     115 </span><span class="lineCov">         72 :             ROS_INFO_STREAM ( &quot;ros_end_effector Parser found group: &quot; &lt;&lt; end_effector_group_name &lt;&lt; &quot; in the SRDF with the following fingers: &quot; );</span>
+<span class="lineNum">     111 </span><span class="lineCov">        676 :     std::string end_effector_group_name = srdf_end_effectors.at ( 0 ).component_group_;</span>
+<span class="lineNum">     112 </span><span class="lineCov">       1509 :     for ( int i = 0; i &lt; group_num; i++ ) {</span>
+<span class="lineNum">     113 </span><span class="lineCov">       1171 :         if ( srdf_groups[i].name_ == end_effector_group_name ) {</span>
+<span class="lineNum">     114 </span><span class="lineCov">        338 :             fingers_group = srdf_groups[i];</span>
+<span class="lineNum">     115 </span><span class="lineCov">        338 :             ROS_INFO_STREAM ( &quot;ros_end_effector Parser found group: &quot; &lt;&lt; end_effector_group_name &lt;&lt; &quot; in the SRDF with the following fingers: &quot; );</span>
 <span class="lineNum">     116 </span>            :         }
 <span class="lineNum">     117 </span>            :     }
 <span class="lineNum">     118 </span>            : 
-<span class="lineNum">     119 </span><span class="lineCov">         72 :     _fingers_num = fingers_group.subgroups_.size();</span>
-<span class="lineNum">     120 </span><span class="lineCov">         72 :     _fingers_names.resize ( _fingers_num );</span>
-<span class="lineNum">     121 </span><span class="lineCov">         72 :     _fingers_group_id.resize ( _fingers_num );</span>
+<span class="lineNum">     119 </span><span class="lineCov">        338 :     _fingers_num = fingers_group.subgroups_.size();</span>
+<span class="lineNum">     120 </span><span class="lineCov">        338 :     _fingers_names.resize ( _fingers_num );</span>
+<span class="lineNum">     121 </span><span class="lineCov">        338 :     _fingers_group_id.resize ( _fingers_num );</span>
 <span class="lineNum">     122 </span>            : 
 <span class="lineNum">     123 </span>            :     // fill the chain names vector
-<span class="lineNum">     124 </span><span class="lineCov">        246 :     for ( int i = 0; i &lt; _fingers_num; i++ ) {</span>
+<span class="lineNum">     124 </span><span class="lineCov">       1171 :     for ( int i = 0; i &lt; _fingers_num; i++ ) {</span>
 <span class="lineNum">     125 </span>            : 
-<span class="lineNum">     126 </span><span class="lineCov">        174 :         _fingers_names[i] = fingers_group.subgroups_[i];</span>
+<span class="lineNum">     126 </span><span class="lineCov">        833 :         _fingers_names[i] = fingers_group.subgroups_[i];</span>
 <span class="lineNum">     127 </span>            : 
 <span class="lineNum">     128 </span>            :         // find the id of the current finger group
-<span class="lineNum">     129 </span><span class="lineCov">        786 :         for ( int j = 0; j &lt; group_num; j++ ) {</span>
-<span class="lineNum">     130 </span><span class="lineCov">        612 :             if ( srdf_groups[j].name_ == _fingers_names[i] ) {</span>
-<span class="lineNum">     131 </span><span class="lineCov">        174 :                 _fingers_group_id[i] = j;</span>
+<span class="lineNum">     129 </span><span class="lineCov">       3803 :         for ( int j = 0; j &lt; group_num; j++ ) {</span>
+<span class="lineNum">     130 </span><span class="lineCov">       2970 :             if ( srdf_groups[j].name_ == _fingers_names[i] ) {</span>
+<span class="lineNum">     131 </span><span class="lineCov">        833 :                 _fingers_group_id[i] = j;</span>
 <span class="lineNum">     132 </span>            :             }
 <span class="lineNum">     133 </span>            :         }
-<span class="lineNum">     134 </span><span class="lineCov">        174 :         ROS_INFO_STREAM ( _fingers_names[i] );</span>
+<span class="lineNum">     134 </span><span class="lineCov">        833 :         ROS_INFO_STREAM ( _fingers_names[i] );</span>
 <span class="lineNum">     135 </span>            :     }
 <span class="lineNum">     136 </span>            : 
 <span class="lineNum">     137 </span>            :     // iterate over the fingers and find revolute joints
-<span class="lineNum">     138 </span><span class="lineCov">        246 :     for ( int i = 0; i &lt; _fingers_num; i++ ) {</span>
-<span class="lineNum">     139 </span><span class="lineCov">        348 :         srdf::Model::Group current_finger_group = srdf_groups[ _fingers_group_id[i] ];</span>
+<span class="lineNum">     138 </span><span class="lineCov">       1171 :     for ( int i = 0; i &lt; _fingers_num; i++ ) {</span>
+<span class="lineNum">     139 </span><span class="lineCov">       1666 :         srdf::Model::Group current_finger_group = srdf_groups[ _fingers_group_id[i] ];</span>
 <span class="lineNum">     140 </span>            : 
 <span class="lineNum">     141 </span>            :         // NOTE only one chain per group
-<span class="lineNum">     142 </span><span class="lineCov">        174 :         if ( current_finger_group.chains_.size() != CHAIN_PER_GROUP )  {</span>
+<span class="lineNum">     142 </span><span class="lineCov">        833 :         if ( current_finger_group.chains_.size() != CHAIN_PER_GROUP )  {</span>
 <span class="lineNum">     143 </span>            : 
 <span class="lineNum">     144 </span><span class="lineNoCov">          0 :             ROS_ERROR_STREAM ( &quot;for the finger chain groups you can specify only one chain per group in your SRDF check &quot; &lt;&lt; </span>
 <span class="lineNum">     145 </span>            :                                current_finger_group.name_.c_str() &lt;&lt; &quot; group&quot; );
@@ -209,39 +209,39 @@
 <span class="lineNum">     147 </span>            :         }
 <span class="lineNum">     148 </span>            : 
 <span class="lineNum">     149 </span>            :         // fill the enabled/disabled joints in chain map
-<span class="lineNum">     150 </span><span class="lineCov">        348 :         if ( !getJointsInFinger ( current_finger_group.chains_[0].first,</span>
-<span class="lineNum">     151 </span><span class="lineCov">        174 :                                   current_finger_group.chains_[0].second,</span>
+<span class="lineNum">     150 </span><span class="lineCov">       1666 :         if ( !getJointsInFinger ( current_finger_group.chains_[0].first,</span>
+<span class="lineNum">     151 </span><span class="lineCov">        833 :                                   current_finger_group.chains_[0].second,</span>
 <span class="lineNum">     152 </span>            :                                   current_finger_group.name_
 <span class="lineNum">     153 </span>            :                                 ) ) {
 <span class="lineNum">     154 </span><span class="lineNoCov">          0 :             return false;</span>
 <span class="lineNum">     155 </span>            :         }
 <span class="lineNum">     156 </span>            :     }
 <span class="lineNum">     157 </span>            :     
-<span class="lineNum">     158 </span><span class="lineCov">         72 :     addNotInFingerJoints();</span>
+<span class="lineNum">     158 </span><span class="lineCov">        338 :     addNotInFingerJoints();</span>
 <span class="lineNum">     159 </span>            :     
-<span class="lineNum">     160 </span><span class="lineCov">         72 :     removePassiveJoints();</span>
+<span class="lineNum">     160 </span><span class="lineCov">        338 :     removePassiveJoints();</span>
 <span class="lineNum">     161 </span>            : 
 <span class="lineNum">     162 </span>            :     // save srdf as string 
-<span class="lineNum">     163 </span><span class="lineCov">        144 :     std::ifstream t_srdf ( _srdf_path );</span>
-<span class="lineNum">     164 </span><span class="lineCov">        144 :     std::stringstream buffer_srdf;</span>
-<span class="lineNum">     165 </span><span class="lineCov">         72 :     buffer_srdf &lt;&lt; t_srdf.rdbuf();</span>
-<span class="lineNum">     166 </span><span class="lineCov">         72 :     _srdf_string = buffer_srdf.str();</span>
+<span class="lineNum">     163 </span><span class="lineCov">        676 :     std::ifstream t_srdf ( _srdf_path );</span>
+<span class="lineNum">     164 </span><span class="lineCov">        676 :     std::stringstream buffer_srdf;</span>
+<span class="lineNum">     165 </span><span class="lineCov">        338 :     buffer_srdf &lt;&lt; t_srdf.rdbuf();</span>
+<span class="lineNum">     166 </span><span class="lineCov">        338 :     _srdf_string = buffer_srdf.str();</span>
 <span class="lineNum">     167 </span>            :     
-<span class="lineNum">     168 </span><span class="lineCov">         72 :     return true;</span>
+<span class="lineNum">     168 </span><span class="lineCov">        338 :     return true;</span>
 <span class="lineNum">     169 </span>            : 
 <a name="170"><span class="lineNum">     170 </span>            : }</a>
 <span class="lineNum">     171 </span>            : 
-<span class="lineNum">     172 </span><span class="lineCov">         72 : void ROSEE::Parser::addNotInFingerJoints() {</span>
+<span class="lineNum">     172 </span><span class="lineCov">        338 : void ROSEE::Parser::addNotInFingerJoints() {</span>
 <span class="lineNum">     173 </span>            :     
-<span class="lineNum">     174 </span><span class="lineCov">        564 :     for (auto it : _urdf_model-&gt;joints_) { //this contains all joints</span>
+<span class="lineNum">     174 </span><span class="lineCov">       2890 :     for (auto it : _urdf_model-&gt;joints_) { //this contains all joints</span>
 <span class="lineNum">     175 </span>            :         
-<span class="lineNum">     176 </span><span class="lineCov">        492 :         if (it.second-&gt;mimic == nullptr) { //not a mimic joint...</span>
+<span class="lineNum">     176 </span><span class="lineCov">       2552 :         if (it.second-&gt;mimic == nullptr) { //not a mimic joint...</span>
 <span class="lineNum">     177 </span>            :         
-<span class="lineNum">     178 </span><span class="lineCov">        864 :             if (it.second-&gt;type == urdf::Joint::CONTINUOUS ||</span>
-<span class="lineNum">     179 </span><span class="lineCov">        432 :                 it.second-&gt;type == urdf::Joint::REVOLUTE ) {</span>
+<span class="lineNum">     178 </span><span class="lineCov">       4414 :             if (it.second-&gt;type == urdf::Joint::CONTINUOUS ||</span>
+<span class="lineNum">     179 </span><span class="lineCov">       2207 :                 it.second-&gt;type == urdf::Joint::REVOLUTE ) {</span>
 <span class="lineNum">     180 </span>            :                 //it.second-&gt;type == urdf::Joint::PRISMATIC
 <span class="lineNum">     181 </span>            :             
-<span class="lineNum">     182 </span><span class="lineCov">        288 :                 if (_urdf_joint_map.find(it.second-&gt;name) == _urdf_joint_map.end() ) {</span>
+<span class="lineNum">     182 </span><span class="lineCov">       1531 :                 if (_urdf_joint_map.find(it.second-&gt;name) == _urdf_joint_map.end() ) {</span>
 <span class="lineNum">     183 </span>            :                     
 <span class="lineNum">     184 </span><span class="lineNoCov">          0 :                     _urdf_joint_map.insert(std::make_pair(it.second-&gt;name, it.second));</span>
 <span class="lineNum">     185 </span><span class="lineNoCov">          0 :                     _finger_joint_map[&quot;virtual_finger&quot;].push_back ( it.second-&gt;name );</span>
@@ -253,13 +253,13 @@
 <span class="lineNum">     191 </span>            :         
 <span class="lineNum">     192 </span>            :     }
 <span class="lineNum">     193 </span>            :     
-<a name="194"><span class="lineNum">     194 </span><span class="lineCov">         72 : }</span></a>
+<a name="194"><span class="lineNum">     194 </span><span class="lineCov">        338 : }</span></a>
 <span class="lineNum">     195 </span>            : 
-<span class="lineNum">     196 </span><span class="lineCov">         72 : bool ROSEE::Parser::removePassiveJoints() {</span>
+<span class="lineNum">     196 </span><span class="lineCov">        338 : bool ROSEE::Parser::removePassiveJoints() {</span>
 <span class="lineNum">     197 </span>            :     
-<span class="lineNum">     198 </span><span class="lineCov">        144 :     std::vector&lt;srdf::Model::PassiveJoint&gt; passiveJointList = _srdfdom.getPassiveJoints();</span>
+<span class="lineNum">     198 </span><span class="lineCov">        676 :     std::vector&lt;srdf::Model::PassiveJoint&gt; passiveJointList = _srdfdom.getPassiveJoints();</span>
 <span class="lineNum">     199 </span>            :     
-<span class="lineNum">     200 </span><span class="lineCov">         72 :     for (auto passiveJoint : passiveJointList) {</span>
+<span class="lineNum">     200 </span><span class="lineCov">        338 :     for (auto passiveJoint : passiveJointList) {</span>
 <span class="lineNum">     201 </span>            :         //the passive can be also already deleted so we chech if we delete it(e.g. it is also mimic)
 <span class="lineNum">     202 </span><span class="lineNoCov">          0 :         if (_urdf_joint_map.erase(passiveJoint.name_) &gt; 0) {</span>
 <span class="lineNum">     203 </span>            :             
@@ -280,40 +280,40 @@
 <span class="lineNum">     218 </span>            :         }   
 <span class="lineNum">     219 </span>            :     }
 <span class="lineNum">     220 </span>            : 
-<span class="lineNum">     221 </span><span class="lineCov">        144 :     return true;</span>
+<span class="lineNum">     221 </span><span class="lineCov">        676 :     return true;</span>
 <span class="lineNum">     222 </span>            : }
 <a name="223"><span class="lineNum">     223 </span>            : </a>
 <span class="lineNum">     224 </span>            : 
-<span class="lineNum">     225 </span><span class="lineCov">         72 : bool ROSEE::Parser::parseURDF() {</span>
+<span class="lineNum">     225 </span><span class="lineCov">        338 : bool ROSEE::Parser::parseURDF() {</span>
 <span class="lineNum">     226 </span>            : 
-<span class="lineNum">     227 </span><span class="lineCov">        144 :     std::string xml_string;</span>
-<span class="lineNum">     228 </span><span class="lineCov">        144 :     std::fstream xml_file ( _urdf_path.c_str(), std::fstream::in );</span>
-<span class="lineNum">     229 </span><span class="lineCov">         72 :     if ( xml_file.is_open() ) {</span>
+<span class="lineNum">     227 </span><span class="lineCov">        676 :     std::string xml_string;</span>
+<span class="lineNum">     228 </span><span class="lineCov">        676 :     std::fstream xml_file ( _urdf_path.c_str(), std::fstream::in );</span>
+<span class="lineNum">     229 </span><span class="lineCov">        338 :     if ( xml_file.is_open() ) {</span>
 <span class="lineNum">     230 </span>            : 
-<span class="lineNum">     231 </span><span class="lineCov">      33528 :         while ( xml_file.good() ) {</span>
+<span class="lineNum">     231 </span><span class="lineCov">     165098 :         while ( xml_file.good() ) {</span>
 <span class="lineNum">     232 </span>            : 
-<span class="lineNum">     233 </span><span class="lineCov">      33456 :             std::string line;</span>
-<span class="lineNum">     234 </span><span class="lineCov">      16728 :             std::getline ( xml_file, line );</span>
-<span class="lineNum">     235 </span><span class="lineCov">      16728 :             xml_string += ( line + &quot;\n&quot; );</span>
+<span class="lineNum">     233 </span><span class="lineCov">     164760 :             std::string line;</span>
+<span class="lineNum">     234 </span><span class="lineCov">      82380 :             std::getline ( xml_file, line );</span>
+<span class="lineNum">     235 </span><span class="lineCov">      82380 :             xml_string += ( line + &quot;\n&quot; );</span>
 <span class="lineNum">     236 </span>            :         }
 <span class="lineNum">     237 </span>            : 
-<span class="lineNum">     238 </span><span class="lineCov">         72 :         xml_file.close();</span>
-<span class="lineNum">     239 </span><span class="lineCov">         72 :         _urdf_model = urdf::parseURDF ( xml_string );</span>
+<span class="lineNum">     238 </span><span class="lineCov">        338 :         xml_file.close();</span>
+<span class="lineNum">     239 </span><span class="lineCov">        338 :         _urdf_model = urdf::parseURDF ( xml_string );</span>
 <span class="lineNum">     240 </span>            : 
 <span class="lineNum">     241 </span>            :         // create the robot KDL tree from the URDF model
-<span class="lineNum">     242 </span><span class="lineCov">         72 :         if ( !kdl_parser::treeFromUrdfModel ( *_urdf_model, _robot_tree ) ) {</span>
+<span class="lineNum">     242 </span><span class="lineCov">        338 :         if ( !kdl_parser::treeFromUrdfModel ( *_urdf_model, _robot_tree ) ) {</span>
 <span class="lineNum">     243 </span>            : 
 <span class="lineNum">     244 </span><span class="lineNoCov">          0 :             ROS_ERROR_STREAM ( &quot;in &quot; &lt;&lt; __func__ &lt;&lt; &quot; Failed to construct kdl tree&quot; );</span>
 <span class="lineNum">     245 </span><span class="lineNoCov">          0 :             return false;</span>
 <span class="lineNum">     246 </span>            :         }
 <span class="lineNum">     247 </span>            : 
 <span class="lineNum">     248 </span>            :         // save urdf and string (can be useful to have, thanks @alaurenzi!)
-<span class="lineNum">     249 </span><span class="lineCov">        144 :         std::ifstream t_urdf ( _urdf_path );</span>
-<span class="lineNum">     250 </span><span class="lineCov">        144 :         std::stringstream buffer_urdf;</span>
-<span class="lineNum">     251 </span><span class="lineCov">         72 :         buffer_urdf &lt;&lt; t_urdf.rdbuf();</span>
-<span class="lineNum">     252 </span><span class="lineCov">         72 :         _urdf_string = buffer_urdf.str();</span>
+<span class="lineNum">     249 </span><span class="lineCov">        676 :         std::ifstream t_urdf ( _urdf_path );</span>
+<span class="lineNum">     250 </span><span class="lineCov">        676 :         std::stringstream buffer_urdf;</span>
+<span class="lineNum">     251 </span><span class="lineCov">        338 :         buffer_urdf &lt;&lt; t_urdf.rdbuf();</span>
+<span class="lineNum">     252 </span><span class="lineCov">        338 :         _urdf_string = buffer_urdf.str();</span>
 <span class="lineNum">     253 </span>            : 
-<span class="lineNum">     254 </span><span class="lineCov">         72 :         return true;</span>
+<span class="lineNum">     254 </span><span class="lineCov">        338 :         return true;</span>
 <span class="lineNum">     255 </span>            : 
 <span class="lineNum">     256 </span>            :     } else {
 <span class="lineNum">     257 </span>            : 
@@ -323,26 +323,26 @@
 <span class="lineNum">     261 </span>            : }
 <a name="262"><span class="lineNum">     262 </span>            : </a>
 <span class="lineNum">     263 </span>            : 
-<span class="lineNum">     264 </span><span class="lineCov">         72 : bool ROSEE::Parser::getROSEndEffectorConfig() {</span>
+<span class="lineNum">     264 </span><span class="lineCov">        338 : bool ROSEE::Parser::getROSEndEffectorConfig() {</span>
 <span class="lineNum">     265 </span>            : 
-<span class="lineNum">     266 </span><span class="lineCov">         72 :     bool success = true;</span>
+<span class="lineNum">     266 </span><span class="lineCov">        338 :     bool success = true;</span>
 <span class="lineNum">     267 </span>            : 
 <span class="lineNum">     268 </span>            :     // check if the ROSEE config path exists
-<span class="lineNum">     269 </span><span class="lineCov">        144 :     std::ifstream fin ( _ros_ee_config_path );</span>
-<span class="lineNum">     270 </span><span class="lineCov">         72 :     if ( fin.fail() ) {</span>
+<span class="lineNum">     269 </span><span class="lineCov">        676 :     std::ifstream fin ( _ros_ee_config_path );</span>
+<span class="lineNum">     270 </span><span class="lineCov">        338 :     if ( fin.fail() ) {</span>
 <span class="lineNum">     271 </span>            : 
 <span class="lineNum">     272 </span><span class="lineNoCov">          0 :         ROS_ERROR_STREAM ( &quot;in &quot; &lt;&lt; __func__ &lt;&lt; &quot; : Can NOT open &quot; &lt;&lt; _ros_ee_config_path &lt;&lt; &quot;!&quot; );</span>
 <span class="lineNum">     273 </span><span class="lineNoCov">          0 :         success = false;</span>
 <span class="lineNum">     274 </span>            :     } else {
 <span class="lineNum">     275 </span>            : 
 <span class="lineNum">     276 </span>            :         // load the node for the _ros_ee_config_path
-<span class="lineNum">     277 </span><span class="lineCov">        144 :         YAML::Node cfg = YAML::LoadFile ( _ros_ee_config_path );</span>
+<span class="lineNum">     277 </span><span class="lineCov">        676 :         YAML::Node cfg = YAML::LoadFile ( _ros_ee_config_path );</span>
 <span class="lineNum">     278 </span>            : 
 <span class="lineNum">     279 </span>            :         // find the internal node ros_end_effector
-<span class="lineNum">     280 </span><span class="lineCov">        144 :         YAML::Node ros_ee_node;</span>
-<span class="lineNum">     281 </span><span class="lineCov">         72 :         if ( cfg[&quot;ros_end_effector&quot;] ) {</span>
+<span class="lineNum">     280 </span><span class="lineCov">        676 :         YAML::Node ros_ee_node;</span>
+<span class="lineNum">     281 </span><span class="lineCov">        338 :         if ( cfg[&quot;ros_end_effector&quot;] ) {</span>
 <span class="lineNum">     282 </span>            : 
-<span class="lineNum">     283 </span><span class="lineCov">         72 :             ros_ee_node = cfg[&quot;ros_end_effector&quot;];</span>
+<span class="lineNum">     283 </span><span class="lineCov">        338 :             ros_ee_node = cfg[&quot;ros_end_effector&quot;];</span>
 <span class="lineNum">     284 </span>            :         } else {
 <span class="lineNum">     285 </span>            : 
 <span class="lineNum">     286 </span><span class="lineNoCov">          0 :             ROS_ERROR_STREAM ( &quot;in &quot; &lt;&lt; __func__ &lt;&lt; &quot; : YAML file  &quot; &lt;&lt; _ros_ee_config_path &lt;&lt; &quot; does not contain ros_end_effector mandatory node!!&quot; );</span>
@@ -350,11 +350,11 @@
 <span class="lineNum">     288 </span>            :         }
 <span class="lineNum">     289 </span>            : 
 <span class="lineNum">     290 </span>            :         // check the urdf_filename
-<span class="lineNum">     291 </span><span class="lineCov">         72 :         if ( ros_ee_node[&quot;urdf_path&quot;] ) {</span>
+<span class="lineNum">     291 </span><span class="lineCov">        338 :         if ( ros_ee_node[&quot;urdf_path&quot;] ) {</span>
 <span class="lineNum">     292 </span>            : 
 <span class="lineNum">     293 </span>            :             // TBD relative path in more elegant way
-<span class="lineNum">     294 </span><span class="lineCov">         72 :             _urdf_path = ROSEE::Utils::getPackagePath() + &quot;/configs/&quot; + ros_ee_node[&quot;urdf_path&quot;].as&lt;std::string&gt;();</span>
-<span class="lineNum">     295 </span><span class="lineCov">         72 :             ROS_INFO_STREAM ( &quot;ros_end_effector Parser found URDF path: &quot; &lt;&lt; _urdf_path );</span>
+<span class="lineNum">     294 </span><span class="lineCov">        338 :             _urdf_path = ROSEE::Utils::getPackagePath() + &quot;/configs/&quot; + ros_ee_node[&quot;urdf_path&quot;].as&lt;std::string&gt;();</span>
+<span class="lineNum">     295 </span><span class="lineCov">        338 :             ROS_INFO_STREAM ( &quot;ros_end_effector Parser found URDF path: &quot; &lt;&lt; _urdf_path );</span>
 <span class="lineNum">     296 </span>            :         } else {
 <span class="lineNum">     297 </span>            : 
 <span class="lineNum">     298 </span><span class="lineNoCov">          0 :             ROS_ERROR_STREAM ( &quot;in &quot; &lt;&lt; __func__ &lt;&lt; &quot; : ros_end_effector node of  &quot; &lt;&lt; _ros_ee_config_path &lt;&lt; &quot; does not contain urdf_path mandatory node!!&quot; );</span>
@@ -362,37 +362,37 @@
 <span class="lineNum">     300 </span>            :         }
 <span class="lineNum">     301 </span>            : 
 <span class="lineNum">     302 </span>            :         // check the srdf_filename
-<span class="lineNum">     303 </span><span class="lineCov">         72 :         if ( ros_ee_node[&quot;srdf_path&quot;] ) {</span>
+<span class="lineNum">     303 </span><span class="lineCov">        338 :         if ( ros_ee_node[&quot;srdf_path&quot;] ) {</span>
 <span class="lineNum">     304 </span>            : 
 <span class="lineNum">     305 </span>            :             // TBD relative path in more elegant way
-<span class="lineNum">     306 </span><span class="lineCov">         72 :             _srdf_path = ROSEE::Utils::getPackagePath() + &quot;/configs/&quot; + ros_ee_node[&quot;srdf_path&quot;].as&lt;std::string&gt;();</span>
-<span class="lineNum">     307 </span><span class="lineCov">         72 :             ROS_INFO_STREAM ( &quot;ros_end_effector Parser found SRDF path: &quot; &lt;&lt; _srdf_path );</span>
+<span class="lineNum">     306 </span><span class="lineCov">        338 :             _srdf_path = ROSEE::Utils::getPackagePath() + &quot;/configs/&quot; + ros_ee_node[&quot;srdf_path&quot;].as&lt;std::string&gt;();</span>
+<span class="lineNum">     307 </span><span class="lineCov">        338 :             ROS_INFO_STREAM ( &quot;ros_end_effector Parser found SRDF path: &quot; &lt;&lt; _srdf_path );</span>
 <span class="lineNum">     308 </span>            :         } else {
 <span class="lineNum">     309 </span>            : 
 <span class="lineNum">     310 </span><span class="lineNoCov">          0 :             ROS_ERROR_STREAM ( &quot;in &quot; &lt;&lt; __func__ &lt;&lt; &quot; : ros_end_effector node of  &quot; &lt;&lt; _ros_ee_config_path &lt;&lt; &quot; does not contain srdf_path mandatory node!!&quot; );</span>
 <span class="lineNum">     311 </span><span class="lineNoCov">          0 :             success = false;</span>
 <span class="lineNum">     312 </span>            :         }
 <span class="lineNum">     313 </span>            :         
-<span class="lineNum">     314 </span><span class="lineCov">         72 :         if ( ros_ee_node[&quot;action_path&quot;] ) {</span>
-<span class="lineNum">     315 </span><span class="lineCov">         72 :             _action_path = ROSEE::Utils::getPackagePath() + &quot;/configs/&quot; + ros_ee_node[&quot;action_path&quot;].as&lt;std::string&gt;();</span>
-<span class="lineNum">     316 </span><span class="lineCov">         72 :             ROS_INFO_STREAM ( &quot;ros_end_effector Parser found config folder for actions: &quot; &lt;&lt; _action_path );</span>
+<span class="lineNum">     314 </span><span class="lineCov">        338 :         if ( ros_ee_node[&quot;action_path&quot;] ) {</span>
+<span class="lineNum">     315 </span><span class="lineCov">        338 :             _action_path = ROSEE::Utils::getPackagePath() + &quot;/configs/&quot; + ros_ee_node[&quot;action_path&quot;].as&lt;std::string&gt;();</span>
+<span class="lineNum">     316 </span><span class="lineCov">        338 :             ROS_INFO_STREAM ( &quot;ros_end_effector Parser found config folder for actions: &quot; &lt;&lt; _action_path );</span>
 <span class="lineNum">     317 </span>            : 
 <span class="lineNum">     318 </span>            :         }
 <span class="lineNum">     319 </span>            :     }
 <span class="lineNum">     320 </span>            : 
-<span class="lineNum">     321 </span><span class="lineCov">        144 :     return success;</span>
+<span class="lineNum">     321 </span><span class="lineCov">        676 :     return success;</span>
 <a name="322"><span class="lineNum">     322 </span>            : }</a>
 <span class="lineNum">     323 </span>            : 
-<span class="lineNum">     324 </span><span class="lineCov">         72 : bool ROSEE::Parser::configure() {</span>
+<span class="lineNum">     324 </span><span class="lineCov">        338 : bool ROSEE::Parser::configure() {</span>
 <span class="lineNum">     325 </span>            : 
-<span class="lineNum">     326 </span><span class="lineCov">         72 :     bool ret = true;</span>
-<span class="lineNum">     327 </span><span class="lineCov">         72 :     if ( getROSEndEffectorConfig() ) {</span>
+<span class="lineNum">     326 </span><span class="lineCov">        338 :     bool ret = true;</span>
+<span class="lineNum">     327 </span><span class="lineCov">        338 :     if ( getROSEndEffectorConfig() ) {</span>
 <span class="lineNum">     328 </span>            : 
-<span class="lineNum">     329 </span><span class="lineCov">         72 :         if ( parseURDF() ) {</span>
+<span class="lineNum">     329 </span><span class="lineCov">        338 :         if ( parseURDF() ) {</span>
 <span class="lineNum">     330 </span>            :             
-<span class="lineNum">     331 </span><span class="lineCov">         72 :             if ( parseSRDF() ) {</span>
+<span class="lineNum">     331 </span><span class="lineCov">        338 :             if ( parseSRDF() ) {</span>
 <span class="lineNum">     332 </span>            :                 
-<span class="lineNum">     333 </span><span class="lineCov">         72 :                 ROS_INFO_STREAM ( &quot;ROSEndEffector Parser successfully configured using config file:  &quot; &lt;&lt; _ros_ee_config_path );</span>
+<span class="lineNum">     333 </span><span class="lineCov">        338 :                 ROS_INFO_STREAM ( &quot;ROSEndEffector Parser successfully configured using config file:  &quot; &lt;&lt; _ros_ee_config_path );</span>
 <span class="lineNum">     334 </span>            :             
 <span class="lineNum">     335 </span>            :             } else {
 <span class="lineNum">     336 </span>            :             
@@ -412,18 +412,18 @@
 <span class="lineNum">     350 </span>            :     }
 <span class="lineNum">     351 </span>            : 
 <span class="lineNum">     352 </span>            : 
-<span class="lineNum">     353 </span><span class="lineCov">         72 :     return ret;</span>
+<span class="lineNum">     353 </span><span class="lineCov">        338 :     return ret;</span>
 <span class="lineNum">     354 </span>            : }
 <span class="lineNum">     355 </span>            : 
 <a name="356"><span class="lineNum">     356 </span>            : </a>
 <span class="lineNum">     357 </span>            : 
-<span class="lineNum">     358 </span><span class="lineCov">         24 : bool ROSEE::Parser::init() {</span>
+<span class="lineNum">     358 </span><span class="lineCov">        119 : bool ROSEE::Parser::init() {</span>
 <span class="lineNum">     359 </span>            : 
 <span class="lineNum">     360 </span>            :     // try to retrive the path to config from the ROS param server TBD namespace should be take into account
-<span class="lineNum">     361 </span><span class="lineCov">         24 :     if ( _nh.getParam ( &quot;/ros_ee_config_path&quot;, _ros_ee_config_path ) ) {</span>
+<span class="lineNum">     361 </span><span class="lineCov">        119 :     if ( _nh.getParam ( &quot;/ros_ee_config_path&quot;, _ros_ee_config_path ) ) {</span>
 <span class="lineNum">     362 </span>            : 
-<span class="lineNum">     363 </span><span class="lineCov">         24 :         _is_initialized =  configure();</span>
-<span class="lineNum">     364 </span><span class="lineCov">         24 :         return _is_initialized;</span>
+<span class="lineNum">     363 </span><span class="lineCov">        119 :         _is_initialized =  configure();</span>
+<span class="lineNum">     364 </span><span class="lineCov">        119 :         return _is_initialized;</span>
 <span class="lineNum">     365 </span>            :     }
 <span class="lineNum">     366 </span>            : 
 <span class="lineNum">     367 </span>            :     // error
@@ -432,52 +432,52 @@
 <span class="lineNum">     370 </span>            : 
 <a name="371"><span class="lineNum">     371 </span>            : }</a>
 <span class="lineNum">     372 </span>            : 
-<span class="lineNum">     373 </span><span class="lineCov">         48 : bool ROSEE::Parser::init ( const std::string&amp; path_to_cfg ) {</span>
+<span class="lineNum">     373 </span><span class="lineCov">        219 : bool ROSEE::Parser::init ( const std::string&amp; path_to_cfg ) {</span>
 <span class="lineNum">     374 </span>            : 
-<span class="lineNum">     375 </span><span class="lineCov">         48 :     _ros_ee_config_path = path_to_cfg;</span>
+<span class="lineNum">     375 </span><span class="lineCov">        219 :     _ros_ee_config_path = path_to_cfg;</span>
 <span class="lineNum">     376 </span>            : 
-<span class="lineNum">     377 </span><span class="lineCov">         48 :     _is_initialized =  configure();</span>
-<span class="lineNum">     378 </span><span class="lineCov">         48 :     return _is_initialized;</span>
+<span class="lineNum">     377 </span><span class="lineCov">        219 :     _is_initialized =  configure();</span>
+<span class="lineNum">     378 </span><span class="lineCov">        219 :     return _is_initialized;</span>
 <a name="379"><span class="lineNum">     379 </span>            : }</a>
 <span class="lineNum">     380 </span>            : 
-<span class="lineNum">     381 </span><span class="lineCov">         33 : void ROSEE::Parser::printEndEffectorFingerJointsMap() const {</span>
+<span class="lineNum">     381 </span><span class="lineCov">        143 : void ROSEE::Parser::printEndEffectorFingerJointsMap() const {</span>
 <span class="lineNum">     382 </span>            : 
-<span class="lineNum">     383 </span><span class="lineCov">         33 :     if ( _is_initialized ) {</span>
+<span class="lineNum">     383 </span><span class="lineCov">        143 :     if ( _is_initialized ) {</span>
 <span class="lineNum">     384 </span>            : 
-<span class="lineNum">     385 </span><span class="lineCov">         33 :         ROS_INFO_STREAM ( &quot;ROS End Effector: Finger Joints Map&quot; );</span>
-<span class="lineNum">     386 </span><span class="lineCov">         33 :         ROS_INFO_STREAM ( &quot;-------------------------&quot; );</span>
-<span class="lineNum">     387 </span><span class="lineCov">        116 :         for ( auto&amp; chain_joints: _finger_joint_map ) {</span>
-<span class="lineNum">     388 </span><span class="lineCov">         83 :             ROS_INFO_STREAM ( chain_joints.first );</span>
+<span class="lineNum">     385 </span><span class="lineCov">        143 :         ROS_INFO_STREAM ( &quot;ROS End Effector: Finger Joints Map&quot; );</span>
+<span class="lineNum">     386 </span><span class="lineCov">        143 :         ROS_INFO_STREAM ( &quot;-------------------------&quot; );</span>
+<span class="lineNum">     387 </span><span class="lineCov">        508 :         for ( auto&amp; chain_joints: _finger_joint_map ) {</span>
+<span class="lineNum">     388 </span><span class="lineCov">        365 :             ROS_INFO_STREAM ( chain_joints.first );</span>
 <span class="lineNum">     389 </span>            : 
-<span class="lineNum">     390 </span><span class="lineCov">         83 :             int nJointInFinger = chain_joints.second.size();</span>
+<span class="lineNum">     390 </span><span class="lineCov">        365 :             int nJointInFinger = chain_joints.second.size();</span>
 <span class="lineNum">     391 </span>            :             
-<span class="lineNum">     392 </span><span class="lineCov">         83 :             if ( nJointInFinger == 0 ) {</span>
+<span class="lineNum">     392 </span><span class="lineCov">        365 :             if ( nJointInFinger == 0 ) {</span>
 <span class="lineNum">     393 </span>            :                 
-<span class="lineNum">     394 </span><span class="lineCov">          7 :                 ROS_INFO_STREAM ( &quot;No actuated joint in this finger&quot; );</span>
+<span class="lineNum">     394 </span><span class="lineCov">         37 :                 ROS_INFO_STREAM ( &quot;No actuated joint in this finger&quot; );</span>
 <span class="lineNum">     395 </span>            :                 
 <span class="lineNum">     396 </span>            :             } else {
 <span class="lineNum">     397 </span>            :                 
-<span class="lineNum">     398 </span><span class="lineCov">        221 :                 for ( int i = 0; i &lt; nJointInFinger ; i++ ) {</span>
-<span class="lineNum">     399 </span><span class="lineCov">        145 :                     ROS_INFO_STREAM ( chain_joints.second.at ( i ) );</span>
+<span class="lineNum">     398 </span><span class="lineCov">       1040 :                 for ( int i = 0; i &lt; nJointInFinger ; i++ ) {</span>
+<span class="lineNum">     399 </span><span class="lineCov">        712 :                     ROS_INFO_STREAM ( chain_joints.second.at ( i ) );</span>
 <span class="lineNum">     400 </span>            :                 }
 <span class="lineNum">     401 </span>            :             }
 <span class="lineNum">     402 </span>            : 
-<span class="lineNum">     403 </span><span class="lineCov">         83 :             ROS_INFO_STREAM ( &quot;-------------------------&quot; );</span>
+<span class="lineNum">     403 </span><span class="lineCov">        365 :             ROS_INFO_STREAM ( &quot;-------------------------&quot; );</span>
 <span class="lineNum">     404 </span>            :         }
 <span class="lineNum">     405 </span>            :     } else {
 <span class="lineNum">     406 </span>            : 
 <span class="lineNum">     407 </span><span class="lineNoCov">          0 :         ROS_ERROR_STREAM ( &quot;in &quot; &lt;&lt; __func__ &lt;&lt; &quot; :  ROSEE::Parser needs to be initialized. Call init() frist.&quot; );</span>
 <span class="lineNum">     408 </span>            :     }
-<a name="409"><span class="lineNum">     409 </span><span class="lineCov">         33 : }</span></a>
+<a name="409"><span class="lineNum">     409 </span><span class="lineCov">        143 : }</span></a>
 <span class="lineNum">     410 </span>            : 
-<span class="lineNum">     411 </span><span class="lineCov">         72 : int ROSEE::Parser::getActuatedJointsNumber() const {</span>
+<span class="lineNum">     411 </span><span class="lineCov">        338 : int ROSEE::Parser::getActuatedJointsNumber() const {</span>
 <span class="lineNum">     412 </span>            :     
-<span class="lineNum">     413 </span><span class="lineCov">         72 :     return _joints_num;</span>
+<span class="lineNum">     413 </span><span class="lineCov">        338 :     return _joints_num;</span>
 <a name="414"><span class="lineNum">     414 </span>            : }</a>
 <span class="lineNum">     415 </span>            : 
-<span class="lineNum">     416 </span><span class="lineCov">         72 : std::map&lt; std::string, std::vector&lt; std::string &gt; &gt; ROSEE::Parser::getFingerJointMap() const {</span>
+<span class="lineNum">     416 </span><span class="lineCov">        338 : std::map&lt; std::string, std::vector&lt; std::string &gt; &gt; ROSEE::Parser::getFingerJointMap() const {</span>
 <span class="lineNum">     417 </span>            : 
-<span class="lineNum">     418 </span><span class="lineCov">         72 :     return _finger_joint_map;</span>
+<span class="lineNum">     418 </span><span class="lineCov">        338 :     return _finger_joint_map;</span>
 <a name="419"><span class="lineNum">     419 </span>            : }</a>
 <span class="lineNum">     420 </span>            : 
 <span class="lineNum">     421 </span><span class="lineNoCov">          0 : std::map&lt; std::string, std::string &gt; ROSEE::Parser::getJointFingerMap() const {</span>
@@ -485,9 +485,9 @@
 <span class="lineNum">     423 </span><span class="lineNoCov">          0 :     return _joint_finger_map;</span>
 <a name="424"><span class="lineNum">     424 </span>            : }</a>
 <span class="lineNum">     425 </span>            : 
-<span class="lineNum">     426 </span><span class="lineCov">         72 : std::map&lt; std::string, urdf::JointConstSharedPtr &gt; ROSEE::Parser::getUrdfJointMap() const {</span>
+<span class="lineNum">     426 </span><span class="lineCov">        338 : std::map&lt; std::string, urdf::JointConstSharedPtr &gt; ROSEE::Parser::getUrdfJointMap() const {</span>
 <span class="lineNum">     427 </span>            : 
-<span class="lineNum">     428 </span><span class="lineCov">         72 :     return _urdf_joint_map;</span>
+<span class="lineNum">     428 </span><span class="lineCov">        338 :     return _urdf_joint_map;</span>
 <a name="429"><span class="lineNum">     429 </span>            : }</a>
 <span class="lineNum">     430 </span>            : 
 <span class="lineNum">     431 </span><span class="lineNoCov">          0 : void ROSEE::Parser::getFingerJointMap( std::map&lt; std::string, std::vector&lt; std::string &gt; &gt;&amp; finger_joint_map ) const {</span>
@@ -500,9 +500,9 @@
 <span class="lineNum">     438 </span><span class="lineNoCov">          0 :     joint_finger_map = _joint_finger_map;</span>
 <a name="439"><span class="lineNum">     439 </span><span class="lineNoCov">          0 : }</span></a>
 <span class="lineNum">     440 </span>            : 
-<span class="lineNum">     441 </span><span class="lineCov">         72 : std::string ROSEE::Parser::getEndEffectorName() const {</span>
+<span class="lineNum">     441 </span><span class="lineCov">        338 : std::string ROSEE::Parser::getEndEffectorName() const {</span>
 <span class="lineNum">     442 </span>            : 
-<span class="lineNum">     443 </span><span class="lineCov">         72 :     return _urdf_model-&gt;getName();</span>
+<span class="lineNum">     443 </span><span class="lineCov">        338 :     return _urdf_model-&gt;getName();</span>
 <a name="444"><span class="lineNum">     444 </span>            : }</a>
 <span class="lineNum">     445 </span>            : 
 <span class="lineNum">     446 </span><span class="lineNoCov">          0 : std::string ROSEE::Parser::getUrdfString() const {</span>
@@ -517,9 +517,9 @@
 <span class="lineNum">     455 </span><span class="lineNoCov">          0 :     return _ros_ee_config_path;</span>
 <a name="456"><span class="lineNum">     456 </span>            : }</a>
 <span class="lineNum">     457 </span>            : 
-<a name="458"><span class="lineNum">     458 </span><span class="lineCov">         63 : std::string ROSEE::Parser::getActionPath() const {</span></a>
-<span class="lineNum">     459 </span><span class="lineCov">         63 :     return _action_path;</span>
-<span class="lineNum">     460 </span><span class="lineCov">         90 : };</span>
+<a name="458"><span class="lineNum">     458 </span><span class="lineCov">        314 : std::string ROSEE::Parser::getActionPath() const {</span></a>
+<span class="lineNum">     459 </span><span class="lineCov">        314 :     return _action_path;</span>
+<span class="lineNum">     460 </span><span class="lineCov">        426 : };</span>
 <span class="lineNum">     461 </span>            : 
 <span class="lineNum">     462 </span>            : 
 <span class="lineNum">     463 </span>            : 
