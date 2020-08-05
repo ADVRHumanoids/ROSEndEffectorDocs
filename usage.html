@@ -281,11 +281,11 @@ To know more about ROSEE GUI, check <a class="reference internal" href="roseeGui
 You can simply <code class="code docutils literal notranslate"><span class="pre">pub</span></code> a <em>rosee_msg/ROSEECommandActionGoal</em> message on <em>/ros_end_effector/action_command/goal</em> topic, and <code class="code docutils literal notranslate"><span class="pre">echo</span></code> on /<em>ros_end_effector/action_command/feedback</em> to receive the feedback.</p>
 <p>For example, to publish run this:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre>rostopic pub /ros_end_effector/action_command/goal rosee_msg/ROSEECommandActionGoal <span class="s2">&quot;header:</span>
-<span class="s2">  seq: 0</span>
+<span class="s2">    seq: 0</span>
 <span class="s2">    stamp:</span>
 <span class="s2">      secs: 0</span>
 <span class="s2">      nsecs: 0</span>
-<span class="s2">  frame_id: &#39;&#39;</span>
+<span class="s2">    frame_id: &#39;&#39;</span>
 <span class="s2">goal_id:</span>
 <span class="s2">  stamp:</span>
 <span class="s2">    secs: 0</span>
