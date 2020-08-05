@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2020-07-31 15:30:30</td>
+            <td class="headerValue">2020-08-05 12:21:01</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">10</td>
@@ -79,46 +79,46 @@
 <span class="lineNum">      17 </span>            : 
 <a name="18"><span class="lineNum">      18 </span>            : #include &lt;ros_end_effector/DummyHal.h&gt;</a>
 <span class="lineNum">      19 </span>            : 
-<span class="lineNum">      20 </span><span class="lineCov">         24 : ROSEE::DummyHal::DummyHal ( ROSEE::EEInterface::Ptr ee_interface ) : EEHal ( ee_interface ) {</span>
+<span class="lineNum">      20 </span><span class="lineCov">        119 : ROSEE::DummyHal::DummyHal ( ROSEE::EEInterface::Ptr ee_interface ) : EEHal ( ee_interface ) {</span>
 <span class="lineNum">      21 </span>            : 
-<span class="lineNum">      22 </span><span class="lineCov">         24 : }</span>
+<span class="lineNum">      22 </span><span class="lineCov">        119 : }</span>
 <a name="23"><span class="lineNum">      23 </span>            : </a>
 <span class="lineNum">      24 </span>            : 
-<span class="lineNum">      25 </span><span class="lineCov">      45464 : bool ROSEE::DummyHal::getMotorPosition ( std::string joint_name, double&amp; motor_position ) {</span>
+<span class="lineNum">      25 </span><span class="lineCov">     398609 : bool ROSEE::DummyHal::getMotorPosition ( std::string joint_name, double&amp; motor_position ) {</span>
 <span class="lineNum">      26 </span>            : 
-<span class="lineNum">      27 </span><span class="lineCov">      45464 :     return getJointPosition(joint_name, motor_position);</span>
+<span class="lineNum">      27 </span><span class="lineCov">     398609 :     return getJointPosition(joint_name, motor_position);</span>
 <a name="28"><span class="lineNum">      28 </span>            : }</a>
 <span class="lineNum">      29 </span>            : 
-<span class="lineNum">      30 </span><span class="lineCov">      45464 : bool ROSEE::DummyHal::getMotorVelocity ( std::string joint_name, double&amp; motor_velocity ) {</span>
+<span class="lineNum">      30 </span><span class="lineCov">     398609 : bool ROSEE::DummyHal::getMotorVelocity ( std::string joint_name, double&amp; motor_velocity ) {</span>
 <span class="lineNum">      31 </span>            : 
-<span class="lineNum">      32 </span><span class="lineCov">      45464 :     return getJointVelocity(joint_name, motor_velocity);</span>
+<span class="lineNum">      32 </span><span class="lineCov">     398609 :     return getJointVelocity(joint_name, motor_velocity);</span>
 <a name="33"><span class="lineNum">      33 </span>            : }</a>
 <span class="lineNum">      34 </span>            : 
-<span class="lineNum">      35 </span><span class="lineCov">      45464 : bool ROSEE::DummyHal::getMotorEffort ( std::string joint_name, double&amp; motor_effort ) {</span>
+<span class="lineNum">      35 </span><span class="lineCov">     398609 : bool ROSEE::DummyHal::getMotorEffort ( std::string joint_name, double&amp; motor_effort ) {</span>
 <span class="lineNum">      36 </span>            : 
-<span class="lineNum">      37 </span><span class="lineCov">      45464 :     return getJointEffort(joint_name, motor_effort);</span>
+<span class="lineNum">      37 </span><span class="lineCov">     398609 :     return getJointEffort(joint_name, motor_effort);</span>
 <span class="lineNum">      38 </span>            : }
 <a name="39"><span class="lineNum">      39 </span>            : </a>
 <span class="lineNum">      40 </span>            : 
-<span class="lineNum">      41 </span><span class="lineCov">      44321 : bool ROSEE::DummyHal::setPositionReference ( std::string joint_name, double position_reference ) {</span>
+<span class="lineNum">      41 </span><span class="lineCov">     391296 : bool ROSEE::DummyHal::setPositionReference ( std::string joint_name, double position_reference ) {</span>
 <span class="lineNum">      42 </span>            : 
-<span class="lineNum">      43 </span><span class="lineCov">      44321 :     setJointPosition(joint_name, position_reference);</span>
-<span class="lineNum">      44 </span><span class="lineCov">      44321 :     return true;</span>
+<span class="lineNum">      43 </span><span class="lineCov">     391296 :     setJointPosition(joint_name, position_reference);</span>
+<span class="lineNum">      44 </span><span class="lineCov">     391296 :     return true;</span>
 <span class="lineNum">      45 </span>            : }
 <a name="46"><span class="lineNum">      46 </span>            : </a>
 <span class="lineNum">      47 </span>            : 
-<span class="lineNum">      48 </span><span class="lineCov">      11822 : bool ROSEE::DummyHal::sense() {</span>
-<span class="lineNum">      49 </span><span class="lineCov">      11822 :     return true;</span>
+<span class="lineNum">      48 </span><span class="lineCov">     113196 : bool ROSEE::DummyHal::sense() {</span>
+<span class="lineNum">      49 </span><span class="lineCov">     113196 :     return true;</span>
 <a name="50"><span class="lineNum">      50 </span>            : }</a>
 <span class="lineNum">      51 </span>            : 
-<span class="lineNum">      52 </span><span class="lineCov">      11822 : bool ROSEE::DummyHal::move() {</span>
-<span class="lineNum">      53 </span><span class="lineCov">      11822 :     return true;</span>
+<span class="lineNum">      52 </span><span class="lineCov">     113196 : bool ROSEE::DummyHal::move() {</span>
+<span class="lineNum">      53 </span><span class="lineCov">     113196 :     return true;</span>
 <span class="lineNum">      54 </span>            : }
 <a name="55"><span class="lineNum">      55 </span>            : </a>
 <span class="lineNum">      56 </span>            : 
-<a name="57"><span class="lineNum">      57 </span><span class="lineCov">         24 : ROSEE::DummyHal::~DummyHal() {</span></a>
+<a name="57"><span class="lineNum">      57 </span><span class="lineCov">        119 : ROSEE::DummyHal::~DummyHal() {</span></a>
 <span class="lineNum">      58 </span>            : 
-<span class="lineNum">      59 </span><span class="lineCov">         96 : }</span>
+<span class="lineNum">      59 </span><span class="lineCov">        476 : }</span>
 </pre>
       </td>
     </tr>

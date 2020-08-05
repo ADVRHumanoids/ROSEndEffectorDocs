@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2020-07-31 15:30:30</td>
+            <td class="headerValue">2020-08-05 12:21:01</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">10</td>
@@ -81,19 +81,19 @@
 <span class="lineNum">      19 </span>            : namespace rosee_msg
 <a name="20"><span class="lineNum">      20 </span>            : {</a>
 <span class="lineNum">      21 </span>            : template &lt;class ContainerAllocator&gt;
-<span class="lineNum">      22 </span><span class="lineCov">        375 : struct ROSEEActionControl_</span>
+<span class="lineNum">      22 </span><span class="lineCov">       1416 : struct ROSEEActionControl_</span>
 <span class="lineNum">      23 </span>            : {
 <a name="24"><span class="lineNum">      24 </span>            :   typedef ROSEEActionControl_&lt;ContainerAllocator&gt; Type;</a>
 <span class="lineNum">      25 </span>            : 
-<span class="lineNum">      26 </span><span class="lineCov">        207 :   ROSEEActionControl_()</span>
+<span class="lineNum">      26 </span><span class="lineCov">        675 :   ROSEEActionControl_()</span>
 <span class="lineNum">      27 </span>            :     : seq(0)
 <span class="lineNum">      28 </span>            :     , stamp()
 <span class="lineNum">      29 </span>            :     , action_name()
 <span class="lineNum">      30 </span>            :     , action_type(0)
 <span class="lineNum">      31 </span>            :     , actionPrimitive_type(0)
 <span class="lineNum">      32 </span>            :     , selectable_items()
-<span class="lineNum">      33 </span><span class="lineCov">        207 :     , percentage(0.0)  {</span>
-<span class="lineNum">      34 </span><span class="lineCov">        207 :     }</span>
+<span class="lineNum">      33 </span><span class="lineCov">        675 :     , percentage(0.0)  {</span>
+<span class="lineNum">      34 </span><span class="lineCov">        675 :     }</span>
 <span class="lineNum">      35 </span>            :   ROSEEActionControl_(const ContainerAllocator&amp; _alloc)
 <span class="lineNum">      36 </span>            :     : seq(0)
 <span class="lineNum">      37 </span>            :     , stamp()
@@ -204,7 +204,7 @@
 <span class="lineNum">     142 </span>            : 
 <span class="lineNum">     143 </span>            : 
 <span class="lineNum">     144 </span>            : // BOOLTRAITS {'IsFixedSize': False, 'IsMessage': True, 'HasHeader': False}
-<span class="lineNum">     145 </span>            : // {'actionlib_msgs': ['/opt/ros/kinetic/share/actionlib_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'rosee_msg': ['/home/tori/ROSEE/src/rosee_msg/msg', '/home/tori/ROSEE/build/devel/share/rosee_msg/msg']}
+<span class="lineNum">     145 </span>            : // {'actionlib_msgs': ['/opt/ros/kinetic/share/actionlib_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'rosee_msg': ['/home/tori/ROSEE/src/rosee_msg/msg', '/home/tori/ROSEE/devel/share/rosee_msg/msg']}
 <span class="lineNum">     146 </span>            : 
 <span class="lineNum">     147 </span>            : // !!!!!!!!!!! ['__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parsed_fields', 'constants', 'fields', 'full_name', 'has_header', 'header_present', 'names', 'package', 'parsed_fields', 'short_name', 'text', 'types']
 <span class="lineNum">     148 </span>            : 
@@ -328,18 +328,18 @@
 <span class="lineNum">     266 </span>            : 
 <a name="267"><span class="lineNum">     267 </span>            :   template&lt;class ContainerAllocator&gt; struct Serializer&lt; ::rosee_msg::ROSEEActionControl_&lt;ContainerAllocator&gt; &gt;</a>
 <span class="lineNum">     268 </span>            :   {
-<span class="lineNum">     269 </span><span class="lineCov">        144 :     template&lt;typename Stream, typename T&gt; inline static void allInOne(Stream&amp; stream, T m)</span>
+<span class="lineNum">     269 </span><span class="lineCov">        504 :     template&lt;typename Stream, typename T&gt; inline static void allInOne(Stream&amp; stream, T m)</span>
 <span class="lineNum">     270 </span>            :     {
-<span class="lineNum">     271 </span><span class="lineCov">        144 :       stream.next(m.seq);</span>
-<span class="lineNum">     272 </span><span class="lineCov">        144 :       stream.next(m.stamp);</span>
-<span class="lineNum">     273 </span><span class="lineCov">        144 :       stream.next(m.action_name);</span>
-<span class="lineNum">     274 </span><span class="lineCov">        144 :       stream.next(m.action_type);</span>
-<span class="lineNum">     275 </span><span class="lineCov">        144 :       stream.next(m.actionPrimitive_type);</span>
-<span class="lineNum">     276 </span><span class="lineCov">        144 :       stream.next(m.selectable_items);</span>
-<span class="lineNum">     277 </span><span class="lineCov">        144 :       stream.next(m.percentage);</span>
-<a name="278"><span class="lineNum">     278 </span><span class="lineCov">        144 :     }</span></a>
+<span class="lineNum">     271 </span><span class="lineCov">        504 :       stream.next(m.seq);</span>
+<span class="lineNum">     272 </span><span class="lineCov">        504 :       stream.next(m.stamp);</span>
+<span class="lineNum">     273 </span><span class="lineCov">        504 :       stream.next(m.action_name);</span>
+<span class="lineNum">     274 </span><span class="lineCov">        504 :       stream.next(m.action_type);</span>
+<span class="lineNum">     275 </span><span class="lineCov">        504 :       stream.next(m.actionPrimitive_type);</span>
+<span class="lineNum">     276 </span><span class="lineCov">        504 :       stream.next(m.selectable_items);</span>
+<span class="lineNum">     277 </span><span class="lineCov">        504 :       stream.next(m.percentage);</span>
+<a name="278"><span class="lineNum">     278 </span><span class="lineCov">        504 :     }</span></a>
 <span class="lineNum">     279 </span>            : 
-<span class="lineNum">     280 </span><span class="lineCov">        144 :     ROS_DECLARE_ALLINONE_SERIALIZER</span>
+<span class="lineNum">     280 </span><span class="lineCov">        504 :     ROS_DECLARE_ALLINONE_SERIALIZER</span>
 <span class="lineNum">     281 </span>            :   }; // struct ROSEEActionControl_
 <span class="lineNum">     282 </span>            : 
 <span class="lineNum">     283 </span>            : } // namespace serialization

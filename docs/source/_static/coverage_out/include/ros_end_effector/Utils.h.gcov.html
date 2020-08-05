@@ -37,12 +37,12 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2020-07-31 15:30:30</td>
+            <td class="headerValue">2020-08-05 12:21:01</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">24</td>
+            <td class="headerCovTableEntry">26</td>
             <td class="headerCovTableEntry">36</td>
-            <td class="headerCovTableEntryLo">66.7 %</td>
+            <td class="headerCovTableEntryLo">72.2 %</td>
           </tr>
           <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -97,62 +97,62 @@
 <span class="lineNum">      35 </span>            : namespace Utils
 <a name="36"><span class="lineNum">      36 </span>            : {</a>
 <span class="lineNum">      37 </span>            :     
-<span class="lineNum">      38 </span><span class="lineCov">        152 : static bool create_directory(std::string pathDirectory){</span>
-<span class="lineNum">      39 </span><span class="lineCov">        304 :     boost::filesystem::path path(pathDirectory);</span>
-<span class="lineNum">      40 </span><span class="lineCov">        304 :     return boost::filesystem::create_directories(path);</span>
+<span class="lineNum">      38 </span><span class="lineCov">        458 : static bool create_directory(std::string pathDirectory){</span>
+<span class="lineNum">      39 </span><span class="lineCov">        916 :     boost::filesystem::path path(pathDirectory);</span>
+<span class="lineNum">      40 </span><span class="lineCov">        916 :     return boost::filesystem::create_directories(path);</span>
 <a name="41"><span class="lineNum">      41 </span>            : }</a>
 <span class="lineNum">      42 </span>            : 
-<span class="lineNum">      43 </span><span class="lineCov">        152 : static void out2file ( std::string pathFile, std::string output) {</span>
-<span class="lineNum">      44 </span><span class="lineCov">        304 :     std::ofstream fout ( pathFile );</span>
-<span class="lineNum">      45 </span><span class="lineCov">        152 :     fout &lt;&lt; output;</span>
-<a name="46"><span class="lineNum">      46 </span><span class="lineCov">        152 : }</span></a>
+<span class="lineNum">      43 </span><span class="lineCov">        458 : static void out2file ( std::string pathFile, std::string output) {</span>
+<span class="lineNum">      44 </span><span class="lineCov">        916 :     std::ofstream fout ( pathFile );</span>
+<span class="lineNum">      45 </span><span class="lineCov">        458 :     fout &lt;&lt; output;</span>
+<a name="46"><span class="lineNum">      46 </span><span class="lineCov">        458 : }</span></a>
 <span class="lineNum">      47 </span>            : 
-<span class="lineNum">      48 </span><span class="lineCov">         72 : static std::vector &lt;std::string&gt; getFilesInDir ( std::string pathFolder ) {</span>
+<span class="lineNum">      48 </span><span class="lineCov">        357 : static std::vector &lt;std::string&gt; getFilesInDir ( std::string pathFolder ) {</span>
 <span class="lineNum">      49 </span>            :     
-<span class="lineNum">      50 </span><span class="lineCov">        144 :     boost::filesystem::path p (pathFolder);</span>
-<span class="lineNum">      51 </span><span class="lineCov">         72 :     std::vector &lt;std::string&gt; retVect;</span>
+<span class="lineNum">      50 </span><span class="lineCov">        714 :     boost::filesystem::path p (pathFolder);</span>
+<span class="lineNum">      51 </span><span class="lineCov">        357 :     std::vector &lt;std::string&gt; retVect;</span>
 <span class="lineNum">      52 </span>            :     
-<span class="lineNum">      53 </span><span class="lineCov">         72 :     if (! boost::filesystem::exists(p) ) {</span>
+<span class="lineNum">      53 </span><span class="lineCov">        357 :     if (! boost::filesystem::exists(p) ) {</span>
 <span class="lineNum">      54 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot;[ERROR &quot; &lt;&lt; __func__ &lt;&lt; &quot;] pathFolder&quot; &lt;&lt; pathFolder &lt;&lt; &quot; does not exists&quot; &lt;&lt; std::endl;</span>
 <span class="lineNum">      55 </span><span class="lineNoCov">          0 :         return retVect;</span>
 <span class="lineNum">      56 </span>            :     }
 <span class="lineNum">      57 </span>            :     
-<span class="lineNum">      58 </span><span class="lineCov">         72 :     if (! boost::filesystem::is_directory(p)){ </span>
+<span class="lineNum">      58 </span><span class="lineCov">        357 :     if (! boost::filesystem::is_directory(p)){ </span>
 <span class="lineNum">      59 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot;[ERROR &quot; &lt;&lt; __func__ &lt;&lt; &quot;] pathFolder&quot; &lt;&lt; pathFolder &lt;&lt; &quot; is not a directory&quot; &lt;&lt; std::endl;</span>
 <span class="lineNum">      60 </span><span class="lineNoCov">          0 :         return retVect;</span>
 <span class="lineNum">      61 </span>            :     }
 <span class="lineNum">      62 </span>            :     
-<span class="lineNum">      63 </span><span class="lineCov">        283 :     for (boost::filesystem::directory_entry&amp; x : boost::filesystem::directory_iterator(p)) {</span>
-<span class="lineNum">      64 </span><span class="lineCov">        211 :         retVect.push_back (x.path().filename().string() );</span>
+<span class="lineNum">      63 </span><span class="lineCov">       1403 :     for (boost::filesystem::directory_entry&amp; x : boost::filesystem::directory_iterator(p)) {</span>
+<span class="lineNum">      64 </span><span class="lineCov">       1046 :         retVect.push_back (x.path().filename().string() );</span>
 <span class="lineNum">      65 </span>            :     }
 <span class="lineNum">      66 </span>            :     
-<span class="lineNum">      67 </span><span class="lineCov">         72 :     return retVect;</span>
+<span class="lineNum">      67 </span><span class="lineCov">        357 :     return retVect;</span>
 <a name="68"><span class="lineNum">      68 </span>            : }</a>
 <span class="lineNum">      69 </span>            :     
-<span class="lineNum">      70 </span><span class="lineCov">          5 : static inline int binomial_coefficent(int n, int k) {</span>
+<span class="lineNum">      70 </span><span class="lineCov">         30 : static inline int binomial_coefficent(int n, int k) {</span>
 <span class="lineNum">      71 </span>            : 
-<span class="lineNum">      72 </span><span class="lineCov">          5 :     if (k == 0 || k == n){</span>
-<span class="lineNum">      73 </span><span class="lineCov">          3 :         return 1;</span>
+<span class="lineNum">      72 </span><span class="lineCov">         30 :     if (k == 0 || k == n){</span>
+<span class="lineNum">      73 </span><span class="lineCov">         18 :         return 1;</span>
 <span class="lineNum">      74 </span>            :     }
-<span class="lineNum">      75 </span><span class="lineCov">          2 :     return Utils::binomial_coefficent(n - 1, k - 1) + Utils::binomial_coefficent(n - 1, k);</span>
+<span class="lineNum">      75 </span><span class="lineCov">         12 :     return Utils::binomial_coefficent(n - 1, k - 1) + Utils::binomial_coefficent(n - 1, k);</span>
 <span class="lineNum">      76 </span>            :     
 <span class="lineNum">      77 </span>            : }
 <a name="78"><span class="lineNum">      78 </span>            :     </a>
 <span class="lineNum">      79 </span>            :     
-<span class="lineNum">      80 </span><span class="lineCov">        399 : static std::string getPackagePath() {</span>
+<span class="lineNum">      80 </span><span class="lineCov">       1362 : static std::string getPackagePath() {</span>
 <span class="lineNum">      81 </span>            :     
-<span class="lineNum">      82 </span><span class="lineCov">        798 :     boost::filesystem::path path(__FILE__);</span>
-<span class="lineNum">      83 </span><span class="lineCov">        399 :     path.remove_filename();</span>
-<span class="lineNum">      84 </span><span class="lineCov">        798 :     return path.string() + &quot;/../../&quot;;</span>
+<span class="lineNum">      82 </span><span class="lineCov">       2724 :     boost::filesystem::path path(__FILE__);</span>
+<span class="lineNum">      83 </span><span class="lineCov">       1362 :     path.remove_filename();</span>
+<span class="lineNum">      84 </span><span class="lineCov">       2724 :     return path.string() + &quot;/../../&quot;;</span>
 <span class="lineNum">      85 </span>            : }
 <a name="86"><span class="lineNum">      86 </span>            : </a>
 <span class="lineNum">      87 </span>            : template &lt;class KeyType, class ValueType&gt;
-<span class="lineNum">      88 </span><span class="lineCov">          9 : static std::vector&lt;KeyType&gt; extract_keys(std::map&lt;KeyType, ValueType&gt; const&amp; input_map) {</span>
-<span class="lineNum">      89 </span><span class="lineCov">          9 :   std::vector&lt;KeyType&gt; retval;</span>
-<span class="lineNum">      90 </span><span class="lineCov">         27 :   for (auto const&amp; element : input_map) {</span>
-<span class="lineNum">      91 </span><span class="lineCov">         18 :     retval.push_back(element.first);</span>
+<span class="lineNum">      88 </span><span class="lineCov">         14 : static std::vector&lt;KeyType&gt; extract_keys(std::map&lt;KeyType, ValueType&gt; const&amp; input_map) {</span>
+<span class="lineNum">      89 </span><span class="lineCov">         14 :   std::vector&lt;KeyType&gt; retval;</span>
+<span class="lineNum">      90 </span><span class="lineCov">         45 :   for (auto const&amp; element : input_map) {</span>
+<span class="lineNum">      91 </span><span class="lineCov">         31 :     retval.push_back(element.first);</span>
 <span class="lineNum">      92 </span>            :   }
-<span class="lineNum">      93 </span><span class="lineCov">          9 :   return retval;</span>
+<span class="lineNum">      93 </span><span class="lineCov">         14 :   return retval;</span>
 <span class="lineNum">      94 </span>            : }
 <span class="lineNum">      95 </span>            : 
 <span class="lineNum">      96 </span>            : /** 
@@ -165,24 +165,24 @@
 <span class="lineNum">     103 </span>            :  * @return vector of extracted string of set keys (string in this vect will be unique)
 <a name="104"><span class="lineNum">     104 </span>            :  */</a>
 <span class="lineNum">     105 </span>            : template &lt;class T&gt;
-<span class="lineNum">     106 </span><span class="lineCov">         74 : static std::vector&lt;std::string&gt; extract_keys_merged(</span>
+<span class="lineNum">     106 </span><span class="lineCov">        422 : static std::vector&lt;std::string&gt; extract_keys_merged(</span>
 <span class="lineNum">     107 </span>            :     std::map&lt;std::set&lt;std::string&gt;, T&gt; const&amp; input_map, unsigned int max_string_number = 0) {
 <span class="lineNum">     108 </span>            :     
-<span class="lineNum">     109 </span><span class="lineCov">        148 :     std::set&lt;std::string&gt; allStrings;</span>
+<span class="lineNum">     109 </span><span class="lineCov">        844 :     std::set&lt;std::string&gt; allStrings;</span>
 <span class="lineNum">     110 </span>            :     // if else so we do not check in the for the max_string_number if it is not used (ie ==0)
 <span class="lineNum">     111 </span>            : 
-<span class="lineNum">     112 </span><span class="lineCov">         74 :     if (max_string_number == 0) {</span>
+<span class="lineNum">     112 </span><span class="lineCov">        422 :     if (max_string_number == 0) {</span>
 <span class="lineNum">     113 </span><span class="lineNoCov">          0 :         for (auto const&amp; element : input_map) {</span>
 <span class="lineNum">     114 </span><span class="lineNoCov">          0 :             allStrings.insert( element.first.begin(), element.first.end() );</span>
 <span class="lineNum">     115 </span>            :         }
 <span class="lineNum">     116 </span>            :             
 <span class="lineNum">     117 </span>            :     } else {
-<span class="lineNum">     118 </span><span class="lineCov">        156 :         for (auto const&amp; element : input_map) {</span>
-<span class="lineNum">     119 </span><span class="lineCov">        149 :             allStrings.insert(element.first.begin(), element.first.end());</span>
-<span class="lineNum">     120 </span><span class="lineCov">        149 :             if (max_string_number == allStrings.size()){</span>
-<span class="lineNum">     121 </span><span class="lineCov">         67 :                 break;</span>
+<span class="lineNum">     118 </span><span class="lineCov">        897 :         for (auto const&amp; element : input_map) {</span>
+<span class="lineNum">     119 </span><span class="lineCov">        864 :             allStrings.insert(element.first.begin(), element.first.end());</span>
+<span class="lineNum">     120 </span><span class="lineCov">        864 :             if (max_string_number == allStrings.size()){</span>
+<span class="lineNum">     121 </span><span class="lineCov">        389 :                 break;</span>
 <span class="lineNum">     122 </span>            :             }
-<span class="lineNum">     123 </span><span class="lineCov">         82 :             if (max_string_number &lt; allStrings.size() ) {</span>
+<span class="lineNum">     123 </span><span class="lineCov">        475 :             if (max_string_number &lt; allStrings.size() ) {</span>
 <span class="lineNum">     124 </span><span class="lineNoCov">          0 :                 std::cerr &lt;&lt; &quot;[ERROR]&quot; &lt;&lt; __func__ &lt;&lt; &quot; You passed &quot; &lt;&lt; max_string_number</span>
 <span class="lineNum">     125 </span><span class="lineNoCov">          0 :                 &lt;&lt; &quot; but I found more unique strings in the set keys ( &quot; &lt;&lt; allStrings.size()</span>
 <span class="lineNum">     126 </span><span class="lineNoCov">          0 :                 &lt;&lt; &quot; found)&quot; &lt;&lt; std::endl;</span>
@@ -190,8 +190,8 @@
 <span class="lineNum">     128 </span>            :             }
 <span class="lineNum">     129 </span>            :         }
 <span class="lineNum">     130 </span>            :     }
-<span class="lineNum">     131 </span><span class="lineCov">        148 :     std::vector&lt;std::string&gt; retval (allStrings.begin(), allStrings.end());</span>
-<span class="lineNum">     132 </span><span class="lineCov">         74 :     return retval;</span>
+<span class="lineNum">     131 </span><span class="lineCov">        844 :     std::vector&lt;std::string&gt; retval (allStrings.begin(), allStrings.end());</span>
+<span class="lineNum">     132 </span><span class="lineCov">        422 :     return retval;</span>
 <span class="lineNum">     133 </span>            : }
 <span class="lineNum">     134 </span>            : 
 <span class="lineNum">     135 </span>            : /**
@@ -234,14 +234,14 @@
 <span class="lineNum">     172 </span>            :  * but the values (@p valueType1 and @p valueType2) can be anything, because they are not considered
 <a name="173"><span class="lineNum">     173 </span>            : */</a>
 <span class="lineNum">     174 </span>            : template &lt;typename keyType, typename valueType1, typename valueType2&gt;
-<a name="175"><span class="lineNum">     175 </span><span class="lineCov">        114 : bool keys_equal (std::map &lt;keyType, valueType1&gt; const &amp;lhs, std::map&lt;keyType, valueType2&gt; const &amp;rhs) {</span></a>
+<a name="175"><span class="lineNum">     175 </span><span class="lineCov">        459 : bool keys_equal (std::map &lt;keyType, valueType1&gt; const &amp;lhs, std::map&lt;keyType, valueType2&gt; const &amp;rhs) {</span></a>
 <span class="lineNum">     176 </span>            : 
-<span class="lineNum">     177 </span><span class="lineCov">        511 :     auto pred = [] (decltype(*lhs.begin()) a, decltype(*rhs.begin()) b)</span>
-<span class="lineNum">     178 </span><span class="lineCov">        511 :                    { return (a.first == b.first); };</span>
+<span class="lineNum">     177 </span><span class="lineCov">       2490 :     auto pred = [] (decltype(*lhs.begin()) a, decltype(*rhs.begin()) b)</span>
+<span class="lineNum">     178 </span><span class="lineCov">       2490 :                    { return (a.first == b.first); };</span>
 <span class="lineNum">     179 </span>            : 
 <span class="lineNum">     180 </span>            : 
-<span class="lineNum">     181 </span><span class="lineCov">        114 :     return lhs.size() == rhs.size()</span>
-<span class="lineNum">     182 </span><span class="lineCov">        114 :         &amp;&amp; std::equal(lhs.begin(), lhs.end(), rhs.begin(), pred);</span>
+<span class="lineNum">     181 </span><span class="lineCov">        459 :     return lhs.size() == rhs.size()</span>
+<span class="lineNum">     182 </span><span class="lineCov">        459 :         &amp;&amp; std::equal(lhs.begin(), lhs.end(), rhs.begin(), pred);</span>
 <span class="lineNum">     183 </span>            : }
 <a name="184"><span class="lineNum">     184 </span>            : </a>
 <span class="lineNum">     185 </span>            : template &lt;typename Map1, typename Map2&gt;
@@ -276,36 +276,36 @@
 <span class="lineNum">     214 </span>            :     typename Clock::time_point start_point;
 <a name="215"><span class="lineNum">     215 </span>            : </a>
 <span class="lineNum">     216 </span>            : public:
-<a name="217"><span class="lineNum">     217 </span><span class="lineCov">         24 :     Timer() : start_point(Clock::now()) {}</span></a>
+<a name="217"><span class="lineNum">     217 </span><span class="lineCov">        119 :     Timer() : start_point(Clock::now()) {}</span></a>
 <span class="lineNum">     218 </span>            :     
-<span class="lineNum">     219 </span><span class="lineCov">          6 :     void reset() { start_point = Clock::now(); }</span>
+<span class="lineNum">     219 </span><span class="lineCov">         30 :     void reset() { start_point = Clock::now(); }</span>
 <a name="220"><span class="lineNum">     220 </span>            :     </a>
 <span class="lineNum">     221 </span>            :     template &lt;typename Rep = typename Clock::duration::rep, typename Units = typename Clock::duration&gt;
-<span class="lineNum">     222 </span><span class="lineCov">        635 :     Rep elapsed_time() const</span>
+<span class="lineNum">     222 </span><span class="lineCov">       2900 :     Rep elapsed_time() const</span>
 <span class="lineNum">     223 </span>            :     {
 <span class="lineNum">     224 </span>            :         std::atomic_thread_fence(std::memory_order_relaxed);
-<span class="lineNum">     225 </span><span class="lineCov">        635 :         auto counted_time = std::chrono::duration_cast&lt;Units&gt;(Clock::now() - start_point).count();</span>
+<span class="lineNum">     225 </span><span class="lineCov">       2900 :         auto counted_time = std::chrono::duration_cast&lt;Units&gt;(Clock::now() - start_point).count();</span>
 <span class="lineNum">     226 </span>            :         std::atomic_thread_fence(std::memory_order_relaxed);
-<span class="lineNum">     227 </span><span class="lineCov">        635 :         return static_cast&lt;Rep&gt;(counted_time);</span>
+<span class="lineNum">     227 </span><span class="lineCov">       2900 :         return static_cast&lt;Rep&gt;(counted_time);</span>
 <span class="lineNum">     228 </span>            :     }
 <span class="lineNum">     229 </span>            : };
 <a name="230"><span class="lineNum">     230 </span>            : </a>
 <span class="lineNum">     231 </span>            : template &lt;typename SignalType&gt;
-<span class="lineNum">     232 </span><span class="lineCov">         24 : class SecondOrderFilter</span>
+<span class="lineNum">     232 </span><span class="lineCov">        119 : class SecondOrderFilter</span>
 <span class="lineNum">     233 </span>            : {
 <span class="lineNum">     234 </span>            : 
 <span class="lineNum">     235 </span>            : public:
 <span class="lineNum">     236 </span>            : 
 <a name="237"><span class="lineNum">     237 </span>            :     typedef std::shared_ptr&lt;SecondOrderFilter&lt;SignalType&gt;&gt; Ptr;</a>
 <span class="lineNum">     238 </span>            : 
-<span class="lineNum">     239 </span><span class="lineCov">         24 :     SecondOrderFilter() :</span>
+<span class="lineNum">     239 </span><span class="lineCov">        119 :     SecondOrderFilter() :</span>
 <span class="lineNum">     240 </span>            :         _omega ( 1.0 ),
 <span class="lineNum">     241 </span>            :         _eps ( 0.8 ),
 <span class="lineNum">     242 </span>            :         _ts ( 0.01 ),
-<span class="lineNum">     243 </span><span class="lineCov">         24 :         _reset_has_been_called ( false )</span>
+<span class="lineNum">     243 </span><span class="lineCov">        119 :         _reset_has_been_called ( false )</span>
 <span class="lineNum">     244 </span>            :     {
-<span class="lineNum">     245 </span><span class="lineCov">         24 :         computeCoeff();</span>
-<span class="lineNum">     246 </span><span class="lineCov">         24 :     }</span>
+<span class="lineNum">     245 </span><span class="lineCov">        119 :         computeCoeff();</span>
+<span class="lineNum">     246 </span><span class="lineCov">        119 :     }</span>
 <span class="lineNum">     247 </span>            : 
 <span class="lineNum">     248 </span>            :     SecondOrderFilter ( double omega, double eps, double ts, const SignalType&amp; initial_state ) :
 <span class="lineNum">     249 </span>            :         _omega ( omega ),
@@ -317,35 +317,35 @@
 <span class="lineNum">     255 </span>            :         reset ( initial_state );
 <a name="256"><span class="lineNum">     256 </span>            :     }</a>
 <span class="lineNum">     257 </span>            : 
-<span class="lineNum">     258 </span><span class="lineCov">         24 :     void reset ( const SignalType&amp; initial_state )</span>
+<span class="lineNum">     258 </span><span class="lineCov">        119 :     void reset ( const SignalType&amp; initial_state )</span>
 <span class="lineNum">     259 </span>            :     {
-<span class="lineNum">     260 </span><span class="lineCov">         24 :         _reset_has_been_called = true;</span>
-<span class="lineNum">     261 </span><span class="lineCov">         24 :         _u = initial_state;</span>
-<span class="lineNum">     262 </span><span class="lineCov">         24 :         _y = initial_state;</span>
-<span class="lineNum">     263 </span><span class="lineCov">         24 :         _yd = initial_state;</span>
-<span class="lineNum">     264 </span><span class="lineCov">         24 :         _ydd = initial_state;</span>
-<span class="lineNum">     265 </span><span class="lineCov">         24 :         _udd = initial_state;</span>
-<span class="lineNum">     266 </span><span class="lineCov">         24 :         _ud = initial_state;</span>
-<a name="267"><span class="lineNum">     267 </span><span class="lineCov">         24 :     }</span></a>
+<span class="lineNum">     260 </span><span class="lineCov">        119 :         _reset_has_been_called = true;</span>
+<span class="lineNum">     261 </span><span class="lineCov">        119 :         _u = initial_state;</span>
+<span class="lineNum">     262 </span><span class="lineCov">        119 :         _y = initial_state;</span>
+<span class="lineNum">     263 </span><span class="lineCov">        119 :         _yd = initial_state;</span>
+<span class="lineNum">     264 </span><span class="lineCov">        119 :         _ydd = initial_state;</span>
+<span class="lineNum">     265 </span><span class="lineCov">        119 :         _udd = initial_state;</span>
+<span class="lineNum">     266 </span><span class="lineCov">        119 :         _ud = initial_state;</span>
+<a name="267"><span class="lineNum">     267 </span><span class="lineCov">        119 :     }</span></a>
 <span class="lineNum">     268 </span>            : 
-<span class="lineNum">     269 </span><span class="lineCov">      11566 :     const SignalType&amp; process ( const SignalType&amp; input )</span>
+<span class="lineNum">     269 </span><span class="lineCov">     112045 :     const SignalType&amp; process ( const SignalType&amp; input )</span>
 <span class="lineNum">     270 </span>            :     {
 <span class="lineNum">     271 </span>            : 
-<span class="lineNum">     272 </span><span class="lineCov">      11566 :         if ( !_reset_has_been_called ) {</span>
+<span class="lineNum">     272 </span><span class="lineCov">     112045 :         if ( !_reset_has_been_called ) {</span>
 <span class="lineNum">     273 </span><span class="lineNoCov">          0 :             reset ( input*0 );</span>
 <span class="lineNum">     274 </span>            :         }
 <span class="lineNum">     275 </span>            : 
 <span class="lineNum">     276 </span>            : 
-<span class="lineNum">     277 </span><span class="lineCov">      11566 :         _ydd = _yd;</span>
-<span class="lineNum">     278 </span><span class="lineCov">      11566 :         _yd = _y;</span>
-<span class="lineNum">     279 </span><span class="lineCov">      11566 :         _udd = _ud;</span>
-<span class="lineNum">     280 </span><span class="lineCov">      11566 :         _ud = _u;</span>
+<span class="lineNum">     277 </span><span class="lineCov">     112045 :         _ydd = _yd;</span>
+<span class="lineNum">     278 </span><span class="lineCov">     112045 :         _yd = _y;</span>
+<span class="lineNum">     279 </span><span class="lineCov">     112045 :         _udd = _ud;</span>
+<span class="lineNum">     280 </span><span class="lineCov">     112045 :         _ud = _u;</span>
 <span class="lineNum">     281 </span>            : 
 <span class="lineNum">     282 </span>            : 
-<span class="lineNum">     283 </span><span class="lineCov">      11566 :         _u = input;</span>
-<span class="lineNum">     284 </span><span class="lineCov">      11566 :         _y = 1.0/_a0 * ( _u + _b1*_ud + _b2*_udd - _a1*_yd - _a2*_ydd );</span>
+<span class="lineNum">     283 </span><span class="lineCov">     112045 :         _u = input;</span>
+<span class="lineNum">     284 </span><span class="lineCov">     112045 :         _y = 1.0/_a0 * ( _u + _b1*_ud + _b2*_udd - _a1*_yd - _a2*_ydd );</span>
 <span class="lineNum">     285 </span>            : 
-<span class="lineNum">     286 </span><span class="lineCov">      11566 :         return _y;</span>
+<span class="lineNum">     286 </span><span class="lineCov">     112045 :         return _y;</span>
 <span class="lineNum">     287 </span>            :     }
 <span class="lineNum">     288 </span>            : 
 <span class="lineNum">     289 </span>            :     const SignalType&amp; getOutput() const
@@ -353,33 +353,33 @@
 <span class="lineNum">     291 </span>            :         return _y;
 <a name="292"><span class="lineNum">     292 </span>            :     }</a>
 <span class="lineNum">     293 </span>            : 
-<span class="lineNum">     294 </span><span class="lineCov">         24 :     void setOmega ( double omega )</span>
+<span class="lineNum">     294 </span><span class="lineCov">        119 :     void setOmega ( double omega )</span>
 <span class="lineNum">     295 </span>            :     {
-<span class="lineNum">     296 </span><span class="lineCov">         24 :         _omega = omega;</span>
-<span class="lineNum">     297 </span><span class="lineCov">         24 :         computeCoeff();</span>
-<span class="lineNum">     298 </span><span class="lineCov">         24 :     }</span>
+<span class="lineNum">     296 </span><span class="lineCov">        119 :         _omega = omega;</span>
+<span class="lineNum">     297 </span><span class="lineCov">        119 :         computeCoeff();</span>
+<span class="lineNum">     298 </span><span class="lineCov">        119 :     }</span>
 <span class="lineNum">     299 </span>            : 
 <span class="lineNum">     300 </span>            :     double getOmega()
 <span class="lineNum">     301 </span>            :     {
 <span class="lineNum">     302 </span>            :         return _omega;
 <a name="303"><span class="lineNum">     303 </span>            :     }</a>
 <span class="lineNum">     304 </span>            : 
-<span class="lineNum">     305 </span><span class="lineCov">         24 :     void setDamping ( double eps )</span>
+<span class="lineNum">     305 </span><span class="lineCov">        119 :     void setDamping ( double eps )</span>
 <span class="lineNum">     306 </span>            :     {
-<span class="lineNum">     307 </span><span class="lineCov">         24 :         _eps = eps;</span>
-<span class="lineNum">     308 </span><span class="lineCov">         24 :         computeCoeff();</span>
-<span class="lineNum">     309 </span><span class="lineCov">         24 :     }</span>
+<span class="lineNum">     307 </span><span class="lineCov">        119 :         _eps = eps;</span>
+<span class="lineNum">     308 </span><span class="lineCov">        119 :         computeCoeff();</span>
+<span class="lineNum">     309 </span><span class="lineCov">        119 :     }</span>
 <span class="lineNum">     310 </span>            : 
 <span class="lineNum">     311 </span>            :     double getDamping()
 <span class="lineNum">     312 </span>            :     {
 <span class="lineNum">     313 </span>            :         return _eps;
 <a name="314"><span class="lineNum">     314 </span>            :     }</a>
 <span class="lineNum">     315 </span>            : 
-<span class="lineNum">     316 </span><span class="lineCov">         24 :     void setTimeStep ( double ts )</span>
+<span class="lineNum">     316 </span><span class="lineCov">        119 :     void setTimeStep ( double ts )</span>
 <span class="lineNum">     317 </span>            :     {
-<span class="lineNum">     318 </span><span class="lineCov">         24 :         _ts = ts;</span>
-<span class="lineNum">     319 </span><span class="lineCov">         24 :         computeCoeff();</span>
-<span class="lineNum">     320 </span><span class="lineCov">         24 :     }</span>
+<span class="lineNum">     318 </span><span class="lineCov">        119 :         _ts = ts;</span>
+<span class="lineNum">     319 </span><span class="lineCov">        119 :         computeCoeff();</span>
+<span class="lineNum">     320 </span><span class="lineCov">        119 :     }</span>
 <span class="lineNum">     321 </span>            : 
 <span class="lineNum">     322 </span>            :     double getTimeStep()
 <span class="lineNum">     323 </span>            :     {
@@ -388,16 +388,16 @@
 <span class="lineNum">     326 </span>            : 
 <a name="327"><span class="lineNum">     327 </span>            : private:</a>
 <span class="lineNum">     328 </span>            : 
-<span class="lineNum">     329 </span><span class="lineCov">         96 :     void computeCoeff()</span>
+<span class="lineNum">     329 </span><span class="lineCov">        476 :     void computeCoeff()</span>
 <span class="lineNum">     330 </span>            :     {
-<span class="lineNum">     331 </span><span class="lineCov">         96 :         _b1 = 2.0;</span>
-<span class="lineNum">     332 </span><span class="lineCov">         96 :         _b2 = 1.0;</span>
+<span class="lineNum">     331 </span><span class="lineCov">        476 :         _b1 = 2.0;</span>
+<span class="lineNum">     332 </span><span class="lineCov">        476 :         _b2 = 1.0;</span>
 <span class="lineNum">     333 </span>            : 
-<span class="lineNum">     334 </span><span class="lineCov">         96 :         _a0 = 1.0 + 4.0*_eps/ ( _omega*_ts ) + 4.0/std::pow ( _omega*_ts, 2.0 );</span>
-<span class="lineNum">     335 </span><span class="lineCov">         96 :         _a1 = 2 - 8.0/std::pow ( _omega*_ts, 2.0 );</span>
-<span class="lineNum">     336 </span><span class="lineCov">         96 :         _a2 = 1.0 + 4.0/std::pow ( _omega*_ts, 2.0 ) - 4.0*_eps/ ( _omega*_ts );</span>
+<span class="lineNum">     334 </span><span class="lineCov">        476 :         _a0 = 1.0 + 4.0*_eps/ ( _omega*_ts ) + 4.0/std::pow ( _omega*_ts, 2.0 );</span>
+<span class="lineNum">     335 </span><span class="lineCov">        476 :         _a1 = 2 - 8.0/std::pow ( _omega*_ts, 2.0 );</span>
+<span class="lineNum">     336 </span><span class="lineCov">        476 :         _a2 = 1.0 + 4.0/std::pow ( _omega*_ts, 2.0 ) - 4.0*_eps/ ( _omega*_ts );</span>
 <span class="lineNum">     337 </span>            : 
-<span class="lineNum">     338 </span><span class="lineCov">         96 :     }</span>
+<span class="lineNum">     338 </span><span class="lineCov">        476 :     }</span>
 <span class="lineNum">     339 </span>            : 
 <span class="lineNum">     340 </span>            :     double _omega;
 <span class="lineNum">     341 </span>            :     double _eps;

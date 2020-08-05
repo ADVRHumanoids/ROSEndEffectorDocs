@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2020-07-31 15:30:30</td>
+            <td class="headerValue">2020-08-05 12:21:01</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">9</td>
@@ -81,14 +81,14 @@
 <span class="lineNum">      19 </span>            : namespace rosee_msg
 <a name="20"><span class="lineNum">      20 </span>            : {</a>
 <span class="lineNum">      21 </span>            : template &lt;class ContainerAllocator&gt;
-<span class="lineNum">      22 </span><span class="lineCov">       5948 : struct ROSEECommandFeedback_</span>
+<span class="lineNum">      22 </span><span class="lineCov">      25171 : struct ROSEECommandFeedback_</span>
 <span class="lineNum">      23 </span>            : {
 <a name="24"><span class="lineNum">      24 </span>            :   typedef ROSEECommandFeedback_&lt;ContainerAllocator&gt; Type;</a>
 <span class="lineNum">      25 </span>            : 
-<span class="lineNum">      26 </span><span class="lineCov">       4461 :   ROSEECommandFeedback_()</span>
+<span class="lineNum">      26 </span><span class="lineCov">      17504 :   ROSEECommandFeedback_()</span>
 <span class="lineNum">      27 </span>            :     : completation_percentage(0.0)
-<span class="lineNum">      28 </span><span class="lineCov">       4461 :     , action_name_current()  {</span>
-<span class="lineNum">      29 </span><span class="lineCov">       4461 :     }</span>
+<span class="lineNum">      28 </span><span class="lineCov">      17504 :     , action_name_current()  {</span>
+<span class="lineNum">      29 </span><span class="lineCov">      17504 :     }</span>
 <span class="lineNum">      30 </span>            :   ROSEECommandFeedback_(const ContainerAllocator&amp; _alloc)
 <span class="lineNum">      31 </span>            :     : completation_percentage(0.0)
 <span class="lineNum">      32 </span>            :     , action_name_current(_alloc)  {
@@ -138,7 +138,7 @@
 <span class="lineNum">      76 </span>            : 
 <span class="lineNum">      77 </span>            : 
 <span class="lineNum">      78 </span>            : // BOOLTRAITS {'IsFixedSize': False, 'IsMessage': True, 'HasHeader': False}
-<span class="lineNum">      79 </span>            : // {'actionlib_msgs': ['/opt/ros/kinetic/share/actionlib_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'rosee_msg': ['/home/tori/ROSEE/src/rosee_msg/msg', '/home/tori/ROSEE/build/devel/share/rosee_msg/msg']}
+<span class="lineNum">      79 </span>            : // {'actionlib_msgs': ['/opt/ros/kinetic/share/actionlib_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'rosee_msg': ['/home/tori/ROSEE/src/rosee_msg/msg', '/home/tori/ROSEE/devel/share/rosee_msg/msg']}
 <span class="lineNum">      80 </span>            : 
 <span class="lineNum">      81 </span>            : // !!!!!!!!!!! ['__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parsed_fields', 'constants', 'fields', 'full_name', 'has_header', 'header_present', 'names', 'package', 'parsed_fields', 'short_name', 'text', 'types']
 <span class="lineNum">      82 </span>            : 
@@ -227,13 +227,13 @@
 <span class="lineNum">     165 </span>            : 
 <a name="166"><span class="lineNum">     166 </span>            :   template&lt;class ContainerAllocator&gt; struct Serializer&lt; ::rosee_msg::ROSEECommandFeedback_&lt;ContainerAllocator&gt; &gt;</a>
 <span class="lineNum">     167 </span>            :   {
-<span class="lineNum">     168 </span><span class="lineCov">       4461 :     template&lt;typename Stream, typename T&gt; inline static void allInOne(Stream&amp; stream, T m)</span>
+<span class="lineNum">     168 </span><span class="lineCov">      17504 :     template&lt;typename Stream, typename T&gt; inline static void allInOne(Stream&amp; stream, T m)</span>
 <span class="lineNum">     169 </span>            :     {
-<span class="lineNum">     170 </span><span class="lineCov">       4461 :       stream.next(m.completation_percentage);</span>
-<span class="lineNum">     171 </span><span class="lineCov">       4461 :       stream.next(m.action_name_current);</span>
-<a name="172"><span class="lineNum">     172 </span><span class="lineCov">       4461 :     }</span></a>
+<span class="lineNum">     170 </span><span class="lineCov">      17504 :       stream.next(m.completation_percentage);</span>
+<span class="lineNum">     171 </span><span class="lineCov">      17504 :       stream.next(m.action_name_current);</span>
+<a name="172"><span class="lineNum">     172 </span><span class="lineCov">      17504 :     }</span></a>
 <span class="lineNum">     173 </span>            : 
-<span class="lineNum">     174 </span><span class="lineCov">       4461 :     ROS_DECLARE_ALLINONE_SERIALIZER</span>
+<span class="lineNum">     174 </span><span class="lineCov">      17504 :     ROS_DECLARE_ALLINONE_SERIALIZER</span>
 <span class="lineNum">     175 </span>            :   }; // struct ROSEECommandFeedback_
 <span class="lineNum">     176 </span>            : 
 <span class="lineNum">     177 </span>            : } // namespace serialization

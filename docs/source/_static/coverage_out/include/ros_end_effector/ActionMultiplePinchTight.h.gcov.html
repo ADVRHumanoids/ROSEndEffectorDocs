@@ -31,18 +31,18 @@
             <td class="headerValue">main_coverage.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">0</td>
             <td class="headerCovTableEntry">3</td>
-            <td class="headerCovTableEntryLo">0.0 %</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2020-07-31 15:30:30</td>
+            <td class="headerValue">2020-08-05 12:21:01</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">4</td>
             <td class="headerCovTableEntry">5</td>
-            <td class="headerCovTableEntryLo">0.0 %</td>
+            <td class="headerCovTableEntryMed">80.0 %</td>
           </tr>
           <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -107,7 +107,7 @@
 <span class="lineNum">      45 </span>            :  *   This cause anyway a collision, but not a ugly one where the tips compenetrate too much. This thing can change if we invert the sign in the 
 <a name="46"><span class="lineNum">      46 </span>            :  *   \ref depthComp comparison</a>
 <span class="lineNum">      47 </span>            :  */
-<span class="lineNum">      48 </span><span class="lineNoCov">          0 : class ActionMultiplePinchTight : public ActionPinchGeneric</span>
+<span class="lineNum">      48 </span><span class="lineCov">         30 : class ActionMultiplePinchTight : public ActionPinchGeneric</span>
 <span class="lineNum">      49 </span>            : {
 <span class="lineNum">      50 </span>            :     
 <span class="lineNum">      51 </span>            : public:
@@ -155,8 +155,8 @@
 <span class="lineNum">      93 </span>            :      *   with &quot;&lt;&quot; we put as best the position that has less sumDepth.  
 <a name="94"><span class="lineNum">      94 </span>            :      */</a>
 <span class="lineNum">      95 </span>            :     struct depthComp {
-<span class="lineNum">      96 </span><span class="lineNoCov">          0 :         bool operator() (const StateWithDepth&amp; a, const StateWithDepth&amp; b) const</span>
-<span class="lineNum">      97 </span><span class="lineNoCov">          0 :         {return (std::abs(a.second) &lt; std::abs(b.second) );}</span>
+<span class="lineNum">      96 </span><span class="lineCov">         74 :         bool operator() (const StateWithDepth&amp; a, const StateWithDepth&amp; b) const</span>
+<span class="lineNum">      97 </span><span class="lineCov">         74 :         {return (std::abs(a.second) &lt; std::abs(b.second) );}</span>
 <span class="lineNum">      98 </span>            :     };
 <span class="lineNum">      99 </span>            :     
 <span class="lineNum">     100 </span>            :     /** 

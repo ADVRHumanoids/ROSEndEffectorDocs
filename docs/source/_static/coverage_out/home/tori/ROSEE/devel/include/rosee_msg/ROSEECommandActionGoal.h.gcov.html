@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2020-07-31 15:30:30</td>
+            <td class="headerValue">2020-08-05 12:21:01</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">12</td>
@@ -84,15 +84,15 @@
 <span class="lineNum">      22 </span>            : namespace rosee_msg
 <a name="23"><span class="lineNum">      23 </span>            : {</a>
 <span class="lineNum">      24 </span>            : template &lt;class ContainerAllocator&gt;
-<span class="lineNum">      25 </span><span class="lineCov">         48 : struct ROSEECommandActionGoal_</span>
+<span class="lineNum">      25 </span><span class="lineCov">        168 : struct ROSEECommandActionGoal_</span>
 <span class="lineNum">      26 </span>            : {
 <a name="27"><span class="lineNum">      27 </span>            :   typedef ROSEECommandActionGoal_&lt;ContainerAllocator&gt; Type;</a>
 <span class="lineNum">      28 </span>            : 
-<span class="lineNum">      29 </span><span class="lineCov">         48 :   ROSEECommandActionGoal_()</span>
+<span class="lineNum">      29 </span><span class="lineCov">        168 :   ROSEECommandActionGoal_()</span>
 <span class="lineNum">      30 </span>            :     : header()
 <span class="lineNum">      31 </span>            :     , goal_id()
-<span class="lineNum">      32 </span><span class="lineCov">         48 :     , goal()  {</span>
-<span class="lineNum">      33 </span><span class="lineCov">         48 :     }</span>
+<span class="lineNum">      32 </span><span class="lineCov">        168 :     , goal()  {</span>
+<span class="lineNum">      33 </span><span class="lineCov">        168 :     }</span>
 <span class="lineNum">      34 </span>            :   ROSEECommandActionGoal_(const ContainerAllocator&amp; _alloc)
 <span class="lineNum">      35 </span>            :     : header(_alloc)
 <span class="lineNum">      36 </span>            :     , goal_id(_alloc)
@@ -146,7 +146,7 @@
 <span class="lineNum">      84 </span>            : 
 <span class="lineNum">      85 </span>            : 
 <span class="lineNum">      86 </span>            : // BOOLTRAITS {'IsFixedSize': False, 'IsMessage': True, 'HasHeader': True}
-<span class="lineNum">      87 </span>            : // {'actionlib_msgs': ['/opt/ros/kinetic/share/actionlib_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'rosee_msg': ['/home/tori/ROSEE/src/rosee_msg/msg', '/home/tori/ROSEE/build/devel/share/rosee_msg/msg']}
+<span class="lineNum">      87 </span>            : // {'actionlib_msgs': ['/opt/ros/kinetic/share/actionlib_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'rosee_msg': ['/home/tori/ROSEE/src/rosee_msg/msg', '/home/tori/ROSEE/devel/share/rosee_msg/msg']}
 <span class="lineNum">      88 </span>            : 
 <span class="lineNum">      89 </span>            : // !!!!!!!!!!! ['__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parsed_fields', 'constants', 'fields', 'full_name', 'has_header', 'header_present', 'names', 'package', 'parsed_fields', 'short_name', 'text', 'types']
 <span class="lineNum">      90 </span>            : 
@@ -187,12 +187,12 @@
 <span class="lineNum">     125 </span>            : template&lt;class ContainerAllocator&gt;
 <a name="126"><span class="lineNum">     126 </span>            : struct MD5Sum&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;</a>
 <span class="lineNum">     127 </span>            : {
-<span class="lineNum">     128 </span><span class="lineCov">         96 :   static const char* value()</span>
+<span class="lineNum">     128 </span><span class="lineCov">        218 :   static const char* value()</span>
 <span class="lineNum">     129 </span>            :   {
-<span class="lineNum">     130 </span><span class="lineCov">         96 :     return &quot;2f3841376646ba4bec082f19c22a82ba&quot;;</span>
+<span class="lineNum">     130 </span><span class="lineCov">        218 :     return &quot;2f3841376646ba4bec082f19c22a82ba&quot;;</span>
 <a name="131"><span class="lineNum">     131 </span>            :   }</a>
 <span class="lineNum">     132 </span>            : 
-<span class="lineNum">     133 </span><span class="lineCov">         48 :   static const char* value(const ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt;&amp;) { return value(); }</span>
+<span class="lineNum">     133 </span><span class="lineCov">         66 :   static const char* value(const ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt;&amp;) { return value(); }</span>
 <span class="lineNum">     134 </span>            :   static const uint64_t static_value1 = 0x2f3841376646ba4bULL;
 <span class="lineNum">     135 </span>            :   static const uint64_t static_value2 = 0xec082f19c22a82baULL;
 <span class="lineNum">     136 </span>            : };
@@ -200,9 +200,9 @@
 <span class="lineNum">     138 </span>            : template&lt;class ContainerAllocator&gt;
 <a name="139"><span class="lineNum">     139 </span>            : struct DataType&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;</a>
 <span class="lineNum">     140 </span>            : {
-<span class="lineNum">     141 </span><span class="lineCov">         48 :   static const char* value()</span>
+<span class="lineNum">     141 </span><span class="lineCov">        152 :   static const char* value()</span>
 <span class="lineNum">     142 </span>            :   {
-<span class="lineNum">     143 </span><span class="lineCov">         48 :     return &quot;rosee_msg/ROSEECommandActionGoal&quot;;</span>
+<span class="lineNum">     143 </span><span class="lineCov">        152 :     return &quot;rosee_msg/ROSEECommandActionGoal&quot;;</span>
 <a name="144"><span class="lineNum">     144 </span>            :   }</a>
 <span class="lineNum">     145 </span>            : 
 <span class="lineNum">     146 </span><span class="lineNoCov">          0 :   static const char* value(const ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt;&amp;) { return value(); }</span>
@@ -211,9 +211,9 @@
 <span class="lineNum">     149 </span>            : template&lt;class ContainerAllocator&gt;
 <a name="150"><span class="lineNum">     150 </span>            : struct Definition&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;</a>
 <span class="lineNum">     151 </span>            : {
-<span class="lineNum">     152 </span><span class="lineCov">         24 :   static const char* value()</span>
+<span class="lineNum">     152 </span><span class="lineCov">         33 :   static const char* value()</span>
 <span class="lineNum">     153 </span>            :   {
-<span class="lineNum">     154 </span><span class="lineCov">         24 :     return &quot;# ====== DO NOT MODIFY! AUTOGENERATED FROM AN ACTION DEFINITION ======\n\</span>
+<span class="lineNum">     154 </span><span class="lineCov">         33 :     return &quot;# ====== DO NOT MODIFY! AUTOGENERATED FROM AN ACTION DEFINITION ======\n\</span>
 <span class="lineNum">     155 </span>            : \n\
 <span class="lineNum">     156 </span>            : Header header\n\
 <span class="lineNum">     157 </span>            : actionlib_msgs/GoalID goal_id\n\
@@ -315,14 +315,14 @@
 <span class="lineNum">     253 </span>            : 
 <a name="254"><span class="lineNum">     254 </span>            :   template&lt;class ContainerAllocator&gt; struct Serializer&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;</a>
 <span class="lineNum">     255 </span>            :   {
-<span class="lineNum">     256 </span><span class="lineCov">         72 :     template&lt;typename Stream, typename T&gt; inline static void allInOne(Stream&amp; stream, T m)</span>
+<span class="lineNum">     256 </span><span class="lineCov">        201 :     template&lt;typename Stream, typename T&gt; inline static void allInOne(Stream&amp; stream, T m)</span>
 <span class="lineNum">     257 </span>            :     {
-<span class="lineNum">     258 </span><span class="lineCov">         72 :       stream.next(m.header);</span>
-<span class="lineNum">     259 </span><span class="lineCov">         72 :       stream.next(m.goal_id);</span>
-<span class="lineNum">     260 </span><span class="lineCov">         72 :       stream.next(m.goal);</span>
-<a name="261"><span class="lineNum">     261 </span><span class="lineCov">         72 :     }</span></a>
+<span class="lineNum">     258 </span><span class="lineCov">        201 :       stream.next(m.header);</span>
+<span class="lineNum">     259 </span><span class="lineCov">        201 :       stream.next(m.goal_id);</span>
+<span class="lineNum">     260 </span><span class="lineCov">        201 :       stream.next(m.goal);</span>
+<a name="261"><span class="lineNum">     261 </span><span class="lineCov">        201 :     }</span></a>
 <span class="lineNum">     262 </span>            : 
-<span class="lineNum">     263 </span><span class="lineCov">         72 :     ROS_DECLARE_ALLINONE_SERIALIZER</span>
+<span class="lineNum">     263 </span><span class="lineCov">        201 :     ROS_DECLARE_ALLINONE_SERIALIZER</span>
 <span class="lineNum">     264 </span>            :   }; // struct ROSEECommandActionGoal_
 <span class="lineNum">     265 </span>            : 
 <span class="lineNum">     266 </span>            : } // namespace serialization
