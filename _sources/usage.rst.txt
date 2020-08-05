@@ -165,10 +165,17 @@ For example, to publish run this:
       action_type: 0
       actionPrimitive_type: 0
       selectable_items: ['index', 'thumb']
-      percentage: 1.0" 
+      percentage: 1.0
+      error_norm: 0"
 
 .. note::
-  the important lines are the last ones.
+  The important lines are the yellow-highlighted ones.
+
+.. note::
+  error_norm can be useful to receive a 100% completion feedback even if the robot state is not exactly what desired (e.g. due to error in the simulation)
+  if it is set to 0, the default norm will be used (actually 0.01). Note that the commanded joints positions will not change because of this field, that is
+  only used for feedback
+
 
 And to receive feedback, run (in another terminal):
 

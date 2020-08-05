@@ -299,12 +299,19 @@ You can simply <code class="code docutils literal notranslate"><span class="pre"
 </span><span class="hll"><span class="s2">    action_type: 0</span>
 </span><span class="hll"><span class="s2">    actionPrimitive_type: 0</span>
 </span><span class="hll"><span class="s2">    selectable_items: [&#39;index&#39;, &#39;thumb&#39;]</span>
-</span><span class="hll"><span class="s2">    percentage: 1.0&quot;</span>
-</span></pre></div>
+</span><span class="hll"><span class="s2">    percentage: 1.0</span>
+</span><span class="s2">    error_norm: 0&quot;</span>
+</pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">the important lines are the last ones.</p>
+<p class="last">The important lines are the yellow-highlighted ones.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">error_norm can be useful to receive a 100% completion feedback even if the robot state is not exactly what desired (e.g. due to error in the simulation)
+if it is set to 0, the default norm will be used (actually 0.01). Note that the commanded joints positions will not change because of this field, that is
+only used for feedback</p>
 </div>
 <p>And to receive feedback, run (in another terminal):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre>rostopic <span class="nb">echo</span> /ros_end_effector/action_command/feedback
