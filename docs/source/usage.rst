@@ -147,11 +147,11 @@ For example, to publish run this:
   :emphasize-lines: 13,14,15,16,17,18,19,20
   
   rostopic pub /ros_end_effector/action_command/goal rosee_msg/ROSEECommandActionGoal "header:
-    seq: 0
+      seq: 0
       stamp:
         secs: 0
         nsecs: 0
-    frame_id: ''
+      frame_id: ''
   goal_id:
     stamp:
       secs: 0
