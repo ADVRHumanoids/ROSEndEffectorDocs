@@ -101,10 +101,10 @@
 <p class="caption"><span class="caption-text">Other Components</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ROS End-Effector GUI</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#prerequisite">Prerequisite</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-install">How To Install</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#details">Details</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#how-it-works-code-structure-improvable-obviously">How it works - code structure (improvable obviously)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced">Advanced</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-it-works-code-structure-this-could-be-not-updated-kept-for-reference">How it works - code structure (this could be not updated, kept for reference)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#developers-note">Developers note</a></li>
 </ul>
 </li>
 </ul>
@@ -164,27 +164,43 @@
             
   <div class="section" id="ros-end-effector-gui">
 <span id="roseegui"></span><h1>ROS End-Effector GUI<a class="headerlink" href="#ros-end-effector-gui" title="Permalink to this headline">¶</a></h1>
-<p>The GUI package is hosted on <em>github</em> <a class="reference external" href="https://github.com/ADVRHumanoids/rosee_gui">here</a>.</p>
-<div class="section" id="prerequisite">
-<h2>Prerequisite<a class="headerlink" href="#prerequisite" title="Permalink to this headline">¶</a></h2>
-<p>QT5 (I am not sure if this is given with ROS, if this is necessary only to compile, I will check)</p>
+<p>ROS End-Effector has a dedicated Graphical User Interface to communicate with the framework, sending grasping actions through <em>ROS topics</em>. The GUI is loaded dynamically at run-time, hence it will be different for each end-effector loaded. For example, it will show only the grasping actions specific for the end-effector in use. It also permits to monitor the joints states directly in its window.</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="_images/schunkGui.png"><img alt="GUI for Schunk SVH hand" src="_images/schunkGui.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">ROSEE GUI for Schunk SVH hand</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="_images/heriGui.png"><img alt="GUI for HERI II hand" src="_images/heriGui.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">ROSEE GUI for HERI II hand</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>The GUI has also a second tab, where the robot states can be plotted in real time. This functionality is a fork of <a class="reference external" href="https://github.com/ADVRHumanoids/robot_monitoring">robot_monitoring</a>.</p>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="_images/schunkgui2.png"><img alt="GUI for Schunk SVH hand, 2nd tab" src="_images/schunkgui2.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">The GUI second tab for the Schunk SVH hand</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id4">
+<a class="reference internal image-reference" href="_images/herigui2.png"><img alt="GUI for HERI II hand, 2nd tab" src="_images/herigui2.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">The GUI second tab for the HERI II hand</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<p>The GUI package is hosted on <em>github</em> <a class="reference external" href="https://github.com/ADVRHumanoids/rosee_gui">here</a>.</p>
 <div class="section" id="how-to-install">
 <h2>How To Install<a class="headerlink" href="#how-to-install" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">You probably already installed this if you have followed the steps in <a class="reference internal" href="install.html#install"><span class="std std-ref">Install</span></a> section</p>
+<p class="last">You probably already installed this if you have followed the steps in <a class="reference internal" href="install.html#install"><span class="std std-ref">Install</span></a> section. If you have followed the recommended installation, skip this section.</p>
 </div>
+<p>ROS End-Effector is based on <a class="reference external" href="https://www.qt.io/">Qt</a>. The minimum version is Qt5, but for the second tab with the real time plots at least <em>Qt 5.9</em> is required.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre>git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/rosee_gui
 
 compile with catkin_make
 </pre></div>
 </div>
 </div>
-<div class="section" id="details">
-<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="how-it-works-code-structure-improvable-obviously">
-<h3>How it works - code structure (improvable obviously)<a class="headerlink" href="#how-it-works-code-structure-improvable-obviously" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
+<div class="section" id="advanced">
+<h2>Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="how-it-works-code-structure-this-could-be-not-updated-kept-for-reference">
+<h3>How it works - code structure (this could be not updated, kept for reference)<a class="headerlink" href="#how-it-works-code-structure-this-could-be-not-updated-kept-for-reference" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><strong>main.cpp</strong> : It handles ROS (creating the nodehandle) and the Qapplication. It creates the Window object</li>
 <li><strong>Window.cpp</strong> a <em>QWidget</em> derived class which refers to the gui Window. It has as member a <em>QGridLayout</em>, and it creates all the inner <em>QGridLayout</em> (one for each action)</li>
@@ -192,6 +208,11 @@ compile with catkin_make
 <li><strong>ActionBoxesLayout.cpp</strong> Derived class from above, it includes checkboxes to select finger/joint and send them also with topics.</li>
 <li><strong>ActionTimedLayout.cpp</strong>, <strong>ActionTimedElement.cpp</strong> Container and element for the timed action, which per definition is composed by other actions executed one after another with some time margins. Each element has three progress bar so in the future we can take feedback and display a progress of the action execution, included time margins</li>
 </ul>
+</div>
+<div class="section" id="developers-note">
+<h3>Developers note<a class="headerlink" href="#developers-note" title="Permalink to this headline">¶</a></h3>
+<p>Compiling
+The default qt installer is a gui, we cant use it on travis. I found by chance this <a class="reference external" href="https://github.com/miurahr/aqtinstall/">aqtinstall</a>, maybe it can be useful in future</p>
 </div>
 </div>
 </div>

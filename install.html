@@ -89,13 +89,16 @@
                 <p class="caption"><span class="caption-text">Usage</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#full-installation-recommended">Full Installation (recommended)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#custom-installation-this-could-be-not-updated">Custom Installation (this could be not updated)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#full-installation-recommended">Full Installation (recommended)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ros-end-effector-gui-second-tab">ROS End-Effector GUI second tab</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-issues">Installation issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-installation-this-could-be-not-updated-kept-here-mainly-for-reference">Custom Installation (this could be not updated, kept here mainly for reference)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#install-external-system-dependencies">Install External System Dependencies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#install-ros-end-effector-package-from-sources">Install ROS End-Effector package from sources</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#installation-issues">Installation issues</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">How to use ROS End-Effector with your end-effector</a></li>
@@ -198,9 +201,51 @@ catkin_make
 <p class="last">In future, if you want to pull the last updates, you can use <code class="code docutils literal notranslate"><span class="pre">rosws</span> <span class="pre">update</span></code> to pull all the updates of each repository with this unique command!</p>
 </div>
 <p>You are now ready to use ROS End-Effector! Check <a class="reference internal" href="usage.html#usage"><span class="std std-ref">How to use ROS End-Effector with your end-effector</span></a> and <a class="reference internal" href="examples.html#examples"><span class="std std-ref">Examples with ready to use end-effectors</span></a> sections to learn how to use it.</p>
+<div class="section" id="ros-end-effector-gui-second-tab">
+<h3>ROS End-Effector GUI second tab<a class="headerlink" href="#ros-end-effector-gui-second-tab" title="Permalink to this headline">¶</a></h3>
+<p>Some functionalities of the ROS End-Effector Graphical User Interface are available only with a <em>Qt</em> version greater or equal <strong>5.9</strong>, which may be not installed by default into your system.
+These functionalities include an additional tab where joint state can be plotted in real-time, thanks to <em>Qt Charts</em>. More information about the ROS End-Effector GUI are available at <a class="reference internal" href="roseeGui.html#roseegui"><span class="std std-ref">ROS End-Effector GUI</span></a> page.
+<span class="raw-html"><br /></span>
+Any recent version of <em>Qt</em> can be installed following the link to the <a class="reference external" href="https://www.qt.io/download-qt-installer/">Qt website</a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Multiple versions of <em>Qt</em> may coexist in your system, so it is recommended to not remove the default version.</p>
 </div>
-<div class="section" id="custom-installation-this-could-be-not-updated">
-<h2>Custom Installation (this could be not updated)<a class="headerlink" href="#custom-installation-this-could-be-not-updated" title="Permalink to this headline">¶</a></h2>
+<p>When choosing the <em>Qt</em> components to install, be sure to check <em>Qt Charts</em> from the menu, as in the figure below (installer window may change in newest versions):</p>
+<a class="reference internal image-reference" href="_images/qtInstall.png"><img alt="Qt Installer screen with necessary components selected" src="_images/qtInstall.png" style="width: 200px;" /></a>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">With installer, also qtcreator (the IDE) will be installed, without the possibility to uncheck it. This seems a known bug of <em>Qt</em> (<a class="reference external" href="https://bugreports.qt.io/browse/QTBUG-28101">reference here</a>). It should be safe to remove qtcreator manually, expecially if you have already it installed.</p>
+</div>
+<p>After installed Qt, be sure to compile ROS End-Effector <strong>in an cleaned workspace</strong> (simply delete any <em>devel</em>, <em>build</em>, <em>install</em> folders, if present) specifying the Qt path when calling catkin_make:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>catkin_make --cmake-args -DQT5_PATH:STRING<span class="o">=</span><span class="c1">#&lt;gcc_64 path folder of qt5&gt;</span>
+
+<span class="c1"># for example</span>
+<span class="c1"># catkin_make --cmake-args -DQT5_PATH:STRING=/usr/lib/x86_64-linux-gnu/Qt5.12.8/5.12.8/gcc_64</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the <code class="code docutils literal notranslate"><span class="pre">--cmake-args</span></code> argument is only necessary once (when the workspace is cleaned), future calls to <code class="code docutils literal notranslate"><span class="pre">catkin_make</span></code> can omit it</p>
+</div>
+</div>
+</div>
+<div class="section" id="installation-issues">
+<h2>Installation issues<a class="headerlink" href="#installation-issues" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Recent version of <em>Qt</em> can cause an error like this:
+<code class="code docutils literal notranslate"><span class="pre">qt.qpa.plugin:</span> <span class="pre">Could</span> <span class="pre">not</span> <span class="pre">load</span> <span class="pre">the</span> <span class="pre">Qt</span> <span class="pre">platform</span> <span class="pre">plugin</span> <span class="pre">&quot;xcb&quot;</span> <span class="pre">in</span> <span class="pre">&quot;&quot;</span> <span class="pre">...</span></code>
+<span class="raw-html"><br /></span>
+Solve simply installing <em>libxcb-xinerama0</em> :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>sudo apt-get install libxcb-xinerama0
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="custom-installation-this-could-be-not-updated-kept-here-mainly-for-reference">
+<h2>Custom Installation (this could be not updated, kept here mainly for reference)<a class="headerlink" href="#custom-installation-this-could-be-not-updated-kept-here-mainly-for-reference" title="Permalink to this headline">¶</a></h2>
 <p>If you want, you can clone only the single ROSEE packages, without using the rosintall.
 <span class="raw-html"><br /></span>
 In this sections there are the steps.</p>
@@ -267,10 +312,6 @@ catkin_make
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="installation-issues">
-<h2>Installation issues<a class="headerlink" href="#installation-issues" title="Permalink to this headline">¶</a></h2>
-<p>Not found (for now…)</p>
 </div>
 </div>
 
