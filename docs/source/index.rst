@@ -31,7 +31,8 @@ Documentation about the API of ROS End-Effector can be found at https://advrhuma
   
    actions
    findActions
-   rosTopics
+   receiveActionsInfo
+   rosTopics  
    
 .. toctree::
    :maxdepth: 2
