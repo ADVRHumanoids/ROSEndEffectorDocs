@@ -68,7 +68,9 @@ You can use :code:`rosservice call` command to call the service:
 
 This command will request the primitive (*action_type* : *0*) of type PinchTight (*primitive_type* : *0*) done with the *thumb* and *index* fingers.
 
-You can check the GraspingActionsAvailable.srv and GraspingAction.msg files (from rosee_msg package) 
+You can check the GraspingActionsAvailable.srv and GraspingAction.msg files (from rosee_msg package), to have a look of how these messages are composed.
+
+To use this service with your code, you can refer to the official ROS `documentation <http://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28c%2B%2B%29>`_
 
  
 .. _Retrieving-Grasping-Actions-with-MapActionHandler:
