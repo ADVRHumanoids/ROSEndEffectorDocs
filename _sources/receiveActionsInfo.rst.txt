@@ -12,7 +12,7 @@ All the Grasping Actions are stored in .yaml file, and ROS End-Effector provides
 :raw-html:`<br />`
 There are two ways to retrieve grasping action information. 
 
-:ref:`One<Retrieving-Grasping-Actions-with-ROS-Service>` is by means of `ROS Services <http://wiki.ros.org/Services>`_,. For this is necessary that ROS End-Effector is in execution (being the *server* which will respond to the request).
+:ref:`One<Retrieving-Grasping-Actions-with-ROS-Service>` is by means of `ROS Services <http://wiki.ros.org/Services>`_. For this is necessary that ROS End-Effector is in execution (being the *server* which will respond to the request).
 
 The :ref:`other<Retrieving-Grasping-Actions-with-MapActionHandler>` is by using the ROS End-Effector library *MapActionHandler*, an utility class which parse the yaml files and store the actions in more comfortable containers (*std::map*). This is the method which ROS End-Effector itself uses to parse the files.
 

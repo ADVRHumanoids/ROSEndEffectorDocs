@@ -165,7 +165,7 @@
 <p>All the Grasping Actions are stored in .yaml file, and ROS End-Effector provides functionalities to easily access them, without the need to write code to parse them.
 <span class="raw-html"><br /></span>
 There are two ways to retrieve grasping action information.</p>
-<p><a class="reference internal" href="#retrieving-grasping-actions-with-ros-service"><span class="std std-ref">One</span></a> is by means of <a class="reference external" href="http://wiki.ros.org/Services">ROS Services</a>,. For this is necessary that ROS End-Effector is in execution (being the <em>server</em> which will respond to the request).</p>
+<p><a class="reference internal" href="#retrieving-grasping-actions-with-ros-service"><span class="std std-ref">One</span></a> is by means of <a class="reference external" href="http://wiki.ros.org/Services">ROS Services</a>. For this is necessary that ROS End-Effector is in execution (being the <em>server</em> which will respond to the request).</p>
 <p>The <a class="reference internal" href="#retrieving-grasping-actions-with-mapactionhandler"><span class="std std-ref">other</span></a> is by using the ROS End-Effector library <em>MapActionHandler</em>, an utility class which parse the yaml files and store the actions in more comfortable containers (<em>std::map</em>). This is the method which ROS End-Effector itself uses to parse the files.</p>
 <div class="section" id="retrieving-grasping-actions-with-ros-service">
 <span id="id1"></span><h2>Retrieving Grasping Actions with ROS Service<a class="headerlink" href="#retrieving-grasping-actions-with-ros-service" title="Permalink to this headline">¶</a></h2>
