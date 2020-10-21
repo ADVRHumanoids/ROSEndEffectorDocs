@@ -12,7 +12,7 @@ All the Grasping Actions are stored in .yaml file, and ROS End-Effector provides
 :raw-html:`<br />`
 There are two ways to retrieve grasping action information. 
 
-:ref:`One<Retrieving-Grasping-Actions-with-ROS-Service>` is by means of `ROS Services <http://wiki.ros.org/Services>`_,. For this is necessary that ROS End-Effector is in execution (being the *server* which will respond to the request).
+:ref:`One<Retrieving-Grasping-Actions-with-ROS-Service>` is by means of `ROS Services <http://wiki.ros.org/Services>`_. For this is necessary that ROS End-Effector is in execution (being the *server* which will respond to the request).
 
 The :ref:`other<Retrieving-Grasping-Actions-with-MapActionHandler>` is by using the ROS End-Effector library *MapActionHandler*, an utility class which parse the yaml files and store the actions in more comfortable containers (*std::map*). This is the method which ROS End-Effector itself uses to parse the files.
 
@@ -68,7 +68,9 @@ You can use :code:`rosservice call` command to call the service:
 
 This command will request the primitive (*action_type* : *0*) of type PinchTight (*primitive_type* : *0*) done with the *thumb* and *index* fingers.
 
-You can check the GraspingActionsAvailable.srv and GraspingAction.msg files (from rosee_msg package) 
+You can check the GraspingActionsAvailable.srv and GraspingAction.msg files (from rosee_msg package), to have a look of how these messages are composed.
+
+To use this service with your code, you can refer to the official ROS `documentation <http://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28c%2B%2B%29>`_
 
  
 .. _Retrieving-Grasping-Actions-with-MapActionHandler:
