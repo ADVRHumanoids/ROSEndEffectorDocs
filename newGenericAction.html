@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; ROSEndEffector 1.0 documentation</title>
+  <title>How to add a new Generic action in the system &mdash; ROSEndEffector 1.0 documentation</title>
   
 
   
@@ -33,9 +33,11 @@
 
   
         <link rel="index" title="Index"
-              href="#"/>
+              href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="ROSEndEffector 1.0 documentation" href="index.html"/> 
+    <link rel="top" title="ROSEndEffector 1.0 documentation" href="index.html"/>
+        <link rel="next" title="ROS Topics Structures" href="rosTopics.html"/>
+        <link rel="prev" title="How to retrieve the Grasping Action Created" href="receiveActionsInfo.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -91,11 +93,11 @@
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples with ready to use end-effectors</a></li>
 </ul>
 <p class="caption"><span class="caption-text">The Main Component</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="actions.html">ROS End-Effector Grasping Actions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="findActions.html">FindActions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="receiveActionsInfo.html">How to retrieve the Grasping Action Created</a></li>
-<li class="toctree-l1"><a class="reference internal" href="newGenericAction.html">How to add a new Generic action in the system</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to add a new Generic action in the system</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rosTopics.html">ROS Topics Structures</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Other Components</span></p>
@@ -132,7 +134,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -140,9 +142,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li></li>
+    <li>How to add a new Generic action in the system</li>
       <li class="wy-breadcrumbs-aside">
         
+          
+            <a href="_sources/newGenericAction.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -152,17 +156,84 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="how-to-add-a-new-generic-action-in-the-system">
+<span id="newgenericaction"></span><h1>How to add a new Generic action in the system<a class="headerlink" href="#how-to-add-a-new-generic-action-in-the-system" title="Permalink to this headline">¶</a></h1>
+<p>When ROSEE main node is running, you may want to introduce a new action in the system, such that you can command it afterwards. This is possible through a dedicated ROS service.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The action will belong to the <em>generic</em> category</p>
+</div>
+<p>The request is composed as following:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="c1">## Service associated with GenericGraspingAction message</span>
 
-<h1 id="index">Index</h1>
+NewGenericGraspingAction newAction
 
-<div class="genindex-jumpbox">
- 
+<span class="c1"># user can also request to store the action in a yaml file, togheter with the others</span>
+bool emitYaml
+
+---
+
+<span class="c1"># the service will give true if action is good and it is inserted in the structure</span>
+bool accepted
+
+<span class="c1"># true false depending if emission on yaml file is successful</span>
+bool emitted
+
+<span class="c1"># string containing useful info about a possible not acceptance</span>
+string error_msg
+</pre></div>
+</div>
+<p>Where NewGenericGraspingAction is defined as:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span class="c1"># Message which include all the infos necessary to insert a new action in the system</span>
+<span class="c1"># (https://github.com/ADVRHumanoids/ROSEndEffector/issues/71)</span>
+
+<span class="c1"># name of the action</span>
+string action_name
+
+<span class="c1"># Motor Position</span>
+MotorPosition action_motor_position
+
+<span class="c1"># OPTIONAL The mask which says if the motor is used by the action (count &gt; 0) or not (count = 0).</span>
+<span class="c1"># take care that if it is not included, the not used joint will be considered the ones with 0 position</span>
+JointsInvolvedCount action_motor_count
+
+<span class="c1"># OPTIONAL field to indicate which hand element will be moved by the action</span>
+string<span class="o">[]</span> elements_involved
+</pre></div>
+</div>
+<p>Hence you can call the service from usual c++ code or also from terminal for example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>rosservice call /ros_end_effector/new_generic_grasping_action <span class="s2">&quot;newAction:</span>
+<span class="s2">        action_name: &#39;newFancyAction&#39;</span>
+<span class="s2">        action_motor_position:</span>
+<span class="s2">          name:</span>
+<span class="s2">          - &#39;joint_1&#39;</span>
+<span class="s2">          - &#39;joint_2&#39;</span>
+<span class="s2">          position:</span>
+<span class="s2">          - 1</span>
+<span class="s2">          - 2</span>
+<span class="s2">emitYaml: true&quot;</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Some checks are performed when calling the action (eg no action with the same name must exists, consistency among motor position and motor count…)
+but NO CHECKS are performed to see if the name of the joints are the correct ones. Remember to put ALL the motors in the action_motor_position field!</p>
+</div>
 </div>
 
 
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rosTopics.html" class="btn btn-neutral float-right" title="ROS Topics Structures" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="receiveActionsInfo.html" class="btn btn-neutral" title="How to retrieve the Grasping Action Created" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
