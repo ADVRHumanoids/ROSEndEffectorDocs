@@ -174,14 +174,21 @@ There are two ways to retrieve grasping action information.</p>
 <span class="raw-html"><br /></span>
 Be also sure that the service named <strong>ros_end_effector/grasping_actions_available</strong> by default (the name can be changed in the rosee_startup launch file) is available with <code class="code docutils literal notranslate"><span class="pre">rosservice</span> <span class="pre">list</span></code>.</p>
 <p>In the request, the fields are:</p>
+<ul>
+<li><p class="first"><em>action_type</em> field: (note that if not filled it would be 0)</p>
 <ul class="simple">
-<li><em>action_type</em> field: (note that if not filled it would be 0)<ul>
-<li>0 : Primitives)</li>
+<li>0 : Primitives</li>
 <li>1 : Generic and Composed</li>
 <li>2 : Timed</li>
 </ul>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This is a compulsory field. Be sure to fill it with the correct valur, otherwise you are requesting info
+about a primitive grasping action, and not of other types.</p>
+</div>
 </li>
-<li><em>primitive_type</em> field, only considered if <em>action_type</em> is 0. Also note that if this is not 0, the field <em>action_name</em> is not considered:<ul>
+<li><p class="first"><em>primitive_type</em> field, only considered if <em>action_type</em> is 0. Also note that if this is not 0, the field <em>action_name</em> is not considered:</p>
+<ul class="simple">
 <li>0 : All Primitives. If also the action_name field is empty, all primitives will be given in the response</li>
 <li>1 : PinchTight</li>
 <li>2 : PinchLoose</li>
@@ -193,9 +200,11 @@ Be also sure that the service named <strong>ros_end_effector/grasping_actions_av
 <li>8 : None (not used)</li>
 </ul>
 </li>
-<li><em>action_name</em> field, the name of the action, it can be used for all <em>action_type</em></li>
-<li><em>elements_involved</em> field, used only for primitives, if action_name is not an empty string and/or primitive_type != 0. This is a vector which can contain
-the element which distinguish a primitive, like 2 fingers for a PinchTight</li>
+<li><p class="first"><em>action_name</em> field, the name of the action, it can be used for all <em>action_type</em></p>
+</li>
+<li><p class="first"><em>elements_involved</em> field, used only for primitives, if action_name is not an empty string and/or primitive_type != 0. This is a vector which can contain
+the element which distinguish a primitive, like 2 fingers for a PinchTight</p>
+</li>
 </ul>
 <p>The respond is a vector of grasping actions (that can be also empty or with only one element)</p>
 <p>You can use <code class="code docutils literal notranslate"><span class="pre">rosservice</span> <span class="pre">call</span></code> command to call the service:</p>
@@ -208,6 +217,12 @@ the element which distinguish a primitive, like 2 fingers for a PinchTight</li>
 </pre></div>
 </div>
 <p>This command will request the primitive (<em>action_type</em> : <em>0</em>) of type PinchTight (<em>primitive_type</em> : <em>0</em>) done with the <em>thumb</em> and <em>index</em> fingers.</p>
+<p><span class="raw-html"><br /></span></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre>rosservice call /ros_end_effector/grasping_actions_available <span class="s2">&quot;action_type: 1</span>
+<span class="s2">action_name: &#39;AParticularGenericAction&#39;&quot;</span>
+</pre></div>
+</div>
+<p>This other call will request info for a generic action called <em>AParticularGenericAction</em> (Note the <em>action_type</em> field set to 1 )</p>
 <p>You can check the GraspingActionsAvailable.srv and GraspingAction.msg files (from rosee_msg package), to have a look of how these messages are composed.</p>
 <p>To use this service with your code, you can refer to the official ROS <a class="reference external" href="http://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28c%2B%2B%29">documentation</a></p>
 </div>

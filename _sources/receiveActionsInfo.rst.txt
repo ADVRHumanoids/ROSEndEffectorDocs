@@ -30,9 +30,14 @@ In the request, the fields are:
 
 - *action_type* field: (note that if not filled it would be 0)
 
-  - 0 : Primitives)
+  - 0 : Primitives
   - 1 : Generic and Composed
   - 2 : Timed
+
+  .. warning:: 
+    This is a compulsory field. Be sure to fill it with the correct valur, otherwise you are requesting info 
+    about a primitive grasping action, and not of other types.
+
 
 
 - *primitive_type* field, only considered if *action_type* is 0. Also note that if this is not 0, the field *action_name* is not considered:
@@ -67,6 +72,15 @@ You can use :code:`rosservice call` command to call the service:
   - 'index'" 
 
 This command will request the primitive (*action_type* : *0*) of type PinchTight (*primitive_type* : *0*) done with the *thumb* and *index* fingers.
+
+:raw-html:`<br />`
+
+.. code-block:: bash
+
+	rosservice call /ros_end_effector/grasping_actions_available "action_type: 1
+	action_name: 'AParticularGenericAction'"
+
+This other call will request info for a generic action called *AParticularGenericAction* (Note the *action_type* field set to 1 )
 
 You can check the GraspingActionsAvailable.srv and GraspingAction.msg files (from rosee_msg package), to have a look of how these messages are composed.
 
