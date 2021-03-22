@@ -23,6 +23,10 @@ The following steps will guide you to install all packages of ROSEE using a *.ro
 ROS End-Effector is in development. Actually the most updated and working branch is the *devel* one, so you will
 clone the "devels" branch of each repository.
 
+Install MatLogger2, instructions can be find `here <https://github.com/ADVRHumanoids/MatLogger2>`_. 
+:raw-html:`<br />`
+Please not that if you want to install also XBot2 (as described :ref:`below <xbot2Install>`) this step is not necessary since matlogger is included into the XBot installation
+
 .. code-block:: bash
 
   git clone -b devel https://github.com/ADVRHumanoids/ROSEndEffectorPackageManager.git
@@ -47,8 +51,7 @@ clone the "devels" branch of each repository.
 
 You are now ready to use ROS End-Effector! Check :ref:`How to use ROS End-Effector with your end-effector <usage>` and :ref:`Examples with ready to use end-effectors <examples>` sections to learn how to use it. 
 
-
-  
+.. _xbot2Install:
 
 XBot2 Integration
 *******************
@@ -59,7 +62,7 @@ ROS End-Effector include an integrated XBot2Hal: to compile it please set the BU
 
 .. code-block:: bash
 
-  catkin_make -DBUILD_WITH_XBOT2=OFF
+  catkin_make -DBUILD_WITH_XBOT2=ON
 
 
 ROS End-Effector GUI second tab
