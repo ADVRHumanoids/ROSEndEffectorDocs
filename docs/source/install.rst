@@ -25,7 +25,9 @@ clone the "devels" branch of each repository.
 
 Install MatLogger2, instructions can be find `here <https://github.com/ADVRHumanoids/MatLogger2>`_. 
 :raw-html:`<br />`
-Please not that if you want to install also XBot2 (as described :ref:`below <xbot2Install>`) this step is not necessary since matlogger is included into the XBot installation
+Please note that if you want to install also XBot2 (as described :ref:`below <xbot2Install>`) this step is not necessary since matlogger is included into the XBot installation
+
+Run in the terminal:
 
 .. code-block:: bash
 
