@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>ROS End-Effector HAL &mdash; ROSEndEffector 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ROS Topics Structures" href="rosTopics.html" />
+    <link rel="prev" title="How to add a new Generic action in the system" href="newGenericAction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ROSEndEffector
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">How to use ROS End-Effector with your end-effector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples with ready to use end-effectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">The Main Components</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="actions.html">ROS End-Effector Grasping Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="findActions.html">FindActions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="receiveActionsInfo.html">How to retrieve the Grasping Action Created</a></li>
+<li class="toctree-l1"><a class="reference internal" href="newGenericAction.html">How to add a new Generic action in the system</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ROS End-Effector HAL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#included-concrete-hal">Included concrete Hal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dummyhal">DummyHal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xbot2hal">XBot2Hal</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#implementing-a-new-hal-for-your-robot">Implementing a new Hal for your robot</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Further steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rosTopics.html">ROS Topics Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mimicJoint.html">End-Effector and their coupled joints</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roseeGui.html">ROS End-Effector GUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roseeGazeboPlugins.html">ROS End-Effector Gazebo Plugins</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Possible Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="googleTests.html">Advanced</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ROSEndEffector</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>ROS End-Effector HAL</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/eeHal.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ros-end-effector-hal">
+<span id="eehal"></span><h1>ROS End-Effector HAL<a class="headerlink" href="#ros-end-effector-hal" title="Permalink to this headline">¶</a></h1>
+<p>ROS End-Effector relies on a HAL interface (read: C++ pure abstract class) to communicate with simulated or real robot. This permits to load at run-time a concrete HAL depending on the robot that we are controlling.
+In general, the HAL will take actuator position commands as ros messages (from ROS End-Effector) and will give back the actual position of the robot’s actuators, again as ros messages. The communication with the robot (i.e. sense() and move()) must be implemented by each concrete HAL</p>
+<div class="section" id="included-concrete-hal">
+<h2>Included concrete Hal<a class="headerlink" href="#included-concrete-hal" title="Permalink to this headline">¶</a></h2>
+<p>We already provide two Hals. These can be check as examples to understand how to implement a new custom HAL.</p>
+<div class="section" id="dummyhal">
+<h3>DummyHal<a class="headerlink" href="#dummyhal" title="Permalink to this headline">¶</a></h3>
+<p>This Hal simply propagate the commands to other ROS topics, read by rviz and/or Gazebo. It is suitable for easy and fast ROS End-Effector use with simulated robots</p>
+</div>
+<div class="section" id="xbot2hal">
+<h3>XBot2Hal<a class="headerlink" href="#xbot2hal" title="Permalink to this headline">¶</a></h3>
+<p>As above, this HAL communicate with simulated robot, but not using ROS topics. Instead, it uses XBot2 ways to communicate with Gazebo.</p>
+</div>
+</div>
+<div class="section" id="implementing-a-new-hal-for-your-robot">
+<h2>Implementing a new Hal for your robot<a class="headerlink" href="#implementing-a-new-hal-for-your-robot" title="Permalink to this headline">¶</a></h2>
+<p>You must derive the <em>EEHal</em> class, and implement the pure virtual sense() and move().</p>
+<p>In the sense(), you must fill the _js_msg field with the information took by your robot.</p>
+<p>In the move(), you must transmit motor position references (that are inside _mr_msg) to your robot.</p>
+<p>The <em>EEHal</em> base class already implements methods to:</p>
+<ul class="simple">
+<li><p>Propagate <em>_js_msg</em> into ROS topics (read by ROS End-Effector main node)</p></li>
+<li><p>Receive motor position commands and to fill the <em>_mr_msg</em> (there is a ROS callback)</p></li>
+</ul>
+<p>You also must to put the HAL_CREATE_OBJECT(<em>className</em>) macro. This is necessary to load a specific HAL at runtime.</p>
+<p>You can check DummyHal or XBot2Hal as examples</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="rosTopics.html" class="btn btn-neutral float-right" title="ROS Topics Structures" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="newGenericAction.html" class="btn btn-neutral float-left" title="How to add a new Generic action in the system" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, Luca Muratore, Davide Torielli.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

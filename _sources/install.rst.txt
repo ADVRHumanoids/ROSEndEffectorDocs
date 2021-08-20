@@ -23,6 +23,12 @@ The following steps will guide you to install all packages of ROSEE using a *.ro
 ROS End-Effector is in development. Actually the most updated and working branch is the *devel* one, so you will
 clone the "devels" branch of each repository.
 
+Install MatLogger2, instructions can be find `here <https://github.com/ADVRHumanoids/MatLogger2>`_. 
+:raw-html:`<br />`
+Please note that if you want to install also XBot2 (as described :ref:`below <xbot2Install>`) this step is not necessary since matlogger is included into the XBot installation
+
+Run in the terminal:
+
 .. code-block:: bash
 
   git clone -b devel https://github.com/ADVRHumanoids/ROSEndEffectorPackageManager.git
@@ -32,7 +38,7 @@ clone the "devels" branch of each repository.
   catkin_init_workspace
   rosws update
   cd ..
-  catkin_make
+  catkin_make -DBUILD_WITH_XBOT2=OFF
   
 .. note::
    The sh script will install external necessary dependencies with apt-get
@@ -40,8 +46,26 @@ clone the "devels" branch of each repository.
 
 .. note::
   In future, if you want to pull the last updates, you can use :code:`rosws update` to pull all the updates of each repository with this unique command!
+  
+.. note::
+  Among the ROSEE packages, there are two forks to support non linear mimic joints. Check
+  :ref:`End-Effector and their coupled joints <mimicJoint>` for more info.
 
 You are now ready to use ROS End-Effector! Check :ref:`How to use ROS End-Effector with your end-effector <usage>` and :ref:`Examples with ready to use end-effectors <examples>` sections to learn how to use it. 
+
+.. _xbot2Install:
+
+XBot2 Integration
+*******************
+
+ROS End-Effector also supports XBot2 to implement the Hardware Abstraction Layer, to communicate with the real or simulated robot. Please dowload it `here <https://github.com/ADVRHumanoids/XBotControl/releases/tag/2.0-devel-core-updated>`_. Be sure to download a >2 version!. Some helps on how setup xbot2 are available `here <https://github.com/ADVRHumanoids/xbot2_examples>`_.
+
+ROS End-Effector include an integrated XBot2Hal: to compile it please set the BUILD_WITH_XBOT2 variable:
+
+.. code-block:: bash
+
+  catkin_make -DBUILD_WITH_XBOT2=ON
+
 
 ROS End-Effector GUI second tab
 ********************************
@@ -87,82 +111,4 @@ Installation issues
   .. code-block:: bash
 
     sudo apt-get install libxcb-xinerama0  
-    
-=================================================    
-
-Custom Installation (this could be not updated, kept here mainly for reference)
-###################################################################################
-
-If you want, you can clone only the single ROSEE packages, without using the rosintall. 
-:raw-html:`<br />`
-In this sections there are the steps.
-
-Install External System Dependencies
-***************************************
-
-.. code-block:: bash 
-
-  sudo apt-get install ros-kinetic-moveit #moveit
-  
-  #I do not know if these two are the same...
-  sudo apt install ros-kinetic-ros-control
-  sudo apt install ros-kinetic-control-toolbox
-
-Install ROS End-Effector package from sources
-**************************************************
-
-**IMPORTANT**: ROSEE is a project under development. When cloning, be sure to download the branch you really want. Currently the newest features can be found in the *devel* branch; so, in the commands below substitute <branch_you_want> with devel. Note that also the other ROSEE related packages should be used with the right branch.
-
-The next steps will guide you to the creation of a new catkin_workspace, the cloning of all the necessary repository, and their compilation.
-
-- Create a catkin workspace
-
-  .. code-block:: bash
-  
-    mkdir ~/ROSEE
-    cd ROSEE
-    mkdir src
-    cd src
-    catkin_init_workspace
-
-
-- Clone Necessary dependencies:
-
-  .. code-block:: bash
-   
-    git clone -b <branch_you_want> https://github.com/ADVRHumanoids/rosee_msg.git
-         
-- Clone Optional dependencies:
-
-  - GUI
-  
-    .. code-block:: bash 
-    
-      git clone -b <branch_you_want> https://github.com/ADVRHumanoids/rosee_gui.git
-  
-  - Gazebo Plugin (more info in the dedicated :ref:`section <roseeGazeboPlugins>`)
-  
-    .. code-block:: bash
-    
-      git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins.git #necessary external plugin
-      git clone -b <branch_you_want> https://github.com/ADVRHumanoids/rosee_gazebo_plugins.git
-          
-.. note::
-  you can see details on each optional plugin in their relative page of this doc
-  
-- Clone Core Package
-
-  .. code-block:: bash
-   
-    git clone -b <branch_you_want> https://github.com/ADVRHumanoids/ROSEndEffector
-  
-- Compile them all!
-
-  .. code-block:: bash
-  
-    cd ~/ROSEE
-    catkin_make    
-
-
- 
-
+      

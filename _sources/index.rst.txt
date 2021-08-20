@@ -27,17 +27,24 @@ Documentation about the API of ROS End-Effector can be found at https://advrhuma
 
 .. toctree::
    :maxdepth: 2
-   :caption: The Main Component
+   :caption: The Main Components
   
    actions
    findActions
    receiveActionsInfo
    newGenericAction
-   rosTopics  
+   eeHal
    
 .. toctree::
    :maxdepth: 2
-   :caption: Other Components
+   :caption: Further steps  
+   
+   rosTopics
+   mimicJoint  
+   
+.. toctree::
+   :maxdepth: 2
+   :caption: Other Packages
   
    roseeGui
    roseeGazeboPlugins

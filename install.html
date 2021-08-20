@@ -1,57 +1,61 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Installation &mdash; ROSEndEffector 1.0 documentation</title>
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+
+  
+  
+
+  
   
 
   
 
   
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="ROSEndEffector 1.0 documentation" href="index.html"/>
-        <link rel="next" title="How to use ROS End-Effector with your end-effector" href="usage.html"/>
-        <link rel="prev" title="Welcome to ROS End-Effector’s documentation!" href="index.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How to use ROS End-Effector with your end-effector" href="usage.html" />
+    <link rel="prev" title="Welcome to ROS End-Effector’s documentation!" href="index.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
+   
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -82,46 +86,51 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
             
-                <p class="caption"><span class="caption-text">Usage</span></p>
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#full-installation-recommended">Full Installation (recommended)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#xbot2-integration">XBot2 Integration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ros-end-effector-gui-second-tab">ROS End-Effector GUI second tab</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#installation-issues">Installation issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#custom-installation-this-could-be-not-updated-kept-here-mainly-for-reference">Custom Installation (this could be not updated, kept here mainly for reference)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#install-external-system-dependencies">Install External System Dependencies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#install-ros-end-effector-package-from-sources">Install ROS End-Effector package from sources</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">How to use ROS End-Effector with your end-effector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples with ready to use end-effectors</a></li>
 </ul>
-<p class="caption"><span class="caption-text">The Main Component</span></p>
+<p class="caption" role="heading"><span class="caption-text">The Main Components</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="actions.html">ROS End-Effector Grasping Actions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="findActions.html">FindActions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="receiveActionsInfo.html">How to retrieve the Grasping Action Created</a></li>
 <li class="toctree-l1"><a class="reference internal" href="newGenericAction.html">How to add a new Generic action in the system</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rosTopics.html">ROS Topics Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eeHal.html">ROS End-Effector HAL</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Other Components</span></p>
+<p class="caption" role="heading"><span class="caption-text">Further steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rosTopics.html">ROS Topics Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mimicJoint.html">End-Effector and their coupled joints</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Packages</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="roseeGui.html">ROS End-Effector GUI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roseeGazeboPlugins.html">ROS End-Effector Gazebo Plugins</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Other</span></p>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="issues.html">Possible Issues</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Advanced</span></p>
+<p class="caption" role="heading"><span class="caption-text">Advanced</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="googleTests.html">Advanced</a></li>
 </ul>
@@ -129,32 +138,52 @@
             
           
         </div>
+        
       </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">ROSEndEffector</a>
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ROSEndEffector</a>
+        
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Installation</li>
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Installation</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
           
@@ -162,7 +191,10 @@
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -174,8 +206,8 @@
 <span class="raw-html"><br /></span>
 So, first, be sure to have ROS kinetic installed as described <a class="reference external" href="http://wiki.ros.org/kinetic/Installation/Ubuntu">here</a>.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">We are going to use the abreviation ROSEE for the ROS End-Effector from now on</p>
+<p class="admonition-title">Note</p>
+<p>We are going to use the abreviation ROSEE for the ROS End-Effector from now on</p>
 </div>
 <div class="section" id="full-installation-recommended">
 <h2>Full Installation (recommended)<a class="headerlink" href="#full-installation-recommended" title="Permalink to this headline">¶</a></h2>
@@ -183,26 +215,43 @@ So, first, be sure to have ROS kinetic installed as described <a class="referenc
 <span class="raw-html"><br /></span>
 ROS End-Effector is in development. Actually the most updated and working branch is the <em>devel</em> one, so you will
 clone the “devels” branch of each repository.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>git clone -b devel https://github.com/ADVRHumanoids/ROSEndEffectorPackageManager.git
+<p>Install MatLogger2, instructions can be find <a class="reference external" href="https://github.com/ADVRHumanoids/MatLogger2">here</a>.
+<span class="raw-html"><br /></span>
+Please note that if you want to install also XBot2 (as described <a class="reference internal" href="#xbot2install"><span class="std std-ref">below</span></a>) this step is not necessary since matlogger is included into the XBot installation</p>
+<p>Run in the terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone -b devel https://github.com/ADVRHumanoids/ROSEndEffectorPackageManager.git
 <span class="nb">cd</span> ROSEndEffectorPackageManager
 ./setup.sh
 <span class="nb">cd</span> src
 catkin_init_workspace
 rosws update
 <span class="nb">cd</span> ..
-catkin_make
+catkin_make -DBUILD_WITH_XBOT2<span class="o">=</span>OFF
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The sh script will install external necessary dependencies with apt-get
+<p class="admonition-title">Note</p>
+<p>The sh script will install external necessary dependencies with apt-get
 <span class="raw-html"><br /></span></p>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">In future, if you want to pull the last updates, you can use <code class="code docutils literal notranslate"><span class="pre">rosws</span> <span class="pre">update</span></code> to pull all the updates of each repository with this unique command!</p>
+<p class="admonition-title">Note</p>
+<p>In future, if you want to pull the last updates, you can use <code class="code docutils literal notranslate"><span class="pre">rosws</span> <span class="pre">update</span></code> to pull all the updates of each repository with this unique command!</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Among the ROSEE packages, there are two forks to support non linear mimic joints. Check
+<a class="reference internal" href="mimicJoint.html#mimicjoint"><span class="std std-ref">End-Effector and their coupled joints</span></a> for more info.</p>
 </div>
 <p>You are now ready to use ROS End-Effector! Check <a class="reference internal" href="usage.html#usage"><span class="std std-ref">How to use ROS End-Effector with your end-effector</span></a> and <a class="reference internal" href="examples.html#examples"><span class="std std-ref">Examples with ready to use end-effectors</span></a> sections to learn how to use it.</p>
+<div class="section" id="xbot2-integration">
+<span id="xbot2install"></span><h3>XBot2 Integration<a class="headerlink" href="#xbot2-integration" title="Permalink to this headline">¶</a></h3>
+<p>ROS End-Effector also supports XBot2 to implement the Hardware Abstraction Layer, to communicate with the real or simulated robot. Please dowload it <a class="reference external" href="https://github.com/ADVRHumanoids/XBotControl/releases/tag/2.0-devel-core-updated">here</a>. Be sure to download a &gt;2 version!. Some helps on how setup xbot2 are available <a class="reference external" href="https://github.com/ADVRHumanoids/xbot2_examples">here</a>.</p>
+<p>ROS End-Effector include an integrated XBot2Hal: to compile it please set the BUILD_WITH_XBOT2 variable:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>catkin_make -DBUILD_WITH_XBOT2<span class="o">=</span>ON
+</pre></div>
+</div>
+</div>
 <div class="section" id="ros-end-effector-gui-second-tab">
 <h3>ROS End-Effector GUI second tab<a class="headerlink" href="#ros-end-effector-gui-second-tab" title="Permalink to this headline">¶</a></h3>
 <p>Some functionalities of the ROS End-Effector Graphical User Interface are available only with a <em>Qt</em> version greater or equal <strong>5.9</strong>, which may be not installed by default into your system.
@@ -210,140 +259,71 @@ These functionalities include an additional tab where joint state can be plotted
 <span class="raw-html"><br /></span>
 Any recent version of <em>Qt</em> can be installed following the link to the <a class="reference external" href="https://www.qt.io/download-qt-installer/">Qt website</a>.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Multiple versions of <em>Qt</em> may coexist in your system, so it is recommended to not remove the default version.</p>
+<p class="admonition-title">Note</p>
+<p>Multiple versions of <em>Qt</em> may coexist in your system, so it is recommended to not remove the default version.</p>
 </div>
 <p>When choosing the <em>Qt</em> components to install, be sure to check <em>Qt Charts</em> from the menu, as in the figure below (installer window may change in newest versions):</p>
 <a class="reference internal image-reference" href="_images/qtInstall.png"><img alt="Qt Installer screen with necessary components selected" src="_images/qtInstall.png" style="width: 200px;" /></a>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">With installer, also qtcreator (the IDE) will be installed, without the possibility to uncheck it. This seems a known bug of <em>Qt</em> (<a class="reference external" href="https://bugreports.qt.io/browse/QTBUG-28101">reference here</a>). It should be safe to remove qtcreator manually, expecially if you have already it installed.</p>
+<p class="admonition-title">Note</p>
+<p>With installer, also qtcreator (the IDE) will be installed, without the possibility to uncheck it. This seems a known bug of <em>Qt</em> (<a class="reference external" href="https://bugreports.qt.io/browse/QTBUG-28101">reference here</a>). It should be safe to remove qtcreator manually, expecially if you have already it installed.</p>
 </div>
 <p>After installed Qt, be sure to compile ROS End-Effector <strong>in an cleaned workspace</strong> (simply delete any <em>devel</em>, <em>build</em>, <em>install</em> folders, if present) specifying the Qt path when calling catkin_make:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>catkin_make --cmake-args -DQT5_PATH:STRING<span class="o">=</span><span class="c1">#&lt;gcc_64 path folder of qt5&gt;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>catkin_make --cmake-args -DQT5_PATH:STRING<span class="o">=</span><span class="c1">#&lt;gcc_64 path folder of qt5&gt;</span>
 
 <span class="c1"># for example</span>
 <span class="c1"># catkin_make --cmake-args -DQT5_PATH:STRING=/usr/lib/x86_64-linux-gnu/Qt5.12.8/5.12.8/gcc_64</span>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">the <code class="code docutils literal notranslate"><span class="pre">--cmake-args</span></code> argument is only necessary once (when the workspace is cleaned), future calls to <code class="code docutils literal notranslate"><span class="pre">catkin_make</span></code> can omit it</p>
+<p class="admonition-title">Note</p>
+<p>the <code class="code docutils literal notranslate"><span class="pre">--cmake-args</span></code> argument is only necessary once (when the workspace is cleaned), future calls to <code class="code docutils literal notranslate"><span class="pre">catkin_make</span></code> can omit it</p>
 </div>
 </div>
 </div>
 <div class="section" id="installation-issues">
 <h2>Installation issues<a class="headerlink" href="#installation-issues" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">Recent version of <em>Qt</em> can cause an error like this:
+<li><p>Recent version of <em>Qt</em> can cause an error like this:
 <code class="code docutils literal notranslate"><span class="pre">qt.qpa.plugin:</span> <span class="pre">Could</span> <span class="pre">not</span> <span class="pre">load</span> <span class="pre">the</span> <span class="pre">Qt</span> <span class="pre">platform</span> <span class="pre">plugin</span> <span class="pre">&quot;xcb&quot;</span> <span class="pre">in</span> <span class="pre">&quot;&quot;</span> <span class="pre">...</span></code>
 <span class="raw-html"><br /></span>
 Solve simply installing <em>libxcb-xinerama0</em> :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>sudo apt-get install libxcb-xinerama0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install libxcb-xinerama0
 </pre></div>
 </div>
 </li>
 </ul>
-</div>
-<hr class="docutils" />
-<div class="section" id="custom-installation-this-could-be-not-updated-kept-here-mainly-for-reference">
-<h2>Custom Installation (this could be not updated, kept here mainly for reference)<a class="headerlink" href="#custom-installation-this-could-be-not-updated-kept-here-mainly-for-reference" title="Permalink to this headline">¶</a></h2>
-<p>If you want, you can clone only the single ROSEE packages, without using the rosintall.
-<span class="raw-html"><br /></span>
-In this sections there are the steps.</p>
-<div class="section" id="install-external-system-dependencies">
-<h3>Install External System Dependencies<a class="headerlink" href="#install-external-system-dependencies" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>sudo apt-get install ros-kinetic-moveit <span class="c1">#moveit</span>
-
-<span class="c1">#I do not know if these two are the same...</span>
-sudo apt install ros-kinetic-ros-control
-sudo apt install ros-kinetic-control-toolbox
-</pre></div>
-</div>
-</div>
-<div class="section" id="install-ros-end-effector-package-from-sources">
-<h3>Install ROS End-Effector package from sources<a class="headerlink" href="#install-ros-end-effector-package-from-sources" title="Permalink to this headline">¶</a></h3>
-<p><strong>IMPORTANT</strong>: ROSEE is a project under development. When cloning, be sure to download the branch you really want. Currently the newest features can be found in the <em>devel</em> branch; so, in the commands below substitute &lt;branch_you_want&gt; with devel. Note that also the other ROSEE related packages should be used with the right branch.</p>
-<p>The next steps will guide you to the creation of a new catkin_workspace, the cloning of all the necessary repository, and their compilation.</p>
-<ul>
-<li><p class="first">Create a catkin workspace</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>mkdir ~/ROSEE
-<span class="nb">cd</span> ROSEE
-mkdir src
-<span class="nb">cd</span> src
-catkin_init_workspace
-</pre></div>
-</div>
-</li>
-<li><p class="first">Clone Necessary dependencies:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/rosee_msg.git
-</pre></div>
-</div>
-</li>
-<li><p class="first">Clone Optional dependencies:</p>
-<ul>
-<li><p class="first">GUI</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/rosee_gui.git
-</pre></div>
-</div>
-</li>
-<li><p class="first">Gazebo Plugin (more info in the dedicated <a class="reference internal" href="roseeGazeboPlugins.html#roseegazeboplugins"><span class="std std-ref">section</span></a>)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins.git <span class="c1">#necessary external plugin</span>
-git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/rosee_gazebo_plugins.git
-</pre></div>
-</div>
-</li>
-</ul>
-</li>
-</ul>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">you can see details on each optional plugin in their relative page of this doc</p>
-</div>
-<ul>
-<li><p class="first">Clone Core Package</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/ROSEndEffector
-</pre></div>
-</div>
-</li>
-<li><p class="first">Compile them all!</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span class="nb">cd</span> ~/ROSEE
-catkin_make
-</pre></div>
-</div>
-</li>
-</ul>
-</div>
 </div>
 </div>
 
 
            </div>
+           
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="usage.html" class="btn btn-neutral float-right" title="How to use ROS End-Effector with your end-effector" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="index.html" class="btn btn-neutral" title="Welcome to ROS End-Effector’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="usage.html" class="btn btn-neutral float-right" title="How to use ROS End-Effector with your end-effector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to ROS End-Effector’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2020, Luca Muratore, Davide Torielli.
+        &#169; Copyright 2020, Luca Muratore, Davide Torielli.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -352,38 +332,15 @@ catkin_make
   </div>
   
 
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/clipboard.min.js"></script>
-      <script type="text/javascript" src="_static/copybutton.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

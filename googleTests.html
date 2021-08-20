@@ -1,56 +1,60 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Advanced &mdash; ROSEndEffector 1.0 documentation</title>
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+
+  
+  
+
+  
   
 
   
 
   
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="ROSEndEffector 1.0 documentation" href="index.html"/>
-        <link rel="prev" title="Possible Issues" href="issues.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Possible Issues" href="issues.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
+   
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -81,39 +85,49 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
             
-                <p class="caption"><span class="caption-text">Usage</span></p>
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">How to use ROS End-Effector with your end-effector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples with ready to use end-effectors</a></li>
 </ul>
-<p class="caption"><span class="caption-text">The Main Component</span></p>
+<p class="caption" role="heading"><span class="caption-text">The Main Components</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="actions.html">ROS End-Effector Grasping Actions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="findActions.html">FindActions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="receiveActionsInfo.html">How to retrieve the Grasping Action Created</a></li>
 <li class="toctree-l1"><a class="reference internal" href="newGenericAction.html">How to add a new Generic action in the system</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rosTopics.html">ROS Topics Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eeHal.html">ROS End-Effector HAL</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Other Components</span></p>
+<p class="caption" role="heading"><span class="caption-text">Further steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rosTopics.html">ROS Topics Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mimicJoint.html">End-Effector and their coupled joints</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Packages</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="roseeGui.html">ROS End-Effector GUI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roseeGazeboPlugins.html">ROS End-Effector Gazebo Plugins</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Other</span></p>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="issues.html">Possible Issues</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Advanced</span></p>
+<p class="caption" role="heading"><span class="caption-text">Advanced</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#gtests">GTests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#code-coverage-from-arturo-xbot2">Code Coverage (from Arturo Xbot2)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#old-commands-kept-only-for-reference">Old commands, kept only for reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notes-about-xbot2-usage">NOTES about XBOT2 usage</a></li>
 </ul>
 </li>
 </ul>
@@ -121,32 +135,52 @@
             
           
         </div>
+        
       </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">ROSEndEffector</a>
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ROSEndEffector</a>
+        
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Advanced</li>
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Advanced</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
           
@@ -154,7 +188,10 @@
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -169,16 +206,16 @@
 <span class="raw-html"><br /></span>
 Follow the steps to compile and run them on local machine:</p>
 <ul>
-<li><p class="first">Compile</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span class="nb">cd</span> &lt;ROSEE_pkg_path&gt;/build
+<li><p>Compile</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> &lt;ROSEE_pkg_path&gt;/build
 make tests
 </pre></div>
 </div>
 </li>
-<li><p class="first">Run Test OPTION 1 (suggested)</p>
+<li><p>Run Test OPTION 1 (suggested)</p>
 <p>Multiple tests on multiple end-effectors will be launched.
 Check the cmake to change/add the end-effectors for the tests</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>make <span class="nb">test</span> <span class="nv">ARGS</span><span class="o">=</span><span class="s2">&quot;-V&quot;</span> <span class="c1">#or ctest --verbose</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make <span class="nb">test</span> <span class="nv">ARGS</span><span class="o">=</span><span class="s2">&quot;-V&quot;</span> <span class="c1">#or ctest --verbose</span>
 </pre></div>
 </div>
 </li>
@@ -192,13 +229,13 @@ Check the cmake to change/add the end-effectors for the tests</p>
 <span class="raw-html"><br /></span></p>
 <p>To run the coverage locally, follow the steps:</p>
 <ul>
-<li><p class="first">Be sure to have <em>lcov</em> installed:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>sudo apt install lcov
+<li><p>Be sure to have <em>lcov</em> installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install lcov
 </pre></div>
 </div>
 </li>
-<li><p class="first">Then run the coverage:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span class="nb">cd</span> build_dir
+<li><p>Then run the coverage:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> build_dir
 ccmake . <span class="c1"># Check if ROSEE_ENABLE_COVERAGE is set to ON)</span>
 make
 make test_clean_coverage  <span class="c1"># cleans old coverage results (they accumulate otherwise!)</span>
@@ -213,10 +250,10 @@ make test_coverage <span class="c1"># generate coverage report</span>
 <div class="section" id="old-commands-kept-only-for-reference">
 <h2>Old commands, kept only for reference<a class="headerlink" href="#old-commands-kept-only-for-reference" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">Run Test OPTION 2 (Colorful prints but all tests togheter)</p>
+<li><p>Run Test OPTION 2 (Colorful prints but all tests togheter)</p>
 <p>This is old way kept here only for reference, and it should still works anyway. Roscore is runned in
 the test itself so there isn’t the need to run external roscore before the tests, or using roslaunch.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre>roslaunch ros_end_effector old_googleTest_run_all.launch
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch ros_end_effector old_googleTest_run_all.launch
 </pre></div>
 </div>
 <p>Check the <strong>old_googleTest_run_all.launch</strong> file to change the hand for the tests
@@ -225,33 +262,62 @@ the test itself so there isn’t the need to run external roscore before the tes
 </li>
 </ul>
 </div>
+<div class="section" id="notes-about-xbot2-usage">
+<h2>NOTES about XBOT2 usage<a class="headerlink" href="#notes-about-xbot2-usage" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>For a new hand, each non fixed joint (even the virtual, passive and mimic) must belong to a chain (convention that  I used is to add a
+virtualXXX named chain, if it is necessary</p></li>
+<li><p>Also, all the chains must belong to the supergroup “chains” (name is fixed)</p></li>
+<li><p>Check robotiq2f srdf for correctess</p></li>
+<li><p>In urdf, add the xbot gazebo plugin. Each joint must have a PID, even the mimic and passive. simply put 0 gains for them. And keep the mimic joint plugin ( maybe in future will be integrated in xbot), it is this one that move the mimic (since for xbot they have 0 gains).</p></li>
+<li><p>Again check the robotiq2f urdf as example</p></li>
+<li><p>rosee.world has the clock plugin added. This is already done, the world is used by each hand</p></li>
+<li><dl class="simple">
+<dt>Running:</dt><dd><ol class="arabic simple">
+<li><p>terminal roscore (maybe not necessary)</p></li>
+<li><p>terminal: source xbot, source rosee, set_xbot2_config (necessary?), and launch rosee_gazebo_plugin (or rosee_startup) file with hand name. RUN gazebo</p></li>
+<li><p>terminal: set_xbot2_config, export xbot_root, and finally xbot2-core –verbose</p></li>
+<li><p>terminal: rosservice call /xbotcore/ros_ctrl/switch 1  otherwise command through ros are not read, then you can call the gui to move the hand</p></li>
+</ol>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>other stuff:
+- To publish via topic, the field ctrl_mode must be set (to 1 for position?)
+- If command is too brute, xbot stops the joint device by default, to restore: rosservice call /xbotcore/joint_master/set_control_mask 1</p></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 
 
            </div>
+           
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-      
-        <a href="issues.html" class="btn btn-neutral" title="Possible Issues" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="issues.html" class="btn btn-neutral float-left" title="Possible Issues" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2020, Luca Muratore, Davide Torielli.
+        &#169; Copyright 2020, Luca Muratore, Davide Torielli.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -260,38 +326,15 @@ the test itself so there isn’t the need to run external roscore before the tes
   </div>
   
 
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/clipboard.min.js"></script>
-      <script type="text/javascript" src="_static/copybutton.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

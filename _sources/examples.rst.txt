@@ -31,13 +31,29 @@ Until now, the tested end-effectors are:
 - `Robotiq 3-Finger Gripper`_
 - `Robotiq 2F-140 Gripper`_
 
+.. note::
+	The already present configuration files for ROSEE point to urdf and srdf models *inside* ROSEE folders. So after downloading the package for one of these hands, please also add urdf and srdf model into config/urdf and config/srdf respectively
+  
 
 .. _`HERI II`: 
  
 HERI II
 **************
 
-The files for this hand are already in the ROS End-Effector main package. So simply run:
+This hand is a prototype developed at IIT. 
+It is a modular end-effector where each finger is driven by a tendon linked to an actuator. You need to download the model to use it:
+
+.. code-block:: bash
+
+  mkdir -p ~/iit_heri_ii_hand_description/src
+  cd ~/iit_heri_ii_hand_description/src
+  git clone https://github.com/ADVRHumanoids/iit_heri_ii_hand_description
+  cd ..
+  catkin_make
+  source devel/setup.bash  
+
+
+Then you can run ROS End-Effector:
 
 .. code-block:: bash
 
