@@ -23,14 +23,26 @@ Follow the steps to compile and run them on local machine:
     make tests
 
 
-- Run Test OPTION 1 (suggested)
+- Run Test
 
-  Multiple tests on multiple end-effectors will be launched. 
-  Check the cmake to change/add the end-effectors for the tests
-   
+  To run test locally, roscore and and the robot urdf and srdf are necessary before:  
+  In one terminal run :
+  
   .. code-block:: bash
+     
+     roscore
+   
+  In another terminal:
+  
+  .. code-block:: bash
+  
+    source ../devel/setup.bash
+    # Set a robot, like "test_ee"
+    rosparam set -t $(rospack find ros_end_effector)/configs/urdf/test_ee.urdf robot_description
+    rosparam set -t $(rospack find ros_end_effector)/configs/srdf/test_ee.srdf robot_description_semantic
+    #run tests
+    make test ARGS="-V" -i #or ctest --verbose
     
-    make test ARGS="-V" #or ctest --verbose
  
 Code Coverage (from `Arturo Xbot2 <https://github.com/ADVRHumanoids/xbot2_wip/issues/21>`_)
 ##############################################################################################
