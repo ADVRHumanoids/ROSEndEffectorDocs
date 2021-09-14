@@ -1,80 +1,39 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>ROS Topics Structures &mdash; ROSEndEffector 1.0 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="End-Effector and their coupled joints" href="mimicJoint.html" />
     <link rel="prev" title="ROS End-Effector HAL" href="eeHal.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> ROSEndEffector
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -82,18 +41,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
@@ -131,73 +79,32 @@
 <li class="toctree-l1"><a class="reference internal" href="googleTests.html">Advanced</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">ROSEndEffector</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>ROS Topics Structures</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/rosTopics.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <div class="section" id="ros-topics-structures">
-<span id="rostopics"></span><h1>ROS Topics Structures<a class="headerlink" href="#ros-topics-structures" title="Permalink to this headline">¶</a></h1>
+<span id="rostopics"></span><h1>ROS Topics Structures<a class="headerlink" href="#ros-topics-structures" title="Permalink to this headline"></a></h1>
 <p>This section is an aid to discricate among the ros topics involved in the framework.
 <span class="raw-html"><br /></span>
 You can visualize the topics as in the following images at any time during while the framework is running, using
@@ -206,7 +113,7 @@ the ROS tool <code class="code docutils literal notranslate"><span class="pre">r
 As reminder, in <code class="code docutils literal notranslate"><span class="pre">rqt_graph</span></code> the ovals are the ROS nodes, the inner rectangles are the topics, the outer ones
 are the namespaces (which the inner topics belong), and the parallelepipeds are for ROS action (that are a sort of collections of topics). The arrows indicate ROS publications and subscriptions.</p>
 <div class="section" id="kinematic-simulation-only">
-<h2>Kinematic Simulation Only<a class="headerlink" href="#kinematic-simulation-only" title="Permalink to this headline">¶</a></h2>
+<h2>Kinematic Simulation Only<a class="headerlink" href="#kinematic-simulation-only" title="Permalink to this headline"></a></h2>
 <a class="reference internal image-reference" href="_images/rqt_graph.png"><img alt="ros topics kinematic simulation only" src="_images/rqt_graph.png" style="width: 700px;" /></a>
 <ul class="simple">
 <li><p><strong>gui_main</strong>
@@ -222,7 +129,7 @@ interpret them, and, if they are correct, send the joint position reference (for
 </ul>
 </div>
 <div class="section" id="dynamic-simulation-with-gazebo">
-<h2>Dynamic simulation (with gazebo)<a class="headerlink" href="#dynamic-simulation-with-gazebo" title="Permalink to this headline">¶</a></h2>
+<h2>Dynamic simulation (with gazebo)<a class="headerlink" href="#dynamic-simulation-with-gazebo" title="Permalink to this headline"></a></h2>
 <a class="reference internal image-reference" href="_images/rqt_graph_gaz.png"><img alt="ros topics kinematic gazebo simulation" src="_images/rqt_graph_gaz.png" style="width: 700px;" /></a>
 <p>With the dynamic simulations the graph is similar. The only difference is that, instead of the <strong>joint_state_publisher</strong>, there is the <strong>gazebo</strong> node. Inside this node, it is present the <a class="reference internal" href="roseeGazeboPlugins.html#roseegazeboplugins"><span class="std std-ref">rosee_gazebo_plugins</span></a> (which is not a standalone node because it is only a “plugin” for gazebo node). The plugin’s job includes to consider the mimic joints, similarly to what the <strong>joint_state_publisher</strong> did before.
 <span class="raw-html"><br /></span>
@@ -232,50 +139,33 @@ The <em>/joint_states</em> topic has now a different namespace (i.e. <em>/rosee_
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="mimicJoint.html" class="btn btn-neutral float-right" title="End-Effector and their coupled joints" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="eeHal.html" class="btn btn-neutral float-left" title="ROS End-Effector HAL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mimicJoint.html" class="btn btn-neutral float-right" title="End-Effector and their coupled joints" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2020, Luca Muratore, Davide Torielli.
-
-    </p>
+    <p>&#169; Copyright 2020, Luca Muratore, Davide Torielli.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

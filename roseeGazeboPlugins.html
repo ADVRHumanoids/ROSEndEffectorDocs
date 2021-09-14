@@ -1,80 +1,39 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>ROS End-Effector Gazebo Plugins &mdash; ROSEndEffector 1.0 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Possible Issues" href="issues.html" />
     <link rel="prev" title="ROS End-Effector GUI" href="roseeGui.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> ROSEndEffector
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -82,18 +41,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
@@ -140,89 +88,48 @@
 <li class="toctree-l1"><a class="reference internal" href="googleTests.html">Advanced</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">ROSEndEffector</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>ROS End-Effector Gazebo Plugins</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/roseeGazeboPlugins.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <div class="section" id="ros-end-effector-gazebo-plugins">
-<span id="roseegazeboplugins"></span><h1>ROS End-Effector Gazebo Plugins<a class="headerlink" href="#ros-end-effector-gazebo-plugins" title="Permalink to this headline">¶</a></h1>
+<span id="roseegazeboplugins"></span><h1>ROS End-Effector Gazebo Plugins<a class="headerlink" href="#ros-end-effector-gazebo-plugins" title="Permalink to this headline"></a></h1>
 <p>This package is an utility to help end effector dynamic simulation with Gazebo.
 It is hosted on <em>github</em> <a class="reference external" href="https://github.com/ADVRHumanoids/rosee_gazebo_plugins">here</a>.</p>
 <div class="section" id="generic-information">
-<h2>Generic Information<a class="headerlink" href="#generic-information" title="Permalink to this headline">¶</a></h2>
+<h2>Generic Information<a class="headerlink" href="#generic-information" title="Permalink to this headline"></a></h2>
 <p>It is very similar to the “official” ROS package for control : <a class="reference external" href="http://gazebosim.org/tutorials/?tut=ros_control">gazebo_ros_control</a>.</p>
 <p>It includes a gazebo plugin to take commands (<em>references</em>) from <strong>/ros_end_effector/joint_states</strong> topic and use to move the simulated robot in gazebo. This is done with a pid controller. The same plugin also publish the “real” joint states (derived by the gazebo simulation) in the topic <strong>/rosee_gazebo_plugins/joint_states</strong>.</p>
 <p><strong>Take care:</strong> In <strong>/ros_end_effector/joint_states</strong> topic there are states for actuated joints only; while in <strong>/rosee_gazebo_plugins/joint_states</strong> there are states for ALL non-fixed joints (passive and mimic included). This may change in future, but for now I leave as it is because returning also mimic joints is not so a big problem.</p>
 <p>At the moment each joint can be controlled in position or in velocity, using the <em>SetPositionTarget()</em> and <em>SetVelocityTarget()</em> of gazebo. Gains (pid) are settable in a config file (see later for istructions). Please note that for now ROS End-Effector sends only positional references.</p>
 <p>In the package, there is an additional ROS node, <em>DynReconfigure</em>, which uses the ROS tool <em>Dynamic Reconfigure server</em> to give the possibility to change the PID gains during the simulation.</p>
 <div class="section" id="mimic-joints">
-<h3>Mimic Joints<a class="headerlink" href="#mimic-joints" title="Permalink to this headline">¶</a></h3>
+<h3>Mimic Joints<a class="headerlink" href="#mimic-joints" title="Permalink to this headline"></a></h3>
 <p>Thanks to the <a class="reference external" href="https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins">mimic_joint_plugin</a> (and to <a class="reference external" href="https://github.com/mintar/mimic_joint_gazebo_tutorial">mimic_joint_gazebo_tutorial</a> to understand how to use it), now also mimic joints work correctly. The argument <em>set_pid</em> of this plugin should be set to false, because otherwise a pid controller is used, that is the “default” gazebo one (see plugin page for more info). And also when mimicking, we want to reply exactly the angle of the other joint (or not?). See above how to deal with this plugin if your urdf model has some mimic joint</p>
 </div>
 </div>
 <div class="section" id="how-to-install">
-<h2>How to Install<a class="headerlink" href="#how-to-install" title="Permalink to this headline">¶</a></h2>
+<h2>How to Install<a class="headerlink" href="#how-to-install" title="Permalink to this headline"></a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You probably already installed this if you have followed the steps in <a class="reference internal" href="install.html#install"><span class="std std-ref">Install</span></a> section</p>
@@ -235,7 +142,7 @@ compile with catkin_make
 </div>
 </div>
 <div class="section" id="prepare-your-model-for-gazebo">
-<span id="prepare4gazebo"></span><h2>Prepare your Model for Gazebo<a class="headerlink" href="#prepare-your-model-for-gazebo" title="Permalink to this headline">¶</a></h2>
+<span id="prepare4gazebo"></span><h2>Prepare your Model for Gazebo<a class="headerlink" href="#prepare-your-model-for-gazebo" title="Permalink to this headline"></a></h2>
 <p>You need additional steps on your <em>.urdf</em> file to make Gazebo simulation works.</p>
 <ul>
 <li><p>Be sure to have an urdf file ready for gazebo (info <a class="reference external" href="http://gazebosim.org/tutorials/?tut=ros_urdf">here</a>).
@@ -336,7 +243,7 @@ The macro is taken from <a class="reference external" href="https://github.com/m
 </ul>
 </div>
 <div class="section" id="how-to-run">
-<h2>How to Run<a class="headerlink" href="#how-to-run" title="Permalink to this headline">¶</a></h2>
+<h2>How to Run<a class="headerlink" href="#how-to-run" title="Permalink to this headline"></a></h2>
 <p>To run ROS End-Effector as a whole, follow the guide in <a class="reference internal" href="usage.html#usage"><span class="std std-ref">How to use ROS End-Effector with your End-Effector</span></a> section.</p>
 <ul>
 <li><p>Anyway, ROS End-Effector Gazebo Plugins is a package that run independently, so you can also launch it alone:</p>
@@ -359,10 +266,10 @@ The macro is taken from <a class="reference external" href="https://github.com/m
 </ul>
 </div>
 <div class="section" id="advanced">
-<h2>Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline">¶</a></h2>
+<h2>Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline"></a></h2>
 <p>Advanced section only for the braves</p>
 <div class="section" id="change-more-params-with-dynamic-reconfigurator">
-<h3>Change more params with Dynamic Reconfigurator<a class="headerlink" href="#change-more-params-with-dynamic-reconfigurator" title="Permalink to this headline">¶</a></h3>
+<h3>Change more params with Dynamic Reconfigurator<a class="headerlink" href="#change-more-params-with-dynamic-reconfigurator" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Check the ros tutorials about that ( <a class="reference external" href="http://wiki.ros.org/dynamic_reconfigure/Tutorials">here</a> )</p></li>
 <li><p>Add (or extend) config files in <em>rosee_gazebo_plugins/cfg</em> folder</p></li>
@@ -374,50 +281,33 @@ The macro is taken from <a class="reference external" href="https://github.com/m
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="issues.html" class="btn btn-neutral float-right" title="Possible Issues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="roseeGui.html" class="btn btn-neutral float-left" title="ROS End-Effector GUI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="issues.html" class="btn btn-neutral float-right" title="Possible Issues" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2020, Luca Muratore, Davide Torielli.
-
-    </p>
+    <p>&#169; Copyright 2020, Luca Muratore, Davide Torielli.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

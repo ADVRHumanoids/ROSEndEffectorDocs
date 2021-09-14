@@ -1,80 +1,39 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Examples with ready to use end-effectors &mdash; ROSEndEffector 1.0 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="ROS End-Effector Grasping Actions" href="actions.html" />
     <link rel="prev" title="How to use ROS End-Effector with your end-effector" href="usage.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> ROSEndEffector
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -82,18 +41,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
@@ -134,73 +82,32 @@
 <li class="toctree-l1"><a class="reference internal" href="googleTests.html">Advanced</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">ROSEndEffector</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Examples with ready to use end-effectors</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/examples.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <div class="section" id="examples-with-ready-to-use-end-effectors">
-<span id="examples"></span><h1>Examples with ready to use end-effectors<a class="headerlink" href="#examples-with-ready-to-use-end-effectors" title="Permalink to this headline">¶</a></h1>
+<span id="examples"></span><h1>Examples with ready to use end-effectors<a class="headerlink" href="#examples-with-ready-to-use-end-effectors" title="Permalink to this headline"></a></h1>
 <p>In this section, there are guidelines on how to run some examples with tested end-effectors.</p>
 <p>In the ROS End-Effector packages, there are some simple geometrical grippers created only for showing purposes:</p>
 <ul class="simple">
@@ -229,7 +136,7 @@ roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</spa
 <p>The already present configuration files for ROSEE point to urdf and srdf models <em>inside</em> ROSEE folders. So after downloading the package for one of these hands, please also add urdf and srdf model into config/urdf and config/srdf respectively</p>
 </div>
 <div class="section" id="heri-ii">
-<span id="id1"></span><h2>HERI II<a class="headerlink" href="#heri-ii" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>HERI II<a class="headerlink" href="#heri-ii" title="Permalink to this headline"></a></h2>
 <p>This hand is a prototype developed at IIT.
 It is a modular end-effector where each finger is driven by a tendon linked to an actuator. You need to download the model to use it:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/iit_heri_ii_hand_description/src
@@ -248,7 +155,7 @@ roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</spa
 <p>Remember to add <code class="code docutils literal notranslate"><span class="pre">gazebo:=true</span></code> to the second command if you want to launch the dynamic simulation with gazebo.</p>
 </div>
 <div class="section" id="schunk-svh-5-finger-hand">
-<span id="id2"></span><h2>Schunk SVH 5-finger hand<a class="headerlink" href="#schunk-svh-5-finger-hand" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Schunk SVH 5-finger hand<a class="headerlink" href="#schunk-svh-5-finger-hand" title="Permalink to this headline"></a></h2>
 <p>This is a complex human-like end-effector with lot of actuted joints and DOFs. More details about it can be found
 in <a class="reference external" href="https://schunk.com/it_en/gripping-systems/highlights/svh/">Schunk website</a>.</p>
 <p>Some packages are necessary to run ROS End-Effector with this gripper. Follow the instructions to download and compile them:</p>
@@ -270,7 +177,7 @@ catkin_make_isolated
 </div>
 </div>
 <div class="section" id="qb-softhand">
-<span id="id3"></span><h2>qb SoftHand<a class="headerlink" href="#qb-softhand" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>qb SoftHand<a class="headerlink" href="#qb-softhand" title="Permalink to this headline"></a></h2>
 <p>This end-effector has a humanoid structure but it has only a single actuated joint. It can close all the fingers together in a compliant way. More information can be found at <a class="reference external" href="https://qbrobotics.com/products/qb-softhand-research/">qb robotics website</a>.</p>
 <p>Necessary steps before running ROS End-Effector with this hand:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir ~/qbhand
@@ -287,7 +194,7 @@ catkin_make
 <p>Then run the nodes as usually but with <code class="code docutils literal notranslate"><span class="pre">hand_name:=qbahnd</span></code> as argument.</p>
 </div>
 <div class="section" id="robotiq-3-finger-gripper">
-<span id="id4"></span><h2>Robotiq 3-Finger Gripper<a class="headerlink" href="#robotiq-3-finger-gripper" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2>Robotiq 3-Finger Gripper<a class="headerlink" href="#robotiq-3-finger-gripper" title="Permalink to this headline"></a></h2>
 <p>This is a gripper with 3 fingers and two actuators. The first one close all the fingers, the other one spread the two adiacent fingers. More information can be found in the <a class="reference external" href="https://robotiq.com/products/3-finger-adaptive-robot-gripper/">Robotiq website</a>.</p>
 <p>Necessary steps before running ROS End-Effector with this gripper:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir ~/robotiq_ws
@@ -313,7 +220,7 @@ catkin_make
 </div>
 </div>
 <div class="section" id="robotiq-2f-140-gripper">
-<span id="id5"></span><h2>Robotiq 2F-140 Gripper<a class="headerlink" href="#robotiq-2f-140-gripper" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2>Robotiq 2F-140 Gripper<a class="headerlink" href="#robotiq-2f-140-gripper" title="Permalink to this headline"></a></h2>
 <p>This is an industrial parallel gripper with two pads and a single actuator to close them.
 More information can be found in the <a class="reference external" href="https://robotiq.com/products/2f85-140-adaptive-robot-gripper/">Robotiq website</a>.</p>
 <p>Necessary files are in the same repository of <a class="reference internal" href="#robotiq-3-finger-gripper"><span class="std std-ref">Robotiq 3-Finger Gripper</span></a> so follow those steps if you did not do it before.</p>
@@ -323,50 +230,33 @@ More information can be found in the <a class="reference external" href="https:/
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="actions.html" class="btn btn-neutral float-right" title="ROS End-Effector Grasping Actions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="usage.html" class="btn btn-neutral float-left" title="How to use ROS End-Effector with your end-effector" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="actions.html" class="btn btn-neutral float-right" title="ROS End-Effector Grasping Actions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2020, Luca Muratore, Davide Torielli.
-
-    </p>
+    <p>&#169; Copyright 2020, Luca Muratore, Davide Torielli.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
