@@ -45,8 +45,9 @@
               <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#full-installation-recommended">Full Installation (recommended)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-fast-installation">Basic &amp; Fast Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#xbot2-integration">XBot2 Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logging-with-matlogger2">Logging with MatLogger2</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ros-end-effector-gui-second-tab">ROS End-Effector GUI second tab</a></li>
 </ul>
 </li>
@@ -116,15 +117,11 @@ So, first, be sure to have ROS kinetic installed as described <a class="referenc
 <p class="admonition-title">Note</p>
 <p>We are going to use the abreviation ROSEE for the ROS End-Effector from now on</p>
 </div>
-<div class="section" id="full-installation-recommended">
-<h2>Full Installation (recommended)<a class="headerlink" href="#full-installation-recommended" title="Permalink to this headline"></a></h2>
+<div class="section" id="basic-fast-installation">
+<h2>Basic &amp; Fast Installation<a class="headerlink" href="#basic-fast-installation" title="Permalink to this headline"></a></h2>
 <p>The following steps will guide you to install all packages of ROSEE using a <em>.rosintall</em> file.
 <span class="raw-html"><br /></span>
-ROS End-Effector is in development. Actually the most updated and working branch is the <em>devel</em> one, so you will
-clone the “devels” branch of each repository.</p>
-<p>Install MatLogger2, instructions can be find <a class="reference external" href="https://github.com/ADVRHumanoids/MatLogger2">here</a>.
-<span class="raw-html"><br /></span>
-Please note that if you want to install also XBot2 (as described <a class="reference internal" href="#xbot2install"><span class="std std-ref">below</span></a>) this step is not necessary since matlogger is included into the XBot installation</p>
+The file will make you clone the necessary repository from their <em>master</em> branches.</p>
 <p>Run in the terminal:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone -b devel https://github.com/ADVRHumanoids/ROSEndEffectorPackageManager.git
 <span class="nb">cd</span> ROSEndEffectorPackageManager
@@ -158,6 +155,14 @@ catkin_make -DBUILD_WITH_XBOT2<span class="o">=</span>OFF
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>catkin_make -DBUILD_WITH_XBOT2<span class="o">=</span>ON
 </pre></div>
 </div>
+</div>
+<div class="section" id="logging-with-matlogger2">
+<h3>Logging with MatLogger2<a class="headerlink" href="#logging-with-matlogger2" title="Permalink to this headline"></a></h3>
+<p>You can use the MatLogger2 tool to log data of your end-effector. This is an optional feature, if you do not want it, nothing else to do is required.
+If you want it, you can install MatLogger2, following <a class="reference external" href="https://github.com/ADVRHumanoids/MatLogger2">here</a>.
+<span class="raw-html"><br /></span>
+Please note that if you want to install also XBot2 (as described <a class="reference internal" href="#xbot2install"><span class="std std-ref">above</span></a>) this step is not necessary since matlogger is included into the XBot installation
+After installation, you should recompile the package to let cmake set the correct flag.</p>
 </div>
 <div class="section" id="ros-end-effector-gui-second-tab">
 <h3>ROS End-Effector GUI second tab<a class="headerlink" href="#ros-end-effector-gui-second-tab" title="Permalink to this headline"></a></h3>
