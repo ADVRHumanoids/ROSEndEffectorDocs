@@ -15,17 +15,12 @@ So, first, be sure to have ROS kinetic installed as described `here <http://wiki
 .. note::
   We are going to use the abreviation ROSEE for the ROS End-Effector from now on
 
-Full Installation (recommended)
+Basic & Fast Installation 
 ###############################
 
 The following steps will guide you to install all packages of ROSEE using a *.rosintall* file.
 :raw-html:`<br />`
-ROS End-Effector is in development. Actually the most updated and working branch is the *devel* one, so you will
-clone the "devels" branch of each repository.
-
-Install MatLogger2, instructions can be find `here <https://github.com/ADVRHumanoids/MatLogger2>`_. 
-:raw-html:`<br />`
-Please note that if you want to install also XBot2 (as described :ref:`below <xbot2Install>`) this step is not necessary since matlogger is included into the XBot installation
+The file will make you clone the necessary repository from their *master* branches.
 
 Run in the terminal:
 
@@ -65,7 +60,14 @@ ROS End-Effector include an integrated XBot2Hal: to compile it please set the BU
 .. code-block:: bash
 
   catkin_make -DBUILD_WITH_XBOT2=ON
-
+  
+Logging with MatLogger2
+************************
+You can use the MatLogger2 tool to log data of your end-effector. This is an optional feature, if you do not want it, nothing else to do is required. 
+If you want it, you can install MatLogger2, following `here <https://github.com/ADVRHumanoids/MatLogger2>`_.
+:raw-html:`<br />`
+Please note that if you want to install also XBot2 (as described :ref:`above <xbot2Install>`) this step is not necessary since matlogger is included into the XBot installation
+After installation, you should recompile the package to let cmake set the correct flag.
 
 ROS End-Effector GUI second tab
 ********************************
