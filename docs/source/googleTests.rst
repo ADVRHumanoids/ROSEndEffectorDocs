@@ -38,8 +38,8 @@ Follow the steps to compile and run them on local machine:
   
     source ../devel/setup.bash
     # Set a robot, like "test_ee"
-    rosparam set -t $(rospack find ros_end_effector)/configs/urdf/test_ee.urdf robot_description
-    rosparam set -t $(rospack find ros_end_effector)/configs/srdf/test_ee.srdf robot_description_semantic
+    rosparam set -t $(rospack find end_effector)/configs/urdf/test_ee.urdf robot_description
+    rosparam set -t $(rospack find end_effector)/configs/srdf/test_ee.srdf robot_description_semantic
     #run tests
     make test ARGS="-V" -i #or ctest --verbose
     
@@ -84,7 +84,7 @@ Old commands, kept only for reference
 
   .. code-block:: bash
   
-    roslaunch ros_end_effector old_googleTest_run_all.launch 
+    roslaunch end_effector old_googleTest_run_all.launch 
     
   Check the **old_googleTest_run_all.launch** file to change the hand for the tests
   :raw-html:`<br />`
