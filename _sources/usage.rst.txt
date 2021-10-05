@@ -89,7 +89,7 @@ Before control a new end-effector, the first step is to let **UniversalFindActio
 .. code-block:: bash
 
   # source the setup.bash of package where robot meshes are
-  roslaunch ros_end_effector findActions.launch hand_name:=my_hand
+  roslaunch end_effector findActions.launch hand_name:=my_hand
 
 .. warning::
   old *yaml* files of grasping actions will be ovewritten every time you run again this node.
@@ -116,12 +116,12 @@ To launch this, please run:
 .. code-block:: bash
 
   # source the setup.bash of package where robot meshes are
-  roslaunch ros_end_effector rosee_startup.launch hand_name:=my_hand
+  roslaunch end_effector rosee_startup.launch hand_name:=my_hand
   
 This command will load ROSEE controller node (called *UniversalROSEndEffector*) with rviz for visualization purposes.
 
 .. note::
-  If you want to not run ROSEE controller but load the ROS joint publisher GUI to command directly each joint position, you can simply run :code:`roslaunch ros_end_effector jsp_startup.launch hand_name:=my_hand` . This can be useful to visualize the end-effector and try to move it setting joints positions thanks to ROS tools.
+  If you want to not run ROSEE controller but load the ROS joint publisher GUI to command directly each joint position, you can simply run :code:`roslaunch end_effector jsp_startup.launch hand_name:=my_hand` . This can be useful to visualize the end-effector and try to move it setting joints positions thanks to ROS tools.
 
 In another terminal, you can run the ROS End-Effector GUI to command the grasping actions. Only be sure to have *rosee_gui* package installed (that you should have if you have followed :ref:`Installation <install>` section).
 :raw-html:`<br />`
@@ -199,7 +199,7 @@ Launch the main node with the :code:`gazebo:=true` argument, in this way:
 
   # source the setup.bash of package where robot meshes are
   # if some errors happens, try to also source gazebo.setup, like "source /usr/share/gazebo/setup.sh"
-  roslaunch ros_end_effector rosee_startup.launch hand_name:=my_hand gazebo:=true
+  roslaunch end_effector rosee_startup.launch hand_name:=my_hand gazebo:=true
   
 As before, you can use the ROSEE GUI to send grasping action commands, running in another terminal:
 

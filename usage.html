@@ -180,7 +180,7 @@ Also, it is not necessary to set the passive tag for fixed joints.</p>
 <span id="offphase"></span><h2>Find Grasping Actions (offline phase)<a class="headerlink" href="#find-grasping-actions-offline-phase" title="Permalink to this headline"></a></h2>
 <p>Before control a new end-effector, the first step is to let <strong>UniversalFindActions</strong> explore your model and extract the grasping primitive actions. So, run the dedicated launch:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># source the setup.bash of package where robot meshes are</span>
-roslaunch ros_end_effector findActions.launch hand_name:<span class="o">=</span>my_hand
+roslaunch end_effector findActions.launch hand_name:<span class="o">=</span>my_hand
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -202,13 +202,13 @@ To know more about this part, and how to create custom grasping actions, see <a 
 <span class="raw-html"><br /></span>
 To launch this, please run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># source the setup.bash of package where robot meshes are</span>
-roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</span>my_hand
+roslaunch end_effector rosee_startup.launch hand_name:<span class="o">=</span>my_hand
 </pre></div>
 </div>
 <p>This command will load ROSEE controller node (called <em>UniversalROSEndEffector</em>) with rviz for visualization purposes.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you want to not run ROSEE controller but load the ROS joint publisher GUI to command directly each joint position, you can simply run <code class="code docutils literal notranslate"><span class="pre">roslaunch</span> <span class="pre">ros_end_effector</span> <span class="pre">jsp_startup.launch</span> <span class="pre">hand_name:=my_hand</span></code> . This can be useful to visualize the end-effector and try to move it setting joints positions thanks to ROS tools.</p>
+<p>If you want to not run ROSEE controller but load the ROS joint publisher GUI to command directly each joint position, you can simply run <code class="code docutils literal notranslate"><span class="pre">roslaunch</span> <span class="pre">end_effector</span> <span class="pre">jsp_startup.launch</span> <span class="pre">hand_name:=my_hand</span></code> . This can be useful to visualize the end-effector and try to move it setting joints positions thanks to ROS tools.</p>
 </div>
 <p>In another terminal, you can run the ROS End-Effector GUI to command the grasping actions. Only be sure to have <em>rosee_gui</em> package installed (that you should have if you have followed <a class="reference internal" href="install.html#install"><span class="std std-ref">Installation</span></a> section).
 <span class="raw-html"><br /></span>
@@ -272,7 +272,7 @@ only used for feedback</p>
 <p>Launch the main node with the <code class="code docutils literal notranslate"><span class="pre">gazebo:=true</span></code> argument, in this way:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># source the setup.bash of package where robot meshes are</span>
 <span class="c1"># if some errors happens, try to also source gazebo.setup, like &quot;source /usr/share/gazebo/setup.sh&quot;</span>
-roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</span>my_hand gazebo:<span class="o">=</span><span class="nb">true</span>
+roslaunch end_effector rosee_startup.launch hand_name:<span class="o">=</span>my_hand gazebo:<span class="o">=</span><span class="nb">true</span>
 </pre></div>
 </div>
 <p>As before, you can use the ROSEE GUI to send grasping action commands, running in another terminal:</p>

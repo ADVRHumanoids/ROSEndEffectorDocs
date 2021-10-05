@@ -118,8 +118,8 @@
 <p>To try examples with these grippers, you need to run <em>UniversalFindActions</em> and <em>UniversalROSEndEffector</em> nodes as described in <a class="reference internal" href="usage.html#usage"><span class="std std-ref">How to use ROS End-Effector with your End-Effector</span></a> section. We report here the necessary commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#substitute test_ee accordigly</span>
 
-roslaunch ros_end_effector findActions.launch hand_name:<span class="o">=</span>test_ee <span class="c1">#for the offline phase</span>
-roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</span>test_ee <span class="c1">#for the online phase</span>
+roslaunch end_effector findActions.launch hand_name:<span class="o">=</span>test_ee <span class="c1">#for the offline phase</span>
+roslaunch end_effector rosee_startup.launch hand_name:<span class="o">=</span>test_ee <span class="c1">#for the online phase</span>
 </pre></div>
 </div>
 <p>We have also tested the framework with real end-effectors’ model. To test them, you need the meshes, so you need to install their specific packages. See below the instructions on how to download them.</p>
@@ -148,8 +148,8 @@ catkin_make
 </pre></div>
 </div>
 <p>Then you can run ROS End-Effector:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch ros_end_effector findActions.launch hand_name:<span class="o">=</span>heri_II <span class="c1">#offline phase</span>
-roslaunch ros_end_effector rosee_startup.launch hand_name:<span class="o">=</span>heri_II <span class="c1">#online phase</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch end_effector findActions.launch hand_name:<span class="o">=</span>heri_II <span class="c1">#offline phase</span>
+roslaunch end_effector rosee_startup.launch hand_name:<span class="o">=</span>heri_II <span class="c1">#online phase</span>
 </pre></div>
 </div>
 <p>Remember to add <code class="code docutils literal notranslate"><span class="pre">gazebo:=true</span></code> to the second command if you want to launch the dynamic simulation with gazebo.</p>

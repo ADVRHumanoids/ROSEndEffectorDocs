@@ -17,8 +17,8 @@ To try examples with these grippers, you need to run *UniversalFindActions* and 
 
   #substitute test_ee accordigly
   
-  roslaunch ros_end_effector findActions.launch hand_name:=test_ee #for the offline phase
-  roslaunch ros_end_effector rosee_startup.launch hand_name:=test_ee #for the online phase
+  roslaunch end_effector findActions.launch hand_name:=test_ee #for the offline phase
+  roslaunch end_effector rosee_startup.launch hand_name:=test_ee #for the online phase
   
 
 We have also tested the framework with real end-effectors' model. To test them, you need the meshes, so you need to install their specific packages. See below the instructions on how to download them.
@@ -57,8 +57,8 @@ Then you can run ROS End-Effector:
 
 .. code-block:: bash
 
-  roslaunch ros_end_effector findActions.launch hand_name:=heri_II #offline phase
-  roslaunch ros_end_effector rosee_startup.launch hand_name:=heri_II #online phase
+  roslaunch end_effector findActions.launch hand_name:=heri_II #offline phase
+  roslaunch end_effector rosee_startup.launch hand_name:=heri_II #online phase
 
 Remember to add :code:`gazebo:=true` to the second command if you want to launch the dynamic simulation with gazebo.
 
