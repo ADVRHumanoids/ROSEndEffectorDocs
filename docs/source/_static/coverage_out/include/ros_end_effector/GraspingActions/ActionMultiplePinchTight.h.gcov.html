@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - main_coverage.info - include/ros_end_effector/GraspingActions/ActionMultiplePinchTight.h</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">include/ros_end_effector/GraspingActions</a> - ActionMultiplePinchTight.h<span style="font-size: 80%;"> (source / <a href="ActionMultiplePinchTight.h.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">main_coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2021-10-05 16:55:17</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntryMed">80.0 %</td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : /*</a>
+<span class="lineNum">       2 </span>            :  * Copyright (C) 2020 IIT-HHCM
+<span class="lineNum">       3 </span>            :  * Author: Davide Torielli
+<span class="lineNum">       4 </span>            :  * email:  davide.torielli@iit.it
+<span class="lineNum">       5 </span>            :  *
+<span class="lineNum">       6 </span>            :  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+<span class="lineNum">       7 </span>            :  * you may not use this file except in compliance with the License.
+<span class="lineNum">       8 </span>            :  * You may obtain a copy of the License at
+<span class="lineNum">       9 </span>            :  *
+<span class="lineNum">      10 </span>            :  *     http://www.apache.org/licenses/LICENSE-2.0
+<span class="lineNum">      11 </span>            :  *
+<span class="lineNum">      12 </span>            :  * Unless required by applicable law or agreed to in writing, software
+<span class="lineNum">      13 </span>            :  * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+<span class="lineNum">      14 </span>            :  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<span class="lineNum">      15 </span>            :  * See the License for the specific language governing permissions and
+<span class="lineNum">      16 </span>            :  * limitations under the License.
+<span class="lineNum">      17 </span>            :  */
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : #ifndef __ROSEE_ACTIONMULTIPLEPINCHTIGHT_H
+<span class="lineNum">      20 </span>            : #define __ROSEE_ACTIONMULTIPLEPINCHTIGHT_H
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span>            : #include &lt;ros_end_effector/GraspingActions/ActionPinchGeneric.h&gt;
+<span class="lineNum">      23 </span>            : #include &lt;moveit/planning_scene/planning_scene.h&gt;
+<span class="lineNum">      24 </span>            : #include &lt;yaml-cpp/yaml.h&gt;
+<span class="lineNum">      25 </span>            : #include &lt;iostream&gt;
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            : namespace ROSEE {
+<span class="lineNum">      28 </span>            : 
+<span class="lineNum">      29 </span>            : /**
+<span class="lineNum">      30 </span>            :  * @brief Class to describe the action of &quot;pinching&quot; with more than 2 tips (with 2 tips there is the \ref ActionPinchTight and 
+<span class="lineNum">      31 </span>            :  *   \ref ActionPinchLoose
+<span class="lineNum">      32 </span>            :  *   The number of the finger used is fixed when the object is costructed, and it is stored in the father member \ref nFingersInvolved
+<span class="lineNum">      33 </span>            :  * 
+<span class="lineNum">      34 </span>            :  * A pinchMultipleTight is defined by:
+<span class="lineNum">      35 </span>            :  *  - X tips ( that are inside \ref fingersInvolved member of \ref Action ), so \ref nFingersInvolved == X ( members of base class \ref ActionPrimitive )
+<span class="lineNum">      36 </span>            :  *  - JointStates position: where the collision among the tips happens (inside \ref actionStates )
+<span class="lineNum">      37 </span>            :  *  - Optional info (inside \ref actionStates ): the sum of the depth of compenetration of all the tip pairs that collide.
+<span class="lineNum">      38 </span>            :  * 
+<span class="lineNum">      39 </span>            :  * @note When exploring the model to find this action, there are two possibility: we can look for a position where all the X fingertips
+<span class="lineNum">      40 </span>            :  *   collide among each other (causing EXACTLY bynomial_coeff(X, 2) collisions pair), or, with a &quot;less strict&quot; condition, a position where
+<span class="lineNum">      41 </span>            :  *   not all fingertips must collide between each other (causing AT LEAST X-1 collisions). 
+<span class="lineNum">      42 </span>            :  *   The default is the &quot;more strict&quot; condition, because it can find &quot;better looking&quot; mulPinches, even if obviously we find less possible 
+<span class="lineNum">      43 </span>            :  *   way to perform the action. With this, it seems better to order the actionState considering as &quot;best&quot; the position where the tips collide less,
+<span class="lineNum">      44 </span>            :  *   i.e. where the depthSum is lower. This is the opposite from the normal tight pinch.
+<span class="lineNum">      45 </span>            :  *   This cause anyway a collision, but not a ugly one where the tips compenetrate too much. This thing can change if we invert the sign in the 
+<a name="46"><span class="lineNum">      46 </span>            :  *   \ref depthComp comparison</a>
+<span class="lineNum">      47 </span>            :  */
+<span class="lineNum">      48 </span><span class="lineCov">         22 : class ActionMultiplePinchTight : public ActionPinchGeneric</span>
+<span class="lineNum">      49 </span>            : {
+<span class="lineNum">      50 </span>            :     
+<span class="lineNum">      51 </span>            : public:
+<span class="lineNum">      52 </span>            :     
+<span class="lineNum">      53 </span>            :     typedef std::map &lt; std::set&lt;std::string&gt;, ActionMultiplePinchTight &gt; Map;
+<span class="lineNum">      54 </span>            :     
+<span class="lineNum">      55 </span>            :     /** @brief A pair to &quot;link&quot; the JointPos with the depthSum info to order the StateWithDepth in the actionState set*/
+<span class="lineNum">      56 </span>            :     typedef std::pair &lt;JointPos, double&gt; StateWithDepth; 
+<span class="lineNum">      57 </span>            :     
+<span class="lineNum">      58 </span>            :     ActionMultiplePinchTight();
+<span class="lineNum">      59 </span>            :     ActionMultiplePinchTight(unsigned int maxStoredActionStates);
+<span class="lineNum">      60 </span>            :     ActionMultiplePinchTight (std::set &lt;std::string&gt;, JointPos, double depthSum );
+<span class="lineNum">      61 </span>            :     
+<span class="lineNum">      62 </span>            :     JointPos getJointPos () const override;
+<span class="lineNum">      63 </span>            :     JointPos getJointPos (unsigned int index) const;
+<span class="lineNum">      64 </span>            :     
+<span class="lineNum">      65 </span>            :     std::vector &lt; ROSEE::JointPos &gt; getAllJointPos () const override;
+<span class="lineNum">      66 </span>            :     
+<span class="lineNum">      67 </span>            :     /** 
+<span class="lineNum">      68 </span>            :      * @brief Specific get for the ActionMultiplePinchTight to return the state with the paired depthSum
+<span class="lineNum">      69 </span>            :      * @return The vector (of size \ref maxStoredActionStates) containing all the StateWithDepth objects
+<span class="lineNum">      70 </span>            :      */
+<span class="lineNum">      71 </span>            :     std::vector &lt; ROSEE::ActionMultiplePinchTight::StateWithDepth &gt; getActionStates() const;
+<span class="lineNum">      72 </span>            :     
+<span class="lineNum">      73 </span>            :     /** 
+<span class="lineNum">      74 </span>            :      * @brief function to insert a single action in the \ref actionStates set of possible action. 
+<span class="lineNum">      75 </span>            :      *   If the action is not so good (depthSum) the action is not inserted and 
+<span class="lineNum">      76 </span>            :      *   the function return false 
+<span class="lineNum">      77 </span>            :      * @param JointPos The joints position
+<span class="lineNum">      78 </span>            :      * @param depthSum the sum of all depth of collisions pairs
+<span class="lineNum">      79 </span>            :      * @return TRUE if the action is good and is inserted in the set \ref actionStates
+<span class="lineNum">      80 </span>            :      *         FALSE if the action given as argument was not good as the others in the set \ref actionStates
+<span class="lineNum">      81 </span>            :      *           and the set was already full (\ref maxStoredActionStates)
+<span class="lineNum">      82 </span>            :      */
+<span class="lineNum">      83 </span>            :     bool insertActionState (JointPos, double depthSum);
+<span class="lineNum">      84 </span>            : 
+<span class="lineNum">      85 </span>            :     void print () const override;
+<span class="lineNum">      86 </span>            :     void emitYaml ( YAML::Emitter&amp; ) const override;
+<span class="lineNum">      87 </span>            :     bool fillFromYaml( YAML::const_iterator yamlIt ) override;
+<span class="lineNum">      88 </span>            :     
+<span class="lineNum">      89 </span>            : private:
+<span class="lineNum">      90 </span>            : 
+<span class="lineNum">      91 </span>            :     /** 
+<span class="lineNum">      92 </span>            :      * @brief struct to put in order the actionStates.
+<span class="lineNum">      93 </span>            :      *   with &quot;&lt;&quot; we put as best the position that has less sumDepth.  
+<a name="94"><span class="lineNum">      94 </span>            :      */</a>
+<span class="lineNum">      95 </span>            :     struct depthComp {
+<span class="lineNum">      96 </span><span class="lineCov">         47 :         bool operator() (const StateWithDepth&amp; a, const StateWithDepth&amp; b) const</span>
+<span class="lineNum">      97 </span><span class="lineCov">         47 :         {return (std::abs(a.second) &lt; std::abs(b.second) );}</span>
+<span class="lineNum">      98 </span>            :     };
+<span class="lineNum">      99 </span>            :     
+<span class="lineNum">     100 </span>            :     /** 
+<span class="lineNum">     101 </span>            :      * @brief For each multiple pinch possible, we want a set of action because we want to store (in general) more possible way
+<span class="lineNum">     102 </span>            :      * to do that action with that X fingers. The pinch among X tips can theoretically be done in infinite ways, so we store 
+<span class="lineNum">     103 </span>            :      * the best ways found (ordering them with depthSum of fingertips compenetration)
+<span class="lineNum">     104 </span>            :      */
+<span class="lineNum">     105 </span>            :     std::set &lt; StateWithDepth, depthComp &gt; actionStates;
+<span class="lineNum">     106 </span>            :     
+<span class="lineNum">     107 </span>            : };
+<span class="lineNum">     108 </span>            : 
+<span class="lineNum">     109 </span>            : }
+<span class="lineNum">     110 </span>            : 
+<span class="lineNum">     111 </span>            : #endif // __ROSEE_ACTIONMULTIPLEPINCHTIGHT_H
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

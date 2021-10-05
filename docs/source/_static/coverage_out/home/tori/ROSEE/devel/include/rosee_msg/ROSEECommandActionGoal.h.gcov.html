@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2020-08-05 12:21:01</td>
+            <td class="headerValue">2021-10-05 16:55:17</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">12</td>
@@ -84,15 +84,15 @@
 <span class="lineNum">      22 </span>            : namespace rosee_msg
 <a name="23"><span class="lineNum">      23 </span>            : {</a>
 <span class="lineNum">      24 </span>            : template &lt;class ContainerAllocator&gt;
-<span class="lineNum">      25 </span><span class="lineCov">        168 : struct ROSEECommandActionGoal_</span>
+<span class="lineNum">      25 </span><span class="lineCov">         66 : struct ROSEECommandActionGoal_</span>
 <span class="lineNum">      26 </span>            : {
 <a name="27"><span class="lineNum">      27 </span>            :   typedef ROSEECommandActionGoal_&lt;ContainerAllocator&gt; Type;</a>
 <span class="lineNum">      28 </span>            : 
-<span class="lineNum">      29 </span><span class="lineCov">        168 :   ROSEECommandActionGoal_()</span>
+<span class="lineNum">      29 </span><span class="lineCov">         66 :   ROSEECommandActionGoal_()</span>
 <span class="lineNum">      30 </span>            :     : header()
 <span class="lineNum">      31 </span>            :     , goal_id()
-<span class="lineNum">      32 </span><span class="lineCov">        168 :     , goal()  {</span>
-<span class="lineNum">      33 </span><span class="lineCov">        168 :     }</span>
+<span class="lineNum">      32 </span><span class="lineCov">         66 :     , goal()  {</span>
+<span class="lineNum">      33 </span><span class="lineCov">         66 :     }</span>
 <span class="lineNum">      34 </span>            :   ROSEECommandActionGoal_(const ContainerAllocator&amp; _alloc)
 <span class="lineNum">      35 </span>            :     : header(_alloc)
 <span class="lineNum">      36 </span>            :     , goal_id(_alloc)
@@ -136,224 +136,239 @@
 <span class="lineNum">      74 </span>            : return s;
 <span class="lineNum">      75 </span>            : }
 <span class="lineNum">      76 </span>            : 
-<span class="lineNum">      77 </span>            : } // namespace rosee_msg
-<span class="lineNum">      78 </span>            : 
-<span class="lineNum">      79 </span>            : namespace ros
+<span class="lineNum">      77 </span>            : 
+<span class="lineNum">      78 </span>            : template&lt;typename ContainerAllocator1, typename ContainerAllocator2&gt;
+<span class="lineNum">      79 </span>            : bool operator==(const ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator1&gt; &amp; lhs, const ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator2&gt; &amp; rhs)
 <span class="lineNum">      80 </span>            : {
-<span class="lineNum">      81 </span>            : namespace message_traits
-<span class="lineNum">      82 </span>            : {
-<span class="lineNum">      83 </span>            : 
-<span class="lineNum">      84 </span>            : 
+<span class="lineNum">      81 </span>            :   return lhs.header == rhs.header &amp;&amp;
+<span class="lineNum">      82 </span>            :     lhs.goal_id == rhs.goal_id &amp;&amp;
+<span class="lineNum">      83 </span>            :     lhs.goal == rhs.goal;
+<span class="lineNum">      84 </span>            : }
 <span class="lineNum">      85 </span>            : 
-<span class="lineNum">      86 </span>            : // BOOLTRAITS {'IsFixedSize': False, 'IsMessage': True, 'HasHeader': True}
-<span class="lineNum">      87 </span>            : // {'actionlib_msgs': ['/opt/ros/kinetic/share/actionlib_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'rosee_msg': ['/home/tori/ROSEE/src/rosee_msg/msg', '/home/tori/ROSEE/devel/share/rosee_msg/msg']}
-<span class="lineNum">      88 </span>            : 
-<span class="lineNum">      89 </span>            : // !!!!!!!!!!! ['__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parsed_fields', 'constants', 'fields', 'full_name', 'has_header', 'header_present', 'names', 'package', 'parsed_fields', 'short_name', 'text', 'types']
-<span class="lineNum">      90 </span>            : 
+<span class="lineNum">      86 </span>            : template&lt;typename ContainerAllocator1, typename ContainerAllocator2&gt;
+<span class="lineNum">      87 </span>            : bool operator!=(const ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator1&gt; &amp; lhs, const ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator2&gt; &amp; rhs)
+<span class="lineNum">      88 </span>            : {
+<span class="lineNum">      89 </span>            :   return !(lhs == rhs);
+<span class="lineNum">      90 </span>            : }
 <span class="lineNum">      91 </span>            : 
 <span class="lineNum">      92 </span>            : 
-<span class="lineNum">      93 </span>            : 
-<span class="lineNum">      94 </span>            : template &lt;class ContainerAllocator&gt;
-<span class="lineNum">      95 </span>            : struct IsFixedSize&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;
-<span class="lineNum">      96 </span>            :   : FalseType
-<span class="lineNum">      97 </span>            :   { };
-<span class="lineNum">      98 </span>            : 
-<span class="lineNum">      99 </span>            : template &lt;class ContainerAllocator&gt;
-<span class="lineNum">     100 </span>            : struct IsFixedSize&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; const&gt;
-<span class="lineNum">     101 </span>            :   : FalseType
-<span class="lineNum">     102 </span>            :   { };
+<span class="lineNum">      93 </span>            : } // namespace rosee_msg
+<span class="lineNum">      94 </span>            : 
+<span class="lineNum">      95 </span>            : namespace ros
+<span class="lineNum">      96 </span>            : {
+<span class="lineNum">      97 </span>            : namespace message_traits
+<span class="lineNum">      98 </span>            : {
+<span class="lineNum">      99 </span>            : 
+<span class="lineNum">     100 </span>            : 
+<span class="lineNum">     101 </span>            : 
+<span class="lineNum">     102 </span>            : 
 <span class="lineNum">     103 </span>            : 
 <span class="lineNum">     104 </span>            : template &lt;class ContainerAllocator&gt;
-<span class="lineNum">     105 </span>            : struct IsMessage&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;
-<span class="lineNum">     106 </span>            :   : TrueType
+<span class="lineNum">     105 </span>            : struct IsFixedSize&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;
+<span class="lineNum">     106 </span>            :   : FalseType
 <span class="lineNum">     107 </span>            :   { };
 <span class="lineNum">     108 </span>            : 
 <span class="lineNum">     109 </span>            : template &lt;class ContainerAllocator&gt;
-<span class="lineNum">     110 </span>            : struct IsMessage&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; const&gt;
-<span class="lineNum">     111 </span>            :   : TrueType
+<span class="lineNum">     110 </span>            : struct IsFixedSize&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; const&gt;
+<span class="lineNum">     111 </span>            :   : FalseType
 <span class="lineNum">     112 </span>            :   { };
 <span class="lineNum">     113 </span>            : 
 <span class="lineNum">     114 </span>            : template &lt;class ContainerAllocator&gt;
-<span class="lineNum">     115 </span>            : struct HasHeader&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;
+<span class="lineNum">     115 </span>            : struct IsMessage&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;
 <span class="lineNum">     116 </span>            :   : TrueType
 <span class="lineNum">     117 </span>            :   { };
 <span class="lineNum">     118 </span>            : 
 <span class="lineNum">     119 </span>            : template &lt;class ContainerAllocator&gt;
-<span class="lineNum">     120 </span>            : struct HasHeader&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; const&gt;
+<span class="lineNum">     120 </span>            : struct IsMessage&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; const&gt;
 <span class="lineNum">     121 </span>            :   : TrueType
 <span class="lineNum">     122 </span>            :   { };
 <span class="lineNum">     123 </span>            : 
-<span class="lineNum">     124 </span>            : 
-<span class="lineNum">     125 </span>            : template&lt;class ContainerAllocator&gt;
-<a name="126"><span class="lineNum">     126 </span>            : struct MD5Sum&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;</a>
-<span class="lineNum">     127 </span>            : {
-<span class="lineNum">     128 </span><span class="lineCov">        218 :   static const char* value()</span>
-<span class="lineNum">     129 </span>            :   {
-<span class="lineNum">     130 </span><span class="lineCov">        218 :     return &quot;2f3841376646ba4bec082f19c22a82ba&quot;;</span>
-<a name="131"><span class="lineNum">     131 </span>            :   }</a>
-<span class="lineNum">     132 </span>            : 
-<span class="lineNum">     133 </span><span class="lineCov">         66 :   static const char* value(const ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt;&amp;) { return value(); }</span>
-<span class="lineNum">     134 </span>            :   static const uint64_t static_value1 = 0x2f3841376646ba4bULL;
-<span class="lineNum">     135 </span>            :   static const uint64_t static_value2 = 0xec082f19c22a82baULL;
-<span class="lineNum">     136 </span>            : };
-<span class="lineNum">     137 </span>            : 
-<span class="lineNum">     138 </span>            : template&lt;class ContainerAllocator&gt;
-<a name="139"><span class="lineNum">     139 </span>            : struct DataType&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;</a>
-<span class="lineNum">     140 </span>            : {
-<span class="lineNum">     141 </span><span class="lineCov">        152 :   static const char* value()</span>
-<span class="lineNum">     142 </span>            :   {
-<span class="lineNum">     143 </span><span class="lineCov">        152 :     return &quot;rosee_msg/ROSEECommandActionGoal&quot;;</span>
-<a name="144"><span class="lineNum">     144 </span>            :   }</a>
-<span class="lineNum">     145 </span>            : 
-<span class="lineNum">     146 </span><span class="lineNoCov">          0 :   static const char* value(const ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt;&amp;) { return value(); }</span>
-<span class="lineNum">     147 </span>            : };
-<span class="lineNum">     148 </span>            : 
-<span class="lineNum">     149 </span>            : template&lt;class ContainerAllocator&gt;
-<a name="150"><span class="lineNum">     150 </span>            : struct Definition&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;</a>
-<span class="lineNum">     151 </span>            : {
-<span class="lineNum">     152 </span><span class="lineCov">         33 :   static const char* value()</span>
-<span class="lineNum">     153 </span>            :   {
-<span class="lineNum">     154 </span><span class="lineCov">         33 :     return &quot;# ====== DO NOT MODIFY! AUTOGENERATED FROM AN ACTION DEFINITION ======\n\</span>
-<span class="lineNum">     155 </span>            : \n\
-<span class="lineNum">     156 </span>            : Header header\n\
-<span class="lineNum">     157 </span>            : actionlib_msgs/GoalID goal_id\n\
-<span class="lineNum">     158 </span>            : ROSEECommandGoal goal\n\
-<span class="lineNum">     159 </span>            : \n\
-<span class="lineNum">     160 </span>            : ================================================================================\n\
-<span class="lineNum">     161 </span>            : MSG: std_msgs/Header\n\
-<span class="lineNum">     162 </span>            : # Standard metadata for higher-level stamped data types.\n\
-<span class="lineNum">     163 </span>            : # This is generally used to communicate timestamped data \n\
-<span class="lineNum">     164 </span>            : # in a particular coordinate frame.\n\
-<span class="lineNum">     165 </span>            : # \n\
-<span class="lineNum">     166 </span>            : # sequence ID: consecutively increasing ID \n\
-<span class="lineNum">     167 </span>            : uint32 seq\n\
-<span class="lineNum">     168 </span>            : #Two-integer timestamp that is expressed as:\n\
-<span class="lineNum">     169 </span>            : # * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')\n\
-<span class="lineNum">     170 </span>            : # * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')\n\
-<span class="lineNum">     171 </span>            : # time-handling sugar is provided by the client library\n\
-<span class="lineNum">     172 </span>            : time stamp\n\
-<span class="lineNum">     173 </span>            : #Frame this data is associated with\n\
-<span class="lineNum">     174 </span>            : # 0: no frame\n\
-<span class="lineNum">     175 </span>            : # 1: global frame\n\
-<span class="lineNum">     176 </span>            : string frame_id\n\
-<span class="lineNum">     177 </span>            : \n\
-<span class="lineNum">     178 </span>            : ================================================================================\n\
-<span class="lineNum">     179 </span>            : MSG: actionlib_msgs/GoalID\n\
-<span class="lineNum">     180 </span>            : # The stamp should store the time at which this goal was requested.\n\
-<span class="lineNum">     181 </span>            : # It is used by an action server when it tries to preempt all\n\
-<span class="lineNum">     182 </span>            : # goals that were requested before a certain time\n\
-<span class="lineNum">     183 </span>            : time stamp\n\
-<span class="lineNum">     184 </span>            : \n\
-<span class="lineNum">     185 </span>            : # The id provides a way to associate feedback and\n\
-<span class="lineNum">     186 </span>            : # result message with specific goal requests. The id\n\
-<span class="lineNum">     187 </span>            : # specified must be unique.\n\
-<span class="lineNum">     188 </span>            : string id\n\
-<span class="lineNum">     189 </span>            : \n\
-<span class="lineNum">     190 </span>            : \n\
-<span class="lineNum">     191 </span>            : ================================================================================\n\
-<span class="lineNum">     192 </span>            : MSG: rosee_msg/ROSEECommandGoal\n\
-<span class="lineNum">     193 </span>            : # ====== DO NOT MODIFY! AUTOGENERATED FROM AN ACTION DEFINITION ======\n\
-<span class="lineNum">     194 </span>            : #goal definition\n\
-<span class="lineNum">     195 </span>            : ROSEEActionControl goal_action\n\
-<span class="lineNum">     196 </span>            : \n\
-<span class="lineNum">     197 </span>            : ================================================================================\n\
-<span class="lineNum">     198 </span>            : MSG: rosee_msg/ROSEEActionControl\n\
-<span class="lineNum">     199 </span>            : # Standard metadata for higher-level stamped data types.\n\
-<span class="lineNum">     200 </span>            : # This is generally used to communicate timestamped data \n\
-<span class="lineNum">     201 </span>            : # in a particular coordinate frame.\n\
-<span class="lineNum">     202 </span>            : # \n\
-<span class="lineNum">     203 </span>            : # sequence ID: consecutively increasing ID \n\
-<span class="lineNum">     204 </span>            : uint32 seq\n\
-<span class="lineNum">     205 </span>            : \n\
-<span class="lineNum">     206 </span>            : #Two-integer timestamp that is expressed as:\n\
-<span class="lineNum">     207 </span>            : # * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')\n\
-<span class="lineNum">     208 </span>            : # * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')\n\
-<span class="lineNum">     209 </span>            : # time-handling sugar is provided by the client library\n\
-<span class="lineNum">     210 </span>            : time stamp\n\
-<span class="lineNum">     211 </span>            : \n\
-<span class="lineNum">     212 </span>            : # first finger to use to pinch\n\
-<span class="lineNum">     213 </span>            : string action_name\n\
-<span class="lineNum">     214 </span>            : \n\
-<span class="lineNum">     215 </span>            : # action type, that is an enum and with msg we can only define it like this\n\
-<span class="lineNum">     216 </span>            : # remember to add here if we add new type in Action.h and ActionPrimitive.h ..\n\
-<span class="lineNum">     217 </span>            : uint8 PRIMITIVE = 0\n\
-<span class="lineNum">     218 </span>            : uint8 GENERIC = 1 \n\
-<span class="lineNum">     219 </span>            : uint8 COMPOSED = 2 \n\
-<span class="lineNum">     220 </span>            : uint8 TIMED = 3\n\
-<span class="lineNum">     221 </span>            : uint8 NONE = 4\n\
-<span class="lineNum">     222 </span>            : uint8 action_type\n\
-<span class="lineNum">     223 </span>            : \n\
-<span class="lineNum">     224 </span>            : uint8 PRIMITIVE_PINCHSTRONG = 0\n\
-<span class="lineNum">     225 </span>            : uint8 PRIMITIVE_PINCHWEAK = 1\n\
-<span class="lineNum">     226 </span>            : uint8 PRIMITIVE_MULTIPLEPINCHSTRONG = 2\n\
-<span class="lineNum">     227 </span>            : uint8 PRIMITIVE_TRIG = 3\n\
-<span class="lineNum">     228 </span>            : uint8 PRIMITIVE_TIPFLEX = 4\n\
-<span class="lineNum">     229 </span>            : uint8 PRIMITIVE_FINGFLEX = 5\n\
-<span class="lineNum">     230 </span>            : uint8 PRIMITIVE_PRIMITIVE_SINGLEJOINTMULTIPLETIPS = 6\n\
-<span class="lineNum">     231 </span>            : uint8 PRIMITIVE_NONE = 7\n\
-<span class="lineNum">     232 </span>            : uint8 actionPrimitive_type\n\
-<span class="lineNum">     233 </span>            : \n\
-<span class="lineNum">     234 </span>            : # array for additional items (like 2 finger for pinch). It can be also empty \n\
-<span class="lineNum">     235 </span>            : string[] selectable_items\n\
-<span class="lineNum">     236 </span>            : \n\
-<span class="lineNum">     237 </span>            : # grasp percentage from 0.0 to 1.0\n\
-<span class="lineNum">     238 </span>            : float64 percentage\n\
-<span class="lineNum">     239 </span>            : \n\
-<span class="lineNum">     240 </span>            : &quot;;
-<span class="lineNum">     241 </span>            :   }
-<span class="lineNum">     242 </span>            : 
-<span class="lineNum">     243 </span>            :   static const char* value(const ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt;&amp;) { return value(); }
-<span class="lineNum">     244 </span>            : };
-<span class="lineNum">     245 </span>            : 
-<span class="lineNum">     246 </span>            : } // namespace message_traits
-<span class="lineNum">     247 </span>            : } // namespace ros
-<span class="lineNum">     248 </span>            : 
-<span class="lineNum">     249 </span>            : namespace ros
-<span class="lineNum">     250 </span>            : {
-<span class="lineNum">     251 </span>            : namespace serialization
-<span class="lineNum">     252 </span>            : {
-<span class="lineNum">     253 </span>            : 
-<a name="254"><span class="lineNum">     254 </span>            :   template&lt;class ContainerAllocator&gt; struct Serializer&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;</a>
-<span class="lineNum">     255 </span>            :   {
-<span class="lineNum">     256 </span><span class="lineCov">        201 :     template&lt;typename Stream, typename T&gt; inline static void allInOne(Stream&amp; stream, T m)</span>
-<span class="lineNum">     257 </span>            :     {
-<span class="lineNum">     258 </span><span class="lineCov">        201 :       stream.next(m.header);</span>
-<span class="lineNum">     259 </span><span class="lineCov">        201 :       stream.next(m.goal_id);</span>
-<span class="lineNum">     260 </span><span class="lineCov">        201 :       stream.next(m.goal);</span>
-<a name="261"><span class="lineNum">     261 </span><span class="lineCov">        201 :     }</span></a>
-<span class="lineNum">     262 </span>            : 
-<span class="lineNum">     263 </span><span class="lineCov">        201 :     ROS_DECLARE_ALLINONE_SERIALIZER</span>
-<span class="lineNum">     264 </span>            :   }; // struct ROSEECommandActionGoal_
-<span class="lineNum">     265 </span>            : 
-<span class="lineNum">     266 </span>            : } // namespace serialization
-<span class="lineNum">     267 </span>            : } // namespace ros
+<span class="lineNum">     124 </span>            : template &lt;class ContainerAllocator&gt;
+<span class="lineNum">     125 </span>            : struct HasHeader&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;
+<span class="lineNum">     126 </span>            :   : TrueType
+<span class="lineNum">     127 </span>            :   { };
+<span class="lineNum">     128 </span>            : 
+<span class="lineNum">     129 </span>            : template &lt;class ContainerAllocator&gt;
+<span class="lineNum">     130 </span>            : struct HasHeader&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; const&gt;
+<span class="lineNum">     131 </span>            :   : TrueType
+<span class="lineNum">     132 </span>            :   { };
+<span class="lineNum">     133 </span>            : 
+<span class="lineNum">     134 </span>            : 
+<span class="lineNum">     135 </span>            : template&lt;class ContainerAllocator&gt;
+<a name="136"><span class="lineNum">     136 </span>            : struct MD5Sum&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;</a>
+<span class="lineNum">     137 </span>            : {
+<span class="lineNum">     138 </span><span class="lineCov">        140 :   static const char* value()</span>
+<span class="lineNum">     139 </span>            :   {
+<span class="lineNum">     140 </span><span class="lineCov">        140 :     return &quot;e41e03c466989612a15d93331f726e89&quot;;</span>
+<a name="141"><span class="lineNum">     141 </span>            :   }</a>
+<span class="lineNum">     142 </span>            : 
+<span class="lineNum">     143 </span><span class="lineCov">         66 :   static const char* value(const ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt;&amp;) { return value(); }</span>
+<span class="lineNum">     144 </span>            :   static const uint64_t static_value1 = 0xe41e03c466989612ULL;
+<span class="lineNum">     145 </span>            :   static const uint64_t static_value2 = 0xa15d93331f726e89ULL;
+<span class="lineNum">     146 </span>            : };
+<span class="lineNum">     147 </span>            : 
+<span class="lineNum">     148 </span>            : template&lt;class ContainerAllocator&gt;
+<a name="149"><span class="lineNum">     149 </span>            : struct DataType&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;</a>
+<span class="lineNum">     150 </span>            : {
+<span class="lineNum">     151 </span><span class="lineCov">         74 :   static const char* value()</span>
+<span class="lineNum">     152 </span>            :   {
+<span class="lineNum">     153 </span><span class="lineCov">         74 :     return &quot;rosee_msg/ROSEECommandActionGoal&quot;;</span>
+<a name="154"><span class="lineNum">     154 </span>            :   }</a>
+<span class="lineNum">     155 </span>            : 
+<span class="lineNum">     156 </span><span class="lineNoCov">          0 :   static const char* value(const ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt;&amp;) { return value(); }</span>
+<span class="lineNum">     157 </span>            : };
+<span class="lineNum">     158 </span>            : 
+<span class="lineNum">     159 </span>            : template&lt;class ContainerAllocator&gt;
+<a name="160"><span class="lineNum">     160 </span>            : struct Definition&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;</a>
+<span class="lineNum">     161 </span>            : {
+<span class="lineNum">     162 </span><span class="lineCov">         33 :   static const char* value()</span>
+<span class="lineNum">     163 </span>            :   {
+<span class="lineNum">     164 </span>            :     return &quot;# ====== DO NOT MODIFY! AUTOGENERATED FROM AN ACTION DEFINITION ======\n&quot;
+<span class="lineNum">     165 </span>            : &quot;\n&quot;
+<span class="lineNum">     166 </span>            : &quot;Header header\n&quot;
+<span class="lineNum">     167 </span>            : &quot;actionlib_msgs/GoalID goal_id\n&quot;
+<span class="lineNum">     168 </span>            : &quot;ROSEECommandGoal goal\n&quot;
+<span class="lineNum">     169 </span>            : &quot;\n&quot;
+<span class="lineNum">     170 </span>            : &quot;================================================================================\n&quot;
+<span class="lineNum">     171 </span>            : &quot;MSG: std_msgs/Header\n&quot;
+<span class="lineNum">     172 </span>            : &quot;# Standard metadata for higher-level stamped data types.\n&quot;
+<span class="lineNum">     173 </span>            : &quot;# This is generally used to communicate timestamped data \n&quot;
+<span class="lineNum">     174 </span>            : &quot;# in a particular coordinate frame.\n&quot;
+<span class="lineNum">     175 </span>            : &quot;# \n&quot;
+<span class="lineNum">     176 </span>            : &quot;# sequence ID: consecutively increasing ID \n&quot;
+<span class="lineNum">     177 </span>            : &quot;uint32 seq\n&quot;
+<span class="lineNum">     178 </span>            : &quot;#Two-integer timestamp that is expressed as:\n&quot;
+<span class="lineNum">     179 </span>            : &quot;# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')\n&quot;
+<span class="lineNum">     180 </span>            : &quot;# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')\n&quot;
+<span class="lineNum">     181 </span>            : &quot;# time-handling sugar is provided by the client library\n&quot;
+<span class="lineNum">     182 </span>            : &quot;time stamp\n&quot;
+<span class="lineNum">     183 </span>            : &quot;#Frame this data is associated with\n&quot;
+<span class="lineNum">     184 </span>            : &quot;string frame_id\n&quot;
+<span class="lineNum">     185 </span>            : &quot;\n&quot;
+<span class="lineNum">     186 </span>            : &quot;================================================================================\n&quot;
+<span class="lineNum">     187 </span>            : &quot;MSG: actionlib_msgs/GoalID\n&quot;
+<span class="lineNum">     188 </span>            : &quot;# The stamp should store the time at which this goal was requested.\n&quot;
+<span class="lineNum">     189 </span>            : &quot;# It is used by an action server when it tries to preempt all\n&quot;
+<span class="lineNum">     190 </span>            : &quot;# goals that were requested before a certain time\n&quot;
+<span class="lineNum">     191 </span>            : &quot;time stamp\n&quot;
+<span class="lineNum">     192 </span>            : &quot;\n&quot;
+<span class="lineNum">     193 </span>            : &quot;# The id provides a way to associate feedback and\n&quot;
+<span class="lineNum">     194 </span>            : &quot;# result message with specific goal requests. The id\n&quot;
+<span class="lineNum">     195 </span>            : &quot;# specified must be unique.\n&quot;
+<span class="lineNum">     196 </span>            : &quot;string id\n&quot;
+<span class="lineNum">     197 </span>            : &quot;\n&quot;
+<span class="lineNum">     198 </span>            : &quot;\n&quot;
+<span class="lineNum">     199 </span>            : &quot;================================================================================\n&quot;
+<span class="lineNum">     200 </span>            : &quot;MSG: rosee_msg/ROSEECommandGoal\n&quot;
+<span class="lineNum">     201 </span>            : &quot;# ====== DO NOT MODIFY! AUTOGENERATED FROM AN ACTION DEFINITION ======\n&quot;
+<span class="lineNum">     202 </span>            : &quot;#goal definition\n&quot;
+<span class="lineNum">     203 </span>            : &quot;ROSEEActionControl goal_action\n&quot;
+<span class="lineNum">     204 </span>            : &quot;\n&quot;
+<span class="lineNum">     205 </span>            : &quot;================================================================================\n&quot;
+<span class="lineNum">     206 </span>            : &quot;MSG: rosee_msg/ROSEEActionControl\n&quot;
+<span class="lineNum">     207 </span>            : &quot;# Standard metadata for higher-level stamped data types.\n&quot;
+<span class="lineNum">     208 </span>            : &quot;# This is generally used to communicate timestamped data \n&quot;
+<span class="lineNum">     209 </span>            : &quot;# in a particular coordinate frame.\n&quot;
+<span class="lineNum">     210 </span>            : &quot;# \n&quot;
+<span class="lineNum">     211 </span>            : &quot;# sequence ID: consecutively increasing ID \n&quot;
+<span class="lineNum">     212 </span>            : &quot;uint32 seq\n&quot;
+<span class="lineNum">     213 </span>            : &quot;\n&quot;
+<span class="lineNum">     214 </span>            : &quot;#Two-integer timestamp that is expressed as:\n&quot;
+<span class="lineNum">     215 </span>            : &quot;# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')\n&quot;
+<span class="lineNum">     216 </span>            : &quot;# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')\n&quot;
+<span class="lineNum">     217 </span>            : &quot;# time-handling sugar is provided by the client library\n&quot;
+<span class="lineNum">     218 </span>            : &quot;time stamp\n&quot;
+<span class="lineNum">     219 </span>            : &quot;\n&quot;
+<span class="lineNum">     220 </span>            : &quot;# first finger to use to pinch\n&quot;
+<span class="lineNum">     221 </span>            : &quot;string action_name\n&quot;
+<span class="lineNum">     222 </span>            : &quot;\n&quot;
+<span class="lineNum">     223 </span>            : &quot;# action type, that is an enum and with msg we can only define it like this\n&quot;
+<span class="lineNum">     224 </span>            : &quot;# remember to add here if we add new type in Action.h and ActionPrimitive.h ..\n&quot;
+<span class="lineNum">     225 </span>            : &quot;uint8 PRIMITIVE = 0\n&quot;
+<span class="lineNum">     226 </span>            : &quot;uint8 GENERIC = 1 \n&quot;
+<span class="lineNum">     227 </span>            : &quot;uint8 COMPOSED = 2 \n&quot;
+<span class="lineNum">     228 </span>            : &quot;uint8 TIMED = 3\n&quot;
+<span class="lineNum">     229 </span>            : &quot;uint8 NONE = 4\n&quot;
+<span class="lineNum">     230 </span>            : &quot;uint8 action_type\n&quot;
+<span class="lineNum">     231 </span>            : &quot;\n&quot;
+<span class="lineNum">     232 </span>            : &quot;uint8 PRIMITIVE_PINCHSTRONG = 0\n&quot;
+<span class="lineNum">     233 </span>            : &quot;uint8 PRIMITIVE_PINCHWEAK = 1\n&quot;
+<span class="lineNum">     234 </span>            : &quot;uint8 PRIMITIVE_MULTIPLEPINCHSTRONG = 2\n&quot;
+<span class="lineNum">     235 </span>            : &quot;uint8 PRIMITIVE_TRIG = 3\n&quot;
+<span class="lineNum">     236 </span>            : &quot;uint8 PRIMITIVE_TIPFLEX = 4\n&quot;
+<span class="lineNum">     237 </span>            : &quot;uint8 PRIMITIVE_FINGFLEX = 5\n&quot;
+<span class="lineNum">     238 </span>            : &quot;uint8 PRIMITIVE_SINGLEJOINTMULTIPLETIPS = 6\n&quot;
+<span class="lineNum">     239 </span>            : &quot;uint8 PRIMITIVE_NONE = 7\n&quot;
+<span class="lineNum">     240 </span>            : &quot;uint8 actionPrimitive_type\n&quot;
+<span class="lineNum">     241 </span>            : &quot;\n&quot;
+<span class="lineNum">     242 </span>            : &quot;# array for additional items (like 2 finger for pinch). It can be also empty \n&quot;
+<span class="lineNum">     243 </span>            : &quot;string[] selectable_items\n&quot;
+<span class="lineNum">     244 </span>            : &quot;\n&quot;
+<span class="lineNum">     245 </span>            : &quot;# grasp percentage from 0.0 to 1.0\n&quot;
+<span class="lineNum">     246 </span>            : &quot;float64 percentage\n&quot;
+<span class="lineNum">     247 </span>            : &quot;\n&quot;
+<span class="lineNum">     248 </span>            : &quot;# wanted maximum error norm for joints positions error (if not set, ie it is 0, default one will be used)\n&quot;
+<span class="lineNum">     249 </span>            : &quot;# the action will not be considered completed until the norm error of joint pos is below this value\n&quot;
+<span class="lineNum">     250 </span>            : &quot;float64 error_norm\n&quot;
+<span class="lineNum">     251 </span>            : &quot;\n&quot;
+<span class="lineNum">     252 </span>            : &quot;#Optional fields, since now we use them to send also a current/torque to heri ii\n&quot;
+<span class="lineNum">     253 </span>            : &quot;string[] optional_motors_names\n&quot;
+<span class="lineNum">     254 </span><span class="lineCov">         33 : &quot;float64[] optional_motors_commands\n&quot;</span>
+<span class="lineNum">     255 </span>            : ;
+<span class="lineNum">     256 </span>            :   }
+<span class="lineNum">     257 </span>            : 
+<span class="lineNum">     258 </span>            :   static const char* value(const ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt;&amp;) { return value(); }
+<span class="lineNum">     259 </span>            : };
+<span class="lineNum">     260 </span>            : 
+<span class="lineNum">     261 </span>            : } // namespace message_traits
+<span class="lineNum">     262 </span>            : } // namespace ros
+<span class="lineNum">     263 </span>            : 
+<span class="lineNum">     264 </span>            : namespace ros
+<span class="lineNum">     265 </span>            : {
+<span class="lineNum">     266 </span>            : namespace serialization
+<span class="lineNum">     267 </span>            : {
 <span class="lineNum">     268 </span>            : 
-<span class="lineNum">     269 </span>            : namespace ros
-<span class="lineNum">     270 </span>            : {
-<span class="lineNum">     271 </span>            : namespace message_operations
-<span class="lineNum">     272 </span>            : {
-<span class="lineNum">     273 </span>            : 
-<span class="lineNum">     274 </span>            : template&lt;class ContainerAllocator&gt;
-<span class="lineNum">     275 </span>            : struct Printer&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;
-<span class="lineNum">     276 </span>            : {
-<span class="lineNum">     277 </span>            :   template&lt;typename Stream&gt; static void stream(Stream&amp; s, const std::string&amp; indent, const ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt;&amp; v)
-<span class="lineNum">     278 </span>            :   {
-<span class="lineNum">     279 </span>            :     s &lt;&lt; indent &lt;&lt; &quot;header: &quot;;
-<span class="lineNum">     280 </span>            :     s &lt;&lt; std::endl;
-<span class="lineNum">     281 </span>            :     Printer&lt; ::std_msgs::Header_&lt;ContainerAllocator&gt; &gt;::stream(s, indent + &quot;  &quot;, v.header);
-<span class="lineNum">     282 </span>            :     s &lt;&lt; indent &lt;&lt; &quot;goal_id: &quot;;
-<span class="lineNum">     283 </span>            :     s &lt;&lt; std::endl;
-<span class="lineNum">     284 </span>            :     Printer&lt; ::actionlib_msgs::GoalID_&lt;ContainerAllocator&gt; &gt;::stream(s, indent + &quot;  &quot;, v.goal_id);
-<span class="lineNum">     285 </span>            :     s &lt;&lt; indent &lt;&lt; &quot;goal: &quot;;
-<span class="lineNum">     286 </span>            :     s &lt;&lt; std::endl;
-<span class="lineNum">     287 </span>            :     Printer&lt; ::rosee_msg::ROSEECommandGoal_&lt;ContainerAllocator&gt; &gt;::stream(s, indent + &quot;  &quot;, v.goal);
-<span class="lineNum">     288 </span>            :   }
-<span class="lineNum">     289 </span>            : };
-<span class="lineNum">     290 </span>            : 
-<span class="lineNum">     291 </span>            : } // namespace message_operations
-<span class="lineNum">     292 </span>            : } // namespace ros
-<span class="lineNum">     293 </span>            : 
-<span class="lineNum">     294 </span>            : #endif // ROSEE_MSG_MESSAGE_ROSEECOMMANDACTIONGOAL_H
+<a name="269"><span class="lineNum">     269 </span>            :   template&lt;class ContainerAllocator&gt; struct Serializer&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;</a>
+<span class="lineNum">     270 </span>            :   {
+<span class="lineNum">     271 </span><span class="lineCov">         99 :     template&lt;typename Stream, typename T&gt; inline static void allInOne(Stream&amp; stream, T m)</span>
+<span class="lineNum">     272 </span>            :     {
+<span class="lineNum">     273 </span><span class="lineCov">         99 :       stream.next(m.header);</span>
+<span class="lineNum">     274 </span><span class="lineCov">         99 :       stream.next(m.goal_id);</span>
+<span class="lineNum">     275 </span><span class="lineCov">         99 :       stream.next(m.goal);</span>
+<a name="276"><span class="lineNum">     276 </span><span class="lineCov">         99 :     }</span></a>
+<span class="lineNum">     277 </span>            : 
+<span class="lineNum">     278 </span><span class="lineCov">         99 :     ROS_DECLARE_ALLINONE_SERIALIZER</span>
+<span class="lineNum">     279 </span>            :   }; // struct ROSEECommandActionGoal_
+<span class="lineNum">     280 </span>            : 
+<span class="lineNum">     281 </span>            : } // namespace serialization
+<span class="lineNum">     282 </span>            : } // namespace ros
+<span class="lineNum">     283 </span>            : 
+<span class="lineNum">     284 </span>            : namespace ros
+<span class="lineNum">     285 </span>            : {
+<span class="lineNum">     286 </span>            : namespace message_operations
+<span class="lineNum">     287 </span>            : {
+<span class="lineNum">     288 </span>            : 
+<span class="lineNum">     289 </span>            : template&lt;class ContainerAllocator&gt;
+<span class="lineNum">     290 </span>            : struct Printer&lt; ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt; &gt;
+<span class="lineNum">     291 </span>            : {
+<span class="lineNum">     292 </span>            :   template&lt;typename Stream&gt; static void stream(Stream&amp; s, const std::string&amp; indent, const ::rosee_msg::ROSEECommandActionGoal_&lt;ContainerAllocator&gt;&amp; v)
+<span class="lineNum">     293 </span>            :   {
+<span class="lineNum">     294 </span>            :     s &lt;&lt; indent &lt;&lt; &quot;header: &quot;;
+<span class="lineNum">     295 </span>            :     s &lt;&lt; std::endl;
+<span class="lineNum">     296 </span>            :     Printer&lt; ::std_msgs::Header_&lt;ContainerAllocator&gt; &gt;::stream(s, indent + &quot;  &quot;, v.header);
+<span class="lineNum">     297 </span>            :     s &lt;&lt; indent &lt;&lt; &quot;goal_id: &quot;;
+<span class="lineNum">     298 </span>            :     s &lt;&lt; std::endl;
+<span class="lineNum">     299 </span>            :     Printer&lt; ::actionlib_msgs::GoalID_&lt;ContainerAllocator&gt; &gt;::stream(s, indent + &quot;  &quot;, v.goal_id);
+<span class="lineNum">     300 </span>            :     s &lt;&lt; indent &lt;&lt; &quot;goal: &quot;;
+<span class="lineNum">     301 </span>            :     s &lt;&lt; std::endl;
+<span class="lineNum">     302 </span>            :     Printer&lt; ::rosee_msg::ROSEECommandGoal_&lt;ContainerAllocator&gt; &gt;::stream(s, indent + &quot;  &quot;, v.goal);
+<span class="lineNum">     303 </span>            :   }
+<span class="lineNum">     304 </span>            : };
+<span class="lineNum">     305 </span>            : 
+<span class="lineNum">     306 </span>            : } // namespace message_operations
+<span class="lineNum">     307 </span>            : } // namespace ros
+<span class="lineNum">     308 </span>            : 
+<span class="lineNum">     309 </span>            : #endif // ROSEE_MSG_MESSAGE_ROSEECOMMANDACTIONGOAL_H
 </pre>
       </td>
     </tr>
@@ -362,7 +377,7 @@
 
   <table width="100%" border=0 cellspacing=0 cellpadding=0>
     <tr><td class="ruler"><img src="../../../../../../glass.png" width=3 height=3 alt=""></td></tr>
-    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
   </table>
   <br>
 

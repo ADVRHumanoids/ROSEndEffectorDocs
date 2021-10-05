@@ -1,0 +1,394 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - main_coverage.info - src/GraspingActions/ActionPinchTight.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/GraspingActions</a> - ActionPinchTight.cpp<span style="font-size: 80%;"> (source / <a href="ActionPinchTight.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">main_coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">152</td>
+            <td class="headerCovTableEntry">195</td>
+            <td class="headerCovTableEntryMed">77.9 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2021-10-05 16:55:17</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntry">15</td>
+            <td class="headerCovTableEntryMed">80.0 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : /*</a>
+<span class="lineNum">       2 </span>            :  * Copyright (C) 2020 IIT-HHCM
+<span class="lineNum">       3 </span>            :  * Author: Davide Torielli
+<span class="lineNum">       4 </span>            :  * email:  davide.torielli@iit.it
+<span class="lineNum">       5 </span>            :  *
+<span class="lineNum">       6 </span>            :  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+<span class="lineNum">       7 </span>            :  * you may not use this file except in compliance with the License.
+<span class="lineNum">       8 </span>            :  * You may obtain a copy of the License at
+<span class="lineNum">       9 </span>            :  *
+<span class="lineNum">      10 </span>            :  *     http://www.apache.org/licenses/LICENSE-2.0
+<span class="lineNum">      11 </span>            :  *
+<span class="lineNum">      12 </span>            :  * Unless required by applicable law or agreed to in writing, software
+<span class="lineNum">      13 </span>            :  * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+<span class="lineNum">      14 </span>            :  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<span class="lineNum">      15 </span>            :  * See the License for the specific language governing permissions and
+<span class="lineNum">      16 </span>            :  * limitations under the License.
+<span class="lineNum">      17 </span>            :  */
+<span class="lineNum">      18 </span>            : 
+<a name="19"><span class="lineNum">      19 </span>            : #include &lt;ros_end_effector/GraspingActions/ActionPinchTight.h&gt;</a>
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span><span class="lineCov">         99 : ROSEE::ActionPinchTight::ActionPinchTight() : </span>
+<a name="22"><span class="lineNum">      22 </span><span class="lineCov">         99 :     ActionPinchGeneric (&quot;pinchTight&quot;, 2, 3, ActionPrimitive::Type::PinchTight) { }</span></a>
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span><span class="lineNoCov">          0 : ROSEE::ActionPinchTight::ActionPinchTight(unsigned int jointStateSetMaxSize) : </span>
+<a name="25"><span class="lineNum">      25 </span><span class="lineNoCov">          0 :     ActionPinchGeneric (&quot;pinchTight&quot;, 2, jointStateSetMaxSize, ActionPrimitive::Type::PinchTight) { }</span></a>
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span><span class="lineCov">      14429 : ROSEE::ActionPinchTight::ActionPinchTight (std::pair &lt;std::string, std::string&gt; fingerNamesPair, </span>
+<span class="lineNum">      28 </span><span class="lineCov">      14429 :     JointPos jp, collision_detection::Contact cont) :</span>
+<span class="lineNum">      29 </span><span class="lineCov">      14429 :     ActionPinchGeneric (&quot;pinchTight&quot;, 2, 3, ActionPrimitive::Type::PinchTight )  {</span>
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            :     //different from insertState, here we are sure the set is empty (we are in costructor)
+<span class="lineNum">      32 </span><span class="lineCov">      14429 :     fingersInvolved.insert(fingerNamesPair.first);</span>
+<span class="lineNum">      33 </span><span class="lineCov">      14429 :     fingersInvolved.insert(fingerNamesPair.second);</span>
+<span class="lineNum">      34 </span><span class="lineCov">      14429 :     actionStates.insert (std::make_pair (jp, cont) );</span>
+<a name="35"><span class="lineNum">      35 </span><span class="lineCov">      14429 : }</span></a>
+<span class="lineNum">      36 </span>            : 
+<span class="lineNum">      37 </span><span class="lineNoCov">          0 : ROSEE::ActionPinchTight::ActionPinchTight (std::string finger1, std::string finger2, </span>
+<span class="lineNum">      38 </span><span class="lineNoCov">          0 :     JointPos jp, collision_detection::Contact cont) :</span>
+<span class="lineNum">      39 </span><span class="lineNoCov">          0 :     ActionPinchGeneric (&quot;pinchTight&quot;, 2, 3, ActionPrimitive::Type::PinchTight )  {</span>
+<span class="lineNum">      40 </span>            : 
+<span class="lineNum">      41 </span>            :     //different from insertState, here we are sure the set is empty (we are in costructor)
+<span class="lineNum">      42 </span><span class="lineNoCov">          0 :     fingersInvolved.insert(finger1);</span>
+<span class="lineNum">      43 </span><span class="lineNoCov">          0 :     fingersInvolved.insert(finger2);</span>
+<span class="lineNum">      44 </span><span class="lineNoCov">          0 :     actionStates.insert (std::make_pair (jp, cont) );</span>
+<a name="45"><span class="lineNum">      45 </span><span class="lineNoCov">          0 : }</span></a>
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span><span class="lineCov">         15 : ROSEE::JointPos ROSEE::ActionPinchTight::getJointPos() const {</span>
+<span class="lineNum">      48 </span><span class="lineCov">         15 :     return (actionStates.begin()-&gt;first);</span>
+<a name="49"><span class="lineNum">      49 </span>            : }</a>
+<span class="lineNum">      50 </span>            : 
+<span class="lineNum">      51 </span><span class="lineNoCov">          0 : ROSEE::JointPos ROSEE::ActionPinchTight::getJointPos( unsigned int index) const {</span>
+<span class="lineNum">      52 </span><span class="lineNoCov">          0 :     auto it = actionStates.begin();</span>
+<span class="lineNum">      53 </span><span class="lineNoCov">          0 :     unsigned int i = 1;</span>
+<span class="lineNum">      54 </span><span class="lineNoCov">          0 :     while (i &lt; index ) {</span>
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 :         ++ it;</span>
+<span class="lineNum">      56 </span>            :     }
+<span class="lineNum">      57 </span><span class="lineNoCov">          0 :     return (it-&gt;first);</span>
+<a name="58"><span class="lineNum">      58 </span>            : }</a>
+<span class="lineNum">      59 </span>            : 
+<span class="lineNum">      60 </span><span class="lineCov">        224 : std::vector &lt; ROSEE::JointPos &gt; ROSEE::ActionPinchTight::getAllJointPos() const{</span>
+<span class="lineNum">      61 </span>            :     
+<span class="lineNum">      62 </span><span class="lineCov">        224 :     std::vector &lt; JointPos &gt; retVect;</span>
+<span class="lineNum">      63 </span><span class="lineCov">        224 :     retVect.reserve ( actionStates.size() );</span>
+<span class="lineNum">      64 </span>            :     
+<span class="lineNum">      65 </span><span class="lineCov">        896 :     for (auto it : actionStates ) {</span>
+<span class="lineNum">      66 </span><span class="lineCov">        672 :         retVect.push_back(it.first);</span>
+<span class="lineNum">      67 </span>            :     }
+<span class="lineNum">      68 </span>            :     
+<span class="lineNum">      69 </span><span class="lineCov">        224 :     return retVect;</span>
+<span class="lineNum">      70 </span>            : }
+<a name="71"><span class="lineNum">      71 </span>            : </a>
+<span class="lineNum">      72 </span>            : 
+<span class="lineNum">      73 </span><span class="lineCov">         28 : std::vector &lt; ROSEE::ActionPinchTight::StateWithContact &gt; ROSEE::ActionPinchTight::getActionStates () const {</span>
+<span class="lineNum">      74 </span>            :     
+<span class="lineNum">      75 </span><span class="lineCov">         28 :     std::vector &lt; ROSEE::ActionPinchTight::StateWithContact &gt; retVect;</span>
+<span class="lineNum">      76 </span><span class="lineCov">         28 :     retVect.reserve ( actionStates.size() );</span>
+<span class="lineNum">      77 </span>            :     
+<span class="lineNum">      78 </span><span class="lineCov">        112 :     for (auto it : actionStates ) {</span>
+<span class="lineNum">      79 </span><span class="lineCov">         84 :         retVect.push_back(it);</span>
+<span class="lineNum">      80 </span>            :     }
+<span class="lineNum">      81 </span>            :     
+<span class="lineNum">      82 </span><span class="lineCov">         28 :     return retVect;</span>
+<span class="lineNum">      83 </span>            :     
+<a name="84"><span class="lineNum">      84 </span>            : }</a>
+<span class="lineNum">      85 </span>            : 
+<span class="lineNum">      86 </span><span class="lineCov">      14361 : bool ROSEE::ActionPinchTight::insertActionState (ROSEE::JointPos jp, collision_detection::Contact cont) {</span>
+<span class="lineNum">      87 </span>            : 
+<span class="lineNum">      88 </span><span class="lineCov">      14361 :     auto pairRet = actionStates.insert ( std::make_pair (jp, cont) ) ;</span>
+<span class="lineNum">      89 </span>            :     
+<span class="lineNum">      90 </span><span class="lineCov">      14361 :     if (! pairRet.second ) {</span>
+<span class="lineNum">      91 </span>            :         //TODO print error no insertion because depth is equal... very improbable
+<span class="lineNum">      92 </span><span class="lineCov">        870 :         return false;</span>
+<span class="lineNum">      93 </span>            :     }
+<span class="lineNum">      94 </span>            :     
+<span class="lineNum">      95 </span><span class="lineCov">      13491 :     if (actionStates.size() &gt; maxStoredActionStates) { </span>
+<span class="lineNum">      96 </span>            :         //max capacity reached, we have to delete the last one
+<span class="lineNum">      97 </span><span class="lineCov">      13355 :         auto it = pairRet.first;        </span>
+<span class="lineNum">      98 </span>            :         
+<span class="lineNum">      99 </span><span class="lineCov">      13355 :         if ( (++it) == actionStates.end() ){</span>
+<span class="lineNum">     100 </span>            :            // the new inserted is the last one and has to be erased
+<span class="lineNum">     101 </span><span class="lineCov">      12663 :             actionStates.erase(pairRet.first);</span>
+<span class="lineNum">     102 </span><span class="lineCov">      12663 :             return false;</span>
+<span class="lineNum">     103 </span>            :         }
+<span class="lineNum">     104 </span>            :         
+<span class="lineNum">     105 </span>            :         // the new inserted is not the last one that has to be erased
+<span class="lineNum">     106 </span><span class="lineCov">        692 :         auto lastElem = actionStates.end();</span>
+<span class="lineNum">     107 </span><span class="lineCov">        692 :         --lastElem;</span>
+<span class="lineNum">     108 </span><span class="lineCov">        692 :         actionStates.erase(lastElem);</span>
+<span class="lineNum">     109 </span>            :     }
+<span class="lineNum">     110 </span>            :     
+<span class="lineNum">     111 </span><span class="lineCov">        828 :     return true;</span>
+<span class="lineNum">     112 </span>            : }
+<a name="113"><span class="lineNum">     113 </span>            : </a>
+<span class="lineNum">     114 </span>            : 
+<span class="lineNum">     115 </span><span class="lineCov">         55 : void ROSEE::ActionPinchTight::print () const {</span>
+<span class="lineNum">     116 </span>            :     
+<span class="lineNum">     117 </span><span class="lineCov">        110 :     std::stringstream output;</span>
+<span class="lineNum">     118 </span><span class="lineCov">         55 :     output &lt;&lt; &quot;ActionName: &quot; &lt;&lt; name &lt;&lt; std::endl;</span>
+<span class="lineNum">     119 </span>            :     
+<span class="lineNum">     120 </span><span class="lineCov">         55 :     output &lt;&lt; &quot;FingersInvolved: [&quot;;</span>
+<span class="lineNum">     121 </span><span class="lineCov">        165 :     for (auto fingName : fingersInvolved){</span>
+<span class="lineNum">     122 </span><span class="lineCov">        110 :         output &lt;&lt; fingName &lt;&lt; &quot;, &quot; ;</span>
+<span class="lineNum">     123 </span>            :     }
+<span class="lineNum">     124 </span><span class="lineCov">         55 :     output.seekp (-2, output.cur); //to remove the last comma (and space)</span>
+<span class="lineNum">     125 </span><span class="lineCov">         55 :     output &lt;&lt; &quot;]&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     126 </span>            :     
+<span class="lineNum">     127 </span><span class="lineCov">         55 :     output &lt;&lt; &quot;JointsInvolvedCount: &quot; &lt;&lt; std::endl;;</span>
+<span class="lineNum">     128 </span><span class="lineCov">         55 :     output &lt;&lt; jointsInvolvedCount &lt;&lt; std::endl;</span>
+<span class="lineNum">     129 </span>            :     
+<span class="lineNum">     130 </span><span class="lineCov">         55 :     unsigned int nActState = 1;</span>
+<span class="lineNum">     131 </span><span class="lineCov">        220 :     for (auto itemSet : actionStates) {  //the element in the set</span>
+<span class="lineNum">     132 </span><span class="lineCov">        165 :         output &lt;&lt; &quot;Action_State_&quot; &lt;&lt; nActState &lt;&lt; &quot; :&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     133 </span>            : 
+<span class="lineNum">     134 </span><span class="lineCov">        165 :         output &lt;&lt; &quot;\t&quot; &lt;&lt; &quot;JointStates:&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     135 </span><span class="lineCov">        165 :         output &lt;&lt; itemSet.first;</span>
+<span class="lineNum">     136 </span><span class="lineCov">        165 :         output &lt;&lt; &quot;\t&quot; &lt;&lt; &quot;MoveitContact:&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     137 </span><span class="lineCov">        165 :         output &lt;&lt; &quot;\t\tbody_name_1: &quot; &lt;&lt; itemSet.second.body_name_1 &lt;&lt; std::endl;</span>
+<span class="lineNum">     138 </span><span class="lineCov">        165 :         output &lt;&lt; &quot;\t\tbody_name_2: &quot; &lt;&lt; itemSet.second.body_name_2 &lt;&lt; std::endl;</span>
+<span class="lineNum">     139 </span><span class="lineCov">        165 :         output &lt;&lt; &quot;\t\tbody_type_1: &quot; &lt;&lt; itemSet.second.body_type_1 &lt;&lt; std::endl;</span>
+<span class="lineNum">     140 </span><span class="lineCov">        165 :         output &lt;&lt; &quot;\t\tbody_type_2: &quot; &lt;&lt; itemSet.second.body_type_2 &lt;&lt; std::endl;</span>
+<span class="lineNum">     141 </span><span class="lineCov">        165 :         output &lt;&lt; &quot;\t\tdepth: &quot; &lt;&lt; itemSet.second.depth &lt;&lt; std::endl;</span>
+<span class="lineNum">     142 </span><span class="lineCov">        165 :         output &lt;&lt; &quot;\t\tnormal: &quot; &lt;&lt; &quot;[&quot;&lt;&lt; itemSet.second.normal.x() &lt;&lt; &quot;, &quot; </span>
+<span class="lineNum">     143 </span><span class="lineCov">        165 :             &lt;&lt; itemSet.second.normal.y() &lt;&lt; &quot;, &quot; &lt;&lt; itemSet.second.normal.z() &lt;&lt; &quot;]&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     144 </span><span class="lineCov">        165 :         output &lt;&lt; &quot;\t\tpos: &quot; &lt;&lt; &quot;[&quot;&lt;&lt; itemSet.second.pos.x() &lt;&lt; &quot;, &quot; </span>
+<span class="lineNum">     145 </span><span class="lineCov">        165 :             &lt;&lt; itemSet.second.pos.y() &lt;&lt; &quot;, &quot; &lt;&lt; itemSet.second.pos.z() &lt;&lt; &quot;]&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     146 </span>            :             
+<span class="lineNum">     147 </span><span class="lineCov">        165 :         nActState++;</span>
+<span class="lineNum">     148 </span>            :     }
+<span class="lineNum">     149 </span><span class="lineCov">         55 :     output &lt;&lt; std::endl;</span>
+<span class="lineNum">     150 </span>            :     
+<span class="lineNum">     151 </span><span class="lineCov">         55 :     std::cout &lt;&lt; output.str();</span>
+<span class="lineNum">     152 </span>            : 
+<span class="lineNum">     153 </span><span class="lineCov">         55 : }</span>
+<a name="154"><span class="lineNum">     154 </span>            : </a>
+<span class="lineNum">     155 </span>            : 
+<span class="lineNum">     156 </span><span class="lineCov">         68 : void ROSEE::ActionPinchTight::emitYaml ( YAML::Emitter&amp; out ) const {</span>
+<span class="lineNum">     157 </span>            :     
+<span class="lineNum">     158 </span><span class="lineCov">         68 :     out &lt;&lt; YAML::Key &lt;&lt; YAML::Flow &lt;&lt; fingersInvolved;</span>
+<span class="lineNum">     159 </span>            :     
+<span class="lineNum">     160 </span><span class="lineCov">         68 :     unsigned int nCont = 1;</span>
+<span class="lineNum">     161 </span><span class="lineCov">         68 :     out &lt;&lt; YAML::Value &lt;&lt; YAML::BeginMap;</span>
+<span class="lineNum">     162 </span><span class="lineCov">         68 :     out &lt;&lt; YAML::Key &lt;&lt; &quot;PrimitiveType&quot; &lt;&lt; YAML::Value &lt;&lt; primitiveType;</span>
+<span class="lineNum">     163 </span><span class="lineCov">         68 :     out &lt;&lt; YAML::Key &lt;&lt; &quot;ActionName&quot; &lt;&lt; YAML::Value &lt;&lt; name;</span>
+<span class="lineNum">     164 </span><span class="lineCov">         68 :     out &lt;&lt; YAML::Key &lt;&lt; &quot;JointsInvolvedCount&quot; &lt;&lt; YAML::Value &lt;&lt; YAML::BeginMap;</span>
+<span class="lineNum">     165 </span><span class="lineCov">        595 :     for (const auto &amp;jointCount : jointsInvolvedCount ) {</span>
+<span class="lineNum">     166 </span><span class="lineCov">        527 :         out &lt;&lt; YAML::Key &lt;&lt; jointCount.first;</span>
+<span class="lineNum">     167 </span><span class="lineCov">        527 :         out &lt;&lt; YAML::Value &lt;&lt; jointCount.second;</span>
+<span class="lineNum">     168 </span>            :     }
+<span class="lineNum">     169 </span><span class="lineCov">         68 :     out &lt;&lt; YAML::EndMap;</span>
+<span class="lineNum">     170 </span>            :     
+<span class="lineNum">     171 </span><span class="lineCov">        272 :     for (const auto &amp; actionState : actionStates) { //.second is the set of ActionState</span>
+<span class="lineNum">     172 </span>            :         
+<span class="lineNum">     173 </span><span class="lineCov">        408 :         std::string contSeq = &quot;ActionState_&quot; + std::to_string(nCont);</span>
+<span class="lineNum">     174 </span><span class="lineCov">        204 :         out &lt;&lt; YAML::Key &lt;&lt; contSeq; </span>
+<span class="lineNum">     175 </span>            :         
+<span class="lineNum">     176 </span><span class="lineCov">        204 :         out &lt;&lt; YAML::Value &lt;&lt; YAML::BeginMap;</span>
+<span class="lineNum">     177 </span>            :             //actionState.first, the jointstates map
+<span class="lineNum">     178 </span><span class="lineCov">        204 :             out &lt;&lt; YAML::Key &lt;&lt; &quot;JointPos&quot; &lt;&lt; YAML::Value &lt;&lt; YAML::BeginMap;</span>
+<span class="lineNum">     179 </span><span class="lineCov">       1785 :             for (const auto &amp;joint : actionState.first) {</span>
+<span class="lineNum">     180 </span><span class="lineCov">       1581 :                 out &lt;&lt; YAML::Key &lt;&lt; joint.first;</span>
+<span class="lineNum">     181 </span><span class="lineCov">       1581 :                 out &lt;&lt; YAML::Value &lt;&lt; YAML::Flow &lt;&lt; joint.second; //vector of double is emitted like Seq</span>
+<span class="lineNum">     182 </span>            :             }
+<span class="lineNum">     183 </span><span class="lineCov">        204 :             out &lt;&lt; YAML::EndMap;</span>
+<span class="lineNum">     184 </span>            :             
+<span class="lineNum">     185 </span>            :             //actionState.second, the optional
+<span class="lineNum">     186 </span><span class="lineCov">        204 :             out &lt;&lt; YAML::Key &lt;&lt; &quot;Optional&quot; &lt;&lt; YAML::Value;</span>
+<span class="lineNum">     187 </span><span class="lineCov">        204 :             emitYamlForContact ( actionState.second, out );</span>
+<span class="lineNum">     188 </span>            :             
+<span class="lineNum">     189 </span><span class="lineCov">        204 :         out &lt;&lt; YAML::EndMap;</span>
+<span class="lineNum">     190 </span><span class="lineCov">        204 :         nCont++;</span>
+<span class="lineNum">     191 </span>            :     }
+<span class="lineNum">     192 </span><span class="lineCov">         68 :     out &lt;&lt; YAML::EndMap;</span>
+<span class="lineNum">     193 </span>            : 
+<span class="lineNum">     194 </span><span class="lineCov">         68 : }</span>
+<a name="195"><span class="lineNum">     195 </span>            : </a>
+<span class="lineNum">     196 </span>            : 
+<span class="lineNum">     197 </span><span class="lineCov">         99 : bool ROSEE::ActionPinchTight::fillFromYaml ( YAML::const_iterator yamlIt ) {</span>
+<span class="lineNum">     198 </span>            :         
+<span class="lineNum">     199 </span><span class="lineCov">        198 :     std::vector &lt;std::string&gt; fingInvolvedVect = yamlIt-&gt;first.as &lt;std::vector &lt; std::string &gt;&gt; ();</span>
+<span class="lineNum">     200 </span><span class="lineCov">        297 :     for (const auto &amp;it : fingInvolvedVect) {</span>
+<span class="lineNum">     201 </span><span class="lineCov">        198 :         fingersInvolved.insert(it);</span>
+<span class="lineNum">     202 </span>            :     }
+<span class="lineNum">     203 </span>            : 
+<span class="lineNum">     204 </span><span class="lineCov">        693 :     for ( YAML::const_iterator keyValue = yamlIt-&gt;second.begin(); keyValue != yamlIt-&gt;second.end(); ++keyValue) {        </span>
+<span class="lineNum">     205 </span>            :         
+<span class="lineNum">     206 </span><span class="lineCov">       1188 :         std::string key = keyValue-&gt;first.as&lt;std::string&gt;();</span>
+<span class="lineNum">     207 </span><span class="lineCov">        594 :         if (key.compare(&quot;JointsInvolvedCount&quot;) == 0) {</span>
+<span class="lineNum">     208 </span><span class="lineCov">         99 :             jointsInvolvedCount = keyValue-&gt;second.as &lt; JointsInvolvedCount &gt; ();</span>
+<span class="lineNum">     209 </span>            :             
+<span class="lineNum">     210 </span><span class="lineCov">        495 :         } else if (key.compare (&quot;ActionName&quot;) == 0 ) {</span>
+<span class="lineNum">     211 </span><span class="lineCov">         99 :             name = keyValue-&gt;second.as &lt;std::string&gt; ();</span>
+<span class="lineNum">     212 </span>            :         
+<span class="lineNum">     213 </span><span class="lineCov">        396 :         } else if (key.compare (&quot;PrimitiveType&quot;) == 0) {</span>
+<span class="lineNum">     214 </span>            :             ROSEE::ActionPrimitive::Type parsedType = static_cast&lt;ROSEE::ActionPrimitive::Type&gt; ( 
+<span class="lineNum">     215 </span><span class="lineCov">         99 :                 keyValue-&gt;second.as &lt;unsigned int&gt;() );</span>
+<span class="lineNum">     216 </span><span class="lineCov">         99 :             if (parsedType != primitiveType ) {</span>
+<span class="lineNum">     217 </span><span class="lineNoCov">          0 :                 std::cerr &lt;&lt; &quot;[ERROR ActionPinchTight::&quot; &lt;&lt; __func__ &lt;&lt; &quot; parsed a type &quot; &lt;&lt; parsedType &lt;&lt; </span>
+<span class="lineNum">     218 </span><span class="lineNoCov">          0 :                     &quot; but this object has primitive type &quot; &lt;&lt; primitiveType &lt;&lt; std::endl; </span>
+<span class="lineNum">     219 </span><span class="lineNoCov">          0 :                 return false;</span>
+<span class="lineNum">     220 </span>            :             }
+<span class="lineNum">     221 </span>            :             
+<span class="lineNum">     222 </span><span class="lineCov">        297 :         } else if (key.compare(0, 12, &quot;ActionState_&quot;) == 0) { //compare 12 caracters from index 0 of key</span>
+<span class="lineNum">     223 </span>            : 
+<span class="lineNum">     224 </span><span class="lineCov">        594 :             JointPos jointPos;</span>
+<span class="lineNum">     225 </span><span class="lineCov">        594 :             collision_detection::Contact contact;</span>
+<span class="lineNum">     226 </span><span class="lineCov">        891 :             for(YAML::const_iterator asEl = keyValue-&gt;second.begin(); asEl != keyValue-&gt;second.end(); ++asEl) {</span>
+<span class="lineNum">     227 </span>            : 
+<span class="lineNum">     228 </span>            :                 //asEl can be the map JointPos or the map Optional
+<span class="lineNum">     229 </span><span class="lineCov">        594 :                 if (asEl-&gt;first.as&lt;std::string&gt;().compare (&quot;JointPos&quot;) == 0 ) {</span>
+<span class="lineNum">     230 </span><span class="lineCov">        297 :                     jointPos = asEl-&gt;second.as &lt; JointPos &gt;(); </span>
+<span class="lineNum">     231 </span><span class="lineCov">        297 :                 } else if (asEl-&gt;first.as&lt;std::string&gt;().compare (&quot;Optional&quot;) == 0 ) {</span>
+<span class="lineNum">     232 </span>            :                     
+<span class="lineNum">     233 </span><span class="lineCov">        594 :                     YAML::Node cont =  asEl-&gt;second[&quot;MoveItContact&quot;];</span>
+<span class="lineNum">     234 </span><span class="lineCov">        297 :                     contact.body_name_1 = cont[&quot;body_name_1&quot;].as &lt; std::string &gt;();</span>
+<span class="lineNum">     235 </span><span class="lineCov">        297 :                     contact.body_name_2 = cont[&quot;body_name_2&quot;].as &lt; std::string &gt;();</span>
+<span class="lineNum">     236 </span><span class="lineCov">        297 :                     switch (cont[&quot;body_type_1&quot;].as &lt; int &gt;())</span>
+<span class="lineNum">     237 </span>            :                     {
+<span class="lineNum">     238 </span><span class="lineCov">        297 :                     case 0:</span>
+<span class="lineNum">     239 </span><span class="lineCov">        297 :                         contact.body_type_1 = collision_detection::BodyType::ROBOT_LINK;</span>
+<span class="lineNum">     240 </span><span class="lineCov">        297 :                         break;</span>
+<span class="lineNum">     241 </span><span class="lineNoCov">          0 :                     case 1:</span>
+<span class="lineNum">     242 </span><span class="lineNoCov">          0 :                         contact.body_type_1 = collision_detection::BodyType::ROBOT_ATTACHED;</span>
+<span class="lineNum">     243 </span><span class="lineNoCov">          0 :                         break;</span>
+<span class="lineNum">     244 </span><span class="lineNoCov">          0 :                     case 2:</span>
+<span class="lineNum">     245 </span><span class="lineNoCov">          0 :                         contact.body_type_1 = collision_detection::BodyType::WORLD_OBJECT;</span>
+<span class="lineNum">     246 </span><span class="lineNoCov">          0 :                         break;</span>
+<span class="lineNum">     247 </span><span class="lineNoCov">          0 :                     default:</span>
+<span class="lineNum">     248 </span><span class="lineNoCov">          0 :                         std::cout &lt;&lt; &quot;some error, body_type_1&quot; &lt;&lt; cont[&quot;body_type_1&quot;].as &lt; int &gt;()</span>
+<span class="lineNum">     249 </span><span class="lineNoCov">          0 :                             &lt;&lt; &quot;unknown&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     250 </span><span class="lineNoCov">          0 :                         contact.body_type_1 = collision_detection::BodyType::WORLD_OBJECT;</span>
+<span class="lineNum">     251 </span>            :                     }
+<span class="lineNum">     252 </span><span class="lineCov">        297 :                     switch (cont[&quot;body_type_2&quot;].as &lt; int &gt;())</span>
+<span class="lineNum">     253 </span>            :                     {
+<span class="lineNum">     254 </span><span class="lineCov">        297 :                     case 0:</span>
+<span class="lineNum">     255 </span><span class="lineCov">        297 :                         contact.body_type_2 = collision_detection::BodyType::ROBOT_LINK;</span>
+<span class="lineNum">     256 </span><span class="lineCov">        297 :                         break;</span>
+<span class="lineNum">     257 </span><span class="lineNoCov">          0 :                     case 1:</span>
+<span class="lineNum">     258 </span><span class="lineNoCov">          0 :                         contact.body_type_2 = collision_detection::BodyType::ROBOT_ATTACHED;</span>
+<span class="lineNum">     259 </span><span class="lineNoCov">          0 :                         break;</span>
+<span class="lineNum">     260 </span><span class="lineNoCov">          0 :                     case 2:</span>
+<span class="lineNum">     261 </span><span class="lineNoCov">          0 :                         contact.body_type_2 = collision_detection::BodyType::WORLD_OBJECT;</span>
+<span class="lineNum">     262 </span><span class="lineNoCov">          0 :                         break;</span>
+<span class="lineNum">     263 </span><span class="lineNoCov">          0 :                     default:</span>
+<span class="lineNum">     264 </span><span class="lineNoCov">          0 :                         std::cout &lt;&lt; &quot;some error, body_type_2&quot; &lt;&lt; cont[&quot;body_type_2&quot;].as &lt; int &gt;()</span>
+<span class="lineNum">     265 </span><span class="lineNoCov">          0 :                             &lt;&lt; &quot;unknown&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     266 </span><span class="lineNoCov">          0 :                         contact.body_type_2 = collision_detection::BodyType::WORLD_OBJECT;</span>
+<span class="lineNum">     267 </span>            :                     }
+<span class="lineNum">     268 </span><span class="lineCov">        297 :                     contact.depth = cont[&quot;depth&quot;].as&lt;double&gt;();</span>
+<span class="lineNum">     269 </span><span class="lineCov">        594 :                     std::vector &lt; double &gt; normVect = cont[&quot;normal&quot;].as &lt; std::vector &lt;double&gt; &gt;();</span>
+<span class="lineNum">     270 </span><span class="lineCov">        594 :                     std::vector &lt; double &gt; posVect = cont[&quot;pos&quot;].as &lt; std::vector &lt;double&gt; &gt;();</span>
+<span class="lineNum">     271 </span><span class="lineCov">        297 :                     contact.normal = Eigen::Vector3d (normVect.data() );</span>
+<span class="lineNum">     272 </span><span class="lineCov">        297 :                     contact.pos = Eigen::Vector3d (posVect.data() );</span>
+<span class="lineNum">     273 </span>            :                     
+<span class="lineNum">     274 </span>            :                 } else {
+<span class="lineNum">     275 </span>            :                     //ERRROr, only joinstates and optional at this level
+<span class="lineNum">     276 </span>            :                     std::cerr &lt;&lt; &quot;[ERROR ActionPinchTight::&quot; &lt;&lt; __func__ &lt;&lt; &quot;not know key &quot; 
+<span class="lineNum">     277 </span><span class="lineNoCov">          0 :                         &lt;&lt; asEl-&gt;first.as&lt;std::string&gt;() &lt;&lt; </span>
+<span class="lineNum">     278 </span><span class="lineNoCov">          0 :                         &quot; found in the yaml file at this level&quot; &lt;&lt; std::endl; </span>
+<span class="lineNum">     279 </span><span class="lineNoCov">          0 :                     return false;</span>
+<span class="lineNum">     280 </span>            :                 }
+<span class="lineNum">     281 </span>            :             }  
+<span class="lineNum">     282 </span><span class="lineCov">        297 :             actionStates.insert ( std::make_pair (jointPos, contact));</span>
+<span class="lineNum">     283 </span>            :             
+<span class="lineNum">     284 </span>            :         } else {
+<span class="lineNum">     285 </span>            :             std::cerr &lt;&lt; &quot;[ERROR ActionPinchTight::&quot; &lt;&lt; __func__ &lt;&lt; &quot;not know key &quot; &lt;&lt; key &lt;&lt; 
+<span class="lineNum">     286 </span><span class="lineNoCov">          0 :                 &quot; found in the yaml file&quot; &lt;&lt; std::endl; </span>
+<span class="lineNum">     287 </span><span class="lineNoCov">          0 :             return false;</span>
+<span class="lineNum">     288 </span>            :         }
+<span class="lineNum">     289 </span>            :     }
+<span class="lineNum">     290 </span>            :     
+<span class="lineNum">     291 </span><span class="lineCov">         99 :     return true;</span>
+<a name="292"><span class="lineNum">     292 </span>            : }</a>
+<span class="lineNum">     293 </span>            : 
+<span class="lineNum">     294 </span><span class="lineCov">        204 : bool ROSEE::ActionPinchTight::emitYamlForContact (collision_detection::Contact moveitContact, YAML::Emitter&amp; out) const {</span>
+<span class="lineNum">     295 </span>            : 
+<span class="lineNum">     296 </span><span class="lineCov">        204 :     out &lt;&lt; YAML::BeginMap;</span>
+<span class="lineNum">     297 </span><span class="lineCov">        204 :         out &lt;&lt; YAML::Key &lt;&lt; &quot;MoveItContact&quot; &lt;&lt; YAML::Value &lt;&lt; YAML::BeginMap;</span>
+<span class="lineNum">     298 </span><span class="lineCov">        204 :             out &lt;&lt; YAML::Key &lt;&lt; &quot;body_name_1&quot;;</span>
+<span class="lineNum">     299 </span><span class="lineCov">        204 :             out &lt;&lt; YAML::Value &lt;&lt; moveitContact.body_name_1;</span>
+<span class="lineNum">     300 </span><span class="lineCov">        204 :             out &lt;&lt; YAML::Key &lt;&lt; &quot;body_name_2&quot;;</span>
+<span class="lineNum">     301 </span><span class="lineCov">        204 :             out &lt;&lt; YAML::Value &lt;&lt; moveitContact.body_name_2;</span>
+<span class="lineNum">     302 </span><span class="lineCov">        204 :             out &lt;&lt; YAML::Key &lt;&lt; &quot;body_type_1&quot;;</span>
+<span class="lineNum">     303 </span><span class="lineCov">        204 :             out &lt;&lt; YAML::Value &lt;&lt; moveitContact.body_type_1;</span>
+<span class="lineNum">     304 </span><span class="lineCov">        204 :             out &lt;&lt; YAML::Key &lt;&lt; &quot;body_type_2&quot;;</span>
+<span class="lineNum">     305 </span><span class="lineCov">        204 :             out &lt;&lt; YAML::Value &lt;&lt; moveitContact.body_type_2;</span>
+<span class="lineNum">     306 </span><span class="lineCov">        204 :             out &lt;&lt; YAML::Key &lt;&lt; &quot;depth&quot;;</span>
+<span class="lineNum">     307 </span><span class="lineCov">        204 :             out &lt;&lt; YAML::Value &lt;&lt; moveitContact.depth;</span>
+<span class="lineNum">     308 </span><span class="lineCov">        204 :             out &lt;&lt; YAML::Key &lt;&lt; &quot;normal&quot;;</span>
+<span class="lineNum">     309 </span><span class="lineCov">        408 :             std::vector &lt; double &gt; normal ( moveitContact.normal.data(), moveitContact.normal.data() +  moveitContact.normal.rows());  </span>
+<span class="lineNum">     310 </span><span class="lineCov">        204 :             out &lt;&lt; YAML::Value &lt;&lt; YAML::Flow &lt;&lt; normal;</span>
+<span class="lineNum">     311 </span><span class="lineCov">        204 :             out &lt;&lt; YAML::Key &lt;&lt; &quot;pos&quot;;</span>
+<span class="lineNum">     312 </span><span class="lineCov">        408 :             std::vector &lt; double &gt; pos ( moveitContact.pos.data(), moveitContact.pos.data() +  moveitContact.pos.rows());</span>
+<span class="lineNum">     313 </span><span class="lineCov">        204 :             out &lt;&lt; YAML::Value &lt;&lt; YAML::Flow &lt;&lt; pos;</span>
+<span class="lineNum">     314 </span><span class="lineCov">        204 :         out &lt;&lt; YAML::EndMap;</span>
+<span class="lineNum">     315 </span><span class="lineCov">        204 :     out &lt;&lt; YAML::EndMap;</span>
+<a name="316"><span class="lineNum">     316 </span>            :     </a>
+<span class="lineNum">     317 </span><span class="lineCov">        408 :     return true;</span>
+<span class="lineNum">     318 </span><span class="lineCov">        183 : }</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

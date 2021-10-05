@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - main_coverage.info - test/test_service_handler.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">test</a> - test_service_handler.cpp<span style="font-size: 80%;"> (source / <a href="test_service_handler.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">main_coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">102</td>
+            <td class="headerCovTableEntry">108</td>
+            <td class="headerCovTableEntryHi">94.4 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2021-10-05 16:55:17</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">17</td>
+            <td class="headerCovTableEntry">17</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #include &lt;gtest/gtest.h&gt;</a>
+<span class="lineNum">       2 </span>            : #include &quot;testUtils.h&quot;
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &lt;ros/ros.h&gt;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;ros_end_effector/Parser.h&gt;
+<span class="lineNum">       7 </span>            : #include &lt;ros_end_effector/EEInterface.h&gt;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;ros_end_effector/RosServiceHandler.h&gt;
+<span class="lineNum">      10 </span>            : #include &lt;ros_end_effector/MapActionHandler.h&gt;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : #include &lt;rosee_msg/NewGenericGraspingActionSrv.h&gt;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : namespace {
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            : /**
+<span class="lineNum">      19 </span>            :  * @brief Test for the RosServiceHandler Class
+<span class="lineNum">      20 </span>            :  * It simply create the server and some clients which will test the server functions.
+<span class="lineNum">      21 </span>            :  * Hence, in this test a lot of ROSEE main class are not used like the FindAction
+<span class="lineNum">      22 </span>            :  */
+<span class="lineNum">      23 </span>            : class testServiceHandler: public ::testing::Test {
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : 
+<a name="26"><span class="lineNum">      26 </span>            : protected:</a>
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span><span class="lineCov">          8 :     testServiceHandler()  {</span>
+<a name="29"><span class="lineNum">      29 </span><span class="lineCov">          8 :     }</span></a>
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span><span class="lineCov">          8 :     virtual ~testServiceHandler() {</span>
+<a name="32"><span class="lineNum">      32 </span><span class="lineCov">          8 :     }</span></a>
+<span class="lineNum">      33 </span>            : 
+<span class="lineNum">      34 </span><span class="lineCov">          8 :     virtual void SetUp() override {</span>
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span><span class="lineCov">          8 :         if (! nh.hasParam(&quot;robot_name&quot;)) {</span>
+<span class="lineNum">      37 </span><span class="lineNoCov">          0 :             std::cout &lt;&lt; &quot;[TEST FAIL: robot name not set on server]&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">      38 </span><span class="lineNoCov">          0 :             return;</span>
+<span class="lineNum">      39 </span>            :         }
+<span class="lineNum">      40 </span>            : 
+<span class="lineNum">      41 </span><span class="lineCov">          8 :         robot_name = &quot;&quot;;</span>
+<span class="lineNum">      42 </span><span class="lineCov">          8 :         nh.getParam(&quot;robot_name&quot;, robot_name);</span>
+<span class="lineNum">      43 </span>            :         
+<span class="lineNum">      44 </span><span class="lineCov">         16 :         std::string handNameArg = &quot;hand_name:=&quot; + robot_name;</span>
+<span class="lineNum">      45 </span><span class="lineCov">          8 :         roseeExecutor.reset(new ROSEE::TestUtils::Process({&quot;roslaunch&quot;, &quot;end_effector&quot;, &quot;test_rosee_startup.launch&quot;, handNameArg}));</span>
+<span class="lineNum">      46 </span>            : 
+<a name="47"><span class="lineNum">      47 </span>            :     }</a>
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span><span class="lineCov">          8 :     virtual void TearDown() override {</span>
+<span class="lineNum">      50 </span><span class="lineCov">          8 :     }</span>
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span>            :     std::string robot_name;
+<span class="lineNum">      53 </span>            :     ros::NodeHandle nh;
+<span class="lineNum">      54 </span>            :     std::unique_ptr&lt;ROSEE::TestUtils::Process&gt; roseeExecutor;
+<a name="55"><span class="lineNum">      55 </span>            : </a>
+<span class="lineNum">      56 </span>            :     template &lt;class clientType&gt;
+<span class="lineNum">      57 </span><span class="lineCov">         12 :     bool initClient( ros::ServiceClient&amp; rosee_client, std::string serviceName) {</span>
+<span class="lineNum">      58 </span>            : 
+<span class="lineNum">      59 </span><span class="lineCov">         12 :         rosee_client = nh.serviceClient&lt;clientType&gt;(serviceName);</span>
+<span class="lineNum">      60 </span>            : 
+<span class="lineNum">      61 </span><span class="lineCov">         12 :         rosee_client.waitForExistence();</span>
+<span class="lineNum">      62 </span>            : 
+<span class="lineNum">      63 </span><span class="lineCov">         12 :         return true;</span>
+<span class="lineNum">      64 </span>            : 
+<span class="lineNum">      65 </span>            :     };
+<span class="lineNum">      66 </span>            : 
+<span class="lineNum">      67 </span>            : };
+<span class="lineNum">      68 </span>            : 
+<span class="lineNum">      69 </span>            : /**
+<span class="lineNum">      70 </span>            :  * We call the service to include a new generic action multiple time, with both wrong and fallace requests, to see if the errors are 
+<a name="71"><span class="lineNum">      71 </span>            :  * detected by the server, and correct action are accepted</a>
+<span class="lineNum">      72 </span>            :  */
+<span class="lineNum">      73 </span><span class="lineCov">         20 : TEST_F ( testServiceHandler, callNewAction ) {</span>
+<span class="lineNum">      74 </span>            : 
+<span class="lineNum">      75 </span><span class="lineCov">          4 :     sleep(1); //without this joint state publisher crashes I do not know why (it is useless in this test, but annoying prints on traceback would appear)</span>
+<span class="lineNum">      76 </span>            :     
+<span class="lineNum">      77 </span><span class="lineCov">          8 :     ros::ServiceClient rosee_client; </span>
+<span class="lineNum">      78 </span><span class="lineCov">          4 :     initClient&lt;rosee_msg::NewGenericGraspingActionSrv&gt;(rosee_client, &quot;/ros_end_effector/new_generic_grasping_action&quot;);</span>
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span><span class="lineCov">          8 :     rosee_msg::NewGenericGraspingActionSrv newActionSrv;</span>
+<span class="lineNum">      81 </span>            : 
+<span class="lineNum">      82 </span>            :     //NOTE the server respond always with a true, and fill an error msg in the request if error happened
+<span class="lineNum">      83 </span>            : 
+<span class="lineNum">      84 </span>            :     //empty request, error
+<span class="lineNum">      85 </span><span class="lineCov">          4 :     EXPECT_TRUE( rosee_client.call(newActionSrv) );</span>
+<span class="lineNum">      86 </span><span class="lineCov">          4 :     EXPECT_FALSE( newActionSrv.response.accepted );</span>
+<span class="lineNum">      87 </span><span class="lineCov">          4 :     EXPECT_FALSE( newActionSrv.response.emitted );</span>
+<span class="lineNum">      88 </span><span class="lineCov">          4 :     EXPECT_TRUE( newActionSrv.response.error_msg.size() &gt; 0 );</span>
+<span class="lineNum">      89 </span>            :     
+<span class="lineNum">      90 </span>            :     //empty joint pos, error
+<span class="lineNum">      91 </span><span class="lineCov">          4 :     newActionSrv.request.newAction.action_name = &quot;newAction&quot;;</span>
+<span class="lineNum">      92 </span><span class="lineCov">          4 :     EXPECT_TRUE( rosee_client.call(newActionSrv) );</span>
+<span class="lineNum">      93 </span><span class="lineCov">          4 :     EXPECT_FALSE( newActionSrv.response.accepted );</span>
+<span class="lineNum">      94 </span><span class="lineCov">          4 :     EXPECT_FALSE( newActionSrv.response.emitted );</span>
+<span class="lineNum">      95 </span><span class="lineCov">          4 :     EXPECT_TRUE( newActionSrv.response.error_msg.size() &gt; 0 );</span>
+<span class="lineNum">      96 </span>            : 
+<span class="lineNum">      97 </span>            :     //correct request
+<span class="lineNum">      98 </span><span class="lineCov">          4 :     newActionSrv.request.newAction.action_motor_position.name.push_back(&quot;joint_1&quot;);</span>
+<span class="lineNum">      99 </span><span class="lineCov">          4 :     newActionSrv.request.newAction.action_motor_position.position.push_back(1);</span>
+<span class="lineNum">     100 </span><span class="lineCov">          4 :     EXPECT_TRUE( rosee_client.call(newActionSrv) );</span>
+<span class="lineNum">     101 </span><span class="lineCov">          4 :     EXPECT_TRUE( newActionSrv.response.accepted );</span>
+<span class="lineNum">     102 </span><span class="lineCov">          4 :     EXPECT_FALSE( newActionSrv.response.emitted );</span>
+<span class="lineNum">     103 </span><span class="lineCov">          4 :     EXPECT_FALSE( newActionSrv.response.error_msg.size() &gt; 0 );</span>
+<span class="lineNum">     104 </span>            : 
+<span class="lineNum">     105 </span>            :     //same request, this time is must fail because a &quot;test1&quot; action is already present
+<span class="lineNum">     106 </span><span class="lineCov">          4 :     EXPECT_TRUE( rosee_client.call(newActionSrv) );</span>
+<span class="lineNum">     107 </span><span class="lineCov">          4 :     EXPECT_FALSE( newActionSrv.response.accepted );</span>
+<span class="lineNum">     108 </span><span class="lineCov">          4 :     EXPECT_FALSE( newActionSrv.response.emitted );</span>
+<span class="lineNum">     109 </span><span class="lineCov">          4 :     EXPECT_TRUE( newActionSrv.response.error_msg.size() &gt; 0 );</span>
+<span class="lineNum">     110 </span>            :     
+<span class="lineNum">     111 </span>            :     //  error, the joint names in motor pos and count  are not the same
+<span class="lineNum">     112 </span>            :     //NOTE we use the time so if this test is run multiple time on same machine, the action will have a different name
+<span class="lineNum">     113 </span><span class="lineCov">          4 :     newActionSrv.request.newAction.action_name = &quot;newAction_&quot; + std::to_string(ros::Time::now().toSec());</span>
+<span class="lineNum">     114 </span><span class="lineCov">          4 :     newActionSrv.request.newAction.action_motor_count.name.push_back(&quot;error_joint_1&quot;);</span>
+<span class="lineNum">     115 </span><span class="lineCov">          4 :     newActionSrv.request.newAction.action_motor_count.count.push_back(1);</span>
+<span class="lineNum">     116 </span><span class="lineCov">          4 :     EXPECT_TRUE( rosee_client.call(newActionSrv) );</span>
+<span class="lineNum">     117 </span><span class="lineCov">          4 :     EXPECT_FALSE( newActionSrv.response.accepted );</span>
+<span class="lineNum">     118 </span><span class="lineCov">          4 :     EXPECT_FALSE( newActionSrv.response.emitted );</span>
+<span class="lineNum">     119 </span><span class="lineCov">          4 :     EXPECT_TRUE( newActionSrv.response.error_msg.size() &gt; 0 );</span>
+<span class="lineNum">     120 </span>            :     
+<span class="lineNum">     121 </span>            :     //  correcting previous error, also emitting on yaml
+<span class="lineNum">     122 </span><span class="lineCov">          4 :     newActionSrv.request.newAction.action_motor_count.name.at(0) = &quot;joint_1&quot;;</span>
+<span class="lineNum">     123 </span><span class="lineCov">          4 :     newActionSrv.request.newAction.action_motor_count.count.at(0) = 1;</span>
+<span class="lineNum">     124 </span><span class="lineCov">          4 :     newActionSrv.request.emitYaml = true;</span>
+<span class="lineNum">     125 </span><span class="lineCov">          4 :     EXPECT_TRUE( rosee_client.call(newActionSrv) );</span>
+<span class="lineNum">     126 </span><span class="lineCov">          4 :     EXPECT_TRUE( newActionSrv.response.accepted );</span>
+<span class="lineNum">     127 </span><span class="lineCov">          4 :     EXPECT_TRUE( newActionSrv.response.emitted );</span>
+<span class="lineNum">     128 </span><span class="lineCov">          4 :     EXPECT_FALSE( newActionSrv.response.error_msg.size() &gt; 0 );</span>
+<span class="lineNum">     129 </span>            :     
+<span class="lineNum">     130 </span><span class="lineCov">          4 : }</span>
+<span class="lineNum">     131 </span>            : 
+<span class="lineNum">     132 </span>            : /***
+<a name="133"><span class="lineNum">     133 </span>            :  * Here we send some new action to newGraspingActionServer, and we see if we can retrieve them with another server, GraspingActionAvailable</a>
+<span class="lineNum">     134 </span>            :  */
+<span class="lineNum">     135 </span><span class="lineCov">         20 : TEST_F ( testServiceHandler, callNewActionAndRetrieve ) {</span>
+<span class="lineNum">     136 </span>            :     
+<span class="lineNum">     137 </span><span class="lineCov">          4 :     sleep(1); //without this joint state publisher crashes I do not know why (it is useless in this test, but annoying prints on traceback would appear)</span>
+<span class="lineNum">     138 </span>            :     
+<span class="lineNum">     139 </span><span class="lineCov">          8 :     ros::ServiceClient rosee_client_new_action, rosee_client_actions_available; </span>
+<span class="lineNum">     140 </span><span class="lineCov">          4 :     initClient&lt;rosee_msg::NewGenericGraspingActionSrv&gt;(rosee_client_new_action, &quot;/ros_end_effector/new_generic_grasping_action&quot;);</span>
+<span class="lineNum">     141 </span><span class="lineCov">          4 :     initClient&lt;rosee_msg::GraspingActionsAvailable&gt;(rosee_client_actions_available, &quot;/ros_end_effector/grasping_actions_available&quot;);</span>
+<span class="lineNum">     142 </span>            : 
+<span class="lineNum">     143 </span><span class="lineCov">          8 :     rosee_msg::NewGenericGraspingActionSrv newActionSrv;</span>
+<span class="lineNum">     144 </span>            :     
+<span class="lineNum">     145 </span><span class="lineCov">          8 :     std::string requestActionName = &quot;newAction_TEST&quot;;</span>
+<span class="lineNum">     146 </span><span class="lineCov">          4 :     newActionSrv.request.newAction.action_name = requestActionName;</span>
+<span class="lineNum">     147 </span><span class="lineCov">          4 :     newActionSrv.request.newAction.action_motor_position.name.push_back(&quot;joint_1&quot;);</span>
+<span class="lineNum">     148 </span><span class="lineCov">          4 :     newActionSrv.request.newAction.action_motor_position.position.push_back(1);</span>
+<span class="lineNum">     149 </span><span class="lineCov">          4 :     newActionSrv.request.newAction.elements_involved.push_back(&quot;an_element&quot;);</span>
+<span class="lineNum">     150 </span><span class="lineCov">          4 :     newActionSrv.request.emitYaml = false;</span>
+<span class="lineNum">     151 </span><span class="lineCov">          4 :     EXPECT_TRUE( rosee_client_new_action.call(newActionSrv) );</span>
+<span class="lineNum">     152 </span><span class="lineCov">          4 :     EXPECT_TRUE( newActionSrv.response.accepted );</span>
+<span class="lineNum">     153 </span><span class="lineCov">          4 :     EXPECT_FALSE( newActionSrv.response.emitted );</span>
+<span class="lineNum">     154 </span><span class="lineCov">          4 :     EXPECT_FALSE( newActionSrv.response.error_msg.size() &gt; 0 );</span>
+<span class="lineNum">     155 </span>            :     
+<span class="lineNum">     156 </span>            :     
+<span class="lineNum">     157 </span><span class="lineCov">          8 :     rosee_msg::GraspingActionsAvailable graspActionAvailable;</span>
+<span class="lineNum">     158 </span>            :     
+<span class="lineNum">     159 </span>            :     //we ask for a not existing action, and check for the error
+<span class="lineNum">     160 </span><span class="lineCov">          4 :     graspActionAvailable.request.action_name = &quot;newAction_TEST_NOT_EXISTENT&quot;;</span>
+<span class="lineNum">     161 </span><span class="lineCov">          4 :     EXPECT_TRUE(rosee_client_actions_available.call(graspActionAvailable));</span>
+<span class="lineNum">     162 </span><span class="lineCov">          4 :     EXPECT_EQ(graspActionAvailable.response.grasping_actions.size(), 0);</span>
+<span class="lineNum">     163 </span>            :     
+<span class="lineNum">     164 </span>            :     //we ask for the requestActionName, and check if fields are the same sent by us
+<span class="lineNum">     165 </span><span class="lineCov">          4 :     graspActionAvailable.request.action_name = requestActionName;</span>
+<span class="lineNum">     166 </span>            :     //Compulsory field, otherwise primitive is asked
+<span class="lineNum">     167 </span><span class="lineCov">          4 :     graspActionAvailable.request.action_type = 1;</span>
+<span class="lineNum">     168 </span><span class="lineCov">          4 :     EXPECT_TRUE(rosee_client_actions_available.call(graspActionAvailable));</span>
+<span class="lineNum">     169 </span><span class="lineCov">          4 :     EXPECT_EQ(1, graspActionAvailable.response.grasping_actions.size());</span>
+<span class="lineNum">     170 </span><span class="lineCov">          4 :     if (graspActionAvailable.response.grasping_actions.size() &gt; 0) {</span>
+<span class="lineNum">     171 </span><span class="lineCov">          8 :         auto receivedAction = graspActionAvailable.response.grasping_actions.at(0);</span>
+<span class="lineNum">     172 </span><span class="lineCov">          4 :         EXPECT_EQ(receivedAction.action_name, requestActionName);</span>
+<span class="lineNum">     173 </span><span class="lineCov">          4 :         EXPECT_EQ(receivedAction.action_motor_positions.at(0).name.size(),  newActionSrv.request.newAction.action_motor_position.name.size());</span>
+<span class="lineNum">     174 </span><span class="lineCov">          4 :         EXPECT_EQ(receivedAction.action_motor_positions.at(0).name.at(0),  newActionSrv.request.newAction.action_motor_position.name.at(0));</span>
+<span class="lineNum">     175 </span><span class="lineCov">          4 :         EXPECT_EQ(receivedAction.action_motor_positions.at(0).position.at(0),  newActionSrv.request.newAction.action_motor_position.position.at(0));</span>
+<span class="lineNum">     176 </span>            :         //motor count was not filled here but it is filled by default by action costructor
+<span class="lineNum">     177 </span><span class="lineCov">          4 :         EXPECT_EQ(1, receivedAction.action_motor_count.name.size());</span>
+<span class="lineNum">     178 </span><span class="lineCov">          4 :         EXPECT_EQ(receivedAction.action_motor_count.name.at(0), newActionSrv.request.newAction.action_motor_position.name.at(0));</span>
+<span class="lineNum">     179 </span><span class="lineCov">          4 :         EXPECT_EQ(1, receivedAction.action_motor_count.count.at(0));</span>
+<span class="lineNum">     180 </span><span class="lineCov">          4 :         EXPECT_EQ(1, receivedAction.elements_involved.size());</span>
+<span class="lineNum">     181 </span><span class="lineCov">          4 :         if (receivedAction.elements_involved.size() &gt; 0){</span>
+<span class="lineNum">     182 </span><span class="lineCov">          4 :             EXPECT_EQ(receivedAction.elements_involved.at(0), newActionSrv.request.newAction.elements_involved.at(0));</span>
+<span class="lineNum">     183 </span>            :         }
+<span class="lineNum">     184 </span>            :     }
+<span class="lineNum">     185 </span>            : 
+<span class="lineNum">     186 </span>            :     
+<span class="lineNum">     187 </span>            :      
+<span class="lineNum">     188 </span>            :      
+<span class="lineNum">     189 </span><span class="lineCov">          4 : }</span>
+<span class="lineNum">     190 </span>            : 
+<span class="lineNum">     191 </span>            : 
+<span class="lineNum">     192 </span>            : 
+<span class="lineNum">     193 </span>            : } //namespace
+<span class="lineNum">     194 </span>            : 
+<a name="195"><span class="lineNum">     195 </span>            : </a>
+<span class="lineNum">     196 </span>            : 
+<span class="lineNum">     197 </span><span class="lineCov">          4 : int main ( int argc, char **argv ) {</span>
+<span class="lineNum">     198 </span>            : 
+<span class="lineNum">     199 </span><span class="lineCov">          4 :     if (argc &lt; 2 ) {</span>
+<span class="lineNum">     200 </span>            : 
+<span class="lineNum">     201 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[TEST ERROR] Insert hand name as argument&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     202 </span><span class="lineNoCov">          0 :         return -1;</span>
+<span class="lineNum">     203 </span>            :     }
+<span class="lineNum">     204 </span>            : 
+<span class="lineNum">     205 </span>            :     /******************* Run tests on an isolated roscore ********************************************************/
+<span class="lineNum">     206 </span>            :     /* COMMENT ALL THIS block if you want to use roscore command by hand (useful for debugging the test) */
+<span class="lineNum">     207 </span>            :     //TODO I do not really understand why everything fails if I put this block at the beginning of prepareROSForTests function
+<span class="lineNum">     208 </span><span class="lineCov">          4 :     if(setenv(&quot;ROS_MASTER_URI&quot;, &quot;http://localhost:11322&quot;, 1) == -1)</span>
+<span class="lineNum">     209 </span>            :     {
+<span class="lineNum">     210 </span><span class="lineNoCov">          0 :         perror(&quot;setenv&quot;);</span>
+<span class="lineNum">     211 </span><span class="lineNoCov">          0 :         return 1;</span>
+<span class="lineNum">     212 </span>            :     }
+<span class="lineNum">     213 </span>            : 
+<span class="lineNum">     214 </span>            :     //run roscore
+<span class="lineNum">     215 </span><span class="lineCov">          8 :     std::unique_ptr&lt;ROSEE::TestUtils::Process&gt; roscore;</span>
+<span class="lineNum">     216 </span><span class="lineCov">          4 :     roscore.reset(new ROSEE::TestUtils::Process({&quot;roscore&quot;, &quot;-p&quot;, &quot;11322&quot;}));</span>
+<span class="lineNum">     217 </span>            :     /****************************************************************************************************/
+<span class="lineNum">     218 </span>            : 
+<span class="lineNum">     219 </span><span class="lineCov">          4 :     ros::init ( argc, argv, &quot;testServiceHandler&quot; );</span>
+<span class="lineNum">     220 </span>            : 
+<span class="lineNum">     221 </span><span class="lineCov">          4 :     ros::param::set(&quot;robot_name&quot;, argv[1]);</span>
+<span class="lineNum">     222 </span>            : 
+<a name="223"><span class="lineNum">     223 </span><span class="lineCov">          4 :     ::testing::InitGoogleTest ( &amp;argc, argv );</span></a>
+<span class="lineNum">     224 </span><span class="lineCov">          4 :     return RUN_ALL_TESTS();</span>
+<span class="lineNum">     225 </span><span class="lineCov">         12 : }</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - main_coverage.info - src/HAL/DummyHal.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/HAL</a> - DummyHal.cpp<span style="font-size: 80%;"> (source / <a href="DummyHal.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">main_coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">13</td>
+            <td class="headerCovTableEntry">13</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2021-10-05 16:55:17</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">6</td>
+            <td class="headerCovTableEntry">6</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : /*</a>
+<span class="lineNum">       2 </span>            :  * Copyright (C) 2019 IIT-HHCM
+<span class="lineNum">       3 </span>            :  * Author: Luca Muratore
+<span class="lineNum">       4 </span>            :  * email:  luca.muratore@iit.it
+<span class="lineNum">       5 </span>            :  *
+<span class="lineNum">       6 </span>            :  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+<span class="lineNum">       7 </span>            :  * you may not use this file except in compliance with the License.
+<span class="lineNum">       8 </span>            :  * You may obtain a copy of the License at
+<span class="lineNum">       9 </span>            :  * http://www.apache.org/licenses/LICENSE-2.0
+<span class="lineNum">      10 </span>            :  *
+<span class="lineNum">      11 </span>            :  * Unless required by applicable law or agreed to in writing, software
+<span class="lineNum">      12 </span>            :  * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+<span class="lineNum">      13 </span>            :  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<span class="lineNum">      14 </span>            :  * See the License for the specific language governing permissions and
+<span class="lineNum">      15 </span>            :  * limitations under the License.
+<span class="lineNum">      16 </span>            : */
+<span class="lineNum">      17 </span>            : 
+<a name="18"><span class="lineNum">      18 </span>            : #include &lt;ros_end_effector/HAL/DummyHal.h&gt;</a>
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span><span class="lineCov">         41 : ROSEE::DummyHal::DummyHal ( ros::NodeHandle *nh) : EEHal ( nh ) {</span>
+<span class="lineNum">      21 </span>            :     
+<span class="lineNum">      22 </span><span class="lineCov">         82 :     std::string out;</span>
+<span class="lineNum">      23 </span>            :     
+<span class="lineNum">      24 </span><span class="lineCov">         41 :     _hal_joint_state_pub = nh-&gt;advertise&lt;sensor_msgs::JointState&gt;(&quot;/dummyHal/joint_command&quot;, 1);</span>
+<span class="lineNum">      25 </span><span class="lineCov">         41 :     _hal_joint_state_sub = nh-&gt;subscribe(&quot;/dummyHal/joint_states&quot;, 1, &amp;ROSEE::DummyHal::hal_js_clbk, this);</span>
+<span class="lineNum">      26 </span><span class="lineCov">         41 : }</span>
+<a name="27"><span class="lineNum">      27 </span>            : </a>
+<span class="lineNum">      28 </span>            : 
+<span class="lineNum">      29 </span><span class="lineCov">      22393 : bool ROSEE::DummyHal::sense() {</span>
+<span class="lineNum">      30 </span>            :     //do nothing, it is the hal_js_clbk who &quot;sense&quot;
+<span class="lineNum">      31 </span><span class="lineCov">      22393 :     return true;</span>
+<a name="32"><span class="lineNum">      32 </span>            : }</a>
+<span class="lineNum">      33 </span>            : 
+<span class="lineNum">      34 </span><span class="lineCov">      20981 : bool ROSEE::DummyHal::move() {</span>
+<span class="lineNum">      35 </span><span class="lineCov">      20981 :     _hal_joint_state_pub.publish(_mr_msg);</span>
+<span class="lineNum">      36 </span><span class="lineCov">      20981 :     return true;</span>
+<a name="37"><span class="lineNum">      37 </span>            : }</a>
+<span class="lineNum">      38 </span>            : 
+<span class="lineNum">      39 </span><span class="lineCov">      19648 : void ROSEE::DummyHal::hal_js_clbk(const sensor_msgs::JointState::ConstPtr&amp; msg) {</span>
+<a name="40"><span class="lineNum">      40 </span>            :     </a>
+<span class="lineNum">      41 </span><span class="lineCov">      19648 :     _js_msg = *msg;</span>
+<span class="lineNum">      42 </span><span class="lineCov">      19771 : }</span>
+<span class="lineNum">      43 </span>            : 
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
