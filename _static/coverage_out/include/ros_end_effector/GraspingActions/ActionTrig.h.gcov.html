@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - main_coverage.info - include/ros_end_effector/GraspingActions/ActionTrig.h</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">include/ros_end_effector/GraspingActions</a> - ActionTrig.h<span style="font-size: 80%;"> (source / <a href="ActionTrig.h.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">main_coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2021-10-05 16:55:17</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryMed">75.0 %</td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : /*</a>
+<span class="lineNum">       2 </span>            :  * Copyright (C) 2020 IIT-HHCM
+<span class="lineNum">       3 </span>            :  * Author: Davide Torielli
+<span class="lineNum">       4 </span>            :  * email:  davide.torielli@iit.it
+<span class="lineNum">       5 </span>            :  *
+<span class="lineNum">       6 </span>            :  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+<span class="lineNum">       7 </span>            :  * you may not use this file except in compliance with the License.
+<span class="lineNum">       8 </span>            :  * You may obtain a copy of the License at
+<span class="lineNum">       9 </span>            :  *
+<span class="lineNum">      10 </span>            :  *     http://www.apache.org/licenses/LICENSE-2.0
+<span class="lineNum">      11 </span>            :  *
+<span class="lineNum">      12 </span>            :  * Unless required by applicable law or agreed to in writing, software
+<span class="lineNum">      13 </span>            :  * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+<span class="lineNum">      14 </span>            :  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<span class="lineNum">      15 </span>            :  * See the License for the specific language governing permissions and
+<span class="lineNum">      16 </span>            :  * limitations under the License.
+<span class="lineNum">      17 </span>            :  */
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : #ifndef __ROSEE_ACTIONTRIG_H
+<span class="lineNum">      20 </span>            : #define __ROSEE_ACTIONTRIG_H
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span>            : #include &lt;ros_end_effector/GraspingActions/ActionPrimitive.h&gt;
+<span class="lineNum">      23 </span>            : #include &lt;yaml-cpp/yaml.h&gt;
+<span class="lineNum">      24 </span>            : #include &lt;iostream&gt;
+<span class="lineNum">      25 </span>            : 
+<span class="lineNum">      26 </span>            : namespace ROSEE {
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span>            : /**
+<span class="lineNum">      29 </span>            :  * @brief The action of moving some joints (see later) of a single finger in a full clousure position 
+<span class="lineNum">      30 </span>            :  * towards the palm. 
+<span class="lineNum">      31 </span>            :  * The action is unique (joints involved in a certain position: the bound) so \ref maxStoredActionStates == 1 always
+<span class="lineNum">      32 </span>            :  * Described by:
+<span class="lineNum">      33 </span>            :  *  - a tip (that is inside \ref fingersInvolved ): the tip of the finger that is involved in the action. So \ref nFingersInvolved == 1
+<span class="lineNum">      34 </span>            :  *  - JointStates position: which set the joints of the finger to a bound to make the finger closes, 
+<span class="lineNum">      35 </span>            :  *    and all the other non-involved joints to zero
+<span class="lineNum">      36 </span>            :  *  - Optional info \ref type (even if is a member of the base class, here is particular). The Trig, TipFlex
+<span class="lineNum">      37 </span>            :  *    and FingFlex have indentical structure, so ther is no necessity to create different classes, but necessity of only
+<span class="lineNum">      38 </span>            :  *    discriminate the objects using the \ref Type.
+<span class="lineNum">      39 </span>            :  * 
+<span class="lineNum">      40 </span>            :  * Actually, there are 3 types of action for this class
+<span class="lineNum">      41 </span>            :  *  - Trig: The action of fully closing a finger towards the parlm 
+<span class="lineNum">      42 </span>            :  *      (i.e. all joints of a finger set to respective bounds)
+<span class="lineNum">      43 </span>            :  *  - TipFlex: The action of fully closing the last part of finger, maintaining the proximal phalanges still
+<span class="lineNum">      44 </span>            :  *      (i.e. the last actuated joint of a finger set to its bound)
+<span class="lineNum">      45 </span>            :  *  - FingFlex: The action of fully closing the first part of a finger, maintaing the distal phalanges still, 
+<span class="lineNum">      46 </span>            :  *      like moving a human finger maintaining it right
+<span class="lineNum">      47 </span>            :  *      (i.e. the first actuated joint of a finger set to its bound)
+<span class="lineNum">      48 </span>            :  * For each tip:
+<span class="lineNum">      49 </span>            :  *   note that having a Trig does not mean that we have also the tip and the fing flex, because for them at least
+<span class="lineNum">      50 </span>            :  *   2 actuated joint (not continuos) in the finger must exist.
+<span class="lineNum">      51 </span>            :  *   If exist a TipFlex, also a FingFlex exist, and viceversa. If they exist, also a trig exist
+<span class="lineNum">      52 </span>            :  *   The &quot;sum&quot; of TipFlex and &quot;FingFlex&quot; is equal to the Trig only if the number of actuated not continuos joint
+<span class="lineNum">      53 </span>            :  *   in the finger is 2
+<span class="lineNum">      54 </span>            :  * 
+<span class="lineNum">      55 </span>            :  * @todo instead of tip , use the finger name for the Trig (i.e. the defined srdf group).
+<span class="lineNum">      56 </span>            :  * 
+<span class="lineNum">      57 </span>            :  * @note We have to understand the direction of joints to make the finger full close. Because full close position
+<span class="lineNum">      58 </span>            :  * can be linked to both lower or upper bound of each joint involved. 
+<span class="lineNum">      59 </span>            :  * The method to solve this is to go in the max range of the joint, because usually a finger has more motion
+<span class="lineNum">      60 </span>            :  * towards the palm respect the opposite (like humans). We consider the default joint pos to 0.
+<span class="lineNum">      61 </span>            :  * @warning so, take care of joint limits: they must include the 0. Has it sense to have joint limits both
+<a name="62"><span class="lineNum">      62 </span>            :  * positive or both negative (not including the 0) ?</a>
+<span class="lineNum">      63 </span>            :  */
+<span class="lineNum">      64 </span><span class="lineCov">       3365 : class ActionTrig : public ActionPrimitive </span>
+<span class="lineNum">      65 </span>            : {
+<span class="lineNum">      66 </span>            : 
+<span class="lineNum">      67 </span>            : public:
+<span class="lineNum">      68 </span>            :     
+<span class="lineNum">      69 </span>            :     typedef std::map &lt; std::string, ActionTrig &gt; Map;
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span>            :     ActionTrig (std::string actionName, ActionPrimitive::Type);
+<span class="lineNum">      72 </span>            :     ActionTrig (std::string actionName, ActionPrimitive::Type, std::string tip, JointPos);
+<span class="lineNum">      73 </span>            :     
+<span class="lineNum">      74 </span>            :     /** 
+<span class="lineNum">      75 </span>            :      * @brief Overriden get from the pure virtual function of the base class \ref ActionPrimitive 
+<span class="lineNum">      76 </span>            :      * The signature must be equal, even if here we have set and vector of only one element. For this class
+<span class="lineNum">      77 </span>            :      * this function simply return a vector which contain a single element. 
+<span class="lineNum">      78 </span>            :      */
+<span class="lineNum">      79 </span>            :     std::vector &lt; JointPos &gt; getAllJointPos() const override;
+<span class="lineNum">      80 </span>            :     
+<span class="lineNum">      81 </span>            :     /**
+<span class="lineNum">      82 </span>            :      * @brief Necessary method to know the key used by the maps which store all the Actions of one type. Used by \ref YamlWorker
+<span class="lineNum">      83 </span>            :      * @return for this class, it return the finger name, inserted in a single-element set because father signature say so
+<span class="lineNum">      84 </span>            :      */
+<span class="lineNum">      85 </span>            :     std::set &lt; std::string&gt; getKeyElements () const override;
+<span class="lineNum">      86 </span>            : 
+<span class="lineNum">      87 </span>            :     
+<span class="lineNum">      88 </span>            :     /** 
+<span class="lineNum">      89 </span>            :      * @brief Overriden get from the pure virtual function of the base class \ref Action 
+<span class="lineNum">      90 </span>            :      */
+<span class="lineNum">      91 </span>            :     JointPos getJointPos () const override;
+<span class="lineNum">      92 </span>            :     void setJointPos (JointPos);
+<span class="lineNum">      93 </span>            : 
+<span class="lineNum">      94 </span>            :     /** 
+<span class="lineNum">      95 </span>            :      * @brief Specific method of trig to simply return a string instead of the full vector \ref fingersInvolved that in this case 
+<span class="lineNum">      96 </span>            :      * contains only one element
+<span class="lineNum">      97 </span>            :      */
+<span class="lineNum">      98 </span>            :     std::string getFingerInvolved () const;
+<span class="lineNum">      99 </span>            :     void setFingerInvolved ( std::string );
+<span class="lineNum">     100 </span>            : 
+<span class="lineNum">     101 </span>            :     // we are ok with the default functions of the base class ActionPrimitive
+<span class="lineNum">     102 </span>            :     //void printAction () const override;
+<span class="lineNum">     103 </span>            :     //void emitYaml ( YAML::Emitter&amp;) override;
+<span class="lineNum">     104 </span>            :     bool fillFromYaml( YAML::const_iterator yamlIt ) override;
+<span class="lineNum">     105 </span>            :     
+<span class="lineNum">     106 </span>            : private:
+<span class="lineNum">     107 </span>            :     JointPos jointPos;
+<span class="lineNum">     108 </span>            : };
+<span class="lineNum">     109 </span>            : 
+<span class="lineNum">     110 </span>            : }
+<span class="lineNum">     111 </span>            : 
+<span class="lineNum">     112 </span>            : #endif // __ROSEE_ACTIONTRIG_H
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2020-08-05 12:21:01</td>
+            <td class="headerValue">2021-10-05 16:55:17</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">5</td>
@@ -101,52 +101,52 @@
 <span class="lineNum">      39 </span>            : 
 <a name="40"><span class="lineNum">      40 </span>            : };</a>
 <span class="lineNum">      41 </span>            : 
-<span class="lineNum">      42 </span><span class="lineCov">         77 : Process::Process(std::vector&lt;std::string&gt;  args):</span>
-<span class="lineNum">      43 </span><span class="lineCov">         77 :     _name(args[0])</span>
+<span class="lineNum">      42 </span><span class="lineCov">         69 : Process::Process(std::vector&lt;std::string&gt;  args):</span>
+<span class="lineNum">      43 </span><span class="lineCov">         69 :     _name(args[0])</span>
 <span class="lineNum">      44 </span>            : {
-<span class="lineNum">      45 </span><span class="lineCov">        154 :     std::vector&lt;const char *&gt; args_cstr;</span>
-<span class="lineNum">      46 </span><span class="lineCov">         77 :     for(auto&amp; a : args) args_cstr.push_back(a.c_str());</span>
-<span class="lineNum">      47 </span><span class="lineCov">         77 :     args_cstr.push_back(nullptr);</span>
+<span class="lineNum">      45 </span><span class="lineCov">        138 :     std::vector&lt;const char *&gt; args_cstr;</span>
+<span class="lineNum">      46 </span><span class="lineCov">         69 :     for(auto&amp; a : args) args_cstr.push_back(a.c_str());</span>
+<span class="lineNum">      47 </span><span class="lineCov">         69 :     args_cstr.push_back(nullptr);</span>
 <span class="lineNum">      48 </span>            : 
-<span class="lineNum">      49 </span><span class="lineCov">         77 :     char ** argv = (char**)args_cstr.data();</span>
+<span class="lineNum">      49 </span><span class="lineCov">         69 :     char ** argv = (char**)args_cstr.data();</span>
 <span class="lineNum">      50 </span>            : 
-<span class="lineNum">      51 </span><span class="lineCov">         77 :     _pid = ::fork();</span>
+<span class="lineNum">      51 </span><span class="lineCov">         69 :     _pid = ::fork();</span>
 <span class="lineNum">      52 </span>            : 
-<span class="lineNum">      53 </span><span class="lineCov">         77 :     if(_pid == -1)</span>
+<span class="lineNum">      53 </span><span class="lineCov">         69 :     if(_pid == -1)</span>
 <span class="lineNum">      54 </span>            :     {
 <span class="lineNum">      55 </span><span class="lineNoCov">          0 :         perror(&quot;fork&quot;);</span>
 <span class="lineNum">      56 </span><span class="lineNoCov">          0 :         throw std::runtime_error(&quot;Unable to fork()&quot;);</span>
 <span class="lineNum">      57 </span>            :     }
 <span class="lineNum">      58 </span>            : 
-<span class="lineNum">      59 </span><span class="lineCov">         77 :     if(_pid == 0)</span>
+<span class="lineNum">      59 </span><span class="lineCov">         69 :     if(_pid == 0)</span>
 <span class="lineNum">      60 </span>            :     {
 <span class="lineNum">      61 </span><span class="lineNoCov">          0 :         ::execvp(argv[0], argv);</span>
 <span class="lineNum">      62 </span><span class="lineNoCov">          0 :         perror(&quot;execvp&quot;);</span>
 <span class="lineNum">      63 </span><span class="lineNoCov">          0 :         throw std::runtime_error(&quot;Unknown command&quot;);</span>
 <span class="lineNum">      64 </span>            :     }
 <span class="lineNum">      65 </span>            : 
-<a name="66"><span class="lineNum">      66 </span><span class="lineCov">         77 : }</span></a>
+<a name="66"><span class="lineNum">      66 </span><span class="lineCov">         69 : }</span></a>
 <span class="lineNum">      67 </span>            : 
-<span class="lineNum">      68 </span><span class="lineCov">         77 : int Process::wait()</span>
+<span class="lineNum">      68 </span><span class="lineCov">         69 : int Process::wait()</span>
 <span class="lineNum">      69 </span>            : {
 <span class="lineNum">      70 </span>            :     int status;
-<span class="lineNum">      71 </span><span class="lineCov">         77 :     while(::waitpid(_pid, &amp;status, 0) != _pid);</span>
-<span class="lineNum">      72 </span><span class="lineCov">         77 :     printf(&quot;Child process '%s' exited with status %d\n&quot;, _name.c_str(), status);</span>
-<span class="lineNum">      73 </span><span class="lineCov">         77 :     return status;</span>
+<span class="lineNum">      71 </span><span class="lineCov">         69 :     while(::waitpid(_pid, &amp;status, 0) != _pid);</span>
+<span class="lineNum">      72 </span><span class="lineCov">         69 :     printf(&quot;Child process '%s' exited with status %d\n&quot;, _name.c_str(), status);</span>
+<span class="lineNum">      73 </span><span class="lineCov">         69 :     return status;</span>
 <span class="lineNum">      74 </span>            : 
 <a name="75"><span class="lineNum">      75 </span>            : }</a>
 <span class="lineNum">      76 </span>            : 
-<span class="lineNum">      77 </span><span class="lineCov">         77 : void Process::kill(int signal)</span>
+<span class="lineNum">      77 </span><span class="lineCov">         69 : void Process::kill(int signal)</span>
 <span class="lineNum">      78 </span>            : {
-<span class="lineNum">      79 </span><span class="lineCov">         77 :     ::kill(_pid, signal);</span>
-<span class="lineNum">      80 </span><span class="lineCov">         77 :     printf(&quot;Killed process '%s' with signal %d\n&quot;, _name.c_str(), signal);</span>
-<a name="81"><span class="lineNum">      81 </span><span class="lineCov">         77 : }</span></a>
+<span class="lineNum">      79 </span><span class="lineCov">         69 :     ::kill(_pid, signal);</span>
+<span class="lineNum">      80 </span><span class="lineCov">         69 :     printf(&quot;Killed process '%s' with signal %d\n&quot;, _name.c_str(), signal);</span>
+<a name="81"><span class="lineNum">      81 </span><span class="lineCov">         69 : }</span></a>
 <span class="lineNum">      82 </span>            : 
-<span class="lineNum">      83 </span><span class="lineCov">        154 : Process::~Process()</span>
+<span class="lineNum">      83 </span><span class="lineCov">        138 : Process::~Process()</span>
 <span class="lineNum">      84 </span>            : {
-<span class="lineNum">      85 </span><span class="lineCov">         77 :     kill(SIGINT);</span>
-<span class="lineNum">      86 </span><span class="lineCov">         77 :     wait();</span>
-<span class="lineNum">      87 </span><span class="lineCov">         77 : }</span>
+<span class="lineNum">      85 </span><span class="lineCov">         69 :     kill(SIGINT);</span>
+<span class="lineNum">      86 </span><span class="lineCov">         69 :     wait();</span>
+<span class="lineNum">      87 </span><span class="lineCov">         69 : }</span>
 <span class="lineNum">      88 </span>            : 
 <span class="lineNum">      89 </span>            : /**
 <span class="lineNum">      90 </span>            :  * @brief Function to be called in the main of each test, it runs roscore and fill
@@ -154,11 +154,11 @@
 <span class="lineNum">      92 </span>            :  * 
 <a name="93"><span class="lineNum">      93 </span>            :  * @return a not 0 if some error happens</a>
 <span class="lineNum">      94 </span>            :  */
-<span class="lineNum">      95 </span><span class="lineCov">         44 : int prepareROSForTests ( int argc, char **argv, std::string testName ) {</span>
+<span class="lineNum">      95 </span><span class="lineCov">         24 : int prepareROSForTests ( int argc, char **argv, std::string testName ) {</span>
 <span class="lineNum">      96 </span>            :     
 <span class="lineNum">      97 </span>            : 
 <span class="lineNum">      98 </span>            :     
-<span class="lineNum">      99 </span><span class="lineCov">         44 :     ros::init ( argc, argv, testName );</span>
+<span class="lineNum">      99 </span><span class="lineCov">         24 :     ros::init ( argc, argv, testName );</span>
 <span class="lineNum">     100 </span>            :         
 <span class="lineNum">     101 </span>            :     /////////////////////////// I cant manage to make this working, to wait the roscore
 <span class="lineNum">     102 </span>            :     //ros::Time::init();
@@ -170,21 +170,21 @@
 <span class="lineNum">     108 </span>            :     ////////////////////////////////////////////////////////////////////////////////
 <span class="lineNum">     109 </span>            :     
 <span class="lineNum">     110 </span>            :     //fill ros param with file models, needed by moveit parserMoveIt
-<span class="lineNum">     111 </span><span class="lineCov">         88 :     std::string modelPathURDF = ROSEE::Utils::getPackagePath() + &quot;configs/urdf/&quot; + argv[1];</span>
-<span class="lineNum">     112 </span><span class="lineCov">         88 :     std::string modelPathSRDF = ROSEE::Utils::getPackagePath() + &quot;configs/srdf/&quot; + argv[1];</span>
+<span class="lineNum">     111 </span><span class="lineCov">         48 :     std::string modelPathURDF = ROSEE::Utils::getPackagePath() + &quot;configs/urdf/&quot; + argv[1];</span>
+<span class="lineNum">     112 </span><span class="lineCov">         48 :     std::string modelPathSRDF = ROSEE::Utils::getPackagePath() + &quot;configs/srdf/&quot; + argv[1];</span>
 <span class="lineNum">     113 </span>            : 
 <span class="lineNum">     114 </span>            :     //Is there a better way to parse?
-<span class="lineNum">     115 </span><span class="lineCov">         88 :     std::ifstream urdf(modelPathURDF + &quot;.urdf&quot;);</span>
-<span class="lineNum">     116 </span><span class="lineCov">         88 :     std::ifstream srdf(modelPathSRDF + &quot;.srdf&quot;);</span>
-<span class="lineNum">     117 </span><span class="lineCov">         88 :     std::stringstream sUrdf, sSrdf;</span>
-<span class="lineNum">     118 </span><span class="lineCov">         44 :     sUrdf &lt;&lt; urdf.rdbuf();</span>
-<span class="lineNum">     119 </span><span class="lineCov">         44 :     sSrdf &lt;&lt; srdf.rdbuf();</span>
+<span class="lineNum">     115 </span><span class="lineCov">         48 :     std::ifstream urdf(modelPathURDF + &quot;.urdf&quot;);</span>
+<span class="lineNum">     116 </span><span class="lineCov">         48 :     std::ifstream srdf(modelPathSRDF + &quot;.srdf&quot;);</span>
+<span class="lineNum">     117 </span><span class="lineCov">         48 :     std::stringstream sUrdf, sSrdf;</span>
+<span class="lineNum">     118 </span><span class="lineCov">         24 :     sUrdf &lt;&lt; urdf.rdbuf();</span>
+<span class="lineNum">     119 </span><span class="lineCov">         24 :     sSrdf &lt;&lt; srdf.rdbuf();</span>
 <span class="lineNum">     120 </span>            : 
-<span class="lineNum">     121 </span><span class="lineCov">         44 :     ros::param::set(&quot;robot_description&quot; , sUrdf.str());</span>
-<span class="lineNum">     122 </span><span class="lineCov">         44 :     ros::param::set(&quot;robot_description_semantic&quot; , sSrdf.str());</span>
-<span class="lineNum">     123 </span><span class="lineCov">         44 :     ros::param::set(&quot;robot_name&quot;, argv[1]);</span>
+<span class="lineNum">     121 </span><span class="lineCov">         24 :     ros::param::set(&quot;robot_description&quot; , sUrdf.str());</span>
+<span class="lineNum">     122 </span><span class="lineCov">         24 :     ros::param::set(&quot;robot_description_semantic&quot; , sSrdf.str());</span>
+<span class="lineNum">     123 </span><span class="lineCov">         24 :     ros::param::set(&quot;robot_name&quot;, argv[1]);</span>
 <span class="lineNum">     124 </span>            :     
-<span class="lineNum">     125 </span><span class="lineCov">         88 :     return 0;</span>
+<span class="lineNum">     125 </span><span class="lineCov">         48 :     return 0;</span>
 <span class="lineNum">     126 </span>            : }
 <span class="lineNum">     127 </span>            : 
 <span class="lineNum">     128 </span>            : 
@@ -201,7 +201,7 @@
 
   <table width="100%" border=0 cellspacing=0 cellpadding=0>
     <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
-    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
   </table>
   <br>
 

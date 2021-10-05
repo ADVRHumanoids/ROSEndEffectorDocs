@@ -31,13 +31,13 @@
             <td class="headerValue">main_coverage.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">152</td>
-            <td class="headerCovTableEntry">165</td>
-            <td class="headerCovTableEntryHi">92.1 %</td>
+            <td class="headerCovTableEntry">158</td>
+            <td class="headerCovTableEntry">168</td>
+            <td class="headerCovTableEntryHi">94.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2020-08-05 12:21:01</td>
+            <td class="headerValue">2021-10-05 16:55:17</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">35</td>
@@ -67,8 +67,8 @@
 <span class="lineNum">       5 </span>            : 
 <span class="lineNum">       6 </span>            : #include &lt;ros_end_effector/FindActions.h&gt;
 <span class="lineNum">       7 </span>            : #include &lt;ros_end_effector/ParserMoveIt.h&gt;
-<span class="lineNum">       8 </span>            : #include &lt;ros_end_effector/ActionPrimitive.h&gt;
-<span class="lineNum">       9 </span>            : #include &lt;ros_end_effector/ActionTrig.h&gt;
+<span class="lineNum">       8 </span>            : #include &lt;ros_end_effector/GraspingActions/ActionPrimitive.h&gt;
+<span class="lineNum">       9 </span>            : #include &lt;ros_end_effector/GraspingActions/ActionTrig.h&gt;
 <span class="lineNum">      10 </span>            : 
 <span class="lineNum">      11 </span>            : 
 <span class="lineNum">      12 </span>            : namespace {
@@ -78,139 +78,139 @@
 <span class="lineNum">      16 </span>            : 
 <a name="17"><span class="lineNum">      17 </span>            : protected:</a>
 <span class="lineNum">      18 </span>            : 
-<span class="lineNum">      19 </span><span class="lineCov">         56 :     testFindTrigs() {</span>
-<a name="20"><span class="lineNum">      20 </span><span class="lineCov">         56 :     }</span></a>
+<span class="lineNum">      19 </span><span class="lineCov">         28 :     testFindTrigs() {</span>
+<a name="20"><span class="lineNum">      20 </span><span class="lineCov">         28 :     }</span></a>
 <span class="lineNum">      21 </span>            : 
-<span class="lineNum">      22 </span><span class="lineCov">         56 :     virtual ~testFindTrigs() {</span>
-<a name="23"><span class="lineNum">      23 </span><span class="lineCov">         56 :     }</span></a>
+<span class="lineNum">      22 </span><span class="lineCov">         28 :     virtual ~testFindTrigs() {</span>
+<a name="23"><span class="lineNum">      23 </span><span class="lineCov">         28 :     }</span></a>
 <span class="lineNum">      24 </span>            : 
-<span class="lineNum">      25 </span><span class="lineCov">         56 :     virtual void SetUp() override {</span>
+<span class="lineNum">      25 </span><span class="lineCov">         28 :     virtual void SetUp() override {</span>
 <span class="lineNum">      26 </span>            : 
 <span class="lineNum">      27 </span>            :     
-<span class="lineNum">      28 </span><span class="lineCov">        112 :         std::shared_ptr &lt;ROSEE::ParserMoveIt&gt; parserMoveIt = std::make_shared &lt;ROSEE::ParserMoveIt&gt; ();</span>
+<span class="lineNum">      28 </span><span class="lineCov">         56 :         std::shared_ptr &lt;ROSEE::ParserMoveIt&gt; parserMoveIt = std::make_shared &lt;ROSEE::ParserMoveIt&gt; ();</span>
 <span class="lineNum">      29 </span>            :         //if return false, models are not found and it is useless to continue the test
-<span class="lineNum">      30 </span><span class="lineCov">         56 :         ASSERT_TRUE(parserMoveIt-&gt;init (&quot;robot_description&quot;, false)) ;</span>
-<span class="lineNum">      31 </span><span class="lineCov">        112 :         ROSEE::FindActions actionsFinder (parserMoveIt);</span>
+<span class="lineNum">      30 </span><span class="lineCov">         28 :         ASSERT_TRUE(parserMoveIt-&gt;init (&quot;robot_description&quot;, false)) ;</span>
+<span class="lineNum">      31 </span><span class="lineCov">         56 :         ROSEE::FindActions actionsFinder (parserMoveIt);</span>
 <span class="lineNum">      32 </span>            :         
-<span class="lineNum">      33 </span><span class="lineCov">        112 :         std::string folderForActions = ROSEE::Utils::getPackagePath() + &quot;/configs/actions/tests/&quot; + parserMoveIt-&gt;getHandName();</span>
+<span class="lineNum">      33 </span><span class="lineCov">         56 :         std::string folderForActions = ROSEE::Utils::getPackagePath() + &quot;/configs/actions/tests/&quot; + parserMoveIt-&gt;getHandName();</span>
 <span class="lineNum">      34 </span>            : 
-<span class="lineNum">      35 </span><span class="lineCov">         56 :         ROSEE::YamlWorker yamlWorker;</span>
+<span class="lineNum">      35 </span><span class="lineCov">         28 :         ROSEE::YamlWorker yamlWorker;</span>
 <span class="lineNum">      36 </span>            :         
-<span class="lineNum">      37 </span><span class="lineCov">        112 :         auto trig = actionsFinder.findTrig(ROSEE::ActionPrimitive::Type::Trig, folderForActions + &quot;/primitives/&quot;);</span>
-<span class="lineNum">      38 </span><span class="lineCov">         56 :         if (trig.size() &gt; 0) {</span>
+<span class="lineNum">      37 </span><span class="lineCov">         56 :         auto trig = actionsFinder.findTrig(ROSEE::ActionPrimitive::Type::Trig, folderForActions + &quot;/primitives/&quot;);</span>
+<span class="lineNum">      38 </span><span class="lineCov">         28 :         if (trig.size() &gt; 0) {</span>
 <span class="lineNum">      39 </span>            : 
-<span class="lineNum">      40 </span><span class="lineCov">         42 :             trigMap.push_back( trig );</span>
-<span class="lineNum">      41 </span><span class="lineCov">         42 :             trigParsedMap.push_back( yamlWorker.parseYamlPrimitive ( folderForActions + &quot;/primitives/&quot; + &quot;trig.yaml&quot; ) );</span>
+<span class="lineNum">      40 </span><span class="lineCov">         21 :             trigMap.push_back( trig );</span>
+<span class="lineNum">      41 </span><span class="lineCov">         21 :             trigParsedMap.push_back( yamlWorker.parseYamlPrimitive ( folderForActions + &quot;/primitives/&quot; + &quot;trig.yaml&quot; ) );</span>
 <span class="lineNum">      42 </span>            :         }
 <span class="lineNum">      43 </span>            :         
-<span class="lineNum">      44 </span><span class="lineCov">        112 :         auto tipFlex = actionsFinder.findTrig(ROSEE::ActionPrimitive::Type::TipFlex, folderForActions + &quot;/primitives/&quot;);</span>
-<span class="lineNum">      45 </span><span class="lineCov">         56 :         if (tipFlex.size() &gt; 0) {</span>
+<span class="lineNum">      44 </span><span class="lineCov">         56 :         auto tipFlex = actionsFinder.findTrig(ROSEE::ActionPrimitive::Type::TipFlex, folderForActions + &quot;/primitives/&quot;);</span>
+<span class="lineNum">      45 </span><span class="lineCov">         28 :         if (tipFlex.size() &gt; 0) {</span>
 <span class="lineNum">      46 </span>            : 
-<span class="lineNum">      47 </span><span class="lineCov">         42 :             trigMap.push_back( tipFlex );</span>
-<span class="lineNum">      48 </span><span class="lineCov">         42 :             trigParsedMap.push_back( yamlWorker.parseYamlPrimitive ( folderForActions + &quot;/primitives/&quot; + &quot;tipFlex.yaml&quot; ) );</span>
+<span class="lineNum">      47 </span><span class="lineCov">         21 :             trigMap.push_back( tipFlex );</span>
+<span class="lineNum">      48 </span><span class="lineCov">         21 :             trigParsedMap.push_back( yamlWorker.parseYamlPrimitive ( folderForActions + &quot;/primitives/&quot; + &quot;tipFlex.yaml&quot; ) );</span>
 <span class="lineNum">      49 </span>            :         }
 <span class="lineNum">      50 </span>            :         
-<span class="lineNum">      51 </span><span class="lineCov">        112 :         auto fingFlex = actionsFinder.findTrig(ROSEE::ActionPrimitive::Type::FingFlex, folderForActions + &quot;/primitives/&quot;);</span>
-<span class="lineNum">      52 </span><span class="lineCov">         56 :         if (fingFlex.size() &gt; 0) {</span>
+<span class="lineNum">      51 </span><span class="lineCov">         56 :         auto fingFlex = actionsFinder.findTrig(ROSEE::ActionPrimitive::Type::FingFlex, folderForActions + &quot;/primitives/&quot;);</span>
+<span class="lineNum">      52 </span><span class="lineCov">         28 :         if (fingFlex.size() &gt; 0) {</span>
 <span class="lineNum">      53 </span>            :             
-<span class="lineNum">      54 </span><span class="lineCov">         42 :             trigMap.push_back( fingFlex );</span>
-<span class="lineNum">      55 </span><span class="lineCov">         42 :             trigParsedMap.push_back( yamlWorker.parseYamlPrimitive ( folderForActions + &quot;/primitives/&quot; + &quot;fingFlex.yaml&quot; ) );</span>
+<span class="lineNum">      54 </span><span class="lineCov">         21 :             trigMap.push_back( fingFlex );</span>
+<span class="lineNum">      55 </span><span class="lineCov">         21 :             trigParsedMap.push_back( yamlWorker.parseYamlPrimitive ( folderForActions + &quot;/primitives/&quot; + &quot;fingFlex.yaml&quot; ) );</span>
 <span class="lineNum">      56 </span>            : 
 <span class="lineNum">      57 </span>            :         }
 <a name="58"><span class="lineNum">      58 </span>            :     }</a>
 <span class="lineNum">      59 </span>            : 
-<span class="lineNum">      60 </span><span class="lineCov">         56 :     virtual void TearDown() override {</span>
-<span class="lineNum">      61 </span><span class="lineCov">         56 :     }</span>
+<span class="lineNum">      60 </span><span class="lineCov">         28 :     virtual void TearDown() override {</span>
+<span class="lineNum">      61 </span><span class="lineCov">         28 :     }</span>
 <span class="lineNum">      62 </span>            : 
 <span class="lineNum">      63 </span>            :     std::vector &lt; std::map &lt; std::string , ROSEE::ActionTrig &gt;  &gt; trigMap;
 <span class="lineNum">      64 </span>            :     std::vector &lt; std::map &lt; std::set &lt; std::string &gt;, std::shared_ptr&lt;ROSEE::ActionPrimitive&gt; &gt;  &gt; trigParsedMap;
 <span class="lineNum">      65 </span>            : };
 <a name="66"><span class="lineNum">      66 </span>            : </a>
 <span class="lineNum">      67 </span>            : 
-<span class="lineNum">      68 </span><span class="lineCov">         40 : TEST_F ( testFindTrigs, checkNumberLinks ) {</span>
+<span class="lineNum">      68 </span><span class="lineCov">         20 : TEST_F ( testFindTrigs, checkNumberLinks ) {</span>
 <span class="lineNum">      69 </span>            :     
-<span class="lineNum">      70 </span><span class="lineCov">         26 :     for (int k = 0; k&lt; trigMap.size(); ++k) {</span>
-<span class="lineNum">      71 </span><span class="lineCov">         66 :         for (auto &amp;mapEl: trigMap.at(k) ) {</span>
+<span class="lineNum">      70 </span><span class="lineCov">         13 :     for (int k = 0; k&lt; trigMap.size(); ++k) {</span>
+<span class="lineNum">      71 </span><span class="lineCov">         33 :         for (auto &amp;mapEl: trigMap.at(k) ) {</span>
 <span class="lineNum">      72 </span>            :             
 <span class="lineNum">      73 </span>            :             //the .first has always dimension 1
-<span class="lineNum">      74 </span><span class="lineCov">         48 :             EXPECT_EQ (1, mapEl.second.getFingersInvolved().size() ); //the names inside the action</span>
-<span class="lineNum">      75 </span><span class="lineCov">         48 :             EXPECT_EQ (1, mapEl.second.getnFingersInvolved() ); //the int nLinkInvolved member of action</span>
+<span class="lineNum">      74 </span><span class="lineCov">         24 :             EXPECT_EQ (1, mapEl.second.getFingersInvolved().size() ); //the names inside the action</span>
+<span class="lineNum">      75 </span><span class="lineCov">         24 :             EXPECT_EQ (1, mapEl.second.getnFingersInvolved() ); //the int nLinkInvolved member of action</span>
 <span class="lineNum">      76 </span>            :         }
 <span class="lineNum">      77 </span>            : 
-<span class="lineNum">      78 </span><span class="lineCov">         66 :         for (auto &amp;mapEl: trigParsedMap.at(k) ) {</span>
+<span class="lineNum">      78 </span><span class="lineCov">         33 :         for (auto &amp;mapEl: trigParsedMap.at(k) ) {</span>
 <span class="lineNum">      79 </span>            :             
-<span class="lineNum">      80 </span><span class="lineCov">         48 :             EXPECT_EQ (1, mapEl.first.size()); // the key</span>
-<span class="lineNum">      81 </span><span class="lineCov">         48 :             EXPECT_EQ (1, mapEl.second-&gt;getFingersInvolved().size()); //the names inside the action</span>
-<span class="lineNum">      82 </span><span class="lineCov">         48 :             EXPECT_EQ (1, mapEl.second-&gt;getnFingersInvolved()); //the int nLinkInvolved member of action</span>
+<span class="lineNum">      80 </span><span class="lineCov">         24 :             EXPECT_EQ (1, mapEl.first.size()); // the key</span>
+<span class="lineNum">      81 </span><span class="lineCov">         24 :             EXPECT_EQ (1, mapEl.second-&gt;getFingersInvolved().size()); //the names inside the action</span>
+<span class="lineNum">      82 </span><span class="lineCov">         24 :             EXPECT_EQ (1, mapEl.second-&gt;getnFingersInvolved()); //the int nLinkInvolved member of action</span>
 <span class="lineNum">      83 </span>            :         }
 <span class="lineNum">      84 </span>            :     }
-<a name="85"><span class="lineNum">      85 </span><span class="lineCov">          8 : }</span></a>
+<a name="85"><span class="lineNum">      85 </span><span class="lineCov">          4 : }</span></a>
 <span class="lineNum">      86 </span>            : 
-<span class="lineNum">      87 </span><span class="lineCov">         40 : TEST_F ( testFindTrigs, checkSizeStatesInfoSet ) {</span>
+<span class="lineNum">      87 </span><span class="lineCov">         20 : TEST_F ( testFindTrigs, checkSizeStatesInfoSet ) {</span>
 <span class="lineNum">      88 </span>            :     
-<span class="lineNum">      89 </span><span class="lineCov">         26 :     for (int k = 0; k&lt; trigMap.size(); ++k) {</span>
+<span class="lineNum">      89 </span><span class="lineCov">         13 :     for (int k = 0; k&lt; trigMap.size(); ++k) {</span>
 <span class="lineNum">      90 </span>            : 
-<span class="lineNum">      91 </span><span class="lineCov">         66 :         for (auto &amp;mapEl: trigMap.at(k) ) {</span>
+<span class="lineNum">      91 </span><span class="lineCov">         33 :         for (auto &amp;mapEl: trigMap.at(k) ) {</span>
 <span class="lineNum">      92 </span>            :             
 <span class="lineNum">      93 </span>            :             //get the member which is set in costructor
-<span class="lineNum">      94 </span><span class="lineCov">         48 :             unsigned int size = mapEl.second.getMaxStoredActionStates(); </span>
+<span class="lineNum">      94 </span><span class="lineCov">         24 :             unsigned int size = mapEl.second.getMaxStoredActionStates(); </span>
 <span class="lineNum">      95 </span>            :             
 <span class="lineNum">      96 </span>            :             //it must be equal to the real size of the statesInfoSet
-<span class="lineNum">      97 </span><span class="lineCov">         48 :             EXPECT_EQ ( size, mapEl.second.getAllJointPos().size() );</span>
+<span class="lineNum">      97 </span><span class="lineCov">         24 :             EXPECT_EQ ( size, mapEl.second.getAllJointPos().size() );</span>
 <span class="lineNum">      98 </span>            :         }
 <span class="lineNum">      99 </span>            :         
-<span class="lineNum">     100 </span><span class="lineCov">         66 :         for (auto &amp;mapEl: trigParsedMap.at(k) ) {</span>
+<span class="lineNum">     100 </span><span class="lineCov">         33 :         for (auto &amp;mapEl: trigParsedMap.at(k) ) {</span>
 <span class="lineNum">     101 </span>            :             
 <span class="lineNum">     102 </span>            :             //get the member which is set in costructor
-<span class="lineNum">     103 </span><span class="lineCov">         48 :             unsigned int size = mapEl.second-&gt;getMaxStoredActionStates(); </span>
+<span class="lineNum">     103 </span><span class="lineCov">         24 :             unsigned int size = mapEl.second-&gt;getMaxStoredActionStates(); </span>
 <span class="lineNum">     104 </span>            :             
 <span class="lineNum">     105 </span>            :             //it must be equal to the real size of the statesInfoSet
-<span class="lineNum">     106 </span><span class="lineCov">         48 :             EXPECT_EQ (size, mapEl.second-&gt;getAllJointPos().size());</span>
+<span class="lineNum">     106 </span><span class="lineCov">         24 :             EXPECT_EQ (size, mapEl.second-&gt;getAllJointPos().size());</span>
 <span class="lineNum">     107 </span>            :         }
 <span class="lineNum">     108 </span>            :     }
-<a name="109"><span class="lineNum">     109 </span><span class="lineCov">          8 : }</span></a>
+<a name="109"><span class="lineNum">     109 </span><span class="lineCov">          4 : }</span></a>
 <span class="lineNum">     110 </span>            : 
-<span class="lineNum">     111 </span><span class="lineCov">         40 : TEST_F ( testFindTrigs, checkNameTypeConsistency ) {</span>
+<span class="lineNum">     111 </span><span class="lineCov">         20 : TEST_F ( testFindTrigs, checkNameTypeConsistency ) {</span>
 <span class="lineNum">     112 </span>            :     
-<span class="lineNum">     113 </span><span class="lineCov">         26 :     for (int k = 0; k &lt; trigMap.size(); ++k) {</span>
+<span class="lineNum">     113 </span><span class="lineCov">         13 :     for (int k = 0; k &lt; trigMap.size(); ++k) {</span>
 <span class="lineNum">     114 </span>            :         
-<span class="lineNum">     115 </span><span class="lineCov">         18 :         ROSEE::ActionPrimitive::Type actionType = trigMap.at(k).begin()-&gt;second.getPrimitiveType();</span>
+<span class="lineNum">     115 </span><span class="lineCov">          9 :         ROSEE::ActionPrimitive::Type actionType = trigMap.at(k).begin()-&gt;second.getPrimitiveType();</span>
 <span class="lineNum">     116 </span>            :         
-<span class="lineNum">     117 </span><span class="lineCov">         66 :         for (auto &amp;mapEl: trigMap.at(k) ) {</span>
+<span class="lineNum">     117 </span><span class="lineCov">         33 :         for (auto &amp;mapEl: trigMap.at(k) ) {</span>
 <span class="lineNum">     118 </span>            :             
-<span class="lineNum">     119 </span><span class="lineCov">         48 :             EXPECT_EQ (actionType, mapEl.second.getPrimitiveType() ); //in the map all el must be of same ActionType</span>
+<span class="lineNum">     119 </span><span class="lineCov">         24 :             EXPECT_EQ (actionType, mapEl.second.getPrimitiveType() ); //in the map all el must be of same ActionType</span>
 <span class="lineNum">     120 </span>            : 
-<span class="lineNum">     121 </span><span class="lineCov">         48 :             switch (mapEl.second.getPrimitiveType()) {</span>
-<span class="lineNum">     122 </span>            :             case ROSEE::ActionPrimitive::Type::Trig : 
-<span class="lineNum">     123 </span><span class="lineCov">         16 :                 EXPECT_EQ (mapEl.second.getName(), &quot;trig&quot;);</span>
-<span class="lineNum">     124 </span><span class="lineCov">         16 :                 break;</span>
-<span class="lineNum">     125 </span>            :             case ROSEE::ActionPrimitive::Type::TipFlex : 
-<span class="lineNum">     126 </span><span class="lineCov">         16 :                 EXPECT_EQ (mapEl.second.getName(), &quot;tipFlex&quot;);</span>
-<span class="lineNum">     127 </span><span class="lineCov">         16 :                 break;</span>
-<span class="lineNum">     128 </span>            :             case ROSEE::ActionPrimitive::Type::FingFlex :
-<span class="lineNum">     129 </span><span class="lineCov">         16 :                 EXPECT_EQ (mapEl.second.getName(), &quot;fingFlex&quot;);</span>
-<span class="lineNum">     130 </span><span class="lineCov">         16 :                 break;</span>
-<span class="lineNum">     131 </span>            :             default:
+<span class="lineNum">     121 </span><span class="lineCov">         24 :             switch (mapEl.second.getPrimitiveType()) {</span>
+<span class="lineNum">     122 </span><span class="lineCov">          8 :             case ROSEE::ActionPrimitive::Type::Trig : </span>
+<span class="lineNum">     123 </span><span class="lineCov">          8 :                 EXPECT_EQ (mapEl.second.getName(), &quot;trig&quot;);</span>
+<span class="lineNum">     124 </span><span class="lineCov">          8 :                 break;</span>
+<span class="lineNum">     125 </span><span class="lineCov">          8 :             case ROSEE::ActionPrimitive::Type::TipFlex : </span>
+<span class="lineNum">     126 </span><span class="lineCov">          8 :                 EXPECT_EQ (mapEl.second.getName(), &quot;tipFlex&quot;);</span>
+<span class="lineNum">     127 </span><span class="lineCov">          8 :                 break;</span>
+<span class="lineNum">     128 </span><span class="lineCov">          8 :             case ROSEE::ActionPrimitive::Type::FingFlex :</span>
+<span class="lineNum">     129 </span><span class="lineCov">          8 :                 EXPECT_EQ (mapEl.second.getName(), &quot;fingFlex&quot;);</span>
+<span class="lineNum">     130 </span><span class="lineCov">          8 :                 break;</span>
+<span class="lineNum">     131 </span><span class="lineNoCov">          0 :             default:</span>
 <span class="lineNum">     132 </span><span class="lineNoCov">          0 :                 FAIL() &lt;&lt; mapEl.second.getPrimitiveType() &lt;&lt; &quot; not a know type&quot; &lt;&lt; std::endl ;</span>
 <span class="lineNum">     133 </span>            :             }
 <span class="lineNum">     134 </span>            :         }
 <span class="lineNum">     135 </span>            :         
-<span class="lineNum">     136 </span><span class="lineCov">         36 :         actionType = trigParsedMap.at(k).begin()-&gt;second-&gt;getPrimitiveType(); </span>
-<span class="lineNum">     137 </span><span class="lineCov">         66 :         for (auto &amp;mapEl: trigParsedMap.at(k) ) {</span>
+<span class="lineNum">     136 </span><span class="lineCov">         18 :         actionType = trigParsedMap.at(k).begin()-&gt;second-&gt;getPrimitiveType(); </span>
+<span class="lineNum">     137 </span><span class="lineCov">         33 :         for (auto &amp;mapEl: trigParsedMap.at(k) ) {</span>
 <span class="lineNum">     138 </span>            : 
-<span class="lineNum">     139 </span><span class="lineCov">         48 :             EXPECT_EQ (actionType, mapEl.second-&gt;getPrimitiveType() ); //in the map all el must be of same ActionType</span>
+<span class="lineNum">     139 </span><span class="lineCov">         24 :             EXPECT_EQ (actionType, mapEl.second-&gt;getPrimitiveType() ); //in the map all el must be of same ActionType</span>
 <span class="lineNum">     140 </span>            : 
-<span class="lineNum">     141 </span><span class="lineCov">         48 :             switch (mapEl.second-&gt;getPrimitiveType()) {</span>
-<span class="lineNum">     142 </span>            :             case ROSEE::ActionPrimitive::Type::Trig : 
-<span class="lineNum">     143 </span><span class="lineCov">         16 :                 EXPECT_EQ (mapEl.second-&gt;getName(), &quot;trig&quot;);</span>
-<span class="lineNum">     144 </span><span class="lineCov">         16 :                 break;</span>
-<span class="lineNum">     145 </span>            :             case ROSEE::ActionPrimitive::Type::TipFlex :
-<span class="lineNum">     146 </span><span class="lineCov">         16 :                 EXPECT_EQ (mapEl.second-&gt;getName(), &quot;tipFlex&quot;);</span>
-<span class="lineNum">     147 </span><span class="lineCov">         16 :                 break;</span>
-<span class="lineNum">     148 </span>            :             case ROSEE::ActionPrimitive::Type::FingFlex :
-<span class="lineNum">     149 </span><span class="lineCov">         16 :                 EXPECT_EQ (mapEl.second-&gt;getName(), &quot;fingFlex&quot;);</span>
-<span class="lineNum">     150 </span><span class="lineCov">         16 :                 break;</span>
-<span class="lineNum">     151 </span>            :             default:
+<span class="lineNum">     141 </span><span class="lineCov">         24 :             switch (mapEl.second-&gt;getPrimitiveType()) {</span>
+<span class="lineNum">     142 </span><span class="lineCov">          8 :             case ROSEE::ActionPrimitive::Type::Trig : </span>
+<span class="lineNum">     143 </span><span class="lineCov">          8 :                 EXPECT_EQ (mapEl.second-&gt;getName(), &quot;trig&quot;);</span>
+<span class="lineNum">     144 </span><span class="lineCov">          8 :                 break;</span>
+<span class="lineNum">     145 </span><span class="lineCov">          8 :             case ROSEE::ActionPrimitive::Type::TipFlex :</span>
+<span class="lineNum">     146 </span><span class="lineCov">          8 :                 EXPECT_EQ (mapEl.second-&gt;getName(), &quot;tipFlex&quot;);</span>
+<span class="lineNum">     147 </span><span class="lineCov">          8 :                 break;</span>
+<span class="lineNum">     148 </span><span class="lineCov">          8 :             case ROSEE::ActionPrimitive::Type::FingFlex :</span>
+<span class="lineNum">     149 </span><span class="lineCov">          8 :                 EXPECT_EQ (mapEl.second-&gt;getName(), &quot;fingFlex&quot;);</span>
+<span class="lineNum">     150 </span><span class="lineCov">          8 :                 break;</span>
+<span class="lineNum">     151 </span><span class="lineNoCov">          0 :             default:</span>
 <span class="lineNum">     152 </span><span class="lineNoCov">          0 :                 FAIL() &lt;&lt; mapEl.second-&gt;getPrimitiveType() &lt;&lt; &quot; not a know type&quot; &lt;&lt; std::endl ;</span>
 <span class="lineNum">     153 </span>            :             }
 <span class="lineNum">     154 </span>            :         }
@@ -218,41 +218,41 @@
 <span class="lineNum">     156 </span>            : }
 <a name="157"><span class="lineNum">     157 </span>            : </a>
 <span class="lineNum">     158 </span>            : // to check if the found map is the same map that is emitted in the file and then parsed
-<span class="lineNum">     159 </span><span class="lineCov">         40 : TEST_F ( testFindTrigs, checkEmitParse ) {</span>
+<span class="lineNum">     159 </span><span class="lineCov">         20 : TEST_F ( testFindTrigs, checkEmitParse ) {</span>
 <span class="lineNum">     160 </span>            :     
-<span class="lineNum">     161 </span><span class="lineCov">         26 :     for (int k = 0; k&lt; trigMap.size(); ++k) {</span>
+<span class="lineNum">     161 </span><span class="lineCov">         13 :     for (int k = 0; k&lt; trigMap.size(); ++k) {</span>
 <span class="lineNum">     162 </span>            :     
-<span class="lineNum">     163 </span><span class="lineCov">         18 :         ASSERT_EQ (trigMap.at(k).size(), trigParsedMap.at(k).size() );</span>
+<span class="lineNum">     163 </span><span class="lineCov">          9 :         ASSERT_EQ (trigMap.at(k).size(), trigParsedMap.at(k).size() );</span>
 <span class="lineNum">     164 </span>            :         
-<span class="lineNum">     165 </span><span class="lineCov">         66 :         for (auto &amp;mapEl: trigParsedMap.at(k) ) { </span>
+<span class="lineNum">     165 </span><span class="lineCov">         33 :         for (auto &amp;mapEl: trigParsedMap.at(k) ) { </span>
 <span class="lineNum">     166 </span>            :                         
 <span class="lineNum">     167 </span>            :             std::shared_ptr &lt;ROSEE::ActionTrig&gt; trigCasted = 
-<span class="lineNum">     168 </span><span class="lineCov">         96 :                 std::dynamic_pointer_cast &lt; ROSEE::ActionTrig &gt; (mapEl.second);</span>
+<span class="lineNum">     168 </span><span class="lineCov">         48 :                 std::dynamic_pointer_cast &lt; ROSEE::ActionTrig &gt; (mapEl.second);</span>
 <span class="lineNum">     169 </span>            :                 
-<span class="lineNum">     170 </span><span class="lineCov">         48 :             ASSERT_FALSE (trigCasted == nullptr);</span>
-<span class="lineNum">     171 </span><span class="lineCov">         48 :             ASSERT_EQ (1, mapEl.first.size() );</span>
-<span class="lineNum">     172 </span><span class="lineCov">         96 :             std::string key;</span>
-<span class="lineNum">     173 </span><span class="lineCov">         48 :             std::set&lt;std::string&gt;::iterator it = mapEl.first.begin();</span>
-<span class="lineNum">     174 </span><span class="lineCov">         48 :             key = *it;</span>
+<span class="lineNum">     170 </span><span class="lineCov">         24 :             ASSERT_FALSE (trigCasted == nullptr);</span>
+<span class="lineNum">     171 </span><span class="lineCov">         24 :             ASSERT_EQ (1, mapEl.first.size() );</span>
+<span class="lineNum">     172 </span><span class="lineCov">         48 :             std::string key;</span>
+<span class="lineNum">     173 </span><span class="lineCov">         24 :             std::set&lt;std::string&gt;::iterator it = mapEl.first.begin();</span>
+<span class="lineNum">     174 </span><span class="lineCov">         24 :             key = *it;</span>
 <span class="lineNum">     175 </span>            :                     
 <span class="lineNum">     176 </span>            :             //std::string is ok to compare with _EQ
-<span class="lineNum">     177 </span><span class="lineCov">         48 :             EXPECT_EQ (trigCasted-&gt;getName(), trigMap.at(k).at(key).getName() );</span>
-<span class="lineNum">     178 </span><span class="lineCov">         48 :             EXPECT_EQ (trigCasted-&gt;getType(), trigMap.at(k).at(key).getType() );</span>
-<span class="lineNum">     179 </span><span class="lineCov">         48 :             EXPECT_EQ (trigCasted-&gt;getnFingersInvolved(), trigMap.at(k).at(key).getnFingersInvolved() );</span>
-<span class="lineNum">     180 </span><span class="lineCov">         48 :             EXPECT_EQ (trigCasted-&gt;getMaxStoredActionStates(), trigMap.at(k).at(key).getMaxStoredActionStates());</span>
-<span class="lineNum">     181 </span><span class="lineCov">         48 :             EXPECT_EQ (trigCasted-&gt;getPrimitiveType(), trigMap.at(k).at(key).getPrimitiveType() );</span>
-<span class="lineNum">     182 </span><span class="lineCov">         48 :             EXPECT_EQ (trigCasted-&gt;getFingersInvolved(), trigMap.at(k).at(key).getFingersInvolved());</span>
-<span class="lineNum">     183 </span><span class="lineCov">         48 :             EXPECT_EQ (trigCasted-&gt;getJointsInvolvedCount(), trigMap.at(k).at(key).getJointsInvolvedCount());</span>
+<span class="lineNum">     177 </span><span class="lineCov">         24 :             EXPECT_EQ (trigCasted-&gt;getName(), trigMap.at(k).at(key).getName() );</span>
+<span class="lineNum">     178 </span><span class="lineCov">         24 :             EXPECT_EQ (trigCasted-&gt;getType(), trigMap.at(k).at(key).getType() );</span>
+<span class="lineNum">     179 </span><span class="lineCov">         24 :             EXPECT_EQ (trigCasted-&gt;getnFingersInvolved(), trigMap.at(k).at(key).getnFingersInvolved() );</span>
+<span class="lineNum">     180 </span><span class="lineCov">         24 :             EXPECT_EQ (trigCasted-&gt;getMaxStoredActionStates(), trigMap.at(k).at(key).getMaxStoredActionStates());</span>
+<span class="lineNum">     181 </span><span class="lineCov">         24 :             EXPECT_EQ (trigCasted-&gt;getPrimitiveType(), trigMap.at(k).at(key).getPrimitiveType() );</span>
+<span class="lineNum">     182 </span><span class="lineCov">         24 :             EXPECT_EQ (trigCasted-&gt;getFingersInvolved(), trigMap.at(k).at(key).getFingersInvolved());</span>
+<span class="lineNum">     183 </span><span class="lineCov">         24 :             EXPECT_EQ (trigCasted-&gt;getJointsInvolvedCount(), trigMap.at(k).at(key).getJointsInvolvedCount());</span>
 <span class="lineNum">     184 </span>            : 
-<span class="lineNum">     185 </span><span class="lineCov">         96 :             for (auto jointStates: trigCasted-&gt;getAllJointPos() ) {</span>
+<span class="lineNum">     185 </span><span class="lineCov">         48 :             for (auto jointStates: trigCasted-&gt;getAllJointPos() ) {</span>
 <span class="lineNum">     186 </span>            :                 
 <span class="lineNum">     187 </span>            :                 //loop the map &quot;jointStates&quot;
-<span class="lineNum">     188 </span><span class="lineCov">        366 :                 for (auto joint : jointStates) {</span>
-<span class="lineNum">     189 </span><span class="lineCov">        318 :                     ASSERT_EQ ( joint.second.size(), trigMap.at(k).at(key).getJointPos().at(joint.first).size() );</span>
+<span class="lineNum">     188 </span><span class="lineCov">        183 :                 for (auto joint : jointStates) {</span>
+<span class="lineNum">     189 </span><span class="lineCov">        159 :                     ASSERT_EQ ( joint.second.size(), trigMap.at(k).at(key).getJointPos().at(joint.first).size() );</span>
 <span class="lineNum">     190 </span>            :                     //loop the eventually multiple joint pos (when dofs &gt; 1)
-<span class="lineNum">     191 </span><span class="lineCov">        636 :                     for (int j=0; j&lt;joint.second.size(); ++j){</span>
-<span class="lineNum">     192 </span><span class="lineCov">        318 :                         EXPECT_DOUBLE_EQ ( joint.second.at(j),</span>
-<span class="lineNum">     193 </span><span class="lineNoCov">          0 :                             trigMap.at(k).at(key).getJointPos().at(joint.first).at(j) ); </span>
+<span class="lineNum">     191 </span><span class="lineCov">        318 :                     for (int j=0; j&lt;joint.second.size(); ++j){</span>
+<span class="lineNum">     192 </span><span class="lineCov">        159 :                         EXPECT_DOUBLE_EQ ( joint.second.at(j),</span>
+<span class="lineNum">     193 </span>            :                             trigMap.at(k).at(key).getJointPos().at(joint.first).at(j) ); 
 <span class="lineNum">     194 </span>            :                     }
 <span class="lineNum">     195 </span>            :                 }       
 <span class="lineNum">     196 </span>            : 
@@ -267,35 +267,35 @@
 <span class="lineNum">     205 </span>            :  * means that is a &quot;not setted&quot; joint. 
 <a name="206"><span class="lineNum">     206 </span>            :  * @WARNING what happens if the define in findAction.h DEFAULT_JOINT_POS 0.0 changes</a>
 <span class="lineNum">     207 </span>            :  */
-<span class="lineNum">     208 </span><span class="lineCov">         40 : TEST_F ( testFindTrigs, checkJointPosTipAndFing ) {</span>
+<span class="lineNum">     208 </span><span class="lineCov">         20 : TEST_F ( testFindTrigs, checkJointPosTipAndFing ) {</span>
 <span class="lineNum">     209 </span>            :     
-<span class="lineNum">     210 </span><span class="lineCov">         22 :     if (trigMap.size() != 0 &amp;&amp;</span>
-<span class="lineNum">     211 </span><span class="lineCov">         12 :         trigMap.at(0).size() != 0 &amp;&amp; </span>
-<span class="lineNum">     212 </span><span class="lineCov">         20 :         trigMap.at(1).size() != 0 &amp;&amp; </span>
-<span class="lineNum">     213 </span><span class="lineCov">          6 :         trigMap.at(2).size() != 0 ) </span>
+<span class="lineNum">     210 </span><span class="lineCov">         11 :     if (trigMap.size() != 0 &amp;&amp;</span>
+<span class="lineNum">     211 </span><span class="lineCov">          6 :         trigMap.at(0).size() != 0 &amp;&amp; </span>
+<span class="lineNum">     212 </span><span class="lineCov">         10 :         trigMap.at(1).size() != 0 &amp;&amp; </span>
+<span class="lineNum">     213 </span><span class="lineCov">          3 :         trigMap.at(2).size() != 0 ) </span>
 <span class="lineNum">     214 </span>            :     {
 <span class="lineNum">     215 </span>            :         // we assume the order in trigmap : 0 = trig, 1 = tipflex, 2 = fingflex
 <span class="lineNum">     216 </span>            :         // otherwise we have to check which one is what that is useless
-<span class="lineNum">     217 </span><span class="lineCov">          6 :         ASSERT_EQ ( trigMap.at(0).begin()-&gt;second.getPrimitiveType(), ROSEE::ActionPrimitive::Type::Trig);</span>
-<span class="lineNum">     218 </span><span class="lineCov">          6 :         ASSERT_EQ ( trigMap.at(1).begin()-&gt;second.getPrimitiveType(), ROSEE::ActionPrimitive::Type::TipFlex);</span>
-<span class="lineNum">     219 </span><span class="lineCov">          6 :         ASSERT_EQ ( trigMap.at(2).begin()-&gt;second.getPrimitiveType(), ROSEE::ActionPrimitive::Type::FingFlex);</span>
+<span class="lineNum">     217 </span><span class="lineCov">          3 :         ASSERT_EQ ( trigMap.at(0).begin()-&gt;second.getPrimitiveType(), ROSEE::ActionPrimitive::Type::Trig);</span>
+<span class="lineNum">     218 </span><span class="lineCov">          3 :         ASSERT_EQ ( trigMap.at(1).begin()-&gt;second.getPrimitiveType(), ROSEE::ActionPrimitive::Type::TipFlex);</span>
+<span class="lineNum">     219 </span><span class="lineCov">          3 :         ASSERT_EQ ( trigMap.at(2).begin()-&gt;second.getPrimitiveType(), ROSEE::ActionPrimitive::Type::FingFlex);</span>
 <span class="lineNum">     220 </span>            :         
 <span class="lineNum">     221 </span>            :         //compare tip and fing flex
-<span class="lineNum">     222 </span><span class="lineCov">         22 :         for (auto &amp;mapTipEl: trigMap.at(1) ) {</span>
+<span class="lineNum">     222 </span><span class="lineCov">         11 :         for (auto &amp;mapTipEl: trigMap.at(1) ) {</span>
 <span class="lineNum">     223 </span>            : 
-<span class="lineNum">     224 </span><span class="lineCov">         32 :             ROSEE::JointPos tipJs = mapTipEl.second.getJointPos();</span>
+<span class="lineNum">     224 </span><span class="lineCov">         16 :             ROSEE::JointPos tipJs = mapTipEl.second.getJointPos();</span>
 <span class="lineNum">     225 </span>            : 
-<span class="lineNum">     226 </span><span class="lineCov">         60 :             for (auto &amp;mapFingEl : trigMap.at(2) ) {</span>
+<span class="lineNum">     226 </span><span class="lineCov">         30 :             for (auto &amp;mapFingEl : trigMap.at(2) ) {</span>
 <span class="lineNum">     227 </span>            :                 
-<span class="lineNum">     228 </span><span class="lineCov">         88 :                 ROSEE::JointPos fingJs = mapFingEl.second.getJointPos();</span>
-<span class="lineNum">     229 </span><span class="lineCov">         44 :                 ASSERT_EQ ( tipJs.size(), fingJs.size() );</span>
+<span class="lineNum">     228 </span><span class="lineCov">         44 :                 ROSEE::JointPos fingJs = mapFingEl.second.getJointPos();</span>
+<span class="lineNum">     229 </span><span class="lineCov">         22 :                 ASSERT_EQ ( tipJs.size(), fingJs.size() );</span>
 <span class="lineNum">     230 </span>            :                 
-<span class="lineNum">     231 </span><span class="lineCov">        346 :                 for (auto tipJoint: tipJs) {</span>
+<span class="lineNum">     231 </span><span class="lineCov">        173 :                 for (auto tipJoint: tipJs) {</span>
 <span class="lineNum">     232 </span>            :                     
 <span class="lineNum">     233 </span>            :                     //at(0): 1dof joint
-<span class="lineNum">     234 </span><span class="lineCov">        302 :                     if (tipJoint.second.at(0) != 0.0) {</span>
+<span class="lineNum">     234 </span><span class="lineCov">        151 :                     if (tipJoint.second.at(0) != 0.0) {</span>
 <span class="lineNum">     235 </span>            :                         //if so, it is the setted joint, and the correspondent of fingerAction must be zero
-<span class="lineNum">     236 </span><span class="lineCov">         44 :                         EXPECT_EQ ( fingJs.at(tipJoint.first).at(0), 0.0);</span>
+<span class="lineNum">     236 </span><span class="lineCov">         22 :                         EXPECT_EQ ( fingJs.at(tipJoint.first).at(0), 0.0);</span>
 <span class="lineNum">     237 </span>            :                     } 
 <span class="lineNum">     238 </span>            :                 }
 <span class="lineNum">     239 </span>            :             }
@@ -317,62 +317,62 @@
 <span class="lineNum">     255 </span>            :  * @WARNING the third for must be changed if for trig another key (like the finger group name) is used instead
 <a name="256"><span class="lineNum">     256 </span>            :  * of the tip</a>
 <span class="lineNum">     257 </span>            :  */
-<span class="lineNum">     258 </span><span class="lineCov">         40 : TEST_F ( testFindTrigs, checkJointPosFlexsAndTrig ) {</span>
+<span class="lineNum">     258 </span><span class="lineCov">         20 : TEST_F ( testFindTrigs, checkJointPosFlexsAndTrig ) {</span>
 <span class="lineNum">     259 </span>            :     
 <span class="lineNum">     260 </span>            : 
-<span class="lineNum">     261 </span><span class="lineCov">         22 :     if (trigMap.size() != 0 &amp;&amp;</span>
-<span class="lineNum">     262 </span><span class="lineCov">         12 :         trigMap.at(0).size() != 0 &amp;&amp; </span>
-<span class="lineNum">     263 </span><span class="lineCov">         20 :         trigMap.at(1).size() != 0 &amp;&amp; </span>
-<span class="lineNum">     264 </span><span class="lineCov">          6 :         trigMap.at(2).size() != 0 ) </span>
+<span class="lineNum">     261 </span><span class="lineCov">         11 :     if (trigMap.size() != 0 &amp;&amp;</span>
+<span class="lineNum">     262 </span><span class="lineCov">          6 :         trigMap.at(0).size() != 0 &amp;&amp; </span>
+<span class="lineNum">     263 </span><span class="lineCov">         10 :         trigMap.at(1).size() != 0 &amp;&amp; </span>
+<span class="lineNum">     264 </span><span class="lineCov">          3 :         trigMap.at(2).size() != 0 ) </span>
 <span class="lineNum">     265 </span>            :     {
 <span class="lineNum">     266 </span>            :         // we assume the order in trigmap : 0 = trig, 1 = tipflex, 2 = fingflex
 <span class="lineNum">     267 </span>            :         // otherwise we have to check which one is what that is useless
-<span class="lineNum">     268 </span><span class="lineCov">          6 :         ASSERT_EQ ( trigMap.at(0).begin()-&gt;second.getPrimitiveType(), ROSEE::ActionPrimitive::Type::Trig);</span>
-<span class="lineNum">     269 </span><span class="lineCov">          6 :         ASSERT_EQ ( trigMap.at(1).begin()-&gt;second.getPrimitiveType(), ROSEE::ActionPrimitive::Type::TipFlex);</span>
-<span class="lineNum">     270 </span><span class="lineCov">          6 :         ASSERT_EQ ( trigMap.at(2).begin()-&gt;second.getPrimitiveType(), ROSEE::ActionPrimitive::Type::FingFlex);</span>
+<span class="lineNum">     268 </span><span class="lineCov">          3 :         ASSERT_EQ ( trigMap.at(0).begin()-&gt;second.getPrimitiveType(), ROSEE::ActionPrimitive::Type::Trig);</span>
+<span class="lineNum">     269 </span><span class="lineCov">          3 :         ASSERT_EQ ( trigMap.at(1).begin()-&gt;second.getPrimitiveType(), ROSEE::ActionPrimitive::Type::TipFlex);</span>
+<span class="lineNum">     270 </span><span class="lineCov">          3 :         ASSERT_EQ ( trigMap.at(2).begin()-&gt;second.getPrimitiveType(), ROSEE::ActionPrimitive::Type::FingFlex);</span>
 <span class="lineNum">     271 </span>            :         
 <span class="lineNum">     272 </span>            :         
 <span class="lineNum">     273 </span>            :     // If a tipFlex is present, the unique setted joint must be also setted (equal pos) in the trig action 
-<span class="lineNum">     274 </span><span class="lineCov">         22 :         for (auto &amp;mapTipEl: trigMap.at(1) ) {                </span>
-<span class="lineNum">     275 </span><span class="lineCov">        122 :             for ( auto &amp;tipJs : mapTipEl.second.getJointPos() ) {</span>
-<span class="lineNum">     276 </span><span class="lineCov">        106 :                 if (tipJs.second.at(0) != 0 ) {</span>
+<span class="lineNum">     274 </span><span class="lineCov">         11 :         for (auto &amp;mapTipEl: trigMap.at(1) ) {                </span>
+<span class="lineNum">     275 </span><span class="lineCov">         61 :             for ( auto &amp;tipJs : mapTipEl.second.getJointPos() ) {</span>
+<span class="lineNum">     276 </span><span class="lineCov">         53 :                 if (tipJs.second.at(0) != 0 ) {</span>
 <span class="lineNum">     277 </span>            :                     //if a tipFlex exist for a tip, also a trig for that tip exist
-<span class="lineNum">     278 </span><span class="lineCov">         16 :                     EXPECT_TRUE (trigMap.at(0).find ( mapTipEl.first ) != trigMap.at(0).end());</span>
-<span class="lineNum">     279 </span><span class="lineCov">         16 :                     EXPECT_DOUBLE_EQ ( tipJs.second.at(0),</span>
-<span class="lineNum">     280 </span><span class="lineNoCov">          0 :                             trigMap.at(0).at(mapTipEl.first).getJointPos().at(tipJs.first).at(0) );</span>
+<span class="lineNum">     278 </span><span class="lineCov">          8 :                     EXPECT_TRUE (trigMap.at(0).find ( mapTipEl.first ) != trigMap.at(0).end());</span>
+<span class="lineNum">     279 </span><span class="lineCov">          8 :                     EXPECT_DOUBLE_EQ ( tipJs.second.at(0),</span>
+<span class="lineNum">     280 </span>            :                             trigMap.at(0).at(mapTipEl.first).getJointPos().at(tipJs.first).at(0) );
 <span class="lineNum">     281 </span>            :                 }
 <span class="lineNum">     282 </span>            :                 
 <span class="lineNum">     283 </span>            :             }
 <span class="lineNum">     284 </span>            :         }
 <span class="lineNum">     285 </span>            :         
 <span class="lineNum">     286 </span>            :         // If a FingFlex is present, the unique setted joint must be also setted (equal pos) in the trig action 
-<span class="lineNum">     287 </span><span class="lineCov">         22 :         for (auto &amp;mapFingEl: trigMap.at(2) ) {                </span>
-<span class="lineNum">     288 </span><span class="lineCov">        122 :             for ( auto &amp;fingJs : mapFingEl.second.getJointPos() ) {</span>
-<span class="lineNum">     289 </span><span class="lineCov">        106 :                 if (fingJs.second.at(0) != 0 ) {</span>
+<span class="lineNum">     287 </span><span class="lineCov">         11 :         for (auto &amp;mapFingEl: trigMap.at(2) ) {                </span>
+<span class="lineNum">     288 </span><span class="lineCov">         61 :             for ( auto &amp;fingJs : mapFingEl.second.getJointPos() ) {</span>
+<span class="lineNum">     289 </span><span class="lineCov">         53 :                 if (fingJs.second.at(0) != 0 ) {</span>
 <span class="lineNum">     290 </span>            :                     //if a fingFlex exist for a tip, also a trig for that tip exist
-<span class="lineNum">     291 </span><span class="lineCov">         16 :                     EXPECT_TRUE ( trigMap.at(0).find ( mapFingEl.first ) != trigMap.at(0).end() );</span>
-<span class="lineNum">     292 </span><span class="lineCov">         16 :                     EXPECT_DOUBLE_EQ ( fingJs.second.at(0),</span>
-<span class="lineNum">     293 </span><span class="lineNoCov">          0 :                             trigMap.at(0).at(mapFingEl.first).getJointPos().at(fingJs.first).at(0) );</span>
+<span class="lineNum">     291 </span><span class="lineCov">          8 :                     EXPECT_TRUE ( trigMap.at(0).find ( mapFingEl.first ) != trigMap.at(0).end() );</span>
+<span class="lineNum">     292 </span><span class="lineCov">          8 :                     EXPECT_DOUBLE_EQ ( fingJs.second.at(0),</span>
+<span class="lineNum">     293 </span>            :                             trigMap.at(0).at(mapFingEl.first).getJointPos().at(fingJs.first).at(0) );
 <span class="lineNum">     294 </span>            :                 }
 <span class="lineNum">     295 </span>            :             }
 <span class="lineNum">     296 </span>            :         }
 <span class="lineNum">     297 </span>            :         
 <span class="lineNum">     298 </span>            :         // If some joint is not set in the trig, it must be also non setted in 
 <span class="lineNum">     299 </span>            :         // the tipAction of the same fingertip
-<span class="lineNum">     300 </span><span class="lineCov">         22 :         for (auto &amp;mapTrigEl: trigMap.at(0) ) {    </span>
-<span class="lineNum">     301 </span><span class="lineCov">        122 :             for ( auto &amp;trigJs : mapTrigEl.second.getJointPos() ) {</span>
-<span class="lineNum">     302 </span><span class="lineCov">        106 :                 if (trigJs.second.at(0) == 0.0 ) {</span>
+<span class="lineNum">     300 </span><span class="lineCov">         11 :         for (auto &amp;mapTrigEl: trigMap.at(0) ) {    </span>
+<span class="lineNum">     301 </span><span class="lineCov">         61 :             for ( auto &amp;trigJs : mapTrigEl.second.getJointPos() ) {</span>
+<span class="lineNum">     302 </span><span class="lineCov">         53 :                 if (trigJs.second.at(0) == 0.0 ) {</span>
 <span class="lineNum">     303 </span>            :                     
 <span class="lineNum">     304 </span>            :                     // if a trig exist, it is not assured that a tip flex exist for that tip
-<span class="lineNum">     305 </span><span class="lineCov">         68 :                     if (trigMap.at(1).find ( mapTrigEl.first ) != trigMap.at(1).end()) {</span>
-<span class="lineNum">     306 </span><span class="lineCov">         68 :                         EXPECT_EQ ( 0.0,</span>
-<span class="lineNum">     307 </span><span class="lineNoCov">          0 :                                 trigMap.at(1).at(mapTrigEl.first).getJointPos().at(trigJs.first).at(0) );</span>
+<span class="lineNum">     305 </span><span class="lineCov">         34 :                     if (trigMap.at(1).find ( mapTrigEl.first ) != trigMap.at(1).end()) {</span>
+<span class="lineNum">     306 </span><span class="lineCov">         34 :                         EXPECT_EQ ( 0.0,</span>
+<span class="lineNum">     307 </span>            :                                 trigMap.at(1).at(mapTrigEl.first).getJointPos().at(trigJs.first).at(0) );
 <span class="lineNum">     308 </span>            :                     }
 <span class="lineNum">     309 </span>            :                     
 <span class="lineNum">     310 </span>            :                     // if a trig exist, it is not assured that a fing flex exist for that tip
-<span class="lineNum">     311 </span><span class="lineCov">         68 :                     if (trigMap.at(2).find ( mapTrigEl.first ) != trigMap.at(2).end()) {</span>
-<span class="lineNum">     312 </span><span class="lineCov">         68 :                         EXPECT_EQ ( 0.0,</span>
-<span class="lineNum">     313 </span><span class="lineNoCov">          0 :                                 trigMap.at(2).at(mapTrigEl.first).getJointPos().at(trigJs.first).at(0) );</span>
+<span class="lineNum">     311 </span><span class="lineCov">         34 :                     if (trigMap.at(2).find ( mapTrigEl.first ) != trigMap.at(2).end()) {</span>
+<span class="lineNum">     312 </span><span class="lineCov">         34 :                         EXPECT_EQ ( 0.0,</span>
+<span class="lineNum">     313 </span>            :                                 trigMap.at(2).at(mapTrigEl.first).getJointPos().at(trigJs.first).at(0) );
 <span class="lineNum">     314 </span>            :                     }
 <span class="lineNum">     315 </span>            :                 }
 <span class="lineNum">     316 </span>            :             }
@@ -383,70 +383,70 @@
 <span class="lineNum">     321 </span>            : 
 <a name="322"><span class="lineNum">     322 </span>            : /** For the tip and fing flex action, for definition, only one joint must be set (ie position != 0).</a>
 <span class="lineNum">     323 </span>            :  */
-<span class="lineNum">     324 </span><span class="lineCov">         40 : TEST_F ( testFindTrigs, checkFlexsSingleJoint ) {</span>
+<span class="lineNum">     324 </span><span class="lineCov">         20 : TEST_F ( testFindTrigs, checkFlexsSingleJoint ) {</span>
 <span class="lineNum">     325 </span>            :     
-<span class="lineNum">     326 </span><span class="lineCov">         26 :     for (int k = 0; k&lt; trigMap.size(); ++k) {</span>
+<span class="lineNum">     326 </span><span class="lineCov">         13 :     for (int k = 0; k&lt; trigMap.size(); ++k) {</span>
 <span class="lineNum">     327 </span>            :         
-<span class="lineNum">     328 </span><span class="lineCov">         18 :         if ( trigMap.at(k).begin()-&gt;second.getPrimitiveType() == ROSEE::ActionPrimitive::Type::Trig ) {</span>
-<span class="lineNum">     329 </span><span class="lineCov">          6 :             continue;</span>
+<span class="lineNum">     328 </span><span class="lineCov">          9 :         if ( trigMap.at(k).begin()-&gt;second.getPrimitiveType() == ROSEE::ActionPrimitive::Type::Trig ) {</span>
+<span class="lineNum">     329 </span><span class="lineCov">          3 :             continue;</span>
 <span class="lineNum">     330 </span>            :         }
 <span class="lineNum">     331 </span>            :         
-<span class="lineNum">     332 </span><span class="lineCov">         44 :         for (auto &amp;mapFlexEl: trigMap.at(k) ) {    </span>
+<span class="lineNum">     332 </span><span class="lineCov">         22 :         for (auto &amp;mapFlexEl: trigMap.at(k) ) {    </span>
 <span class="lineNum">     333 </span>            : 
-<span class="lineNum">     334 </span><span class="lineCov">         32 :             unsigned int nJSet = 0;  </span>
+<span class="lineNum">     334 </span><span class="lineCov">         16 :             unsigned int nJSet = 0;  </span>
 <span class="lineNum">     335 </span>            :           
-<span class="lineNum">     336 </span><span class="lineCov">        244 :             for ( auto &amp;flexJs : mapFlexEl.second.getJointPos() ) { //iteration over the jointstates map</span>
+<span class="lineNum">     336 </span><span class="lineCov">        122 :             for ( auto &amp;flexJs : mapFlexEl.second.getJointPos() ) { //iteration over the jointstates map</span>
 <span class="lineNum">     337 </span>            :                 
-<span class="lineNum">     338 </span><span class="lineCov">        212 :                 if ( flexJs.second.at(0) != 0.0 ) {</span>
-<span class="lineNum">     339 </span><span class="lineCov">         32 :                     nJSet++;</span>
+<span class="lineNum">     338 </span><span class="lineCov">        106 :                 if ( flexJs.second.at(0) != 0.0 ) {</span>
+<span class="lineNum">     339 </span><span class="lineCov">         16 :                     nJSet++;</span>
 <span class="lineNum">     340 </span>            :                 }                
 <span class="lineNum">     341 </span>            :             }
-<span class="lineNum">     342 </span><span class="lineCov">         32 :             EXPECT_EQ (1, nJSet);</span>
+<span class="lineNum">     342 </span><span class="lineCov">         16 :             EXPECT_EQ (1, nJSet);</span>
 <span class="lineNum">     343 </span>            :             
 <span class="lineNum">     344 </span>            :             //test also the jointInvolvedBool vector
-<span class="lineNum">     345 </span><span class="lineCov">         32 :             unsigned int jointsInvolvedSum = 0;</span>
-<span class="lineNum">     346 </span><span class="lineCov">        244 :             for ( auto flexJs : mapFlexEl.second.getJointsInvolvedCount() ) { //iteration over the jointstates map</span>
+<span class="lineNum">     345 </span><span class="lineCov">         16 :             unsigned int jointsInvolvedSum = 0;</span>
+<span class="lineNum">     346 </span><span class="lineCov">        122 :             for ( auto flexJs : mapFlexEl.second.getJointsInvolvedCount() ) { //iteration over the jointstates map</span>
 <span class="lineNum">     347 </span>            :                 
-<span class="lineNum">     348 </span><span class="lineCov">        212 :                 jointsInvolvedSum += flexJs.second;               </span>
+<span class="lineNum">     348 </span><span class="lineCov">        106 :                 jointsInvolvedSum += flexJs.second;               </span>
 <span class="lineNum">     349 </span>            :             }
-<span class="lineNum">     350 </span><span class="lineCov">         32 :             EXPECT_EQ (1, jointsInvolvedSum);   </span>
+<span class="lineNum">     350 </span><span class="lineCov">         16 :             EXPECT_EQ (1, jointsInvolvedSum);   </span>
 <span class="lineNum">     351 </span>            :             
 <span class="lineNum">     352 </span>            :         }
 <span class="lineNum">     353 </span>            :     }
-<span class="lineNum">     354 </span><span class="lineCov">          8 : }</span>
+<span class="lineNum">     354 </span><span class="lineCov">          4 : }</span>
 <span class="lineNum">     355 </span>            : 
 <span class="lineNum">     356 </span>            : 
 <a name="357"><span class="lineNum">     357 </span>            : } //namespace</a>
 <span class="lineNum">     358 </span>            : 
-<span class="lineNum">     359 </span><span class="lineCov">          8 : int main ( int argc, char **argv ) {</span>
+<span class="lineNum">     359 </span><span class="lineCov">          4 : int main ( int argc, char **argv ) {</span>
 <span class="lineNum">     360 </span>            :     
-<span class="lineNum">     361 </span><span class="lineCov">          8 :     if (argc &lt; 2 ){</span>
+<span class="lineNum">     361 </span><span class="lineCov">          4 :     if (argc &lt; 2 ){</span>
 <span class="lineNum">     362 </span>            :         
 <span class="lineNum">     363 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[TEST ERROR] Insert hand name as argument&quot; &lt;&lt; std::endl;</span>
 <span class="lineNum">     364 </span><span class="lineNoCov">          0 :         return -1;</span>
 <span class="lineNum">     365 </span>            :     }
 <span class="lineNum">     366 </span>            :     
 <span class="lineNum">     367 </span>            :     /* Run tests on an isolated roscore */
-<span class="lineNum">     368 </span><span class="lineCov">          8 :     if(setenv(&quot;ROS_MASTER_URI&quot;, &quot;http://localhost:11322&quot;, 1) == -1)</span>
+<span class="lineNum">     368 </span><span class="lineCov">          4 :     if(setenv(&quot;ROS_MASTER_URI&quot;, &quot;http://localhost:11322&quot;, 1) == -1)</span>
 <span class="lineNum">     369 </span>            :     {
 <span class="lineNum">     370 </span><span class="lineNoCov">          0 :         perror(&quot;setenv&quot;);</span>
 <span class="lineNum">     371 </span><span class="lineNoCov">          0 :         return 1;</span>
 <span class="lineNum">     372 </span>            :     }
 <span class="lineNum">     373 </span>            : 
 <span class="lineNum">     374 </span>            :     //run roscore
-<span class="lineNum">     375 </span><span class="lineCov">         16 :     std::unique_ptr&lt;ROSEE::TestUtils::Process&gt; roscore;</span>
-<span class="lineNum">     376 </span><span class="lineCov">          8 :     roscore.reset(new ROSEE::TestUtils::Process({&quot;roscore&quot;, &quot;-p&quot;, &quot;11322&quot;}));</span>
+<span class="lineNum">     375 </span><span class="lineCov">          8 :     std::unique_ptr&lt;ROSEE::TestUtils::Process&gt; roscore;</span>
+<span class="lineNum">     376 </span><span class="lineCov">          4 :     roscore.reset(new ROSEE::TestUtils::Process({&quot;roscore&quot;, &quot;-p&quot;, &quot;11322&quot;}));</span>
 <span class="lineNum">     377 </span>            :     
-<span class="lineNum">     378 </span><span class="lineCov">          8 :     if ( ROSEE::TestUtils::prepareROSForTests ( argc, argv, &quot;testFindTrigs&quot; ) != 0 ) {</span>
+<span class="lineNum">     378 </span><span class="lineCov">          4 :     if ( ROSEE::TestUtils::prepareROSForTests ( argc, argv, &quot;testFindTrigs&quot; ) != 0 ) {</span>
 <span class="lineNum">     379 </span>            :         
 <span class="lineNum">     380 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[TEST ERROR] Prepare Funcion failed&quot; &lt;&lt; std::endl;</span>
 <span class="lineNum">     381 </span><span class="lineNoCov">          0 :         return -1;</span>
 <span class="lineNum">     382 </span>            :     }
 <span class="lineNum">     383 </span>            :     
 <span class="lineNum">     384 </span>            :     
-<a name="385"><span class="lineNum">     385 </span><span class="lineCov">          8 :     ::testing::InitGoogleTest ( &amp;argc, argv );</span></a>
-<span class="lineNum">     386 </span><span class="lineCov">          8 :     return RUN_ALL_TESTS();</span>
-<span class="lineNum">     387 </span><span class="lineCov">         24 : }</span>
+<a name="385"><span class="lineNum">     385 </span><span class="lineCov">          4 :     ::testing::InitGoogleTest ( &amp;argc, argv );</span></a>
+<span class="lineNum">     386 </span><span class="lineCov">          4 :     return RUN_ALL_TESTS();</span>
+<span class="lineNum">     387 </span><span class="lineCov">         12 : }</span>
 </pre>
       </td>
     </tr>
@@ -455,7 +455,7 @@
 
   <table width="100%" border=0 cellspacing=0 cellpadding=0>
     <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
-    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
   </table>
   <br>
 

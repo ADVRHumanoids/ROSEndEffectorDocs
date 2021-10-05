@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2020-08-05 12:21:01</td>
+            <td class="headerValue">2021-10-05 16:55:17</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">15</td>
@@ -67,10 +67,10 @@
 <span class="lineNum">       5 </span>            : 
 <span class="lineNum">       6 </span>            : #include &lt;ros_end_effector/FindActions.h&gt;
 <span class="lineNum">       7 </span>            : #include &lt;ros_end_effector/ParserMoveIt.h&gt;
-<span class="lineNum">       8 </span>            : #include &lt;ros_end_effector/ActionPrimitive.h&gt;
-<span class="lineNum">       9 </span>            : #include &lt;ros_end_effector/ActionTrig.h&gt;
-<span class="lineNum">      10 </span>            : #include &lt;ros_end_effector/ActionComposed.h&gt;
-<span class="lineNum">      11 </span>            : #include &lt;ros_end_effector/ActionPinchGeneric.h&gt;
+<span class="lineNum">       8 </span>            : #include &lt;ros_end_effector/GraspingActions/ActionPrimitive.h&gt;
+<span class="lineNum">       9 </span>            : #include &lt;ros_end_effector/GraspingActions/ActionTrig.h&gt;
+<span class="lineNum">      10 </span>            : #include &lt;ros_end_effector/GraspingActions/ActionComposed.h&gt;
+<span class="lineNum">      11 </span>            : #include &lt;ros_end_effector/GraspingActions/ActionPinchGeneric.h&gt;
 <span class="lineNum">      12 </span>            : 
 <span class="lineNum">      13 </span>            : namespace {
 <span class="lineNum">      14 </span>            : 
@@ -79,75 +79,75 @@
 <span class="lineNum">      17 </span>            : 
 <a name="18"><span class="lineNum">      18 </span>            : protected:</a>
 <span class="lineNum">      19 </span>            : 
-<span class="lineNum">      20 </span><span class="lineCov">         16 :     testTimedAction() : timedAction(&quot;TestTimedAction&quot;) {</span>
-<a name="21"><span class="lineNum">      21 </span><span class="lineCov">         16 :     }</span></a>
+<span class="lineNum">      20 </span><span class="lineCov">          8 :     testTimedAction() : timedAction(&quot;TestTimedAction&quot;) {</span>
+<a name="21"><span class="lineNum">      21 </span><span class="lineCov">          8 :     }</span></a>
 <span class="lineNum">      22 </span>            : 
-<span class="lineNum">      23 </span><span class="lineCov">         16 :     virtual ~testTimedAction() {</span>
-<a name="24"><span class="lineNum">      24 </span><span class="lineCov">         16 :     }</span></a>
+<span class="lineNum">      23 </span><span class="lineCov">          8 :     virtual ~testTimedAction() {</span>
+<a name="24"><span class="lineNum">      24 </span><span class="lineCov">          8 :     }</span></a>
 <span class="lineNum">      25 </span>            : 
-<span class="lineNum">      26 </span><span class="lineCov">         16 :     virtual void SetUp() override {</span>
+<span class="lineNum">      26 </span><span class="lineCov">          8 :     virtual void SetUp() override {</span>
 <span class="lineNum">      27 </span>            :         
-<span class="lineNum">      28 </span><span class="lineCov">         32 :         std::shared_ptr &lt;ROSEE::ParserMoveIt&gt; parserMoveIt = std::make_shared &lt;ROSEE::ParserMoveIt&gt; ();</span>
+<span class="lineNum">      28 </span><span class="lineCov">         16 :         std::shared_ptr &lt;ROSEE::ParserMoveIt&gt; parserMoveIt = std::make_shared &lt;ROSEE::ParserMoveIt&gt; ();</span>
 <span class="lineNum">      29 </span>            : 
 <span class="lineNum">      30 </span>            :         //if return false, models are not found and it is useless to continue the test
-<span class="lineNum">      31 </span><span class="lineCov">         16 :         ASSERT_TRUE(parserMoveIt-&gt;init (&quot;robot_description&quot;, false)) ;</span>
+<span class="lineNum">      31 </span><span class="lineCov">          8 :         ASSERT_TRUE(parserMoveIt-&gt;init (&quot;robot_description&quot;, false)) ;</span>
 <span class="lineNum">      32 </span>            : 
-<span class="lineNum">      33 </span><span class="lineCov">         32 :         ROSEE::FindActions actionsFinder (parserMoveIt);</span>
+<span class="lineNum">      33 </span><span class="lineCov">         16 :         ROSEE::FindActions actionsFinder (parserMoveIt);</span>
 <span class="lineNum">      34 </span>            :                 
-<span class="lineNum">      35 </span><span class="lineCov">         32 :         std::string folderForActions = ROSEE::Utils::getPackagePath() + &quot;/configs/actions/tests/&quot; + parserMoveIt-&gt;getHandName();</span>
+<span class="lineNum">      35 </span><span class="lineCov">         16 :         std::string folderForActions = ROSEE::Utils::getPackagePath() + &quot;/configs/actions/tests/&quot; + parserMoveIt-&gt;getHandName();</span>
 <span class="lineNum">      36 </span>            :         
-<span class="lineNum">      37 </span><span class="lineCov">         16 :         trigMap = actionsFinder.findTrig(ROSEE::ActionPrimitive::Type::Trig, folderForActions + &quot;/primitives/&quot;) ;  </span>
-<span class="lineNum">      38 </span><span class="lineCov">         32 :         auto pinches = actionsFinder.findPinch(folderForActions + &quot;/primitives/&quot;) ; </span>
+<span class="lineNum">      37 </span><span class="lineCov">          8 :         trigMap = actionsFinder.findTrig(ROSEE::ActionPrimitive::Type::Trig, folderForActions + &quot;/primitives/&quot;) ;  </span>
+<span class="lineNum">      38 </span><span class="lineCov">         16 :         auto pinches = actionsFinder.findPinch(folderForActions + &quot;/primitives/&quot;) ; </span>
 <span class="lineNum">      39 </span>            :         
-<span class="lineNum">      40 </span><span class="lineCov">         16 :         pinchTightMap = pinches.first;</span>
-<span class="lineNum">      41 </span><span class="lineCov">         16 :         pinchLooseMap = pinches.second;</span>
+<span class="lineNum">      40 </span><span class="lineCov">          8 :         pinchTightMap = pinches.first;</span>
+<span class="lineNum">      41 </span><span class="lineCov">          8 :         pinchLooseMap = pinches.second;</span>
 <span class="lineNum">      42 </span>            :                 
-<span class="lineNum">      43 </span><span class="lineCov">         32 :         std::shared_ptr&lt;ROSEE::ActionComposed&gt; actionComposed = std::make_shared&lt;ROSEE::ActionComposed&gt; (&quot;degrasp&quot;);</span>
+<span class="lineNum">      43 </span><span class="lineCov">         16 :         std::shared_ptr&lt;ROSEE::ActionComposed&gt; actionComposed = std::make_shared&lt;ROSEE::ActionComposed&gt; (&quot;degrasp&quot;);</span>
 <span class="lineNum">      44 </span>            : 
-<span class="lineNum">      45 </span><span class="lineCov">         16 :         if (trigMap.size() &gt; 0){</span>
-<span class="lineNum">      46 </span><span class="lineCov">         44 :             for (auto trig : trigMap) {</span>
+<span class="lineNum">      45 </span><span class="lineCov">          8 :         if (trigMap.size() &gt; 0){</span>
+<span class="lineNum">      46 </span><span class="lineCov">         22 :             for (auto trig : trigMap) {</span>
 <span class="lineNum">      47 </span>            :                 std::shared_ptr &lt;ROSEE::ActionPrimitive&gt; pointer = 
-<span class="lineNum">      48 </span><span class="lineCov">         64 :                     std::make_shared &lt;ROSEE::ActionTrig&gt; ( trig.second );</span>
+<span class="lineNum">      48 </span><span class="lineCov">         32 :                     std::make_shared &lt;ROSEE::ActionTrig&gt; ( trig.second );</span>
 <span class="lineNum">      49 </span>            :                     
-<span class="lineNum">      50 </span><span class="lineCov">         32 :                 actionComposed-&gt;sumAction(pointer, 0);</span>
+<span class="lineNum">      50 </span><span class="lineCov">         16 :                 actionComposed-&gt;sumAction(pointer, 0);</span>
 <span class="lineNum">      51 </span>            :                 
 <span class="lineNum">      52 </span>            :                 //different name for each trig inserted
-<span class="lineNum">      53 </span><span class="lineCov">         32 :                 timedAction.insertAction(pointer, 0.54, 0.2, 0, 0.8, &quot;trig_&quot; + *(pointer-&gt;getKeyElements().begin()) );  </span>
+<span class="lineNum">      53 </span><span class="lineCov">         16 :                 timedAction.insertAction(pointer, 0.54, 0.2, 0, 0.8, &quot;trig_&quot; + *(pointer-&gt;getKeyElements().begin()) );  </span>
 <span class="lineNum">      54 </span>            :             }
 <span class="lineNum">      55 </span>            :         }
 <span class="lineNum">      56 </span>            :         
 <span class="lineNum">      57 </span>            :         //lets add a pinch
-<span class="lineNum">      58 </span><span class="lineCov">         16 :         if (pinchTightMap.size()&gt;0) {</span>
+<span class="lineNum">      58 </span><span class="lineCov">          8 :         if (pinchTightMap.size()&gt;0) {</span>
 <span class="lineNum">      59 </span>            :             
 <span class="lineNum">      60 </span>            :             std::shared_ptr &lt;ROSEE::ActionPrimitive&gt; pointer = 
-<span class="lineNum">      61 </span><span class="lineCov">         16 :                     std::make_shared &lt;ROSEE::ActionPinchTight&gt; ( pinchTightMap.begin()-&gt;second );</span>
+<span class="lineNum">      61 </span><span class="lineCov">          8 :                     std::make_shared &lt;ROSEE::ActionPinchTight&gt; ( pinchTightMap.begin()-&gt;second );</span>
 <span class="lineNum">      62 </span>            :                     
-<span class="lineNum">      63 </span><span class="lineCov">          8 :             timedAction.insertAction(pointer, 0, 0.45);</span>
+<span class="lineNum">      63 </span><span class="lineCov">          4 :             timedAction.insertAction(pointer, 0, 0.45);</span>
 <span class="lineNum">      64 </span>            :             
-<span class="lineNum">      65 </span><span class="lineCov">          8 :         } else if (pinchLooseMap.size()&gt;0) {</span>
+<span class="lineNum">      65 </span><span class="lineCov">          4 :         } else if (pinchLooseMap.size()&gt;0) {</span>
 <span class="lineNum">      66 </span>            :             
 <span class="lineNum">      67 </span>            :             std::shared_ptr &lt;ROSEE::ActionPrimitive&gt; pointer = 
-<span class="lineNum">      68 </span><span class="lineCov">          8 :                     std::make_shared &lt;ROSEE::ActionPinchLoose&gt; ( pinchLooseMap.begin()-&gt;second );</span>
+<span class="lineNum">      68 </span><span class="lineCov">          4 :                     std::make_shared &lt;ROSEE::ActionPinchLoose&gt; ( pinchLooseMap.begin()-&gt;second );</span>
 <span class="lineNum">      69 </span>            :                     
-<span class="lineNum">      70 </span><span class="lineCov">          4 :             timedAction.insertAction(pointer, 0, 0.45);</span>
+<span class="lineNum">      70 </span><span class="lineCov">          2 :             timedAction.insertAction(pointer, 0, 0.45);</span>
 <span class="lineNum">      71 </span>            :         }
 <span class="lineNum">      72 </span>            :         
 <span class="lineNum">      73 </span>            :         //now lets add a reset grasp pos (trig all zero)
-<span class="lineNum">      74 </span><span class="lineCov">         16 :         if (actionComposed-&gt;numberOfInnerActions( ) &gt; 0) {</span>
-<span class="lineNum">      75 </span><span class="lineCov">         24 :             std::shared_ptr &lt;ROSEE::Action&gt; pointer =  actionComposed ;</span>
-<span class="lineNum">      76 </span><span class="lineCov">         12 :             timedAction.insertAction(pointer);</span>
+<span class="lineNum">      74 </span><span class="lineCov">          8 :         if (actionComposed-&gt;numberOfInnerActions( ) &gt; 0) {</span>
+<span class="lineNum">      75 </span><span class="lineCov">         12 :             std::shared_ptr &lt;ROSEE::Action&gt; pointer =  actionComposed ;</span>
+<span class="lineNum">      76 </span><span class="lineCov">          6 :             timedAction.insertAction(pointer);</span>
 <span class="lineNum">      77 </span>            :         }
 <span class="lineNum">      78 </span>            :         
-<span class="lineNum">      79 </span><span class="lineCov">         16 :         ROSEE::YamlWorker yamlWorker;</span>
-<span class="lineNum">      80 </span><span class="lineCov">         16 :         yamlWorker.createYamlFile (&amp;timedAction, folderForActions + &quot;/timeds/&quot;);</span>
+<span class="lineNum">      79 </span><span class="lineCov">          8 :         ROSEE::YamlWorker yamlWorker;</span>
+<span class="lineNum">      80 </span><span class="lineCov">          8 :         yamlWorker.createYamlFile (&amp;timedAction, folderForActions + &quot;/timeds/&quot;);</span>
 <span class="lineNum">      81 </span>            :             
 <span class="lineNum">      82 </span>            :         //Parsing
-<span class="lineNum">      83 </span><span class="lineCov">         16 :         timedActionParsed = yamlWorker.parseYamlTimed (folderForActions + &quot;/timeds/TestTimedAction.yaml&quot;);</span>
+<span class="lineNum">      83 </span><span class="lineCov">          8 :         timedActionParsed = yamlWorker.parseYamlTimed (folderForActions + &quot;/timeds/TestTimedAction.yaml&quot;);</span>
 <span class="lineNum">      84 </span>            :         
 <a name="85"><span class="lineNum">      85 </span>            :     }</a>
 <span class="lineNum">      86 </span>            : 
-<span class="lineNum">      87 </span><span class="lineCov">         16 :     virtual void TearDown() {</span>
-<span class="lineNum">      88 </span><span class="lineCov">         16 :     }</span>
+<span class="lineNum">      87 </span><span class="lineCov">          8 :     virtual void TearDown() {</span>
+<span class="lineNum">      88 </span><span class="lineCov">          8 :     }</span>
 <span class="lineNum">      89 </span>            :     
 <span class="lineNum">      90 </span>            :     ROSEE::ActionTrig::Map trigMap;
 <span class="lineNum">      91 </span>            :     ROSEE::ActionPinchTight::Map pinchTightMap;
@@ -159,76 +159,76 @@
 <span class="lineNum">      97 </span>            :    
 <a name="98"><span class="lineNum">      98 </span>            : };</a>
 <span class="lineNum">      99 </span>            : 
-<span class="lineNum">     100 </span><span class="lineCov">         40 : TEST_F ( testTimedAction, checkMembersSizeConsistency ) {</span>
+<span class="lineNum">     100 </span><span class="lineCov">         20 : TEST_F ( testTimedAction, checkMembersSizeConsistency ) {</span>
 <span class="lineNum">     101 </span>            :     
-<span class="lineNum">     102 </span><span class="lineCov">          8 :     EXPECT_EQ ( timedAction.getInnerActionsNames().size(), timedAction.getAllActionMargins().size() );</span>
-<span class="lineNum">     103 </span><span class="lineCov">          8 :     EXPECT_EQ ( timedAction.getAllActionMargins().size(), timedAction.getAllJointCountAction().size() );</span>
-<span class="lineNum">     104 </span><span class="lineCov">          8 :     EXPECT_EQ ( timedAction.getAllJointCountAction().size(), timedAction.getAllJointPos().size() );</span>
+<span class="lineNum">     102 </span><span class="lineCov">          4 :     EXPECT_EQ ( timedAction.getInnerActionsNames().size(), timedAction.getAllActionMargins().size() );</span>
+<span class="lineNum">     103 </span><span class="lineCov">          4 :     EXPECT_EQ ( timedAction.getAllActionMargins().size(), timedAction.getAllJointCountAction().size() );</span>
+<span class="lineNum">     104 </span><span class="lineCov">          4 :     EXPECT_EQ ( timedAction.getAllJointCountAction().size(), timedAction.getAllJointPos().size() );</span>
 <span class="lineNum">     105 </span>            :     
-<span class="lineNum">     106 </span><span class="lineCov">          8 :     EXPECT_EQ ( timedActionParsed-&gt;getInnerActionsNames().size(), timedActionParsed-&gt;getAllActionMargins().size() );</span>
-<span class="lineNum">     107 </span><span class="lineCov">          8 :     EXPECT_EQ ( timedActionParsed-&gt;getAllActionMargins().size(), timedActionParsed-&gt;getAllJointCountAction().size() );</span>
-<span class="lineNum">     108 </span><span class="lineCov">          8 :     EXPECT_EQ ( timedActionParsed-&gt;getAllJointCountAction().size(), timedActionParsed-&gt;getAllJointPos().size() );   </span>
+<span class="lineNum">     106 </span><span class="lineCov">          4 :     EXPECT_EQ ( timedActionParsed-&gt;getInnerActionsNames().size(), timedActionParsed-&gt;getAllActionMargins().size() );</span>
+<span class="lineNum">     107 </span><span class="lineCov">          4 :     EXPECT_EQ ( timedActionParsed-&gt;getAllActionMargins().size(), timedActionParsed-&gt;getAllJointCountAction().size() );</span>
+<span class="lineNum">     108 </span><span class="lineCov">          4 :     EXPECT_EQ ( timedActionParsed-&gt;getAllJointCountAction().size(), timedActionParsed-&gt;getAllJointPos().size() );   </span>
 <span class="lineNum">     109 </span>            :     
-<a name="110"><span class="lineNum">     110 </span><span class="lineCov">          8 : }</span></a>
+<a name="110"><span class="lineNum">     110 </span><span class="lineCov">          4 : }</span></a>
 <span class="lineNum">     111 </span>            : 
-<span class="lineNum">     112 </span><span class="lineCov">         40 : TEST_F ( testTimedAction, checkEmitParse ) {</span>
+<span class="lineNum">     112 </span><span class="lineCov">         20 : TEST_F ( testTimedAction, checkEmitParse ) {</span>
 <span class="lineNum">     113 </span>            :     
-<span class="lineNum">     114 </span><span class="lineCov">          8 :     if (timedAction.getInnerActionsNames().size() &gt; 0) {</span>
+<span class="lineNum">     114 </span><span class="lineCov">          4 :     if (timedAction.getInnerActionsNames().size() &gt; 0) {</span>
 <span class="lineNum">     115 </span>            :         
-<span class="lineNum">     116 </span><span class="lineCov">          8 :         EXPECT_EQ (timedAction.getName(), timedActionParsed-&gt;getName() );</span>
-<span class="lineNum">     117 </span><span class="lineCov">          8 :         EXPECT_EQ (timedAction.getType(), timedActionParsed-&gt;getType() );</span>
-<span class="lineNum">     118 </span><span class="lineCov">          8 :         EXPECT_EQ (timedAction.getFingersInvolved(), timedActionParsed-&gt;getFingersInvolved() );</span>
+<span class="lineNum">     116 </span><span class="lineCov">          4 :         EXPECT_EQ (timedAction.getName(), timedActionParsed-&gt;getName() );</span>
+<span class="lineNum">     117 </span><span class="lineCov">          4 :         EXPECT_EQ (timedAction.getType(), timedActionParsed-&gt;getType() );</span>
+<span class="lineNum">     118 </span><span class="lineCov">          4 :         EXPECT_EQ (timedAction.getFingersInvolved(), timedActionParsed-&gt;getFingersInvolved() );</span>
 <span class="lineNum">     119 </span>            :         
-<span class="lineNum">     120 </span><span class="lineCov">         48 :         for (auto jointCount : timedAction.getJointsInvolvedCount()) {</span>
-<span class="lineNum">     121 </span><span class="lineCov">         40 :             EXPECT_EQ ( jointCount.second, timedActionParsed-&gt;getJointsInvolvedCount().at(jointCount.first) ); </span>
+<span class="lineNum">     120 </span><span class="lineCov">         24 :         for (auto jointCount : timedAction.getJointsInvolvedCount()) {</span>
+<span class="lineNum">     121 </span><span class="lineCov">         20 :             EXPECT_EQ ( jointCount.second, timedActionParsed-&gt;getJointsInvolvedCount().at(jointCount.first) ); </span>
 <span class="lineNum">     122 </span>            :         }
 <span class="lineNum">     123 </span>            :         
-<span class="lineNum">     124 </span><span class="lineCov">         48 :         for (auto joint: timedAction.getJointPos() ) {</span>
+<span class="lineNum">     124 </span><span class="lineCov">         24 :         for (auto joint: timedAction.getJointPos() ) {</span>
 <span class="lineNum">     125 </span>            :             
 <span class="lineNum">     126 </span>            :             //compare size of joint (number of dofs)
-<span class="lineNum">     127 </span><span class="lineCov">         40 :             ASSERT_EQ (joint.second.size(), timedActionParsed-&gt;getJointPos().at(joint.first).size() );</span>
+<span class="lineNum">     127 </span><span class="lineCov">         20 :             ASSERT_EQ (joint.second.size(), timedActionParsed-&gt;getJointPos().at(joint.first).size() );</span>
 <span class="lineNum">     128 </span>            :             //loop the eventually multiple joint pos (when dofs &gt; 1)
-<span class="lineNum">     129 </span><span class="lineCov">         80 :             for (int j = 0; j &lt; joint.second.size(); ++j ){</span>
-<span class="lineNum">     130 </span><span class="lineCov">         40 :                 EXPECT_DOUBLE_EQ ( joint.second.at(j), timedActionParsed-&gt;getJointPos().at(joint.first).at(j) ); </span>
+<span class="lineNum">     129 </span><span class="lineCov">         40 :             for (int j = 0; j &lt; joint.second.size(); ++j ){</span>
+<span class="lineNum">     130 </span><span class="lineCov">         20 :                 EXPECT_DOUBLE_EQ ( joint.second.at(j), timedActionParsed-&gt;getJointPos().at(joint.first).at(j) ); </span>
 <span class="lineNum">     131 </span>            :             }     
 <span class="lineNum">     132 </span>            :         }
 <span class="lineNum">     133 </span>            :         
-<span class="lineNum">     134 </span><span class="lineCov">          8 :         unsigned int k = 0;</span>
-<span class="lineNum">     135 </span><span class="lineCov">         36 :         for (auto innerActName : timedAction.getInnerActionsNames()) {</span>
-<span class="lineNum">     136 </span><span class="lineCov">         28 :             EXPECT_EQ ( innerActName, timedActionParsed-&gt;getInnerActionsNames().at(k) );</span>
-<span class="lineNum">     137 </span><span class="lineCov">         28 :             k++;</span>
+<span class="lineNum">     134 </span><span class="lineCov">          4 :         unsigned int k = 0;</span>
+<span class="lineNum">     135 </span><span class="lineCov">         18 :         for (auto innerActName : timedAction.getInnerActionsNames()) {</span>
+<span class="lineNum">     136 </span><span class="lineCov">         14 :             EXPECT_EQ ( innerActName, timedActionParsed-&gt;getInnerActionsNames().at(k) );</span>
+<span class="lineNum">     137 </span><span class="lineCov">         14 :             k++;</span>
 <span class="lineNum">     138 </span>            :         }
 <span class="lineNum">     139 </span>            :         
-<span class="lineNum">     140 </span><span class="lineCov">          8 :         k = 0;</span>
-<span class="lineNum">     141 </span><span class="lineCov">         36 :         for (auto timeMargins : timedAction.getAllActionMargins() ) {</span>
+<span class="lineNum">     140 </span><span class="lineCov">          4 :         k = 0;</span>
+<span class="lineNum">     141 </span><span class="lineCov">         18 :         for (auto timeMargins : timedAction.getAllActionMargins() ) {</span>
 <span class="lineNum">     142 </span>            :             
-<span class="lineNum">     143 </span><span class="lineCov">         28 :             EXPECT_DOUBLE_EQ (timeMargins.first, timedActionParsed-&gt;getAllActionMargins().at(k).first);</span>
-<span class="lineNum">     144 </span><span class="lineCov">         28 :             EXPECT_DOUBLE_EQ (timeMargins.second, timedActionParsed-&gt;getAllActionMargins().at(k).second);</span>
-<span class="lineNum">     145 </span><span class="lineCov">         28 :             k++;</span>
+<span class="lineNum">     143 </span><span class="lineCov">         14 :             EXPECT_DOUBLE_EQ (timeMargins.first, timedActionParsed-&gt;getAllActionMargins().at(k).first);</span>
+<span class="lineNum">     144 </span><span class="lineCov">         14 :             EXPECT_DOUBLE_EQ (timeMargins.second, timedActionParsed-&gt;getAllActionMargins().at(k).second);</span>
+<span class="lineNum">     145 </span><span class="lineCov">         14 :             k++;</span>
 <span class="lineNum">     146 </span>            :         }
 <span class="lineNum">     147 </span>            : 
-<span class="lineNum">     148 </span><span class="lineCov">         16 :         auto jpvector = timedAction.getAllJointPos();</span>
-<span class="lineNum">     149 </span><span class="lineCov">         36 :         for (int i=0; i &lt; jpvector.size(); i++) {</span>
+<span class="lineNum">     148 </span><span class="lineCov">          8 :         auto jpvector = timedAction.getAllJointPos();</span>
+<span class="lineNum">     149 </span><span class="lineCov">         18 :         for (int i=0; i &lt; jpvector.size(); i++) {</span>
 <span class="lineNum">     150 </span>            :             
-<span class="lineNum">     151 </span><span class="lineCov">        200 :             for (auto joint: jpvector.at(i) ) {</span>
+<span class="lineNum">     151 </span><span class="lineCov">        100 :             for (auto joint: jpvector.at(i) ) {</span>
 <span class="lineNum">     152 </span>            :                 
-<span class="lineNum">     153 </span><span class="lineCov">        344 :                 auto otherjointPos = timedActionParsed-&gt;getAllJointPos().at(i).at(joint.first);</span>
+<span class="lineNum">     153 </span><span class="lineCov">        172 :                 auto otherjointPos = timedActionParsed-&gt;getAllJointPos().at(i).at(joint.first);</span>
 <span class="lineNum">     154 </span>            :                 //compare size of joint (number of dofs)
-<span class="lineNum">     155 </span><span class="lineCov">        172 :                 ASSERT_EQ (joint.second.size(), otherjointPos.size() );</span>
+<span class="lineNum">     155 </span><span class="lineCov">         86 :                 ASSERT_EQ (joint.second.size(), otherjointPos.size() );</span>
 <span class="lineNum">     156 </span>            :                 
 <span class="lineNum">     157 </span>            :                 //loop the eventually multiple joint pos (when dofs &gt; 1)
-<span class="lineNum">     158 </span><span class="lineCov">        344 :                 for (int j = 0; j &lt; joint.second.size(); ++j ){</span>
-<span class="lineNum">     159 </span><span class="lineCov">        172 :                     EXPECT_DOUBLE_EQ ( joint.second.at(j), otherjointPos.at(j) ); </span>
+<span class="lineNum">     158 </span><span class="lineCov">        172 :                 for (int j = 0; j &lt; joint.second.size(); ++j ){</span>
+<span class="lineNum">     159 </span><span class="lineCov">         86 :                     EXPECT_DOUBLE_EQ ( joint.second.at(j), otherjointPos.at(j) ); </span>
 <span class="lineNum">     160 </span>            :                 } 
 <span class="lineNum">     161 </span>            :             }
 <span class="lineNum">     162 </span>            :         }
 <span class="lineNum">     163 </span>            :         
-<span class="lineNum">     164 </span><span class="lineCov">         16 :         auto jpcvector = timedAction.getAllJointCountAction();</span>
-<span class="lineNum">     165 </span><span class="lineCov">         36 :         for (int i=0; i &lt; jpcvector.size(); i++) {</span>
+<span class="lineNum">     164 </span><span class="lineCov">          8 :         auto jpcvector = timedAction.getAllJointCountAction();</span>
+<span class="lineNum">     165 </span><span class="lineCov">         18 :         for (int i=0; i &lt; jpcvector.size(); i++) {</span>
 <span class="lineNum">     166 </span>            :             
-<span class="lineNum">     167 </span><span class="lineCov">        200 :             for (auto joint: jpcvector.at(i) ) {</span>
+<span class="lineNum">     167 </span><span class="lineCov">        100 :             for (auto joint: jpcvector.at(i) ) {</span>
 <span class="lineNum">     168 </span>            :                 
-<span class="lineNum">     169 </span><span class="lineCov">        172 :                 EXPECT_EQ ( joint.second, timedActionParsed-&gt;getAllJointCountAction().at(i).at(joint.first) ); </span>
+<span class="lineNum">     169 </span><span class="lineCov">         86 :                 EXPECT_EQ ( joint.second, timedActionParsed-&gt;getAllJointCountAction().at(i).at(joint.first) ); </span>
 <span class="lineNum">     170 </span>            :                 
 <span class="lineNum">     171 </span>            :             }
 <span class="lineNum">     172 </span>            :         }
@@ -238,35 +238,35 @@
 <span class="lineNum">     176 </span>            : 
 <a name="177"><span class="lineNum">     177 </span>            : } //namespace</a>
 <span class="lineNum">     178 </span>            : 
-<span class="lineNum">     179 </span><span class="lineCov">          8 : int main ( int argc, char **argv ) {</span>
+<span class="lineNum">     179 </span><span class="lineCov">          4 : int main ( int argc, char **argv ) {</span>
 <span class="lineNum">     180 </span>            :     
-<span class="lineNum">     181 </span><span class="lineCov">          8 :     if (argc &lt; 2 ){</span>
+<span class="lineNum">     181 </span><span class="lineCov">          4 :     if (argc &lt; 2 ){</span>
 <span class="lineNum">     182 </span>            :         
 <span class="lineNum">     183 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[TEST ERROR] Insert hand name as argument&quot; &lt;&lt; std::endl;</span>
 <span class="lineNum">     184 </span><span class="lineNoCov">          0 :         return -1;</span>
 <span class="lineNum">     185 </span>            :     }
 <span class="lineNum">     186 </span>            :     
 <span class="lineNum">     187 </span>            :     /* Run tests on an isolated roscore */
-<span class="lineNum">     188 </span><span class="lineCov">          8 :     if(setenv(&quot;ROS_MASTER_URI&quot;, &quot;http://localhost:11322&quot;, 1) == -1)</span>
+<span class="lineNum">     188 </span><span class="lineCov">          4 :     if(setenv(&quot;ROS_MASTER_URI&quot;, &quot;http://localhost:11322&quot;, 1) == -1)</span>
 <span class="lineNum">     189 </span>            :     {
 <span class="lineNum">     190 </span><span class="lineNoCov">          0 :         perror(&quot;setenv&quot;);</span>
 <span class="lineNum">     191 </span><span class="lineNoCov">          0 :         return 1;</span>
 <span class="lineNum">     192 </span>            :     }
 <span class="lineNum">     193 </span>            :     
 <span class="lineNum">     194 </span>            :     //run roscore
-<span class="lineNum">     195 </span><span class="lineCov">         16 :     std::unique_ptr&lt;ROSEE::TestUtils::Process&gt; roscore;</span>
-<span class="lineNum">     196 </span><span class="lineCov">          8 :     roscore.reset(new ROSEE::TestUtils::Process({&quot;roscore&quot;, &quot;-p&quot;, &quot;11322&quot;}));</span>
+<span class="lineNum">     195 </span><span class="lineCov">          8 :     std::unique_ptr&lt;ROSEE::TestUtils::Process&gt; roscore;</span>
+<span class="lineNum">     196 </span><span class="lineCov">          4 :     roscore.reset(new ROSEE::TestUtils::Process({&quot;roscore&quot;, &quot;-p&quot;, &quot;11322&quot;}));</span>
 <span class="lineNum">     197 </span>            :     
-<span class="lineNum">     198 </span><span class="lineCov">          8 :     if ( ROSEE::TestUtils::prepareROSForTests ( argc, argv, &quot;testTimedAction&quot; ) != 0 ) {</span>
+<span class="lineNum">     198 </span><span class="lineCov">          4 :     if ( ROSEE::TestUtils::prepareROSForTests ( argc, argv, &quot;testTimedAction&quot; ) != 0 ) {</span>
 <span class="lineNum">     199 </span>            :         
 <span class="lineNum">     200 </span><span class="lineNoCov">          0 :         std::cout &lt;&lt; &quot;[TEST ERROR] Prepare Function failed&quot; &lt;&lt; std::endl;</span>
 <span class="lineNum">     201 </span><span class="lineNoCov">          0 :         return -1;</span>
 <span class="lineNum">     202 </span>            :     }
 <span class="lineNum">     203 </span>            :     
 <span class="lineNum">     204 </span>            :     
-<a name="205"><span class="lineNum">     205 </span><span class="lineCov">          8 :     ::testing::InitGoogleTest ( &amp;argc, argv );</span></a>
-<span class="lineNum">     206 </span><span class="lineCov">          8 :     return RUN_ALL_TESTS();</span>
-<span class="lineNum">     207 </span><span class="lineCov">         24 : }</span>
+<a name="205"><span class="lineNum">     205 </span><span class="lineCov">          4 :     ::testing::InitGoogleTest ( &amp;argc, argv );</span></a>
+<span class="lineNum">     206 </span><span class="lineCov">          4 :     return RUN_ALL_TESTS();</span>
+<span class="lineNum">     207 </span><span class="lineCov">         12 : }</span>
 </pre>
       </td>
     </tr>
@@ -275,7 +275,7 @@
 
   <table width="100%" border=0 cellspacing=0 cellpadding=0>
     <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
-    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
   </table>
   <br>
 

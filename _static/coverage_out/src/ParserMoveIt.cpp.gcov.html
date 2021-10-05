@@ -31,18 +31,18 @@
             <td class="headerValue">main_coverage.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">179</td>
-            <td class="headerCovTableEntry">266</td>
-            <td class="headerCovTableEntryLo">67.3 %</td>
+            <td class="headerCovTableEntry">181</td>
+            <td class="headerCovTableEntry">284</td>
+            <td class="headerCovTableEntryLo">63.7 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2020-08-05 12:21:01</td>
+            <td class="headerValue">2021-10-05 16:55:17</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">33</td>
-            <td class="headerCovTableEntry">39</td>
-            <td class="headerCovTableEntryMed">84.6 %</td>
+            <td class="headerCovTableEntry">34</td>
+            <td class="headerCovTableEntry">45</td>
+            <td class="headerCovTableEntryMed">75.6 %</td>
           </tr>
           <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -78,66 +78,66 @@
 <span class="lineNum">      16 </span>            : 
 <a name="17"><span class="lineNum">      17 </span>            : #include &lt;ros_end_effector/ParserMoveIt.h&gt;</a>
 <span class="lineNum">      18 </span>            : 
-<span class="lineNum">      19 </span><span class="lineCov">        379 : ROSEE::ParserMoveIt::ParserMoveIt() {</span>
+<span class="lineNum">      19 </span><span class="lineCov">        144 : ROSEE::ParserMoveIt::ParserMoveIt() {</span>
 <span class="lineNum">      20 </span>            : 
-<a name="21"><span class="lineNum">      21 </span><span class="lineCov">        379 : }</span></a>
+<a name="21"><span class="lineNum">      21 </span><span class="lineCov">        144 : }</span></a>
 <span class="lineNum">      22 </span>            : 
-<span class="lineNum">      23 </span><span class="lineCov">        379 : ROSEE::ParserMoveIt::~ParserMoveIt() {</span>
+<span class="lineNum">      23 </span><span class="lineCov">        144 : ROSEE::ParserMoveIt::~ParserMoveIt() {</span>
 <span class="lineNum">      24 </span>            : 
-<a name="25"><span class="lineNum">      25 </span><span class="lineCov">        379 : }</span></a>
+<a name="25"><span class="lineNum">      25 </span><span class="lineCov">        144 : }</span></a>
 <span class="lineNum">      26 </span>            : 
-<span class="lineNum">      27 </span><span class="lineCov">        379 : bool ROSEE::ParserMoveIt::init ( std::string robot_description, bool verbose ) {</span>
+<span class="lineNum">      27 </span><span class="lineCov">        144 : bool ROSEE::ParserMoveIt::init ( std::string robot_description, bool verbose ) {</span>
 <span class="lineNum">      28 </span>            :     
-<span class="lineNum">      29 </span><span class="lineCov">        379 :     if (robot_model != nullptr ) {</span>
+<span class="lineNum">      29 </span><span class="lineCov">        144 :     if (robot_model != nullptr ) {</span>
 <span class="lineNum">      30 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot;[PARSER::&quot;  &lt;&lt; __func__ &lt;&lt; &quot;]: init() already called by someone &quot; &lt;&lt; std::endl;;</span>
 <span class="lineNum">      31 </span><span class="lineNoCov">          0 :         return false;</span>
 <span class="lineNum">      32 </span>            :     }
-<span class="lineNum">      33 </span>            :     // it is a ros param in the launch, take care that also sdrf is read 
+<span class="lineNum">      33 </span>            :     // it is a ros param in the launch, take care that also sdrf is read by robot_mo
 <span class="lineNum">      34 </span>            :     // (param for srd is robot_description_semantic)
-<span class="lineNum">      35 </span><span class="lineCov">        379 :     this-&gt;robot_description = robot_description;</span>
+<span class="lineNum">      35 </span><span class="lineCov">        144 :     this-&gt;robot_description = robot_description;</span>
 <span class="lineNum">      36 </span>            :     
 <span class="lineNum">      37 </span>            :     //false: we dont need kinematic solvers now
-<span class="lineNum">      38 </span><span class="lineCov">        758 :     robot_model_loader::RobotModelLoader robot_model_loader(robot_description, false) ; </span>
-<span class="lineNum">      39 </span><span class="lineCov">        379 :     robot_model = robot_model_loader.getModel() ;</span>
-<span class="lineNum">      40 </span><span class="lineCov">        379 :     if (robot_model == nullptr) {</span>
-<span class="lineNum">      41 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; </span>
-<span class="lineNum">      42 </span><span class="lineNoCov">          0 :             &quot;]: Fail To load robot model &quot; &lt;&lt; robot_description &lt;&lt;</span>
-<span class="lineNum">      43 </span><span class="lineNoCov">          0 :             &quot; are you sure to have put both urdf and srdf files in the parameter server &quot; &lt;&lt;</span>
+<span class="lineNum">      38 </span><span class="lineCov">        288 :     robot_model_loader::RobotModelLoader robot_model_loader(robot_description, false) ; </span>
+<span class="lineNum">      39 </span><span class="lineCov">        144 :     robot_model = robot_model_loader.getModel() ;</span>
+<span class="lineNum">      40 </span><span class="lineCov">        144 :     if (robot_model == nullptr) {</span>
+<span class="lineNum">      41 </span>            :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; 
+<span class="lineNum">      42 </span>            :             &quot;]: Fail To load robot model &quot; &lt;&lt; robot_description &lt;&lt;
+<span class="lineNum">      43 </span>            :             &quot; are you sure to have put both urdf and srdf files in the parameter server &quot; &lt;&lt;
 <span class="lineNum">      44 </span><span class="lineNoCov">          0 :             &quot;with names robot_description and robot_description_semantic, respectively?&quot; &lt;&lt; std::endl; </span>
 <span class="lineNum">      45 </span><span class="lineNoCov">          0 :         return false;</span>
 <span class="lineNum">      46 </span>            :     }
-<span class="lineNum">      47 </span><span class="lineCov">        379 :     std::cout &lt;&lt; &quot;[PARSER::&quot; &lt;&lt; __func__ &lt;&lt; &quot;]: Parsed Model: &quot; &lt;&lt; robot_model-&gt;getName() &lt;&lt; std::endl; ;</span>
+<span class="lineNum">      47 </span><span class="lineCov">        144 :     std::cout &lt;&lt; &quot;[PARSER::&quot; &lt;&lt; __func__ &lt;&lt; &quot;]: Parsed Model: &quot; &lt;&lt; robot_model-&gt;getName() &lt;&lt; std::endl; ;</span>
 <span class="lineNum">      48 </span>            :     
-<span class="lineNum">      49 </span><span class="lineCov">        379 :     handName = robot_model-&gt;getName();</span>
+<span class="lineNum">      49 </span><span class="lineCov">        144 :     handName = robot_model-&gt;getName();</span>
 <span class="lineNum">      50 </span>            :     
-<span class="lineNum">      51 </span><span class="lineCov">        379 :     lookForFingertips(verbose);</span>
-<span class="lineNum">      52 </span><span class="lineCov">        379 :     lookForActiveJoints();</span>
-<span class="lineNum">      53 </span><span class="lineCov">        379 :     lookForPassiveJoints();</span>
-<span class="lineNum">      54 </span><span class="lineCov">        379 :     lookForDescendants();</span>
-<span class="lineNum">      55 </span><span class="lineCov">        379 :     lookJointsTipsCorrelation();</span>
+<span class="lineNum">      51 </span><span class="lineCov">        144 :     lookForFingertips(verbose);</span>
+<span class="lineNum">      52 </span><span class="lineCov">        144 :     lookForActiveJoints();</span>
+<span class="lineNum">      53 </span><span class="lineCov">        144 :     lookForPassiveJoints();</span>
+<span class="lineNum">      54 </span><span class="lineCov">        144 :     lookForDescendants();</span>
+<span class="lineNum">      55 </span><span class="lineCov">        144 :     lookJointsTipsCorrelation();</span>
 <span class="lineNum">      56 </span>            :     
-<span class="lineNum">      57 </span><span class="lineCov">        379 :     return true;</span>
+<span class="lineNum">      57 </span><span class="lineCov">        144 :     return true;</span>
 <span class="lineNum">      58 </span>            :     
 <a name="59"><span class="lineNum">      59 </span>            : }</a>
 <span class="lineNum">      60 </span>            : 
-<span class="lineNum">      61 </span><span class="lineCov">        184 : std::string ROSEE::ParserMoveIt::getHandName() const {</span>
-<span class="lineNum">      62 </span><span class="lineCov">        184 :     return handName;</span>
+<span class="lineNum">      61 </span><span class="lineCov">         92 : std::string ROSEE::ParserMoveIt::getHandName() const {</span>
+<span class="lineNum">      62 </span><span class="lineCov">         92 :     return handName;</span>
 <a name="63"><span class="lineNum">      63 </span>            : }</a>
 <span class="lineNum">      64 </span>            : 
-<span class="lineNum">      65 </span><span class="lineCov">        524 : std::vector&lt;std::string&gt; ROSEE::ParserMoveIt::getFingertipNames() const {</span>
-<span class="lineNum">      66 </span><span class="lineCov">        524 :     return fingertipNames;</span>
+<span class="lineNum">      65 </span><span class="lineCov">        216 : std::vector&lt;std::string&gt; ROSEE::ParserMoveIt::getFingertipNames() const {</span>
+<span class="lineNum">      66 </span><span class="lineCov">        216 :     return fingertipNames;</span>
 <a name="67"><span class="lineNum">      67 </span>            : }</a>
 <span class="lineNum">      68 </span>            : 
 <span class="lineNum">      69 </span><span class="lineNoCov">          0 : std::vector&lt;std::string&gt; ROSEE::ParserMoveIt::getActiveJointNames() const {</span>
 <span class="lineNum">      70 </span><span class="lineNoCov">          0 :     return activeJointNames;</span>
 <a name="71"><span class="lineNum">      71 </span>            : }</a>
 <span class="lineNum">      72 </span>            : 
-<span class="lineNum">      73 </span><span class="lineCov">     282709 : std::vector&lt;const moveit::core::JointModel*&gt; ROSEE::ParserMoveIt::getActiveJointModels() const {</span>
-<span class="lineNum">      74 </span><span class="lineCov">     282709 :     return activeJointModels;</span>
+<span class="lineNum">      73 </span><span class="lineCov">      99696 : std::vector&lt;const moveit::core::JointModel*&gt; ROSEE::ParserMoveIt::getActiveJointModels() const {</span>
+<span class="lineNum">      74 </span><span class="lineCov">      99696 :     return activeJointModels;</span>
 <a name="75"><span class="lineNum">      75 </span>            : }</a>
 <span class="lineNum">      76 </span>            : 
-<span class="lineNum">      77 </span><span class="lineCov">    1926000 : std::vector&lt;std::string&gt; ROSEE::ParserMoveIt::getPassiveJointNames() const {</span>
-<span class="lineNum">      78 </span><span class="lineCov">    1926000 :     return passiveJointNames;</span>
+<span class="lineNum">      77 </span><span class="lineCov">     777000 : std::vector&lt;std::string&gt; ROSEE::ParserMoveIt::getPassiveJointNames() const {</span>
+<span class="lineNum">      78 </span><span class="lineCov">     777000 :     return passiveJointNames;</span>
 <a name="79"><span class="lineNum">      79 </span>            : }</a>
 <span class="lineNum">      80 </span>            : 
 <span class="lineNum">      81 </span><span class="lineNoCov">          0 : std::map &lt;std::string, std::vector &lt; const moveit::core::LinkModel* &gt; &gt;  ROSEE::ParserMoveIt::getDescendantLinksOfJoint() const {</span>
@@ -148,446 +148,531 @@
 <span class="lineNum">      86 </span><span class="lineNoCov">          0 :     return descendantJointsOfJoint;</span>
 <a name="87"><span class="lineNum">      87 </span>            : }</a>
 <span class="lineNum">      88 </span>            : 
-<span class="lineNum">      89 </span><span class="lineCov">         21 : unsigned int ROSEE::ParserMoveIt::getNFingers () const {</span>
-<span class="lineNum">      90 </span><span class="lineCov">         21 :     return nFingers;</span>
+<span class="lineNum">      89 </span><span class="lineCov">          6 : unsigned int ROSEE::ParserMoveIt::getNFingers () const {</span>
+<span class="lineNum">      90 </span><span class="lineCov">          6 :     return nFingers;</span>
 <a name="91"><span class="lineNum">      91 </span>            : }</a>
 <span class="lineNum">      92 </span>            : 
-<span class="lineNum">      93 </span><span class="lineCov">        754 : const robot_model::RobotModelPtr ROSEE::ParserMoveIt::getRobotModel () const {</span>
-<span class="lineNum">      94 </span><span class="lineCov">        754 :     return robot_model;</span>
+<span class="lineNum">      93 </span><span class="lineCov">        305 : const robot_model::RobotModelPtr ROSEE::ParserMoveIt::getRobotModel () const {</span>
+<span class="lineNum">      94 </span><span class="lineCov">        305 :     return robot_model;</span>
 <a name="95"><span class="lineNum">      95 </span>            : }</a>
 <span class="lineNum">      96 </span>            : 
-<span class="lineNum">      97 </span><span class="lineCov">     476783 : std::map&lt;std::string, std::vector&lt;std::string&gt; &gt; ROSEE::ParserMoveIt::getFingertipsOfJointMap() const {</span>
-<span class="lineNum">      98 </span><span class="lineCov">     476783 :     return fingertipsOfJointMap;</span>
+<span class="lineNum">      97 </span><span class="lineCov">     186850 : std::map&lt;std::string, std::vector&lt;std::string&gt; &gt; ROSEE::ParserMoveIt::getFingertipsOfJointMap() const {</span>
+<span class="lineNum">      98 </span><span class="lineCov">     186850 :     return fingertipsOfJointMap;</span>
 <a name="99"><span class="lineNum">      99 </span>            : }</a>
 <span class="lineNum">     100 </span>            : 
-<span class="lineNum">     101 </span><span class="lineCov">        328 : std::map&lt;std::string, std::vector&lt;std::string&gt; &gt; ROSEE::ParserMoveIt::getJointsOfFingertipMap() const {</span>
-<span class="lineNum">     102 </span><span class="lineCov">        328 :     return jointsOfFingertipMap;</span>
+<span class="lineNum">     101 </span><span class="lineCov">        136 : std::map&lt;std::string, std::vector&lt;std::string&gt; &gt; ROSEE::ParserMoveIt::getJointsOfFingertipMap() const {</span>
+<span class="lineNum">     102 </span><span class="lineCov">        136 :     return jointsOfFingertipMap;</span>
 <a name="103"><span class="lineNum">     103 </span>            : }</a>
 <span class="lineNum">     104 </span>            : 
 <span class="lineNum">     105 </span><span class="lineNoCov">          0 : std::map &lt; std::string, std::string&gt; ROSEE::ParserMoveIt::getFingerOfFingertipMap() const {</span>
 <span class="lineNum">     106 </span><span class="lineNoCov">          0 :     return fingerOfFingertipMap;</span>
 <a name="107"><span class="lineNum">     107 </span>            : }</a>
 <span class="lineNum">     108 </span>            : 
-<span class="lineNum">     109 </span><span class="lineCov">     133382 : std::string ROSEE::ParserMoveIt::getFingerOfFingertip (std::string tipName) const {</span>
+<span class="lineNum">     109 </span><span class="lineCov">      52451 : std::string ROSEE::ParserMoveIt::getFingerOfFingertip (std::string tipName) const {</span>
 <span class="lineNum">     110 </span>            :     
-<span class="lineNum">     111 </span><span class="lineCov">     133382 :     auto it = fingerOfFingertipMap.find(tipName);</span>
+<span class="lineNum">     111 </span><span class="lineCov">      52451 :     auto it = fingerOfFingertipMap.find(tipName);</span>
 <span class="lineNum">     112 </span>            :     
-<span class="lineNum">     113 </span><span class="lineCov">     133382 :     if (it != fingerOfFingertipMap.end() ) {</span>
-<span class="lineNum">     114 </span><span class="lineCov">     133382 :         return (it-&gt;second);</span>
+<span class="lineNum">     113 </span><span class="lineCov">      52451 :     if (it != fingerOfFingertipMap.end() ) {</span>
+<span class="lineNum">     114 </span><span class="lineCov">      52451 :         return (it-&gt;second);</span>
 <span class="lineNum">     115 </span>            :         
 <span class="lineNum">     116 </span>            :     } else {
 <span class="lineNum">     117 </span><span class="lineNoCov">          0 :         return &quot;&quot;;</span>
 <span class="lineNum">     118 </span>            :     }
 <a name="119"><span class="lineNum">     119 </span>            : }</a>
 <span class="lineNum">     120 </span>            : 
-<span class="lineNum">     121 </span><span class="lineCov">        568 : std::map &lt; std::string, std::string&gt; ROSEE::ParserMoveIt::getFingertipOfFingerMap() const {</span>
-<span class="lineNum">     122 </span><span class="lineCov">        568 :     return fingertipOfFingerMap;</span>
+<span class="lineNum">     121 </span><span class="lineCov">        238 : std::map &lt; std::string, std::string&gt; ROSEE::ParserMoveIt::getFingertipOfFingerMap() const {</span>
+<span class="lineNum">     122 </span><span class="lineCov">        238 :     return fingertipOfFingerMap;</span>
 <a name="123"><span class="lineNum">     123 </span>            : }</a>
 <span class="lineNum">     124 </span>            : 
-<span class="lineNum">     125 </span><span class="lineCov">     500656 : std::string ROSEE::ParserMoveIt::getFingertipOfFinger (std::string fingerName) const {</span>
+<span class="lineNum">     125 </span><span class="lineCov">     170272 : std::string ROSEE::ParserMoveIt::getFingertipOfFinger (std::string fingerName) const {</span>
 <span class="lineNum">     126 </span>            :     
-<span class="lineNum">     127 </span><span class="lineCov">     500656 :     auto it = fingertipOfFingerMap.find(fingerName);</span>
+<span class="lineNum">     127 </span><span class="lineCov">     170272 :     auto it = fingertipOfFingerMap.find(fingerName);</span>
 <span class="lineNum">     128 </span>            :     
-<span class="lineNum">     129 </span><span class="lineCov">     500656 :     if (it != fingertipOfFingerMap.end() ) {</span>
-<span class="lineNum">     130 </span><span class="lineCov">     500656 :         return (it-&gt;second);</span>
+<span class="lineNum">     129 </span><span class="lineCov">     170272 :     if (it != fingertipOfFingerMap.end() ) {</span>
+<span class="lineNum">     130 </span><span class="lineCov">     170272 :         return (it-&gt;second);</span>
 <span class="lineNum">     131 </span>            :         
 <span class="lineNum">     132 </span>            :     } else {
 <span class="lineNum">     133 </span><span class="lineNoCov">          0 :         return &quot;&quot;;</span>
 <span class="lineNum">     134 </span>            :     }
 <a name="135"><span class="lineNum">     135 </span>            : }</a>
 <span class="lineNum">     136 </span>            : 
-<span class="lineNum">     137 </span><span class="lineCov">        164 : robot_model::RobotModelPtr ROSEE::ParserMoveIt::getCopyModel() const {</span>
-<span class="lineNum">     138 </span><span class="lineCov">        328 :     robot_model_loader::RobotModelLoader robot_model_loader(robot_description); </span>
-<span class="lineNum">     139 </span><span class="lineCov">        328 :     return robot_model_loader.getModel();</span>
-<a name="140"><span class="lineNum">     140 </span>            : }</a>
-<span class="lineNum">     141 </span>            : 
-<span class="lineNum">     142 </span><span class="lineNoCov">          0 : std::vector &lt; std::string &gt; ROSEE::ParserMoveIt::getGroupOfLink ( std::string linkName ) { </span>
-<span class="lineNum">     143 </span>            :     
-<span class="lineNum">     144 </span><span class="lineNoCov">          0 :     std::vector &lt; std::string &gt; groupsReturn;</span>
-<span class="lineNum">     145 </span>            : 
-<span class="lineNum">     146 </span><span class="lineNoCov">          0 :     if (robot_model == nullptr) {</span>
-<span class="lineNum">     147 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; </span>
-<span class="lineNum">     148 </span><span class="lineNoCov">          0 :             &quot;]: robot_model is null. Have you called init() before?&quot;  &lt;&lt; std::endl;</span>
-<span class="lineNum">     149 </span><span class="lineNoCov">          0 :         return groupsReturn;</span>
-<span class="lineNum">     150 </span>            :     }
-<span class="lineNum">     151 </span>            :     
-<span class="lineNum">     152 </span><span class="lineNoCov">          0 :     for (auto group : robot_model-&gt;getJointModelGroups() ) {</span>
-<span class="lineNum">     153 </span>            :         
-<span class="lineNum">     154 </span><span class="lineNoCov">          0 :         if ( group-&gt;hasLinkModel(linkName) ) {</span>
-<span class="lineNum">     155 </span>            :                 
-<span class="lineNum">     156 </span><span class="lineNoCov">          0 :             groupsReturn.push_back ( group-&gt;getName() ) ;</span>
-<span class="lineNum">     157 </span>            :         }
-<span class="lineNum">     158 </span>            :     }
-<span class="lineNum">     159 </span><span class="lineNoCov">          0 :     return groupsReturn;</span>
-<a name="160"><span class="lineNum">     160 </span>            : }</a>
-<span class="lineNum">     161 </span>            : 
-<span class="lineNum">     162 </span><span class="lineNoCov">          0 : bool ROSEE::ParserMoveIt::groupIsChain(const std::string groupName) const {</span>
-<span class="lineNum">     163 </span>            :     
-<span class="lineNum">     164 </span><span class="lineNoCov">          0 :     if (robot_model == nullptr) {</span>
-<span class="lineNum">     165 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; </span>
-<span class="lineNum">     166 </span><span class="lineNoCov">          0 :             &quot;]: robot_model is null. Have you called init() before?&quot;  &lt;&lt; std::endl;</span>
-<span class="lineNum">     167 </span><span class="lineNoCov">          0 :         return false;</span>
-<span class="lineNum">     168 </span>            :     }
+<span class="lineNum">     137 </span><span class="lineNoCov">          0 : std::pair&lt;std::string, std::string&gt; ROSEE::ParserMoveIt::getMimicNLFatherOfJoint(std::string mimicNLJointName) const {</span>
+<span class="lineNum">     138 </span>            :     
+<span class="lineNum">     139 </span><span class="lineNoCov">          0 :     std::pair&lt;std::string, std::string&gt; retPair;</span>
+<span class="lineNum">     140 </span>            :     
+<span class="lineNum">     141 </span><span class="lineNoCov">          0 :     auto it = mimicNLFatherOfJointMap.find(mimicNLJointName);</span>
+<span class="lineNum">     142 </span>            :     
+<span class="lineNum">     143 </span><span class="lineNoCov">          0 :     if (it != mimicNLFatherOfJointMap.end()) {</span>
+<span class="lineNum">     144 </span><span class="lineNoCov">          0 :         retPair = it-&gt;second;</span>
+<span class="lineNum">     145 </span>            :     }
+<span class="lineNum">     146 </span><span class="lineNoCov">          0 :     return retPair;</span>
+<a name="147"><span class="lineNum">     147 </span>            : }</a>
+<span class="lineNum">     148 </span>            : 
+<span class="lineNum">     149 </span><span class="lineCov">        144 : std::map&lt;std::string, std::pair&lt;std::string, std::string&gt;&gt; ROSEE::ParserMoveIt::getMimicNLFatherOfJointMap() const {</span>
+<span class="lineNum">     150 </span>            :     
+<span class="lineNum">     151 </span><span class="lineCov">        144 :     return mimicNLFatherOfJointMap;</span>
+<span class="lineNum">     152 </span>            :     
+<a name="153"><span class="lineNum">     153 </span>            : }</a>
+<span class="lineNum">     154 </span>            : 
+<span class="lineNum">     155 </span><span class="lineNoCov">          0 : std::string ROSEE::ParserMoveIt::getMimicNLJointOfFather(std::string mimicNLFatherName, std::string mimicNLJointName) const {</span>
+<span class="lineNum">     156 </span>            :     
+<span class="lineNum">     157 </span><span class="lineNoCov">          0 :     auto map = getMimicNLJointsOfFather(mimicNLFatherName);</span>
+<span class="lineNum">     158 </span>            :     
+<span class="lineNum">     159 </span><span class="lineNoCov">          0 :     auto it = map.find(mimicNLJointName);</span>
+<span class="lineNum">     160 </span>            :     
+<span class="lineNum">     161 </span><span class="lineNoCov">          0 :     if (it != map.end()) {</span>
+<span class="lineNum">     162 </span><span class="lineNoCov">          0 :         return it-&gt;second;</span>
+<span class="lineNum">     163 </span>            :     }
+<span class="lineNum">     164 </span>            :     
+<span class="lineNum">     165 </span><span class="lineNoCov">          0 :     return &quot;&quot;;</span>
+<a name="166"><span class="lineNum">     166 </span>            : }</a>
+<span class="lineNum">     167 </span>            : 
+<span class="lineNum">     168 </span><span class="lineNoCov">          0 : std::map&lt;std::string, std::string&gt; ROSEE::ParserMoveIt::getMimicNLJointsOfFather(std::string mimicNLFatherName) const {</span>
 <span class="lineNum">     169 </span>            :     
-<span class="lineNum">     170 </span><span class="lineNoCov">          0 :     if (! robot_model-&gt;hasJointModelGroup(groupName) ) {</span>
-<span class="lineNum">     171 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; </span>
-<span class="lineNum">     172 </span><span class="lineNoCov">          0 :             &quot;]: &quot; &lt;&lt; groupName &lt;&lt; &quot; is not a group &quot;  &lt;&lt; std::endl;</span>
-<span class="lineNum">     173 </span><span class="lineNoCov">          0 :         return false;</span>
-<span class="lineNum">     174 </span>            :     }
-<span class="lineNum">     175 </span><span class="lineNoCov">          0 :     return groupIsChain(robot_model-&gt;getJointModelGroup(groupName));</span>
-<a name="176"><span class="lineNum">     176 </span>            : }</a>
-<span class="lineNum">     177 </span>            : 
-<span class="lineNum">     178 </span><span class="lineCov">        928 : bool ROSEE::ParserMoveIt::groupIsChain(const moveit::core::JointModelGroup* group) const {</span>
-<span class="lineNum">     179 </span>            :     
-<span class="lineNum">     180 </span><span class="lineCov">       1856 :     std::stringstream log;</span>
-<span class="lineNum">     181 </span><span class="lineCov">        928 :     log &lt;&lt; &quot;Checking if &quot; &lt;&lt; group-&gt;getName() &lt;&lt; &quot; is a chain ...&quot; &lt;&lt; std::endl;</span>
-<span class="lineNum">     182 </span><span class="lineCov">       3039 :     for (auto link : group-&gt;getLinkModels() ){</span>
-<span class="lineNum">     183 </span><span class="lineCov">       2111 :         if (link-&gt;getChildJointModels().size() &gt; 1 ) {</span>
-<span class="lineNum">     184 </span><span class="lineNoCov">          0 :             log &lt;&lt; &quot;... no because &quot; &lt;&lt; link-&gt;getName() &lt;&lt; &quot; has &quot; &lt;&lt; link-&gt;getChildJointModels().size() &lt;&lt; &quot; children &quot; &lt;&lt; std::endl;</span>
-<span class="lineNum">     185 </span>            :            // std::cout &lt;&lt; log.str() &lt;&lt; std::endl;
-<span class="lineNum">     186 </span><span class="lineNoCov">          0 :             return false;</span>
-<span class="lineNum">     187 </span>            :         }
-<span class="lineNum">     188 </span>            :     }
-<span class="lineNum">     189 </span><span class="lineCov">        928 :     return true;</span>
-<span class="lineNum">     190 </span>            : }
+<span class="lineNum">     170 </span><span class="lineNoCov">          0 :     std::map&lt;std::string, std::string&gt; map;</span>
+<span class="lineNum">     171 </span>            :     
+<span class="lineNum">     172 </span><span class="lineNoCov">          0 :     auto it = mimicNLJointsOfFatherMap.find(mimicNLFatherName);</span>
+<span class="lineNum">     173 </span>            :     
+<span class="lineNum">     174 </span><span class="lineNoCov">          0 :     if (it != mimicNLJointsOfFatherMap.end()) {</span>
+<span class="lineNum">     175 </span><span class="lineNoCov">          0 :         map = it-&gt;second;</span>
+<span class="lineNum">     176 </span>            :     }
+<span class="lineNum">     177 </span><span class="lineNoCov">          0 :     return map;</span>
+<a name="178"><span class="lineNum">     178 </span>            : }</a>
+<span class="lineNum">     179 </span>            : 
+<span class="lineNum">     180 </span><span class="lineNoCov">          0 : std::map&lt;std::string, std::map&lt;std::string, std::string&gt;&gt; ROSEE::ParserMoveIt::getMimicNLJointsOfFatherMap() const {</span>
+<span class="lineNum">     181 </span>            :     
+<span class="lineNum">     182 </span><span class="lineNoCov">          0 :     return mimicNLJointsOfFatherMap;</span>
+<span class="lineNum">     183 </span>            :     
+<span class="lineNum">     184 </span>            : }
+<a name="185"><span class="lineNum">     185 </span>            : </a>
+<span class="lineNum">     186 </span>            : 
+<span class="lineNum">     187 </span><span class="lineCov">         68 : robot_model::RobotModelPtr ROSEE::ParserMoveIt::getCopyModel() const {</span>
+<span class="lineNum">     188 </span><span class="lineCov">        136 :     robot_model_loader::RobotModelLoader robot_model_loader(robot_description); </span>
+<span class="lineNum">     189 </span><span class="lineCov">        136 :     return robot_model_loader.getModel();</span>
+<a name="190"><span class="lineNum">     190 </span>            : }</a>
 <span class="lineNum">     191 </span>            : 
-<a name="192"><span class="lineNum">     192 </span>            : </a>
-<span class="lineNum">     193 </span>            : 
-<span class="lineNum">     194 </span><span class="lineCov">       1491 : bool ROSEE::ParserMoveIt::checkIfContinuosJoint ( std::string jointName) const {</span>
-<span class="lineNum">     195 </span><span class="lineCov">       1491 :     if (robot_model == nullptr) {</span>
-<span class="lineNum">     196 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; </span>
-<span class="lineNum">     197 </span><span class="lineNoCov">          0 :             &quot;]: robot_model is null. Have you called init() before?&quot;  &lt;&lt; std::endl;</span>
-<span class="lineNum">     198 </span><span class="lineNoCov">          0 :         return false;</span>
-<span class="lineNum">     199 </span>            :     }
-<span class="lineNum">     200 </span><span class="lineCov">       1491 :     return (ROSEE::ParserMoveIt::checkIfContinuosJoint(robot_model-&gt;getJointModel(jointName)));     </span>
-<a name="201"><span class="lineNum">     201 </span>            : }</a>
-<span class="lineNum">     202 </span>            : 
-<span class="lineNum">     203 </span><span class="lineCov">       2031 : bool ROSEE::ParserMoveIt::checkIfContinuosJoint ( const moveit::core::JointModel* joint ) const {</span>
-<span class="lineNum">     204 </span><span class="lineCov">       2031 :     if (robot_model == nullptr) {</span>
-<span class="lineNum">     205 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt;  &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; </span>
-<span class="lineNum">     206 </span><span class="lineNoCov">          0 :             &quot;]: robot_model is null. Have you called init() before?&quot; &lt;&lt; std::endl;</span>
-<span class="lineNum">     207 </span><span class="lineNoCov">          0 :         return false;</span>
+<span class="lineNum">     192 </span><span class="lineNoCov">          0 : std::vector &lt; std::string &gt; ROSEE::ParserMoveIt::getGroupOfLink ( std::string linkName ) { </span>
+<span class="lineNum">     193 </span>            :     
+<span class="lineNum">     194 </span><span class="lineNoCov">          0 :     std::vector &lt; std::string &gt; groupsReturn;</span>
+<span class="lineNum">     195 </span>            : 
+<span class="lineNum">     196 </span><span class="lineNoCov">          0 :     if (robot_model == nullptr) {</span>
+<span class="lineNum">     197 </span>            :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; 
+<span class="lineNum">     198 </span><span class="lineNoCov">          0 :             &quot;]: robot_model is null. Have you called init() before?&quot;  &lt;&lt; std::endl;</span>
+<span class="lineNum">     199 </span><span class="lineNoCov">          0 :         return groupsReturn;</span>
+<span class="lineNum">     200 </span>            :     }
+<span class="lineNum">     201 </span>            :     
+<span class="lineNum">     202 </span><span class="lineNoCov">          0 :     for (auto group : robot_model-&gt;getJointModelGroups() ) {</span>
+<span class="lineNum">     203 </span>            :         
+<span class="lineNum">     204 </span><span class="lineNoCov">          0 :         if ( group-&gt;hasLinkModel(linkName) ) {</span>
+<span class="lineNum">     205 </span>            :                 
+<span class="lineNum">     206 </span><span class="lineNoCov">          0 :             groupsReturn.push_back ( group-&gt;getName() ) ;</span>
+<span class="lineNum">     207 </span>            :         }
 <span class="lineNum">     208 </span>            :     }
-<span class="lineNum">     209 </span>            :     
-<span class="lineNum">     210 </span>            :     // for moveit, a continuos joint is a revolute joint
-<span class="lineNum">     211 </span><span class="lineCov">       2031 :     if (joint-&gt;getType() != moveit::core::JointModel::REVOLUTE ) {</span>
-<span class="lineNum">     212 </span><span class="lineNoCov">          0 :         return false;</span>
-<span class="lineNum">     213 </span>            :     }
-<span class="lineNum">     214 </span>            :     
-<span class="lineNum">     215 </span>            :     //if revolute, only one limit (at.(0))
-<span class="lineNum">     216 </span><span class="lineCov">       4062 :     moveit::core::JointModel::Bounds limits = joint-&gt;getVariableBounds();</span>
-<span class="lineNum">     217 </span><span class="lineCov">       2031 :     if ( limits.at(0).max_position_ - limits.at(0).min_position_ &gt;= (2*EIGEN_PI) ) {</span>
-<span class="lineNum">     218 </span><span class="lineNoCov">          0 :         return true;</span>
-<span class="lineNum">     219 </span>            :     }
-<span class="lineNum">     220 </span>            :     
-<span class="lineNum">     221 </span><span class="lineCov">       2031 :     return false;</span>
-<a name="222"><span class="lineNum">     222 </span>            : }</a>
-<span class="lineNum">     223 </span>            : 
-<span class="lineNum">     224 </span><span class="lineCov">        992 : std::vector &lt;double&gt; ROSEE::ParserMoveIt::getBiggerBoundFromZero ( std::string jointName ) const {</span>
-<span class="lineNum">     225 </span><span class="lineCov">        992 :     if (robot_model == nullptr) {</span>
-<span class="lineNum">     226 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; </span>
-<span class="lineNum">     227 </span><span class="lineNoCov">          0 :             &quot;]: robot_model is null. Have you called init() before?&quot; &lt;&lt; std::endl;</span>
-<span class="lineNum">     228 </span><span class="lineNoCov">          0 :         return std::vector&lt;double&gt;();</span>
-<span class="lineNum">     229 </span>            :     }
-<span class="lineNum">     230 </span><span class="lineCov">        992 :     return ( ROSEE::ParserMoveIt::getBiggerBoundFromZero (robot_model-&gt;getJointModel(jointName) ) );</span>
-<span class="lineNum">     231 </span>            : 
-<a name="232"><span class="lineNum">     232 </span>            : }</a>
-<span class="lineNum">     233 </span>            : 
-<span class="lineNum">     234 </span><span class="lineCov">        992 : std::vector &lt;double&gt; ROSEE::ParserMoveIt::getBiggerBoundFromZero ( const moveit::core::JointModel* joint ) const {</span>
-<span class="lineNum">     235 </span><span class="lineCov">        992 :     if (robot_model == nullptr) {</span>
-<span class="lineNum">     236 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; </span>
-<span class="lineNum">     237 </span><span class="lineNoCov">          0 :             &quot;]: robot_model is null. Have you called init() before?&quot; &lt;&lt; std::endl;</span>
-<span class="lineNum">     238 </span><span class="lineNoCov">          0 :         return std::vector&lt;double&gt;();</span>
-<span class="lineNum">     239 </span>            :     }
-<span class="lineNum">     240 </span>            :     
-<span class="lineNum">     241 </span><span class="lineCov">       1984 :     moveit::core::JointModel::Bounds limits = joint-&gt;getVariableBounds();</span>
-<span class="lineNum">     242 </span>            : 
-<span class="lineNum">     243 </span><span class="lineCov">       1984 :     std::vector &lt;double&gt; maxPos;</span>
-<span class="lineNum">     244 </span><span class="lineCov">       1984 :     for ( auto limit : limits ) {</span>
-<span class="lineNum">     245 </span><span class="lineCov">        992 :         if ( std::abs(limit.max_position_) &gt; std::abs(limit.min_position_)) {</span>
-<span class="lineNum">     246 </span><span class="lineCov">        317 :             maxPos.push_back ( limit.max_position_ ) ;</span>
-<span class="lineNum">     247 </span>            :         } else {
-<span class="lineNum">     248 </span><span class="lineCov">        675 :             maxPos.push_back ( limit.min_position_ ) ;</span>
-<span class="lineNum">     249 </span>            :         }
-<span class="lineNum">     250 </span>            :     }
-<span class="lineNum">     251 </span><span class="lineCov">        992 :     return maxPos;</span>
-<a name="252"><span class="lineNum">     252 </span>            : }</a>
-<span class="lineNum">     253 </span>            : 
-<span class="lineNum">     254 </span><span class="lineCov">          6 : std::vector &lt;double&gt; ROSEE::ParserMoveIt::getSmallerBoundFromZero ( std::string jointName ) const {</span>
-<span class="lineNum">     255 </span><span class="lineCov">          6 :     if (robot_model == nullptr) {</span>
-<span class="lineNum">     256 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; </span>
-<span class="lineNum">     257 </span><span class="lineNoCov">          0 :             &quot;]: robot_model is null. Have you called init() before?&quot; &lt;&lt; std::endl;</span>
-<span class="lineNum">     258 </span><span class="lineNoCov">          0 :         return std::vector&lt;double&gt;();</span>
-<span class="lineNum">     259 </span>            :     }
-<span class="lineNum">     260 </span><span class="lineCov">          6 :     return ( ROSEE::ParserMoveIt::getSmallerBoundFromZero (robot_model-&gt;getJointModel(jointName) ) );</span>
-<span class="lineNum">     261 </span>            : 
-<a name="262"><span class="lineNum">     262 </span>            : }</a>
-<span class="lineNum">     263 </span>            : 
-<span class="lineNum">     264 </span><span class="lineCov">          6 : std::vector &lt;double&gt; ROSEE::ParserMoveIt::getSmallerBoundFromZero ( const moveit::core::JointModel* joint ) const {</span>
-<span class="lineNum">     265 </span><span class="lineCov">          6 :     if (robot_model == nullptr) {</span>
-<span class="lineNum">     266 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; </span>
-<span class="lineNum">     267 </span><span class="lineNoCov">          0 :             &quot;]: robot_model is null. Have you called init() before?&quot; &lt;&lt; std::endl;</span>
-<span class="lineNum">     268 </span><span class="lineNoCov">          0 :         return std::vector&lt;double&gt;();</span>
+<span class="lineNum">     209 </span><span class="lineNoCov">          0 :     return groupsReturn;</span>
+<a name="210"><span class="lineNum">     210 </span>            : }</a>
+<span class="lineNum">     211 </span>            : 
+<span class="lineNum">     212 </span><span class="lineNoCov">          0 : bool ROSEE::ParserMoveIt::groupIsChain(const std::string groupName) const {</span>
+<span class="lineNum">     213 </span>            :     
+<span class="lineNum">     214 </span><span class="lineNoCov">          0 :     if (robot_model == nullptr) {</span>
+<span class="lineNum">     215 </span>            :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; 
+<span class="lineNum">     216 </span><span class="lineNoCov">          0 :             &quot;]: robot_model is null. Have you called init() before?&quot;  &lt;&lt; std::endl;</span>
+<span class="lineNum">     217 </span><span class="lineNoCov">          0 :         return false;</span>
+<span class="lineNum">     218 </span>            :     }
+<span class="lineNum">     219 </span>            :     
+<span class="lineNum">     220 </span><span class="lineNoCov">          0 :     if (! robot_model-&gt;hasJointModelGroup(groupName) ) {</span>
+<span class="lineNum">     221 </span>            :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; 
+<span class="lineNum">     222 </span><span class="lineNoCov">          0 :             &quot;]: &quot; &lt;&lt; groupName &lt;&lt; &quot; is not a group &quot;  &lt;&lt; std::endl;</span>
+<span class="lineNum">     223 </span><span class="lineNoCov">          0 :         return false;</span>
+<span class="lineNum">     224 </span>            :     }
+<span class="lineNum">     225 </span><span class="lineNoCov">          0 :     return groupIsChain(robot_model-&gt;getJointModelGroup(groupName));</span>
+<a name="226"><span class="lineNum">     226 </span>            : }</a>
+<span class="lineNum">     227 </span>            : 
+<span class="lineNum">     228 </span><span class="lineCov">        360 : bool ROSEE::ParserMoveIt::groupIsChain(const moveit::core::JointModelGroup* group) const {</span>
+<span class="lineNum">     229 </span>            :     
+<span class="lineNum">     230 </span><span class="lineCov">        720 :     std::stringstream log;</span>
+<span class="lineNum">     231 </span><span class="lineCov">        360 :     log &lt;&lt; &quot;Checking if &quot; &lt;&lt; group-&gt;getName() &lt;&lt; &quot; is a chain ...&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     232 </span><span class="lineCov">       1188 :     for (auto link : group-&gt;getLinkModels() ){</span>
+<span class="lineNum">     233 </span><span class="lineCov">        828 :         if (link-&gt;getChildJointModels().size() &gt; 1 ) {</span>
+<span class="lineNum">     234 </span><span class="lineNoCov">          0 :             log &lt;&lt; &quot;... no because &quot; &lt;&lt; link-&gt;getName() &lt;&lt; &quot; has &quot; &lt;&lt; link-&gt;getChildJointModels().size() &lt;&lt; &quot; children &quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     235 </span>            :            // std::cout &lt;&lt; log.str() &lt;&lt; std::endl;
+<span class="lineNum">     236 </span><span class="lineNoCov">          0 :             return false;</span>
+<span class="lineNum">     237 </span>            :         }
+<span class="lineNum">     238 </span>            :     }
+<span class="lineNum">     239 </span><span class="lineCov">        360 :     return true;</span>
+<span class="lineNum">     240 </span>            : }
+<span class="lineNum">     241 </span>            : 
+<a name="242"><span class="lineNum">     242 </span>            : </a>
+<span class="lineNum">     243 </span>            : 
+<span class="lineNum">     244 </span><span class="lineCov">        663 : bool ROSEE::ParserMoveIt::checkIfContinuosJoint ( std::string jointName) const {</span>
+<span class="lineNum">     245 </span><span class="lineCov">        663 :     if (robot_model == nullptr) {</span>
+<span class="lineNum">     246 </span>            :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; 
+<span class="lineNum">     247 </span><span class="lineNoCov">          0 :             &quot;]: robot_model is null. Have you called init() before?&quot;  &lt;&lt; std::endl;</span>
+<span class="lineNum">     248 </span><span class="lineNoCov">          0 :         return false;</span>
+<span class="lineNum">     249 </span>            :     }
+<span class="lineNum">     250 </span><span class="lineCov">        663 :     return (ROSEE::ParserMoveIt::checkIfContinuosJoint(robot_model-&gt;getJointModel(jointName)));     </span>
+<a name="251"><span class="lineNum">     251 </span>            : }</a>
+<span class="lineNum">     252 </span>            : 
+<span class="lineNum">     253 </span><span class="lineCov">        906 : bool ROSEE::ParserMoveIt::checkIfContinuosJoint ( const moveit::core::JointModel* joint ) const {</span>
+<span class="lineNum">     254 </span><span class="lineCov">        906 :     if (robot_model == nullptr) {</span>
+<span class="lineNum">     255 </span>            :         std::cerr &lt;&lt;  &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; 
+<span class="lineNum">     256 </span><span class="lineNoCov">          0 :             &quot;]: robot_model is null. Have you called init() before?&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     257 </span><span class="lineNoCov">          0 :         return false;</span>
+<span class="lineNum">     258 </span>            :     }
+<span class="lineNum">     259 </span>            :     
+<span class="lineNum">     260 </span>            :     // for moveit, a continuos joint is a revolute joint
+<span class="lineNum">     261 </span><span class="lineCov">        906 :     if (joint-&gt;getType() != moveit::core::JointModel::REVOLUTE ) {</span>
+<span class="lineNum">     262 </span><span class="lineNoCov">          0 :         return false;</span>
+<span class="lineNum">     263 </span>            :     }
+<span class="lineNum">     264 </span>            :     
+<span class="lineNum">     265 </span>            :     //if revolute, only one limit (at.(0))
+<span class="lineNum">     266 </span><span class="lineCov">       1812 :     moveit::core::JointModel::Bounds limits = joint-&gt;getVariableBounds();</span>
+<span class="lineNum">     267 </span><span class="lineCov">        906 :     if ( limits.at(0).max_position_ - limits.at(0).min_position_ &gt;= (2*EIGEN_PI) ) {</span>
+<span class="lineNum">     268 </span><span class="lineNoCov">          0 :         return true;</span>
 <span class="lineNum">     269 </span>            :     }
 <span class="lineNum">     270 </span>            :     
-<span class="lineNum">     271 </span><span class="lineCov">         12 :     moveit::core::JointModel::Bounds limits = joint-&gt;getVariableBounds();</span>
-<span class="lineNum">     272 </span>            : 
-<span class="lineNum">     273 </span><span class="lineCov">         12 :     std::vector &lt;double&gt; minPos;</span>
-<span class="lineNum">     274 </span><span class="lineCov">         12 :     for ( auto limit : limits ) {</span>
-<span class="lineNum">     275 </span><span class="lineCov">          6 :         if ( std::abs(limit.max_position_) &lt; std::abs(limit.min_position_)) {</span>
-<span class="lineNum">     276 </span><span class="lineNoCov">          0 :             minPos.push_back ( limit.max_position_ ) ;</span>
-<span class="lineNum">     277 </span>            :         } else {
-<span class="lineNum">     278 </span><span class="lineCov">          6 :             minPos.push_back ( limit.min_position_ ) ;</span>
-<span class="lineNum">     279 </span>            :         }
-<span class="lineNum">     280 </span>            :     }
-<span class="lineNum">     281 </span><span class="lineCov">          6 :     return minPos;</span>
+<span class="lineNum">     271 </span><span class="lineCov">        906 :     return false;</span>
+<a name="272"><span class="lineNum">     272 </span>            : }</a>
+<span class="lineNum">     273 </span>            : 
+<span class="lineNum">     274 </span><span class="lineCov">        443 : std::vector &lt;double&gt; ROSEE::ParserMoveIt::getBiggerBoundFromZero ( std::string jointName ) const {</span>
+<span class="lineNum">     275 </span><span class="lineCov">        443 :     if (robot_model == nullptr) {</span>
+<span class="lineNum">     276 </span>            :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; 
+<span class="lineNum">     277 </span><span class="lineNoCov">          0 :             &quot;]: robot_model is null. Have you called init() before?&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     278 </span><span class="lineNoCov">          0 :         return std::vector&lt;double&gt;();</span>
+<span class="lineNum">     279 </span>            :     }
+<span class="lineNum">     280 </span><span class="lineCov">        443 :     return ( ROSEE::ParserMoveIt::getBiggerBoundFromZero (robot_model-&gt;getJointModel(jointName) ) );</span>
+<span class="lineNum">     281 </span>            : 
 <a name="282"><span class="lineNum">     282 </span>            : }</a>
 <span class="lineNum">     283 </span>            : 
-<span class="lineNum">     284 </span><span class="lineCov">        424 : unsigned int ROSEE::ParserMoveIt::getNExclusiveJointsOfTip ( std::string tipName, bool continuosIncluded ) const {</span>
-<span class="lineNum">     285 </span>            :     
-<span class="lineNum">     286 </span><span class="lineCov">        424 :     if (jointsOfFingertipMap.size() == 0) {</span>
-<span class="lineNum">     287 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; </span>
-<span class="lineNum">     288 </span><span class="lineNoCov">          0 :             &quot;]: jointsOfFingertipMap empty. Have you called init() before? Also check your URDF and SRDF files&quot; </span>
-<span class="lineNum">     289 </span><span class="lineNoCov">          0 :             &lt;&lt; std::endl;</span>
-<span class="lineNum">     290 </span><span class="lineNoCov">          0 :         return 0;</span>
-<span class="lineNum">     291 </span>            :     }
-<span class="lineNum">     292 </span>            :     
-<span class="lineNum">     293 </span><span class="lineCov">        424 :     if (fingertipsOfJointMap.size() == 0) {</span>
-<span class="lineNum">     294 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; </span>
-<span class="lineNum">     295 </span><span class="lineNoCov">          0 :             &quot;]: jointsOfFingertipMap empty. Have you called init() before? Also check your URDF and SRDF files&quot; </span>
-<span class="lineNum">     296 </span><span class="lineNoCov">          0 :             &lt;&lt; std::endl;</span>
-<span class="lineNum">     297 </span><span class="lineNoCov">          0 :         return 0;</span>
-<span class="lineNum">     298 </span>            :     }
-<span class="lineNum">     299 </span>            :     
-<span class="lineNum">     300 </span><span class="lineCov">        424 :     unsigned int nExclusiveJoints = 0;</span>
-<span class="lineNum">     301 </span>            : 
-<span class="lineNum">     302 </span><span class="lineCov">       1288 :     for (auto jointOfTip : jointsOfFingertipMap.find(tipName)-&gt;second ) { </span>
+<span class="lineNum">     284 </span><span class="lineCov">        443 : std::vector &lt;double&gt; ROSEE::ParserMoveIt::getBiggerBoundFromZero ( const moveit::core::JointModel* joint ) const {</span>
+<span class="lineNum">     285 </span><span class="lineCov">        443 :     if (robot_model == nullptr) {</span>
+<span class="lineNum">     286 </span>            :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; 
+<span class="lineNum">     287 </span><span class="lineNoCov">          0 :             &quot;]: robot_model is null. Have you called init() before?&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     288 </span><span class="lineNoCov">          0 :         return std::vector&lt;double&gt;();</span>
+<span class="lineNum">     289 </span>            :     }
+<span class="lineNum">     290 </span>            :     
+<span class="lineNum">     291 </span><span class="lineCov">        886 :     moveit::core::JointModel::Bounds limits = joint-&gt;getVariableBounds();</span>
+<span class="lineNum">     292 </span>            : 
+<span class="lineNum">     293 </span><span class="lineCov">        886 :     std::vector &lt;double&gt; maxPos;</span>
+<span class="lineNum">     294 </span><span class="lineCov">        886 :     for ( auto limit : limits ) {</span>
+<span class="lineNum">     295 </span><span class="lineCov">        443 :         if ( std::abs(limit.max_position_) &gt; std::abs(limit.min_position_)) {</span>
+<span class="lineNum">     296 </span><span class="lineCov">        144 :             maxPos.push_back ( limit.max_position_ ) ;</span>
+<span class="lineNum">     297 </span>            :         } else {
+<span class="lineNum">     298 </span><span class="lineCov">        299 :             maxPos.push_back ( limit.min_position_ ) ;</span>
+<span class="lineNum">     299 </span>            :         }
+<span class="lineNum">     300 </span>            :     }
+<span class="lineNum">     301 </span><span class="lineCov">        443 :     return maxPos;</span>
+<a name="302"><span class="lineNum">     302 </span>            : }</a>
 <span class="lineNum">     303 </span>            : 
-<span class="lineNum">     304 </span><span class="lineCov">        864 :         if ( !continuosIncluded &amp;&amp; checkIfContinuosJoint(jointOfTip) == true ) {</span>
-<span class="lineNum">     305 </span><span class="lineNoCov">          0 :             continue; //we dont want to count a continuos joint</span>
-<span class="lineNum">     306 </span>            :         }
-<span class="lineNum">     307 </span>            :     
-<span class="lineNum">     308 </span>            :         //check if the joints of the tip move only that tip
-<span class="lineNum">     309 </span><span class="lineCov">        864 :         if ( fingertipsOfJointMap.find(jointOfTip)-&gt;second.size() == 1 ) {</span>
-<span class="lineNum">     310 </span>            : 
-<span class="lineNum">     311 </span><span class="lineCov">        760 :             if (fingertipsOfJointMap.find(jointOfTip)-&gt;second.at(0).compare (tipName) != 0) {</span>
-<span class="lineNum">     312 </span>            :                 //  this condition is false if jointsOfFingertipMap and fingertipsOfJointMap are built well
-<span class="lineNum">     313 </span><span class="lineNoCov">          0 :                 std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; </span>
-<span class="lineNum">     314 </span><span class="lineNoCov">          0 :                 &quot;]: Strange error in fingertipsOfJointMap and jointsOfFingertipMap: they are not consistent: &quot; </span>
-<span class="lineNum">     315 </span><span class="lineNoCov">          0 :                 &lt;&lt; &quot;The unique tip present in the map for the key &quot; &lt;&lt; jointOfTip </span>
-<span class="lineNum">     316 </span><span class="lineNoCov">          0 :                 &lt;&lt; &quot; is &quot; &lt;&lt; fingertipsOfJointMap.find(jointOfTip)-&gt;second.at(0) </span>
-<span class="lineNum">     317 </span><span class="lineNoCov">          0 :                 &lt;&lt; &quot; and not &quot; &lt;&lt; tipName &lt;&lt; &quot; as it should be&quot; </span>
-<span class="lineNum">     318 </span><span class="lineNoCov">          0 :                 &lt;&lt; std::endl;</span>
-<span class="lineNum">     319 </span><span class="lineNoCov">          0 :                 return 0;  </span>
-<span class="lineNum">     320 </span>            :             }
-<span class="lineNum">     321 </span>            :             
-<span class="lineNum">     322 </span><span class="lineCov">        760 :             nExclusiveJoints++;</span>
-<span class="lineNum">     323 </span>            :         }
-<span class="lineNum">     324 </span>            :     }
-<span class="lineNum">     325 </span><span class="lineCov">        424 :     return nExclusiveJoints;  </span>
-<span class="lineNum">     326 </span>            : }
-<a name="327"><span class="lineNum">     327 </span>            : </a>
-<span class="lineNum">     328 </span>            : 
-<span class="lineNum">     329 </span><span class="lineCov">        160 : std::string ROSEE::ParserMoveIt::getFirstActuatedParentJoint ( std::string linkName, bool includeContinuos ) const {</span>
-<span class="lineNum">     330 </span>            : 
-<span class="lineNum">     331 </span><span class="lineCov">        160 :     const moveit::core::LinkModel* linkModel = robot_model-&gt;getLinkModel ( linkName ) ;</span>
-<span class="lineNum">     332 </span>            : 
-<span class="lineNum">     333 </span><span class="lineCov">        480 :     while ( linkModel-&gt;getParentJointModel()-&gt;getMimic() != NULL || </span>
-<span class="lineNum">     334 </span><span class="lineCov">        320 :             linkModel-&gt;parentJointIsFixed() ||</span>
-<span class="lineNum">     335 </span><span class="lineCov">        480 :             linkModel-&gt;getParentJointModel()-&gt;isPassive() || </span>
-<span class="lineNum">     336 </span><span class="lineCov">        320 :             (!includeContinuos &amp;&amp; checkIfContinuosJoint(linkModel-&gt;getParentJointModel())) ) {</span>
-<span class="lineNum">     337 </span>            :         
-<span class="lineNum">     338 </span>            :         //an active joint is not any of these condition.
-<span class="lineNum">     339 </span>            :         //passive is an attribute of the joint in the srdf, so it may be not setted 
-<span class="lineNum">     340 </span>            :         // (default is not passive), so we need also the getMimic == NULL 
-<span class="lineNum">     341 </span>            :         // (ie: an actuated joint dont mimic anything)
-<span class="lineNum">     342 </span>            :         //WARNING these 4 conditions should be enough I think
-<span class="lineNum">     343 </span>            :         
-<span class="lineNum">     344 </span><span class="lineNoCov">          0 :         linkModel = linkModel-&gt;getParentLinkModel();</span>
-<span class="lineNum">     345 </span>            :         
-<span class="lineNum">     346 </span><span class="lineNoCov">          0 :         if (linkModel == NULL ) {</span>
-<span class="lineNum">     347 </span>            :         
-<span class="lineNum">     348 </span><span class="lineNoCov">          0 :             std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; </span>
-<span class="lineNum">     349 </span><span class="lineNoCov">          0 :                 &quot;]: Strange error: fingertipsOfJointMap, jointsOfFingertipMap, and/or other structures &quot; &lt;&lt;</span>
-<span class="lineNum">     350 </span><span class="lineNoCov">          0 :                 &quot;may have been built badly&quot;  &lt;&lt; std::endl ;</span>
-<span class="lineNum">     351 </span><span class="lineNoCov">          0 :             return &quot;&quot;;</span>
-<span class="lineNum">     352 </span>            :         }
-<span class="lineNum">     353 </span>            :     }
-<span class="lineNum">     354 </span>            : 
-<span class="lineNum">     355 </span><span class="lineCov">        160 :     return (linkModel-&gt;getParentJointModel()-&gt;getName());</span>
-<span class="lineNum">     356 </span>            : }
-<a name="357"><span class="lineNum">     357 </span>            : </a>
-<span class="lineNum">     358 </span>            : 
-<span class="lineNum">     359 </span><span class="lineCov">        160 : std::string ROSEE::ParserMoveIt::getFirstActuatedJointInFinger (std::string linkName) const {</span>
-<span class="lineNum">     360 </span><span class="lineCov">        160 :     const moveit::core::LinkModel* linkModel = robot_model-&gt;getLinkModel(linkName);</span>
-<span class="lineNum">     361 </span>            :     const moveit::core::JointModel* joint;
-<span class="lineNum">     362 </span>            : 
-<span class="lineNum">     363 </span>            :     // we stop when the link has more than 1 joint: so linkModel will be the parent of the first 
-<span class="lineNum">     364 </span>            :     // link of the finger group and in joint we have stored the actuated (not continuos) 
-<span class="lineNum">     365 </span>            :     // child joint most near to linkModel
-<span class="lineNum">     366 </span><span class="lineCov">        920 :     while ( (linkModel != NULL) &amp;&amp; (linkModel-&gt;getChildJointModels().size() &lt; 2) ) {</span>
-<span class="lineNum">     367 </span>            :         
-<span class="lineNum">     368 </span>            :         //if the parent joint is an actuated (not cont) joint, store it (or overwrite the previous stored)
-<span class="lineNum">     369 </span><span class="lineCov">       1140 :         if ( linkModel-&gt;getParentJointModel()-&gt;getMimic() == NULL &amp;&amp; </span>
-<span class="lineNum">     370 </span><span class="lineCov">        760 :             (!linkModel-&gt;parentJointIsFixed()) &amp;&amp;</span>
-<span class="lineNum">     371 </span><span class="lineCov">       1140 :             (!linkModel-&gt;getParentJointModel()-&gt;isPassive()) &amp;&amp;</span>
-<span class="lineNum">     372 </span><span class="lineCov">        380 :             (!checkIfContinuosJoint(linkModel-&gt;getParentJointModel() ))  ) {</span>
-<span class="lineNum">     373 </span>            :             
-<span class="lineNum">     374 </span><span class="lineCov">        380 :             joint = linkModel-&gt;getParentJointModel();</span>
-<span class="lineNum">     375 </span>            :         }
-<span class="lineNum">     376 </span>            :         
-<span class="lineNum">     377 </span><span class="lineCov">        380 :         linkModel = linkModel-&gt;getParentLinkModel();</span>
-<span class="lineNum">     378 </span>            :     }
-<span class="lineNum">     379 </span>            :     
-<span class="lineNum">     380 </span><span class="lineCov">        160 :     return joint-&gt;getName();</span>
-<span class="lineNum">     381 </span>            : }
+<span class="lineNum">     304 </span><span class="lineCov">          1 : std::vector &lt;double&gt; ROSEE::ParserMoveIt::getSmallerBoundFromZero ( std::string jointName ) const {</span>
+<span class="lineNum">     305 </span><span class="lineCov">          1 :     if (robot_model == nullptr) {</span>
+<span class="lineNum">     306 </span>            :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; 
+<span class="lineNum">     307 </span><span class="lineNoCov">          0 :             &quot;]: robot_model is null. Have you called init() before?&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     308 </span><span class="lineNoCov">          0 :         return std::vector&lt;double&gt;();</span>
+<span class="lineNum">     309 </span>            :     }
+<span class="lineNum">     310 </span><span class="lineCov">          1 :     return ( ROSEE::ParserMoveIt::getSmallerBoundFromZero (robot_model-&gt;getJointModel(jointName) ) );</span>
+<span class="lineNum">     311 </span>            : 
+<a name="312"><span class="lineNum">     312 </span>            : }</a>
+<span class="lineNum">     313 </span>            : 
+<span class="lineNum">     314 </span><span class="lineCov">          1 : std::vector &lt;double&gt; ROSEE::ParserMoveIt::getSmallerBoundFromZero ( const moveit::core::JointModel* joint ) const {</span>
+<span class="lineNum">     315 </span><span class="lineCov">          1 :     if (robot_model == nullptr) {</span>
+<span class="lineNum">     316 </span>            :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; 
+<span class="lineNum">     317 </span><span class="lineNoCov">          0 :             &quot;]: robot_model is null. Have you called init() before?&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     318 </span><span class="lineNoCov">          0 :         return std::vector&lt;double&gt;();</span>
+<span class="lineNum">     319 </span>            :     }
+<span class="lineNum">     320 </span>            :     
+<span class="lineNum">     321 </span><span class="lineCov">          2 :     moveit::core::JointModel::Bounds limits = joint-&gt;getVariableBounds();</span>
+<span class="lineNum">     322 </span>            : 
+<span class="lineNum">     323 </span><span class="lineCov">          2 :     std::vector &lt;double&gt; minPos;</span>
+<span class="lineNum">     324 </span><span class="lineCov">          2 :     for ( auto limit : limits ) {</span>
+<span class="lineNum">     325 </span><span class="lineCov">          1 :         if ( std::abs(limit.max_position_) &lt; std::abs(limit.min_position_)) {</span>
+<span class="lineNum">     326 </span><span class="lineNoCov">          0 :             minPos.push_back ( limit.max_position_ ) ;</span>
+<span class="lineNum">     327 </span>            :         } else {
+<span class="lineNum">     328 </span><span class="lineCov">          1 :             minPos.push_back ( limit.min_position_ ) ;</span>
+<span class="lineNum">     329 </span>            :         }
+<span class="lineNum">     330 </span>            :     }
+<span class="lineNum">     331 </span><span class="lineCov">          1 :     return minPos;</span>
+<a name="332"><span class="lineNum">     332 </span>            : }</a>
+<span class="lineNum">     333 </span>            : 
+<span class="lineNum">     334 </span><span class="lineCov">        180 : unsigned int ROSEE::ParserMoveIt::getNExclusiveJointsOfTip ( std::string tipName, bool continuosIncluded ) const {</span>
+<span class="lineNum">     335 </span>            :     
+<span class="lineNum">     336 </span><span class="lineCov">        180 :     if (jointsOfFingertipMap.size() == 0) {</span>
+<span class="lineNum">     337 </span>            :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; 
+<span class="lineNum">     338 </span><span class="lineNoCov">          0 :             &quot;]: jointsOfFingertipMap empty. Have you called init() before? Also check your URDF and SRDF files&quot; </span>
+<span class="lineNum">     339 </span><span class="lineNoCov">          0 :             &lt;&lt; std::endl;</span>
+<span class="lineNum">     340 </span><span class="lineNoCov">          0 :         return 0;</span>
+<span class="lineNum">     341 </span>            :     }
+<span class="lineNum">     342 </span>            :     
+<span class="lineNum">     343 </span><span class="lineCov">        180 :     if (fingertipsOfJointMap.size() == 0) {</span>
+<span class="lineNum">     344 </span>            :         std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; 
+<span class="lineNum">     345 </span><span class="lineNoCov">          0 :             &quot;]: jointsOfFingertipMap empty. Have you called init() before? Also check your URDF and SRDF files&quot; </span>
+<span class="lineNum">     346 </span><span class="lineNoCov">          0 :             &lt;&lt; std::endl;</span>
+<span class="lineNum">     347 </span><span class="lineNoCov">          0 :         return 0;</span>
+<span class="lineNum">     348 </span>            :     }
+<span class="lineNum">     349 </span>            :     
+<span class="lineNum">     350 </span><span class="lineCov">        180 :     unsigned int nExclusiveJoints = 0;</span>
+<span class="lineNum">     351 </span>            : 
+<span class="lineNum">     352 </span><span class="lineCov">        558 :     for (auto jointOfTip : jointsOfFingertipMap.find(tipName)-&gt;second ) { </span>
+<span class="lineNum">     353 </span>            : 
+<span class="lineNum">     354 </span><span class="lineCov">        378 :         if ( !continuosIncluded &amp;&amp; checkIfContinuosJoint(jointOfTip) == true ) {</span>
+<span class="lineNum">     355 </span><span class="lineNoCov">          0 :             continue; //we dont want to count a continuos joint</span>
+<span class="lineNum">     356 </span>            :         }
+<span class="lineNum">     357 </span>            :     
+<span class="lineNum">     358 </span>            :         //check if the joints of the tip move only that tip
+<span class="lineNum">     359 </span><span class="lineCov">        378 :         if ( fingertipsOfJointMap.find(jointOfTip)-&gt;second.size() == 1 ) {</span>
+<span class="lineNum">     360 </span>            : 
+<span class="lineNum">     361 </span><span class="lineCov">        342 :             if (fingertipsOfJointMap.find(jointOfTip)-&gt;second.at(0).compare (tipName) != 0) {</span>
+<span class="lineNum">     362 </span>            :                 //  this condition is false if jointsOfFingertipMap and fingertipsOfJointMap are built well
+<span class="lineNum">     363 </span>            :                 std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; 
+<span class="lineNum">     364 </span>            :                 &quot;]: Strange error in fingertipsOfJointMap and jointsOfFingertipMap: they are not consistent: &quot; 
+<span class="lineNum">     365 </span>            :                 &lt;&lt; &quot;The unique tip present in the map for the key &quot; &lt;&lt; jointOfTip 
+<span class="lineNum">     366 </span><span class="lineNoCov">          0 :                 &lt;&lt; &quot; is &quot; &lt;&lt; fingertipsOfJointMap.find(jointOfTip)-&gt;second.at(0) </span>
+<span class="lineNum">     367 </span><span class="lineNoCov">          0 :                 &lt;&lt; &quot; and not &quot; &lt;&lt; tipName &lt;&lt; &quot; as it should be&quot; </span>
+<span class="lineNum">     368 </span><span class="lineNoCov">          0 :                 &lt;&lt; std::endl;</span>
+<span class="lineNum">     369 </span><span class="lineNoCov">          0 :                 return 0;  </span>
+<span class="lineNum">     370 </span>            :             }
+<span class="lineNum">     371 </span>            :             
+<span class="lineNum">     372 </span><span class="lineCov">        342 :             nExclusiveJoints++;</span>
+<span class="lineNum">     373 </span>            :         }
+<span class="lineNum">     374 </span>            :     }
+<span class="lineNum">     375 </span><span class="lineCov">        180 :     return nExclusiveJoints;  </span>
+<span class="lineNum">     376 </span>            : }
+<a name="377"><span class="lineNum">     377 </span>            : </a>
+<span class="lineNum">     378 </span>            : 
+<span class="lineNum">     379 </span><span class="lineCov">         72 : std::string ROSEE::ParserMoveIt::getFirstActuatedParentJoint ( std::string linkName, bool includeContinuos ) const {</span>
+<span class="lineNum">     380 </span>            : 
+<span class="lineNum">     381 </span><span class="lineCov">         72 :     const moveit::core::LinkModel* linkModel = robot_model-&gt;getLinkModel ( linkName ) ;</span>
 <span class="lineNum">     382 </span>            : 
-<span class="lineNum">     383 </span>            : 
-<a name="384"><span class="lineNum">     384 </span>            : </a>
-<span class="lineNum">     385 </span>            : /*********************************** PRIVATE FUNCTIONS **********************************************************/
-<span class="lineNum">     386 </span><span class="lineCov">        379 : void ROSEE::ParserMoveIt::lookForFingertips(bool verbose) {</span>
-<span class="lineNum">     387 </span><span class="lineCov">       1686 :      for (auto it: robot_model-&gt;getJointModelGroups()) {</span>
-<span class="lineNum">     388 </span>            :         
-<span class="lineNum">     389 </span><span class="lineCov">       2614 :         std::string logGroupInfo;</span>
-<span class="lineNum">     390 </span><span class="lineCov">       1307 :         logGroupInfo = &quot;[PARSER::&quot; + std::string(__func__) + &quot;] Found Group '&quot; + it-&gt;getName() + &quot;', &quot; ;</span>
-<span class="lineNum">     391 </span>            :         
-<span class="lineNum">     392 </span><span class="lineCov">       1307 :         if (it-&gt;getSubgroupNames().size() != 0 ) {</span>
-<span class="lineNum">     393 </span><span class="lineCov">        379 :             logGroupInfo.append(&quot;but it has some subgroups \n&quot;);</span>
-<span class="lineNum">     394 </span>            :             
-<span class="lineNum">     395 </span><span class="lineCov">        928 :         } else if (! groupIsChain ( it ) ) { </span>
-<span class="lineNum">     396 </span><span class="lineNoCov">          0 :             logGroupInfo.append(&quot;but it is not a chain \n&quot;);</span>
+<span class="lineNum">     383 </span><span class="lineCov">        144 :     while ( linkModel-&gt;getParentJointModel()-&gt;getMimic() != NULL || </span>
+<span class="lineNum">     384 </span><span class="lineCov">        144 :             linkModel-&gt;parentJointIsFixed() ||</span>
+<span class="lineNum">     385 </span><span class="lineCov">        216 :             linkModel-&gt;getParentJointModel()-&gt;isPassive() || </span>
+<span class="lineNum">     386 </span><span class="lineCov">        144 :             (!includeContinuos &amp;&amp; checkIfContinuosJoint(linkModel-&gt;getParentJointModel())) ) {</span>
+<span class="lineNum">     387 </span>            :         
+<span class="lineNum">     388 </span>            :         //an active joint is not any of these condition.
+<span class="lineNum">     389 </span>            :         //passive is an attribute of the joint in the srdf, so it may be not setted 
+<span class="lineNum">     390 </span>            :         // (default is not passive), so we need also the getMimic == NULL 
+<span class="lineNum">     391 </span>            :         // (ie: an actuated joint dont mimic anything)
+<span class="lineNum">     392 </span>            :         //WARNING these 4 conditions should be enough I think
+<span class="lineNum">     393 </span>            :         
+<span class="lineNum">     394 </span><span class="lineNoCov">          0 :         linkModel = linkModel-&gt;getParentLinkModel();</span>
+<span class="lineNum">     395 </span>            :         
+<span class="lineNum">     396 </span><span class="lineNoCov">          0 :         if (linkModel == NULL ) {</span>
 <span class="lineNum">     397 </span>            :         
-<span class="lineNum">     398 </span><span class="lineCov">        928 :         } else if (it-&gt;getLinkModels().size() == 0) { </span>
-<span class="lineNum">     399 </span><span class="lineNoCov">          0 :             logGroupInfo.append(&quot;but it has 0 links \n&quot;);</span>
-<span class="lineNum">     400 </span>            : 
-<span class="lineNum">     401 </span>            :         } else {
-<span class="lineNum">     402 </span>            : 
-<span class="lineNum">     403 </span><span class="lineCov">        928 :             logGroupInfo.append(&quot;with links: \n&quot;);</span>
-<span class="lineNum">     404 </span>            :             
-<span class="lineNum">     405 </span><span class="lineCov">       1856 :             std::string theTip = &quot;&quot;; //the last link with a visual geometry</span>
-<span class="lineNum">     406 </span><span class="lineCov">       3039 :             for (auto itt : it-&gt;getLinkModels()) {</span>
-<span class="lineNum">     407 </span>            :                 
-<span class="lineNum">     408 </span><span class="lineCov">       2111 :                 logGroupInfo.append(&quot;\t'&quot; + itt-&gt;getName() + &quot;' &quot;);</span>
-<span class="lineNum">     409 </span>            :                 
-<span class="lineNum">     410 </span><span class="lineCov">       2111 :                 if (itt-&gt;getChildJointModels().size() != 0) {</span>
-<span class="lineNum">     411 </span><span class="lineCov">       1183 :                     logGroupInfo.append(&quot;(not a leaf link) &quot;);</span>
-<span class="lineNum">     412 </span>            :                 } else {
-<span class="lineNum">     413 </span><span class="lineCov">        928 :                     logGroupInfo.append(&quot;(a leaf link) &quot;);</span>
-<span class="lineNum">     414 </span>            :                 }
-<span class="lineNum">     415 </span>            :                 
-<span class="lineNum">     416 </span><span class="lineCov">       2111 :                 if (itt-&gt;getShapes().size() == 0 ) {</span>
-<span class="lineNum">     417 </span><span class="lineCov">        255 :                     logGroupInfo.append(&quot;(no visual geometry) &quot;);</span>
-<span class="lineNum">     418 </span>            :                     
-<span class="lineNum">     419 </span>            :                 } else {
-<span class="lineNum">     420 </span><span class="lineCov">       1856 :                     theTip = itt-&gt;getName();</span>
-<span class="lineNum">     421 </span>            :                 }
-<span class="lineNum">     422 </span><span class="lineCov">       2111 :                 logGroupInfo.append(&quot;\n&quot;);</span>
-<span class="lineNum">     423 </span>            : 
-<span class="lineNum">     424 </span>            :             }
-<span class="lineNum">     425 </span>            :             
-<span class="lineNum">     426 </span><span class="lineCov">        928 :             if (theTip.compare(&quot;&quot;) == 0) {</span>
-<span class="lineNum">     427 </span><span class="lineNoCov">          0 :                 logGroupInfo.append(&quot;Warning: No link has a mesh in this group\n&quot;);</span>
-<span class="lineNum">     428 </span>            :                 
-<span class="lineNum">     429 </span>            :             } else {
-<span class="lineNum">     430 </span><span class="lineCov">        928 :                 fingertipNames.push_back(theTip);</span>
-<span class="lineNum">     431 </span><span class="lineCov">        928 :                 fingerOfFingertipMap.insert( std::make_pair(theTip, it-&gt;getName()));</span>
-<span class="lineNum">     432 </span><span class="lineCov">        928 :                 fingertipOfFingerMap.insert( std::make_pair(it-&gt;getName(), theTip));</span>
-<span class="lineNum">     433 </span>            :             }
-<span class="lineNum">     434 </span>            :         }
-<span class="lineNum">     435 </span>            :         
-<span class="lineNum">     436 </span><span class="lineCov">       1307 :         if (verbose) {</span>
-<span class="lineNum">     437 </span><span class="lineNoCov">          0 :             std::cout &lt;&lt; logGroupInfo &lt;&lt; std::endl;</span>
-<span class="lineNum">     438 </span>            :         }
-<span class="lineNum">     439 </span>            :     }
-<span class="lineNum">     440 </span><span class="lineCov">        379 :     nFingers = fingertipNames.size();</span>
-<a name="441"><span class="lineNum">     441 </span><span class="lineCov">        379 : }</span></a>
-<span class="lineNum">     442 </span>            : 
-<span class="lineNum">     443 </span><span class="lineCov">        379 : void ROSEE::ParserMoveIt::lookForActiveJoints() { </span>
-<span class="lineNum">     444 </span>            :     
-<span class="lineNum">     445 </span><span class="lineCov">       2118 :     for (auto joint : robot_model-&gt;getActiveJointModels() ) { //this function return not fixed not mimic but CAN return PASSIVE joints</span>
-<span class="lineNum">     446 </span><span class="lineCov">       1739 :         if (! joint-&gt;isPassive() ) {</span>
-<span class="lineNum">     447 </span><span class="lineCov">       1739 :             activeJointNames.push_back(joint-&gt;getName());</span>
-<span class="lineNum">     448 </span><span class="lineCov">       1739 :             activeJointModels.push_back(joint);</span>
-<span class="lineNum">     449 </span>            :         }
-<span class="lineNum">     450 </span>            :     }
-<a name="451"><span class="lineNum">     451 </span><span class="lineCov">        379 : }</span></a>
+<span class="lineNum">     398 </span>            :             std::cerr &lt;&lt; &quot; [PARSER::&quot; &lt;&lt; __func__ &lt;&lt; 
+<span class="lineNum">     399 </span>            :                 &quot;]: Strange error: fingertipsOfJointMap, jointsOfFingertipMap, and/or other structures &quot; &lt;&lt;
+<span class="lineNum">     400 </span><span class="lineNoCov">          0 :                 &quot;may have been built badly&quot;  &lt;&lt; std::endl ;</span>
+<span class="lineNum">     401 </span><span class="lineNoCov">          0 :             return &quot;&quot;;</span>
+<span class="lineNum">     402 </span>            :         }
+<span class="lineNum">     403 </span>            :     }
+<span class="lineNum">     404 </span>            : 
+<span class="lineNum">     405 </span><span class="lineCov">         72 :     return (linkModel-&gt;getParentJointModel()-&gt;getName());</span>
+<span class="lineNum">     406 </span>            : }
+<a name="407"><span class="lineNum">     407 </span>            : </a>
+<span class="lineNum">     408 </span>            : 
+<span class="lineNum">     409 </span><span class="lineCov">         72 : std::string ROSEE::ParserMoveIt::getFirstActuatedJointInFinger (std::string linkName) const {</span>
+<span class="lineNum">     410 </span><span class="lineCov">         72 :     const moveit::core::LinkModel* linkModel = robot_model-&gt;getLinkModel(linkName);</span>
+<span class="lineNum">     411 </span>            :     const moveit::core::JointModel* joint;
+<span class="lineNum">     412 </span>            : 
+<span class="lineNum">     413 </span>            :     // we stop when the link has more than 1 joint: so linkModel will be the parent of the first 
+<span class="lineNum">     414 </span>            :     // link of the finger group and in joint we have stored the actuated (not continuos) 
+<span class="lineNum">     415 </span>            :     // child joint most near to linkModel
+<span class="lineNum">     416 </span><span class="lineCov">        414 :     while ( (linkModel != NULL) &amp;&amp; (linkModel-&gt;getChildJointModels().size() &lt; 2) ) {</span>
+<span class="lineNum">     417 </span>            :         
+<span class="lineNum">     418 </span>            :         //if the parent joint is an actuated (not cont) joint, store it (or overwrite the previous stored)
+<span class="lineNum">     419 </span><span class="lineCov">        513 :         if ( linkModel-&gt;getParentJointModel()-&gt;getMimic() == NULL &amp;&amp; </span>
+<span class="lineNum">     420 </span><span class="lineCov">        342 :             (!linkModel-&gt;parentJointIsFixed()) &amp;&amp;</span>
+<span class="lineNum">     421 </span><span class="lineCov">        513 :             (!linkModel-&gt;getParentJointModel()-&gt;isPassive()) &amp;&amp;</span>
+<span class="lineNum">     422 </span><span class="lineCov">        171 :             (!checkIfContinuosJoint(linkModel-&gt;getParentJointModel() ))  ) {</span>
+<span class="lineNum">     423 </span>            :             
+<span class="lineNum">     424 </span><span class="lineCov">        171 :             joint = linkModel-&gt;getParentJointModel();</span>
+<span class="lineNum">     425 </span>            :         }
+<span class="lineNum">     426 </span>            :         
+<span class="lineNum">     427 </span><span class="lineCov">        171 :         linkModel = linkModel-&gt;getParentLinkModel();</span>
+<span class="lineNum">     428 </span>            :     }
+<span class="lineNum">     429 </span>            :     
+<span class="lineNum">     430 </span><span class="lineCov">         72 :     return joint-&gt;getName();</span>
+<span class="lineNum">     431 </span>            : }
+<span class="lineNum">     432 </span>            : 
+<span class="lineNum">     433 </span>            : 
+<a name="434"><span class="lineNum">     434 </span>            : </a>
+<span class="lineNum">     435 </span>            : /*********************************** PRIVATE FUNCTIONS **********************************************************/
+<span class="lineNum">     436 </span><span class="lineCov">        144 : void ROSEE::ParserMoveIt::lookForFingertips(bool verbose) {</span>
+<span class="lineNum">     437 </span><span class="lineCov">        648 :      for (auto it: robot_model-&gt;getJointModelGroups()) {</span>
+<span class="lineNum">     438 </span>            :         
+<span class="lineNum">     439 </span><span class="lineCov">       1008 :         std::string logGroupInfo;</span>
+<span class="lineNum">     440 </span><span class="lineCov">        504 :         logGroupInfo = &quot;[PARSER::&quot; + std::string(__func__) + &quot;] Found Group '&quot; + it-&gt;getName() + &quot;', &quot; ;</span>
+<span class="lineNum">     441 </span>            :         
+<span class="lineNum">     442 </span><span class="lineCov">        504 :         if (it-&gt;getSubgroupNames().size() != 0 ) {</span>
+<span class="lineNum">     443 </span><span class="lineCov">        144 :             logGroupInfo.append(&quot;but it has some subgroups \n&quot;);</span>
+<span class="lineNum">     444 </span>            :             
+<span class="lineNum">     445 </span><span class="lineCov">        360 :         } else if (! groupIsChain ( it ) ) { </span>
+<span class="lineNum">     446 </span><span class="lineNoCov">          0 :             logGroupInfo.append(&quot;but it is not a chain \n&quot;);</span>
+<span class="lineNum">     447 </span>            :         
+<span class="lineNum">     448 </span><span class="lineCov">        360 :         } else if (it-&gt;getLinkModels().size() == 0) { </span>
+<span class="lineNum">     449 </span><span class="lineNoCov">          0 :             logGroupInfo.append(&quot;but it has 0 links \n&quot;);</span>
+<span class="lineNum">     450 </span>            : 
+<span class="lineNum">     451 </span>            :         } else {
 <span class="lineNum">     452 </span>            : 
-<span class="lineNum">     453 </span><span class="lineCov">        379 : void ROSEE::ParserMoveIt::lookForPassiveJoints() { </span>
-<span class="lineNum">     454 </span>            :     
-<span class="lineNum">     455 </span><span class="lineCov">       3627 :     for (auto joint : robot_model-&gt;getJointModels() ) { </span>
-<span class="lineNum">     456 </span><span class="lineCov">       3248 :         if ( joint-&gt;isPassive() ) {</span>
-<span class="lineNum">     457 </span><span class="lineNoCov">          0 :             passiveJointNames.push_back(joint-&gt;getName());</span>
-<span class="lineNum">     458 </span>            :         }
-<span class="lineNum">     459 </span>            :     }
-<span class="lineNum">     460 </span><span class="lineCov">        379 : }</span>
-<a name="461"><span class="lineNum">     461 </span>            : </a>
-<span class="lineNum">     462 </span>            : 
-<span class="lineNum">     463 </span><span class="lineCov">        379 : void ROSEE::ParserMoveIt::lookJointsTipsCorrelation() {</span>
-<span class="lineNum">     464 </span>            :     
-<span class="lineNum">     465 </span>            :     //initialize the map with all tips and with empty vectors of its joints
-<span class="lineNum">     466 </span><span class="lineCov">       1307 :     for (const auto &amp;it: fingertipNames) { </span>
-<span class="lineNum">     467 </span><span class="lineCov">        928 :         jointsOfFingertipMap.insert ( std::make_pair (it, std::vector&lt;std::string&gt;() ) );</span>
-<span class="lineNum">     468 </span>            :     }
-<span class="lineNum">     469 </span>            :     
-<span class="lineNum">     470 </span>            :     //initialize the map with all the actuated joints and an empty vector for the tips that the joint move
-<span class="lineNum">     471 </span><span class="lineCov">       2118 :     for (const auto &amp;it: activeJointNames) { </span>
-<span class="lineNum">     472 </span><span class="lineCov">       1739 :         fingertipsOfJointMap.insert ( std::make_pair (it, std::vector&lt;std::string&gt;() ) );</span>
-<span class="lineNum">     473 </span>            :     }
-<span class="lineNum">     474 </span>            :     
-<span class="lineNum">     475 </span><span class="lineCov">       2118 :     for ( const auto &amp;jointLink: descendantLinksOfJoint){ //for each actuated joint   </span>
-<span class="lineNum">     476 </span>            : 
-<span class="lineNum">     477 </span><span class="lineCov">       5040 :         for (const auto &amp;link : jointLink.second) { //for each descendant link</span>
-<span class="lineNum">     478 </span>            : 
-<span class="lineNum">     479 </span>            :             //if link is a tip...
-<span class="lineNum">     480 </span><span class="lineCov">       3301 :             if (std::find(fingertipNames.begin(), fingertipNames.end(), link-&gt;getName()) != fingertipNames.end()){</span>
-<span class="lineNum">     481 </span><span class="lineCov">       1863 :                 jointsOfFingertipMap.at ( link-&gt;getName() ) .push_back( jointLink.first);</span>
-<span class="lineNum">     482 </span><span class="lineCov">       1863 :                 fingertipsOfJointMap.at ( jointLink.first ) .push_back( link-&gt;getName() );</span>
+<span class="lineNum">     453 </span><span class="lineCov">        360 :             logGroupInfo.append(&quot;with links: \n&quot;);</span>
+<span class="lineNum">     454 </span>            :             
+<span class="lineNum">     455 </span><span class="lineCov">        720 :             std::string theTip = &quot;&quot;; //the last link with a visual geometry</span>
+<span class="lineNum">     456 </span><span class="lineCov">       1188 :             for (auto itt : it-&gt;getLinkModels()) {</span>
+<span class="lineNum">     457 </span>            :                 
+<span class="lineNum">     458 </span><span class="lineCov">        828 :                 logGroupInfo.append(&quot;\t'&quot; + itt-&gt;getName() + &quot;' &quot;);</span>
+<span class="lineNum">     459 </span>            :                 
+<span class="lineNum">     460 </span><span class="lineCov">        828 :                 if (itt-&gt;getChildJointModels().size() != 0) {</span>
+<span class="lineNum">     461 </span><span class="lineCov">        468 :                     logGroupInfo.append(&quot;(not a leaf link) &quot;);</span>
+<span class="lineNum">     462 </span>            :                 } else {
+<span class="lineNum">     463 </span><span class="lineCov">        360 :                     logGroupInfo.append(&quot;(a leaf link) &quot;);</span>
+<span class="lineNum">     464 </span>            :                 }
+<span class="lineNum">     465 </span>            :                 
+<span class="lineNum">     466 </span><span class="lineCov">        828 :                 if (itt-&gt;getShapes().size() == 0 ) {</span>
+<span class="lineNum">     467 </span><span class="lineCov">        108 :                     logGroupInfo.append(&quot;(no visual geometry) &quot;);</span>
+<span class="lineNum">     468 </span>            :                     
+<span class="lineNum">     469 </span>            :                 } else {
+<span class="lineNum">     470 </span><span class="lineCov">        720 :                     theTip = itt-&gt;getName();</span>
+<span class="lineNum">     471 </span>            :                 }
+<span class="lineNum">     472 </span><span class="lineCov">        828 :                 logGroupInfo.append(&quot;\n&quot;);</span>
+<span class="lineNum">     473 </span>            : 
+<span class="lineNum">     474 </span>            :             }
+<span class="lineNum">     475 </span>            :             
+<span class="lineNum">     476 </span><span class="lineCov">        360 :             if (theTip.compare(&quot;&quot;) == 0) {</span>
+<span class="lineNum">     477 </span><span class="lineNoCov">          0 :                 logGroupInfo.append(&quot;Warning: No link has a mesh in this group\n&quot;);</span>
+<span class="lineNum">     478 </span>            :                 
+<span class="lineNum">     479 </span>            :             } else {
+<span class="lineNum">     480 </span><span class="lineCov">        360 :                 fingertipNames.push_back(theTip);</span>
+<span class="lineNum">     481 </span><span class="lineCov">        360 :                 fingerOfFingertipMap.insert( std::make_pair(theTip, it-&gt;getName()));</span>
+<span class="lineNum">     482 </span><span class="lineCov">        360 :                 fingertipOfFingerMap.insert( std::make_pair(it-&gt;getName(), theTip));</span>
 <span class="lineNum">     483 </span>            :             }
 <span class="lineNum">     484 </span>            :         }
-<span class="lineNum">     485 </span>            :     }
-<span class="lineNum">     486 </span>            : 
-<a name="487"><span class="lineNum">     487 </span><span class="lineCov">        379 : }</span></a>
-<span class="lineNum">     488 </span>            : 
-<span class="lineNum">     489 </span><span class="lineCov">        379 : void ROSEE::ParserMoveIt::lookForDescendants () {</span>
-<span class="lineNum">     490 </span>            :     
-<span class="lineNum">     491 </span><span class="lineCov">       2118 :     for (auto actJoint : activeJointModels) {</span>
-<span class="lineNum">     492 </span>            :         
-<span class="lineNum">     493 </span><span class="lineCov">       3478 :         std::vector &lt; const moveit::core::LinkModel* &gt;  linksVector;      </span>
-<span class="lineNum">     494 </span><span class="lineCov">       3478 :         std::vector &lt; const moveit::core::JointModel* &gt;  jointsVector;   </span>
-<span class="lineNum">     495 </span>            :         
-<span class="lineNum">     496 </span><span class="lineCov">       1739 :         getRealDescendantLinkModelsRecursive ( actJoint-&gt;getChildLinkModel(), linksVector, actJoint, jointsVector );</span>
-<span class="lineNum">     497 </span>            : 
-<span class="lineNum">     498 </span>            :         //now we have to look among the mimic joints, but the mimic of only joint passed as argument, not also the mimic of children joints
-<span class="lineNum">     499 </span><span class="lineCov">       2111 :         for (auto mimicJ : actJoint-&gt;getMimicRequests()) {</span>
-<span class="lineNum">     500 </span>            :         // but we do not look on mimic joints that are children of the this joint in the tree,
-<span class="lineNum">     501 </span>            :         //  because we have already explored them with recursion. Here we look only for mimic that are &quot;cousins&quot; of this joint
-<span class="lineNum">     502 </span><span class="lineCov">        372 :             if (std::find (jointsVector.begin(), jointsVector.end(), mimicJ) == jointsVector.end() ) {</span>
-<span class="lineNum">     503 </span><span class="lineCov">        124 :                 getRealDescendantLinkModelsRecursive (mimicJ-&gt;getChildLinkModel(), linksVector, mimicJ, jointsVector );  </span>
-<span class="lineNum">     504 </span>            :             }
-<span class="lineNum">     505 </span>            :         }
-<span class="lineNum">     506 </span>            :         
-<span class="lineNum">     507 </span><span class="lineCov">       1739 :         descendantLinksOfJoint.insert (std::make_pair ( actJoint-&gt;getName(), linksVector ) );</span>
-<span class="lineNum">     508 </span><span class="lineCov">       1739 :         descendantJointsOfJoint.insert (std::make_pair ( actJoint-&gt;getName(), jointsVector ) );</span>
-<span class="lineNum">     509 </span>            :     }
-<a name="510"><span class="lineNum">     510 </span><span class="lineCov">        379 : }</span></a>
-<span class="lineNum">     511 </span>            : 
-<span class="lineNum">     512 </span><span class="lineCov">       3301 : void ROSEE::ParserMoveIt::getRealDescendantLinkModelsRecursive ( </span>
-<span class="lineNum">     513 </span>            :     const moveit::core::LinkModel* link,  std::vector&lt; const moveit::core::LinkModel* &gt; &amp; linksVect,
-<span class="lineNum">     514 </span>            :     const moveit::core::JointModel* joint,  std::vector&lt; const moveit::core::JointModel* &gt; &amp; jointsVect ) const {
+<span class="lineNum">     485 </span>            :         
+<span class="lineNum">     486 </span><span class="lineCov">        504 :         if (verbose) {</span>
+<span class="lineNum">     487 </span><span class="lineNoCov">          0 :             std::cout &lt;&lt; logGroupInfo &lt;&lt; std::endl;</span>
+<span class="lineNum">     488 </span>            :         }
+<span class="lineNum">     489 </span>            :     }
+<span class="lineNum">     490 </span><span class="lineCov">        144 :     nFingers = fingertipNames.size();</span>
+<a name="491"><span class="lineNum">     491 </span><span class="lineCov">        144 : }</span></a>
+<span class="lineNum">     492 </span>            : 
+<span class="lineNum">     493 </span><span class="lineCov">        144 : void ROSEE::ParserMoveIt::lookForActiveJoints() { </span>
+<span class="lineNum">     494 </span>            :     
+<span class="lineNum">     495 </span><span class="lineCov">        864 :     for (auto joint : robot_model-&gt;getActiveJointModels() ) { </span>
+<span class="lineNum">     496 </span>            :         // robot_model-&gt;getActiveJointModels() returns not fixed not mimic but CAN return PASSIVE joints
+<span class="lineNum">     497 </span><span class="lineCov">        720 :         if (! joint-&gt;isPassive() ) {</span>
+<span class="lineNum">     498 </span><span class="lineCov">        720 :             activeJointNames.push_back(joint-&gt;getName());</span>
+<span class="lineNum">     499 </span><span class="lineCov">        720 :             activeJointModels.push_back(joint);</span>
+<span class="lineNum">     500 </span>            :         }
+<span class="lineNum">     501 </span>            :     }
+<a name="502"><span class="lineNum">     502 </span><span class="lineCov">        144 : }</span></a>
+<span class="lineNum">     503 </span>            : 
+<span class="lineNum">     504 </span><span class="lineCov">        144 : void ROSEE::ParserMoveIt::lookForPassiveJoints() { </span>
+<span class="lineNum">     505 </span>            :     
+<span class="lineNum">     506 </span><span class="lineCov">       1404 :     for (auto joint : robot_model-&gt;getJointModels() ) { </span>
+<span class="lineNum">     507 </span><span class="lineCov">       1260 :         if ( joint-&gt;isPassive() ) {</span>
+<span class="lineNum">     508 </span><span class="lineNoCov">          0 :             passiveJointNames.push_back(joint-&gt;getName());</span>
+<span class="lineNum">     509 </span>            :         }
+<span class="lineNum">     510 </span>            :     }
+<span class="lineNum">     511 </span><span class="lineCov">        144 : }</span>
+<a name="512"><span class="lineNum">     512 </span>            : </a>
+<span class="lineNum">     513 </span>            : 
+<span class="lineNum">     514 </span><span class="lineCov">        144 : void ROSEE::ParserMoveIt::lookJointsTipsCorrelation() {</span>
 <span class="lineNum">     515 </span>            :     
-<span class="lineNum">     516 </span><span class="lineCov">       3301 :     linksVect.push_back (link) ;</span>
-<span class="lineNum">     517 </span><span class="lineCov">       3301 :     jointsVect.push_back (joint);</span>
-<span class="lineNum">     518 </span><span class="lineCov">       4739 :     auto childJoints = link-&gt;getChildJointModels();</span>
-<span class="lineNum">     519 </span><span class="lineCov">       3301 :     if ( childJoints.size() == 0 ) { </span>
-<span class="lineNum">     520 </span><span class="lineCov">       1863 :         return; //recursive base</span>
-<span class="lineNum">     521 </span>            :     }
-<span class="lineNum">     522 </span>            :     
-<span class="lineNum">     523 </span><span class="lineCov">       2876 :     for (auto cj : childJoints) {</span>
-<span class="lineNum">     524 </span>            :         //recursion
-<span class="lineNum">     525 </span><span class="lineCov">       1438 :         getRealDescendantLinkModelsRecursive( cj-&gt;getChildLinkModel(), linksVect, cj, jointsVect );</span>
-<a name="526"><span class="lineNum">     526 </span>            :     }</a>
-<span class="lineNum">     527 </span>            :     
-<span class="lineNum">     528 </span><span class="lineCov">        141 : }</span>
+<span class="lineNum">     516 </span>            :     //initialize the map with all tips and with empty vectors of its joints
+<span class="lineNum">     517 </span><span class="lineCov">        504 :     for (const auto &amp;it: fingertipNames) { </span>
+<span class="lineNum">     518 </span><span class="lineCov">        360 :         jointsOfFingertipMap.insert ( std::make_pair (it, std::vector&lt;std::string&gt;() ) );</span>
+<span class="lineNum">     519 </span>            :     }
+<span class="lineNum">     520 </span>            :     
+<span class="lineNum">     521 </span>            :     //initialize the map with all the actuated joints and an empty vector for the tips that the joint move
+<span class="lineNum">     522 </span><span class="lineCov">        864 :     for (const auto &amp;it: activeJointNames) { </span>
+<span class="lineNum">     523 </span><span class="lineCov">        720 :         fingertipsOfJointMap.insert ( std::make_pair (it, std::vector&lt;std::string&gt;() ) );</span>
+<span class="lineNum">     524 </span>            :     }
+<span class="lineNum">     525 </span>            :     
+<span class="lineNum">     526 </span><span class="lineCov">        864 :     for ( const auto &amp;jointLink: descendantLinksOfJoint){ //for each actuated joint   </span>
+<span class="lineNum">     527 </span>            : 
+<span class="lineNum">     528 </span><span class="lineCov">       2052 :         for (const auto &amp;link : jointLink.second) { //for each descendant link</span>
+<span class="lineNum">     529 </span>            : 
+<span class="lineNum">     530 </span>            :             //if link is a tip...
+<span class="lineNum">     531 </span><span class="lineCov">       1332 :             if (std::find(fingertipNames.begin(), fingertipNames.end(), link-&gt;getName()) != fingertipNames.end()){</span>
+<span class="lineNum">     532 </span><span class="lineCov">        756 :                 jointsOfFingertipMap.at ( link-&gt;getName() ) .push_back( jointLink.first);</span>
+<span class="lineNum">     533 </span><span class="lineCov">        756 :                 fingertipsOfJointMap.at ( jointLink.first ) .push_back( link-&gt;getName() );</span>
+<span class="lineNum">     534 </span>            :             }
+<span class="lineNum">     535 </span>            :         }
+<span class="lineNum">     536 </span>            :     }
+<span class="lineNum">     537 </span>            : 
+<a name="538"><span class="lineNum">     538 </span><span class="lineCov">        144 : }</span></a>
+<span class="lineNum">     539 </span>            : 
+<span class="lineNum">     540 </span><span class="lineCov">        144 : void ROSEE::ParserMoveIt::lookForDescendants () {</span>
+<span class="lineNum">     541 </span>            :     
+<span class="lineNum">     542 </span><span class="lineCov">        864 :     for (auto actJoint : activeJointModels) {</span>
+<span class="lineNum">     543 </span>            :         
+<span class="lineNum">     544 </span><span class="lineCov">       1440 :         std::vector &lt; const moveit::core::LinkModel* &gt;  linksVector;      </span>
+<span class="lineNum">     545 </span><span class="lineCov">       1440 :         std::vector &lt; const moveit::core::JointModel* &gt;  jointsVector;   </span>
+<span class="lineNum">     546 </span>            :         
+<span class="lineNum">     547 </span><span class="lineCov">        720 :         getRealDescendantLinkModelsRecursive ( actJoint-&gt;getChildLinkModel(), linksVector, actJoint, jointsVector );</span>
+<span class="lineNum">     548 </span>            : 
+<span class="lineNum">     549 </span>            :         //now we have to look among the mimic joints, but the mimic of only joint passed as argument, not also the mimic of children joints
+<span class="lineNum">     550 </span><span class="lineCov">        828 :         for (auto mimicJ : actJoint-&gt;getMimicRequests()) {</span>
+<span class="lineNum">     551 </span>            :         // but we do not look on mimic joints that are children of the this joint in the tree,
+<span class="lineNum">     552 </span>            :         //  because we have already explored them with recursion. Here we look only for mimic that are &quot;cousins&quot; of this joint
+<span class="lineNum">     553 </span><span class="lineCov">        108 :             if (std::find (jointsVector.begin(), jointsVector.end(), mimicJ) == jointsVector.end() ) {</span>
+<span class="lineNum">     554 </span><span class="lineCov">         36 :                 getRealDescendantLinkModelsRecursive (mimicJ-&gt;getChildLinkModel(), linksVector, mimicJ, jointsVector );  </span>
+<span class="lineNum">     555 </span>            :             }
+<span class="lineNum">     556 </span>            :         }
+<span class="lineNum">     557 </span>            :         
+<span class="lineNum">     558 </span><span class="lineCov">        720 :         descendantLinksOfJoint.insert (std::make_pair ( actJoint-&gt;getName(), linksVector ) );</span>
+<span class="lineNum">     559 </span><span class="lineCov">        720 :         descendantJointsOfJoint.insert (std::make_pair ( actJoint-&gt;getName(), jointsVector ) );</span>
+<span class="lineNum">     560 </span>            :     }
+<a name="561"><span class="lineNum">     561 </span><span class="lineCov">        144 : }</span></a>
+<span class="lineNum">     562 </span>            : 
+<span class="lineNum">     563 </span><span class="lineCov">       1332 : void ROSEE::ParserMoveIt::getRealDescendantLinkModelsRecursive ( </span>
+<span class="lineNum">     564 </span>            :     const moveit::core::LinkModel* link,  std::vector&lt; const moveit::core::LinkModel* &gt; &amp; linksVect,
+<span class="lineNum">     565 </span>            :     const moveit::core::JointModel* joint,  std::vector&lt; const moveit::core::JointModel* &gt; &amp; jointsVect ) const {
+<span class="lineNum">     566 </span>            :     
+<span class="lineNum">     567 </span><span class="lineCov">       1332 :     linksVect.push_back (link) ;</span>
+<span class="lineNum">     568 </span><span class="lineCov">       1332 :     jointsVect.push_back (joint);</span>
+<span class="lineNum">     569 </span><span class="lineCov">       1908 :     auto childJoints = link-&gt;getChildJointModels();</span>
+<span class="lineNum">     570 </span><span class="lineCov">       1332 :     if ( childJoints.size() == 0 ) { </span>
+<span class="lineNum">     571 </span><span class="lineCov">        756 :         return; //recursive base</span>
+<span class="lineNum">     572 </span>            :     }
+<span class="lineNum">     573 </span>            :     
+<span class="lineNum">     574 </span><span class="lineCov">       1152 :     for (auto cj : childJoints) {</span>
+<span class="lineNum">     575 </span>            :         //recursion
+<span class="lineNum">     576 </span><span class="lineCov">        576 :         getRealDescendantLinkModelsRecursive( cj-&gt;getChildLinkModel(), linksVect, cj, jointsVect );</span>
+<span class="lineNum">     577 </span>            :     }
+<span class="lineNum">     578 </span>            :     
+<span class="lineNum">     579 </span>            : }
+<a name="580"><span class="lineNum">     580 </span>            : </a>
+<span class="lineNum">     581 </span>            : 
+<span class="lineNum">     582 </span><span class="lineNoCov">          0 : void ROSEE::ParserMoveIt::parseNonLinearMimicRelations (std::string xml) {</span>
+<span class="lineNum">     583 </span>            :         
+<span class="lineNum">     584 </span>            :         
+<span class="lineNum">     585 </span>            :     //we do not make urdf verification here, it is already done before by robot model loader of moveit,
+<span class="lineNum">     586 </span>            :     //and also by Parser with parseUrdf
+<span class="lineNum">     587 </span><span class="lineNoCov">          0 :     TiXmlDocument tiDoc;</span>
+<span class="lineNum">     588 </span><span class="lineNoCov">          0 :     tiDoc.Parse(xml.c_str());</span>
+<span class="lineNum">     589 </span>            :     //std::cout &lt;&lt; robot_description &lt;&lt; std::endl;
+<span class="lineNum">     590 </span><span class="lineNoCov">          0 :     TiXmlElement* jointEl = tiDoc.FirstChildElement(&quot;robot&quot;)-&gt;FirstChildElement(&quot;joint&quot;) ;</span>
+<span class="lineNum">     591 </span>            :             
+<span class="lineNum">     592 </span><span class="lineNoCov">          0 :     while (jointEl) {</span>
+<span class="lineNum">     593 </span>            :         
+<span class="lineNum">     594 </span><span class="lineNoCov">          0 :         std::string jointName = jointEl-&gt;Attribute(&quot;name&quot;);</span>
+<span class="lineNum">     595 </span><span class="lineNoCov">          0 :         auto mimicEl = jointEl-&gt;FirstChildElement(&quot;mimic&quot;);</span>
+<span class="lineNum">     596 </span><span class="lineNoCov">          0 :         if (mimicEl) {</span>
+<span class="lineNum">     597 </span><span class="lineNoCov">          0 :             auto nlAttr = mimicEl-&gt;Attribute(&quot;nlFunPos&quot;);</span>
+<span class="lineNum">     598 </span><span class="lineNoCov">          0 :             if (nlAttr) {</span>
+<span class="lineNum">     599 </span>            :                 //std::cout &lt;&lt; jointName &lt;&lt; std::endl;
+<span class="lineNum">     600 </span>            :                 //std::cout &lt;&lt; nlAttr &lt;&lt; std::endl;
+<span class="lineNum">     601 </span>            :                 //std::cout &lt;&lt; mimicEl-&gt;Attribute(&quot;joint&quot;) &lt;&lt; std::endl;
+<span class="lineNum">     602 </span><span class="lineNoCov">          0 :                 std::string fatherName = mimicEl-&gt;Attribute(&quot;joint&quot;);</span>
+<span class="lineNum">     603 </span><span class="lineNoCov">          0 :                 mimicNLFatherOfJointMap.insert ( std::make_pair( jointName,</span>
+<span class="lineNum">     604 </span><span class="lineNoCov">          0 :                                                         std::make_pair(fatherName, nlAttr)) );</span>
+<span class="lineNum">     605 </span>            :                 
+<span class="lineNum">     606 </span><span class="lineNoCov">          0 :                 mimicNLJointsOfFatherMap[fatherName].insert(std::make_pair(jointName, nlAttr)) ;</span>
+<span class="lineNum">     607 </span>            :             }
+<span class="lineNum">     608 </span>            :         }
+<span class="lineNum">     609 </span>            :         
+<span class="lineNum">     610 </span><span class="lineNoCov">          0 :         jointEl = jointEl-&gt;NextSiblingElement(&quot;joint&quot;);</span>
+<a name="611"><span class="lineNum">     611 </span>            :     }                </a>
+<span class="lineNum">     612 </span>            :     
+<span class="lineNum">     613 </span><span class="lineCov">         60 : }</span>
 </pre>
       </td>
     </tr>
@@ -596,7 +681,7 @@
 
   <table width="100%" border=0 cellspacing=0 cellpadding=0>
     <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
-    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
   </table>
   <br>
 

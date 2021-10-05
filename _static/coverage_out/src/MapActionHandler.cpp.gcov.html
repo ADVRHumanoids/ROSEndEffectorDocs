@@ -31,18 +31,18 @@
             <td class="headerValue">main_coverage.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">100</td>
-            <td class="headerCovTableEntry">189</td>
-            <td class="headerCovTableEntryLo">52.9 %</td>
+            <td class="headerCovTableEntry">88</td>
+            <td class="headerCovTableEntry">197</td>
+            <td class="headerCovTableEntryLo">44.7 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2020-08-05 12:21:01</td>
+            <td class="headerValue">2021-10-05 16:55:17</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">18</td>
-            <td class="headerCovTableEntry">28</td>
-            <td class="headerCovTableEntryLo">64.3 %</td>
+            <td class="headerCovTableEntry">15</td>
+            <td class="headerCovTableEntry">29</td>
+            <td class="headerCovTableEntryLo">51.7 %</td>
           </tr>
           <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -78,59 +78,59 @@
 <span class="lineNum">      16 </span>            : 
 <a name="17"><span class="lineNum">      17 </span>            : #include &lt;ros_end_effector/MapActionHandler.h&gt;</a>
 <span class="lineNum">      18 </span>            : 
-<a name="19"><span class="lineNum">      19 </span><span class="lineCov">        119 : ROSEE::MapActionHandler::MapActionHandler() {}</span></a>
+<a name="19"><span class="lineNum">      19 </span><span class="lineCov">         41 : ROSEE::MapActionHandler::MapActionHandler() {}</span></a>
 <span class="lineNum">      20 </span>            : 
-<span class="lineNum">      21 </span><span class="lineCov">        533 : ROSEE::MapActionHandler::ActionPrimitiveMap ROSEE::MapActionHandler::getPrimitiveMap(std::string primitiveName) const{</span>
+<span class="lineNum">      21 </span><span class="lineCov">        182 : ROSEE::MapActionHandler::ActionPrimitiveMap ROSEE::MapActionHandler::getPrimitiveMap(std::string primitiveName) const{</span>
 <span class="lineNum">      22 </span>            :     
-<span class="lineNum">      23 </span><span class="lineCov">        533 :     auto it = primitives.find (primitiveName);</span>
-<span class="lineNum">      24 </span><span class="lineCov">        533 :     if (it == primitives.end() ){</span>
-<span class="lineNum">      25 </span><span class="lineCov">        141 :         std::cerr &lt;&lt; &quot;[ERROR MapActionHandler::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] Not found any action with name &quot; &lt;&lt; primitiveName &lt;&lt; std::endl;</span>
-<span class="lineNum">      26 </span><span class="lineCov">        141 :         return ActionPrimitiveMap();</span>
+<span class="lineNum">      23 </span><span class="lineCov">        182 :     auto it = primitives.find (primitiveName);</span>
+<span class="lineNum">      24 </span><span class="lineCov">        182 :     if (it == primitives.end() ){</span>
+<span class="lineNum">      25 </span><span class="lineCov">         38 :         std::cerr &lt;&lt; &quot;[ERROR MapActionHandler::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] Not found any primitive action with name &quot; &lt;&lt; primitiveName &lt;&lt; std::endl;</span>
+<span class="lineNum">      26 </span><span class="lineCov">         38 :         return ActionPrimitiveMap();</span>
 <span class="lineNum">      27 </span>            :     }
 <span class="lineNum">      28 </span>            :     
-<span class="lineNum">      29 </span><span class="lineCov">        392 :     return it-&gt;second;</span>
+<span class="lineNum">      29 </span><span class="lineCov">        144 :     return it-&gt;second;</span>
 <a name="30"><span class="lineNum">      30 </span>            : }</a>
 <span class="lineNum">      31 </span>            : 
-<span class="lineNum">      32 </span><span class="lineCov">        394 : std::vector&lt;ROSEE::MapActionHandler::ActionPrimitiveMap&gt; ROSEE::MapActionHandler::getPrimitiveMap(ROSEE::ActionPrimitive::Type type) const {</span>
+<span class="lineNum">      32 </span><span class="lineCov">        131 : std::vector&lt;ROSEE::MapActionHandler::ActionPrimitiveMap&gt; ROSEE::MapActionHandler::getPrimitiveMap(ROSEE::ActionPrimitive::Type type) const {</span>
 <span class="lineNum">      33 </span>            :     
-<span class="lineNum">      34 </span><span class="lineCov">        394 :     std::vector&lt;ROSEE::MapActionHandler::ActionPrimitiveMap&gt; vectRet;</span>
+<span class="lineNum">      34 </span><span class="lineCov">        131 :     std::vector&lt;ROSEE::MapActionHandler::ActionPrimitiveMap&gt; vectRet;</span>
 <span class="lineNum">      35 </span>            :     
-<span class="lineNum">      36 </span><span class="lineCov">       1761 :     for (auto it : primitives) {</span>
+<span class="lineNum">      36 </span><span class="lineCov">        629 :     for (auto it : primitives) {</span>
 <span class="lineNum">      37 </span>            :         
-<span class="lineNum">      38 </span><span class="lineCov">       1367 :         if (it.second.begin()-&gt;second-&gt;getPrimitiveType() == type ){</span>
-<span class="lineNum">      39 </span><span class="lineCov">        200 :             vectRet.push_back(it.second);</span>
+<span class="lineNum">      38 </span><span class="lineCov">        498 :         if (it.second.begin()-&gt;second-&gt;getPrimitiveType() == type ){</span>
+<span class="lineNum">      39 </span><span class="lineCov">         55 :             vectRet.push_back(it.second);</span>
 <span class="lineNum">      40 </span>            : 
 <span class="lineNum">      41 </span>            :         }
 <span class="lineNum">      42 </span>            :     }
 <span class="lineNum">      43 </span>            :     
-<span class="lineNum">      44 </span><span class="lineCov">        394 :     return vectRet;</span>
+<span class="lineNum">      44 </span><span class="lineCov">        131 :     return vectRet;</span>
 <span class="lineNum">      45 </span>            :     
 <a name="46"><span class="lineNum">      46 </span>            : }</a>
 <span class="lineNum">      47 </span>            : 
-<span class="lineNum">      48 </span><span class="lineCov">        119 : std::map&lt;std::string, ROSEE::MapActionHandler::ActionPrimitiveMap&gt; ROSEE::MapActionHandler::getAllPrimitiveMaps() const {</span>
-<span class="lineNum">      49 </span><span class="lineCov">        119 :     return primitives;</span>
+<span class="lineNum">      48 </span><span class="lineNoCov">          0 : std::map&lt;std::string, ROSEE::MapActionHandler::ActionPrimitiveMap&gt; ROSEE::MapActionHandler::getAllPrimitiveMaps() const {</span>
+<span class="lineNum">      49 </span><span class="lineNoCov">          0 :     return primitives;</span>
 <a name="50"><span class="lineNum">      50 </span>            : }</a>
 <span class="lineNum">      51 </span>            : 
-<span class="lineNum">      52 </span><span class="lineCov">         57 : ROSEE::ActionPrimitive::Ptr ROSEE::MapActionHandler::getPrimitive(std::string primitiveName, std::set&lt;std::string&gt; key) const {</span>
+<span class="lineNum">      52 </span><span class="lineCov">         14 : ROSEE::ActionPrimitive::Ptr ROSEE::MapActionHandler::getPrimitive(std::string primitiveName, std::set&lt;std::string&gt; key) const {</span>
 <span class="lineNum">      53 </span>            :     
-<span class="lineNum">      54 </span><span class="lineCov">        114 :     auto map = getPrimitiveMap(primitiveName);</span>
+<span class="lineNum">      54 </span><span class="lineCov">         28 :     auto map = getPrimitiveMap(primitiveName);</span>
 <span class="lineNum">      55 </span>            :     
-<span class="lineNum">      56 </span><span class="lineCov">         57 :     if (map.size() == 0 ) { </span>
+<span class="lineNum">      56 </span><span class="lineCov">         14 :     if (map.size() == 0 ) { </span>
 <span class="lineNum">      57 </span><span class="lineNoCov">          0 :         return nullptr; //error message already printed in getPrimitiveMap</span>
 <span class="lineNum">      58 </span>            :     }
 <span class="lineNum">      59 </span>            :     
-<span class="lineNum">      60 </span><span class="lineCov">         57 :     if (map.begin()-&gt;second-&gt;getKeyElements().size() != key.size()) {</span>
-<span class="lineNum">      61 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot;[ERROR MapActionHandler::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] The action '&quot; </span>
+<span class="lineNum">      60 </span><span class="lineCov">         14 :     if (map.begin()-&gt;second-&gt;getKeyElements().size() != key.size()) {</span>
+<span class="lineNum">      61 </span>            :         std::cerr &lt;&lt; &quot;[ERROR MapActionHandler::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] The action '&quot; 
 <span class="lineNum">      62 </span><span class="lineNoCov">          0 :         &lt;&lt; primitiveName &lt;&lt; &quot;' has as key a set of dimension &quot; &lt;&lt;</span>
 <span class="lineNum">      63 </span><span class="lineNoCov">          0 :         map.begin()-&gt;second-&gt;getKeyElements().size() &lt;&lt;</span>
 <span class="lineNum">      64 </span><span class="lineNoCov">          0 :         &quot; and not dimension of passed 2nd argument &quot; &lt;&lt; key.size() &lt;&lt; std::endl;</span>
 <span class="lineNum">      65 </span><span class="lineNoCov">          0 :         return nullptr;</span>
 <span class="lineNum">      66 </span>            :     }
 <span class="lineNum">      67 </span>            :     
-<span class="lineNum">      68 </span><span class="lineCov">         57 :     auto it = map.find(key);</span>
+<span class="lineNum">      68 </span><span class="lineCov">         14 :     auto it = map.find(key);</span>
 <span class="lineNum">      69 </span>            :     
-<span class="lineNum">      70 </span><span class="lineCov">         57 :     if (it == map.end()) {</span>
-<span class="lineNum">      71 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot;[ERROR MapActionHandler::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] Not found any action '&quot; </span>
+<span class="lineNum">      70 </span><span class="lineCov">         14 :     if (it == map.end()) {</span>
+<span class="lineNum">      71 </span>            :         std::cerr &lt;&lt; &quot;[ERROR MapActionHandler::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] Not found any action '&quot; 
 <span class="lineNum">      72 </span><span class="lineNoCov">          0 :             &lt;&lt; primitiveName &lt;&lt; &quot;' with key [ &quot; ;</span>
 <span class="lineNum">      73 </span><span class="lineNoCov">          0 :         for (auto keyEl : key) {</span>
 <span class="lineNum">      74 </span><span class="lineNoCov">          0 :             std::cerr &lt;&lt; keyEl &lt;&lt; &quot;, &quot;;</span>
@@ -139,13 +139,13 @@
 <span class="lineNum">      77 </span><span class="lineNoCov">          0 :         return nullptr;</span>
 <span class="lineNum">      78 </span>            :     }
 <span class="lineNum">      79 </span>            :     
-<span class="lineNum">      80 </span><span class="lineCov">         57 :     return it-&gt;second;</span>
+<span class="lineNum">      80 </span><span class="lineCov">         14 :     return it-&gt;second;</span>
 <a name="81"><span class="lineNum">      81 </span>            : }</a>
 <span class="lineNum">      82 </span>            : 
-<span class="lineNum">      83 </span><span class="lineCov">         57 : ROSEE::ActionPrimitive::Ptr ROSEE::MapActionHandler::getPrimitive ( std::string primitiveName, std::vector&lt;std::string&gt; key) const {</span>
+<span class="lineNum">      83 </span><span class="lineCov">         14 : ROSEE::ActionPrimitive::Ptr ROSEE::MapActionHandler::getPrimitive ( std::string primitiveName, std::vector&lt;std::string&gt; key) const {</span>
 <span class="lineNum">      84 </span>            :     
-<span class="lineNum">      85 </span><span class="lineCov">        114 :     std::set &lt;std::string&gt; keySet (key.begin(), key.end());</span>
-<span class="lineNum">      86 </span><span class="lineCov">        114 :     return getPrimitive(primitiveName, keySet);</span>
+<span class="lineNum">      85 </span><span class="lineCov">         28 :     std::set &lt;std::string&gt; keySet (key.begin(), key.end());</span>
+<span class="lineNum">      86 </span><span class="lineCov">         28 :     return getPrimitive(primitiveName, keySet);</span>
 <a name="87"><span class="lineNum">      87 </span>            : }</a>
 <span class="lineNum">      88 </span>            : 
 <span class="lineNum">      89 </span><span class="lineNoCov">          0 : ROSEE::ActionPrimitive::Ptr ROSEE::MapActionHandler::getPrimitive(std::string primitiveName, std::string key) const {</span>
@@ -173,7 +173,7 @@
 <span class="lineNum">     111 </span>            :     }
 <span class="lineNum">     112 </span>            :     
 <span class="lineNum">     113 </span><span class="lineNoCov">          0 :     if (theMaps.size() == 0 ) {</span>
-<span class="lineNum">     114 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot;[ERROR MapActionHandler::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] No action of type '&quot; </span>
+<span class="lineNum">     114 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot;[ERROR MapActionHandler::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] No primitive action of type '&quot; </span>
 <span class="lineNum">     115 </span><span class="lineNoCov">          0 :         &lt;&lt; type &lt;&lt; &quot;' has as key a set of dimension &quot; &lt;&lt;</span>
 <span class="lineNum">     116 </span><span class="lineNoCov">          0 :         key.size() &lt;&lt; &quot; (passed 2nd argument)&quot; &lt;&lt; std::endl;</span>
 <span class="lineNum">     117 </span><span class="lineNoCov">          0 :         return std::vector&lt;ROSEE::ActionPrimitive::Ptr&gt;();</span>
@@ -195,7 +195,7 @@
 <span class="lineNum">     133 </span>            :     }
 <span class="lineNum">     134 </span>            :     
 <span class="lineNum">     135 </span><span class="lineNoCov">          0 :     if (returnVect.size() == 0) {</span>
-<span class="lineNum">     136 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot;[ERROR MapActionHandler::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] Not found any action of type '&quot; &lt;&lt; type &lt;&lt; &quot;' with key [ &quot; ;</span>
+<span class="lineNum">     136 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot;[ERROR MapActionHandler::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] Not found any primitive action of type '&quot; &lt;&lt; type &lt;&lt; &quot;' with key [ &quot; ;</span>
 <span class="lineNum">     137 </span><span class="lineNoCov">          0 :         for (auto keyEl : key) {</span>
 <span class="lineNum">     138 </span><span class="lineNoCov">          0 :             std::cerr &lt;&lt; keyEl &lt;&lt; &quot;, &quot;;</span>
 <span class="lineNum">     139 </span>            :         }
@@ -233,253 +233,275 @@
 <span class="lineNum">     171 </span><span class="lineNoCov">          0 :     return pinchLoosePairsMap;</span>
 <a name="172"><span class="lineNum">     172 </span>            : }</a>
 <span class="lineNum">     173 </span>            : 
-<span class="lineNum">     174 </span><span class="lineCov">        182 : std::shared_ptr&lt;ROSEE::ActionGeneric&gt; ROSEE::MapActionHandler::getGeneric(std::string name) const {</span>
+<span class="lineNum">     174 </span><span class="lineCov">         80 : std::shared_ptr&lt;ROSEE::ActionGeneric&gt; ROSEE::MapActionHandler::getGeneric(std::string name, bool verbose) const {</span>
 <span class="lineNum">     175 </span>            :     
-<span class="lineNum">     176 </span><span class="lineCov">        182 :     auto it = generics.find(name);</span>
-<span class="lineNum">     177 </span><span class="lineCov">        182 :     if (it == generics.end() ) {</span>
-<span class="lineNum">     178 </span><span class="lineCov">         37 :          std::cerr &lt;&lt; &quot;[ERROR MapActionHandler &quot; &lt;&lt; __func__ &lt;&lt; &quot;] No generic function named '&quot; &lt;&lt; name &lt;&lt; &quot;'&quot; &lt;&lt; std::endl;    </span>
-<span class="lineNum">     179 </span><span class="lineCov">         37 :         return nullptr;</span>
-<span class="lineNum">     180 </span>            :     }
-<span class="lineNum">     181 </span>            :     
-<span class="lineNum">     182 </span><span class="lineCov">        145 :     return it-&gt;second;</span>
-<a name="183"><span class="lineNum">     183 </span>            : }</a>
-<span class="lineNum">     184 </span>            : 
-<span class="lineNum">     185 </span><span class="lineCov">        119 : std::map&lt;std::string, std::shared_ptr&lt;ROSEE::ActionGeneric&gt; &gt; ROSEE::MapActionHandler::getAllGenerics() const {</span>
-<span class="lineNum">     186 </span><span class="lineCov">        119 :     return generics;</span>
-<a name="187"><span class="lineNum">     187 </span>            : }</a>
-<span class="lineNum">     188 </span>            : 
-<span class="lineNum">     189 </span><span class="lineCov">         15 : std::shared_ptr&lt;ROSEE::ActionTimed&gt; ROSEE::MapActionHandler::getTimed(std::string name) const {</span>
-<span class="lineNum">     190 </span>            :     
-<span class="lineNum">     191 </span><span class="lineCov">         15 :     auto it = timeds.find(name);</span>
-<span class="lineNum">     192 </span><span class="lineCov">         15 :     if (it == timeds.end() ) {</span>
-<span class="lineNum">     193 </span><span class="lineNoCov">          0 :          std::cerr &lt;&lt; &quot;[ERROR MapActionHandler &quot; &lt;&lt; __func__ &lt;&lt; &quot;] No timed function named&quot; &lt;&lt; name &lt;&lt; std::endl;    </span>
-<span class="lineNum">     194 </span><span class="lineNoCov">          0 :         return nullptr;</span>
-<span class="lineNum">     195 </span>            :     }
-<span class="lineNum">     196 </span>            :     
-<span class="lineNum">     197 </span><span class="lineCov">         15 :     return it-&gt;second;</span>
-<a name="198"><span class="lineNum">     198 </span>            : }</a>
-<span class="lineNum">     199 </span>            : 
-<span class="lineNum">     200 </span><span class="lineCov">        119 : std::map&lt;std::string, std::shared_ptr&lt;ROSEE::ActionTimed&gt;&gt; ROSEE::MapActionHandler::getAllTimeds() const {</span>
-<span class="lineNum">     201 </span><span class="lineCov">        119 :     return timeds;</span>
-<span class="lineNum">     202 </span>            : }
-<a name="203"><span class="lineNum">     203 </span>            : </a>
-<span class="lineNum">     204 </span>            : 
-<span class="lineNum">     205 </span><span class="lineNoCov">          0 : std::map&lt;std::string, ROSEE::ActionPrimitive::Ptr&gt; ROSEE::MapActionHandler::getPrimitiveSingleJointMultipleTipsMap(unsigned int nFingers) const {</span>
-<span class="lineNum">     206 </span>            :     
-<span class="lineNum">     207 </span><span class="lineNoCov">          0 :     std::map&lt;std::string, ROSEE::ActionPrimitive::Ptr&gt; ret;</span>
+<span class="lineNum">     176 </span><span class="lineCov">         80 :     auto it = generics.find(name);</span>
+<span class="lineNum">     177 </span><span class="lineCov">         80 :     if (it == generics.end() ) {</span>
+<span class="lineNum">     178 </span><span class="lineCov">         24 :         if (verbose) {</span>
+<span class="lineNum">     179 </span><span class="lineCov">          8 :             std::cerr &lt;&lt; &quot;[ERROR MapActionHandler &quot; &lt;&lt; __func__ &lt;&lt; &quot;] No generic function named '&quot; &lt;&lt; name &lt;&lt; &quot;'&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     180 </span>            :         }
+<span class="lineNum">     181 </span><span class="lineCov">         24 :         return nullptr;</span>
+<span class="lineNum">     182 </span>            :     }
+<span class="lineNum">     183 </span>            :     
+<span class="lineNum">     184 </span><span class="lineCov">         56 :     return it-&gt;second;</span>
+<a name="185"><span class="lineNum">     185 </span>            : }</a>
+<span class="lineNum">     186 </span>            : 
+<span class="lineNum">     187 </span><span class="lineNoCov">          0 : std::map&lt;std::string, std::shared_ptr&lt;ROSEE::ActionGeneric&gt; &gt; ROSEE::MapActionHandler::getAllGenerics() const {</span>
+<span class="lineNum">     188 </span><span class="lineNoCov">          0 :     return generics;</span>
+<a name="189"><span class="lineNum">     189 </span>            : }</a>
+<span class="lineNum">     190 </span>            : 
+<span class="lineNum">     191 </span><span class="lineCov">          4 : std::shared_ptr&lt;ROSEE::ActionTimed&gt; ROSEE::MapActionHandler::getTimed(std::string name) const {</span>
+<span class="lineNum">     192 </span>            :     
+<span class="lineNum">     193 </span><span class="lineCov">          4 :     auto it = timeds.find(name);</span>
+<span class="lineNum">     194 </span><span class="lineCov">          4 :     if (it == timeds.end() ) {</span>
+<span class="lineNum">     195 </span><span class="lineNoCov">          0 :          std::cerr &lt;&lt; &quot;[ERROR MapActionHandler &quot; &lt;&lt; __func__ &lt;&lt; &quot;] No timed function named '&quot; &lt;&lt; name &lt;&lt; &quot;'&quot; &lt;&lt; std::endl;    </span>
+<span class="lineNum">     196 </span><span class="lineNoCov">          0 :         return nullptr;</span>
+<span class="lineNum">     197 </span>            :     }
+<span class="lineNum">     198 </span>            :     
+<span class="lineNum">     199 </span><span class="lineCov">          4 :     return it-&gt;second;</span>
+<a name="200"><span class="lineNum">     200 </span>            : }</a>
+<span class="lineNum">     201 </span>            : 
+<span class="lineNum">     202 </span><span class="lineNoCov">          0 : std::map&lt;std::string, std::shared_ptr&lt;ROSEE::ActionTimed&gt;&gt; ROSEE::MapActionHandler::getAllTimeds() const {</span>
+<span class="lineNum">     203 </span><span class="lineNoCov">          0 :     return timeds;</span>
+<span class="lineNum">     204 </span>            : }
+<a name="205"><span class="lineNum">     205 </span>            : </a>
+<span class="lineNum">     206 </span>            : 
+<span class="lineNum">     207 </span><span class="lineNoCov">          0 : std::map&lt;std::string, ROSEE::ActionPrimitive::Ptr&gt; ROSEE::MapActionHandler::getPrimitiveSingleJointMultipleTipsMap(unsigned int nFingers) const {</span>
 <span class="lineNum">     208 </span>            :     
-<span class="lineNum">     209 </span><span class="lineNoCov">          0 :     for (auto it : primitives) {</span>
-<span class="lineNum">     210 </span>            :         
-<span class="lineNum">     211 </span><span class="lineNoCov">          0 :         if (it.second.begin()-&gt;second-&gt;getPrimitiveType() ==</span>
-<span class="lineNum">     212 </span><span class="lineNoCov">          0 :             ROSEE::ActionPrimitive::Type::SingleJointMultipleTips &amp;&amp; </span>
-<span class="lineNum">     213 </span><span class="lineNoCov">          0 :             it.second.begin()-&gt;second-&gt;getnFingersInvolved() == nFingers){</span>
-<span class="lineNum">     214 </span>            :             
-<span class="lineNum">     215 </span>            :             //copy the map into one similar but with as key a strign and not a set
-<span class="lineNum">     216 </span><span class="lineNoCov">          0 :             for (auto itt : it.second) {</span>
-<span class="lineNum">     217 </span>            :                 //itt.first is the set of one element
-<span class="lineNum">     218 </span><span class="lineNoCov">          0 :                 std::string key = *(itt.first.begin());</span>
-<span class="lineNum">     219 </span><span class="lineNoCov">          0 :                 ret.insert(std::make_pair(key, itt.second));</span>
-<span class="lineNum">     220 </span>            :             }
-<span class="lineNum">     221 </span>            : 
-<span class="lineNum">     222 </span>            :         }
-<span class="lineNum">     223 </span>            :     }
-<span class="lineNum">     224 </span>            :     
-<span class="lineNum">     225 </span><span class="lineNoCov">          0 :     if (ret.size() == 0) {</span>
-<span class="lineNum">     226 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot;[WARNING MapActionHandler::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] Not found any singleJointMultipleTips action that moves &quot; &lt;&lt; nFingers &lt;&lt; &quot; fingers &quot; &lt;&lt; std::endl;</span>
-<span class="lineNum">     227 </span>            :     }
-<span class="lineNum">     228 </span>            :     
-<span class="lineNum">     229 </span><span class="lineNoCov">          0 :     return ret;</span>
-<a name="230"><span class="lineNum">     230 </span>            : }</a>
-<span class="lineNum">     231 </span>            : 
-<span class="lineNum">     232 </span><span class="lineNoCov">          0 : ROSEE::Action::Ptr ROSEE::MapActionHandler::getGrasp(unsigned int nFingers, std::string graspName) {</span>
-<span class="lineNum">     233 </span>            :     
-<span class="lineNum">     234 </span><span class="lineNoCov">          0 :     auto it = generics.find(graspName);</span>
-<span class="lineNum">     235 </span><span class="lineNoCov">          0 :     if (it != generics.end()) {</span>
-<span class="lineNum">     236 </span><span class="lineNoCov">          0 :         return it-&gt;second;</span>
-<span class="lineNum">     237 </span>            :     }
-<span class="lineNum">     238 </span>            :     
-<span class="lineNum">     239 </span><span class="lineNoCov">          0 :     auto moreTip = getPrimitiveSingleJointMultipleTipsMap(nFingers);</span>
-<span class="lineNum">     240 </span><span class="lineNoCov">          0 :     if (moreTip.size() == 1) { //if more than 1 I do not know how to choose the one that effectively &quot;grasp&quot;</span>
-<span class="lineNum">     241 </span><span class="lineNoCov">          0 :         return moreTip.begin()-&gt;second;</span>
-<span class="lineNum">     242 </span>            :     }
-<span class="lineNum">     243 </span>            :     
-<span class="lineNum">     244 </span><span class="lineNoCov">          0 :     std::cerr &lt;&lt; &quot;[WARNING MapActionHandler::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] Not found any grasp named &quot; &lt;&lt; graspName &lt;&lt; &quot; neither a singleJointMultipleTips primitive &quot; </span>
-<span class="lineNum">     245 </span><span class="lineNoCov">          0 :         &lt;&lt; &quot;that move all fingers with a single joint, you should create one action for grasp before calling parseAllActions/parseAllGenerics()&quot;</span>
-<span class="lineNum">     246 </span><span class="lineNoCov">          0 :         &lt;&lt; std::endl;</span>
-<span class="lineNum">     247 </span>            : 
-<span class="lineNum">     248 </span>            :     
-<span class="lineNum">     249 </span><span class="lineNoCov">          0 :     return nullptr;</span>
+<span class="lineNum">     209 </span><span class="lineNoCov">          0 :     std::map&lt;std::string, ROSEE::ActionPrimitive::Ptr&gt; ret;</span>
+<span class="lineNum">     210 </span>            :     
+<span class="lineNum">     211 </span><span class="lineNoCov">          0 :     for (auto it : primitives) {</span>
+<span class="lineNum">     212 </span>            :         
+<span class="lineNum">     213 </span><span class="lineNoCov">          0 :         if (it.second.begin()-&gt;second-&gt;getPrimitiveType() ==</span>
+<span class="lineNum">     214 </span><span class="lineNoCov">          0 :             ROSEE::ActionPrimitive::Type::SingleJointMultipleTips &amp;&amp; </span>
+<span class="lineNum">     215 </span><span class="lineNoCov">          0 :             it.second.begin()-&gt;second-&gt;getnFingersInvolved() == nFingers){</span>
+<span class="lineNum">     216 </span>            :             
+<span class="lineNum">     217 </span>            :             //copy the map into one similar but with as key a strign and not a set
+<span class="lineNum">     218 </span><span class="lineNoCov">          0 :             for (auto itt : it.second) {</span>
+<span class="lineNum">     219 </span>            :                 //itt.first is the set of one element
+<span class="lineNum">     220 </span><span class="lineNoCov">          0 :                 std::string key = *(itt.first.begin());</span>
+<span class="lineNum">     221 </span><span class="lineNoCov">          0 :                 ret.insert(std::make_pair(key, itt.second));</span>
+<span class="lineNum">     222 </span>            :             }
+<span class="lineNum">     223 </span>            : 
+<span class="lineNum">     224 </span>            :         }
+<span class="lineNum">     225 </span>            :     }
+<span class="lineNum">     226 </span>            :     
+<span class="lineNum">     227 </span><span class="lineNoCov">          0 :     if (ret.size() == 0) {</span>
+<span class="lineNum">     228 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot;[WARNING MapActionHandler::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] Not found any singleJointMultipleTips action that moves &quot; &lt;&lt; nFingers &lt;&lt; &quot; fingers &quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     229 </span>            :     }
+<span class="lineNum">     230 </span>            :     
+<span class="lineNum">     231 </span><span class="lineNoCov">          0 :     return ret;</span>
+<a name="232"><span class="lineNum">     232 </span>            : }</a>
+<span class="lineNum">     233 </span>            : 
+<span class="lineNum">     234 </span><span class="lineNoCov">          0 : ROSEE::Action::Ptr ROSEE::MapActionHandler::getGrasp(unsigned int nFingers, std::string graspName) {</span>
+<span class="lineNum">     235 </span>            :     
+<span class="lineNum">     236 </span><span class="lineNoCov">          0 :     auto it = generics.find(graspName);</span>
+<span class="lineNum">     237 </span><span class="lineNoCov">          0 :     if (it != generics.end()) {</span>
+<span class="lineNum">     238 </span><span class="lineNoCov">          0 :         return it-&gt;second;</span>
+<span class="lineNum">     239 </span>            :     }
+<span class="lineNum">     240 </span>            :     
+<span class="lineNum">     241 </span><span class="lineNoCov">          0 :     auto moreTip = getPrimitiveSingleJointMultipleTipsMap(nFingers);</span>
+<span class="lineNum">     242 </span><span class="lineNoCov">          0 :     if (moreTip.size() == 1) { //if more than 1 I do not know how to choose the one that effectively &quot;grasp&quot;</span>
+<span class="lineNum">     243 </span><span class="lineNoCov">          0 :         return moreTip.begin()-&gt;second;</span>
+<span class="lineNum">     244 </span>            :     }
+<span class="lineNum">     245 </span>            :     
+<span class="lineNum">     246 </span>            :     std::cerr &lt;&lt; &quot;[WARNING MapActionHandler::&quot; &lt;&lt; __func__ &lt;&lt; &quot;] Not found any grasp named &quot; &lt;&lt; graspName &lt;&lt; &quot; neither a singleJointMultipleTips primitive &quot; 
+<span class="lineNum">     247 </span><span class="lineNoCov">          0 :         &lt;&lt; &quot;that move all fingers with a single joint, you should create one action for grasp before calling parseAllActions/parseAllGenerics()&quot;</span>
+<span class="lineNum">     248 </span><span class="lineNoCov">          0 :         &lt;&lt; std::endl;</span>
+<span class="lineNum">     249 </span>            : 
 <span class="lineNum">     250 </span>            :     
-<span class="lineNum">     251 </span>            : }
-<a name="252"><span class="lineNum">     252 </span>            : </a>
-<span class="lineNum">     253 </span>            : 
-<span class="lineNum">     254 </span><span class="lineCov">          4 : std::set&lt;std::string&gt; ROSEE::MapActionHandler::getFingertipsForPinch(std::string finger, ROSEE::ActionPrimitive::Type pinchType) const {</span>
-<span class="lineNum">     255 </span>            :     
-<span class="lineNum">     256 </span><span class="lineCov">          4 :     std::set &lt;std::string&gt; pairedFinger;</span>
+<span class="lineNum">     251 </span><span class="lineNoCov">          0 :     return nullptr;</span>
+<span class="lineNum">     252 </span>            :     
+<span class="lineNum">     253 </span>            : }
+<a name="254"><span class="lineNum">     254 </span>            : </a>
+<span class="lineNum">     255 </span>            : 
+<span class="lineNum">     256 </span><span class="lineNoCov">          0 : std::set&lt;std::string&gt; ROSEE::MapActionHandler::getFingertipsForPinch(std::string finger, ROSEE::ActionPrimitive::Type pinchType) const {</span>
 <span class="lineNum">     257 </span>            :     
-<span class="lineNum">     258 </span><span class="lineCov">          4 :     switch (pinchType) {</span>
-<span class="lineNum">     259 </span>            :         
-<span class="lineNum">     260 </span>            :     case ROSEE::ActionPrimitive::Type::PinchTight : {
+<span class="lineNum">     258 </span><span class="lineNoCov">          0 :     std::set &lt;std::string&gt; pairedFinger;</span>
+<span class="lineNum">     259 </span>            :     
+<span class="lineNum">     260 </span><span class="lineNoCov">          0 :     switch (pinchType) {</span>
 <span class="lineNum">     261 </span>            :         
-<span class="lineNum">     262 </span><span class="lineCov">          2 :         auto it = pinchTightPairsMap.find(finger);</span>
+<span class="lineNum">     262 </span><span class="lineNoCov">          0 :     case ROSEE::ActionPrimitive::Type::PinchTight : {</span>
 <span class="lineNum">     263 </span>            :         
-<span class="lineNum">     264 </span><span class="lineCov">          2 :         if ( it != pinchTightPairsMap.end() ) {</span>
-<span class="lineNum">     265 </span><span class="lineCov">          2 :             pairedFinger = it-&gt;second;</span>
-<span class="lineNum">     266 </span>            :             
-<span class="lineNum">     267 </span>            :         } else {
-<span class="lineNum">     268 </span><span class="lineNoCov">          0 :             std::cerr &lt;&lt; &quot;[WARNING MapActionHandler &quot; &lt;&lt; __func__ &lt;&lt; &quot;] No companions found to make a tight pinch with &quot; &lt;&lt; finger &lt;&lt; &quot; finger&quot; </span>
-<span class="lineNum">     269 </span><span class="lineNoCov">          0 :             &lt;&lt; std::endl;</span>
-<span class="lineNum">     270 </span>            :         }
-<span class="lineNum">     271 </span><span class="lineCov">          2 :         break;</span>
-<span class="lineNum">     272 </span>            :     }
-<span class="lineNum">     273 </span>            :     
-<span class="lineNum">     274 </span>            :     case ROSEE::ActionPrimitive::Type::PinchLoose : {
-<span class="lineNum">     275 </span>            :         
-<span class="lineNum">     276 </span><span class="lineCov">          2 :         auto it = pinchLoosePairsMap.find(finger);</span>
+<span class="lineNum">     264 </span><span class="lineNoCov">          0 :         auto it = pinchTightPairsMap.find(finger);</span>
+<span class="lineNum">     265 </span>            :         
+<span class="lineNum">     266 </span><span class="lineNoCov">          0 :         if ( it != pinchTightPairsMap.end() ) {</span>
+<span class="lineNum">     267 </span><span class="lineNoCov">          0 :             pairedFinger = it-&gt;second;</span>
+<span class="lineNum">     268 </span>            :             
+<span class="lineNum">     269 </span>            :         } else {
+<span class="lineNum">     270 </span><span class="lineNoCov">          0 :             std::cerr &lt;&lt; &quot;[WARNING MapActionHandler &quot; &lt;&lt; __func__ &lt;&lt; &quot;] No companions found to make a tight pinch with &quot; &lt;&lt; finger &lt;&lt; &quot; finger&quot; </span>
+<span class="lineNum">     271 </span><span class="lineNoCov">          0 :             &lt;&lt; std::endl;</span>
+<span class="lineNum">     272 </span>            :         }
+<span class="lineNum">     273 </span><span class="lineNoCov">          0 :         break;</span>
+<span class="lineNum">     274 </span>            :     }
+<span class="lineNum">     275 </span>            :     
+<span class="lineNum">     276 </span><span class="lineNoCov">          0 :     case ROSEE::ActionPrimitive::Type::PinchLoose : {</span>
 <span class="lineNum">     277 </span>            :         
-<span class="lineNum">     278 </span><span class="lineCov">          2 :         if ( it != pinchLoosePairsMap.end() ) {</span>
-<span class="lineNum">     279 </span><span class="lineCov">          2 :             pairedFinger = it-&gt;second;</span>
-<span class="lineNum">     280 </span>            :             
-<span class="lineNum">     281 </span>            :         } else {
-<span class="lineNum">     282 </span><span class="lineNoCov">          0 :             std::cerr &lt;&lt; &quot;[WARNING MapActionHandler &quot; &lt;&lt; __func__ &lt;&lt; &quot;] No companions found to make a loose pinch with &quot; &lt;&lt; finger &lt;&lt; &quot; finger&quot; </span>
-<span class="lineNum">     283 </span><span class="lineNoCov">          0 :             &lt;&lt; std::endl;</span>
-<span class="lineNum">     284 </span>            :         } 
-<span class="lineNum">     285 </span><span class="lineCov">          2 :         break;</span>
-<span class="lineNum">     286 </span>            :     }
-<span class="lineNum">     287 </span>            :     
-<span class="lineNum">     288 </span>            :     default: {
-<span class="lineNum">     289 </span>            :        
-<span class="lineNum">     290 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot;[WARNING MapActionHandler &quot; &lt;&lt; __func__ &lt;&lt; &quot;] Type &quot; &lt;&lt;</span>
-<span class="lineNum">     291 </span><span class="lineNoCov">          0 :         pinchType &lt;&lt; &quot; is not a type to look for companions &quot; &lt;&lt; std::endl;    </span>
-<span class="lineNum">     292 </span>            :     }
-<span class="lineNum">     293 </span>            :     }
-<span class="lineNum">     294 </span>            :     
-<span class="lineNum">     295 </span><span class="lineCov">          4 :     return pairedFinger;</span>
-<span class="lineNum">     296 </span>            : }
-<a name="297"><span class="lineNum">     297 </span>            : </a>
-<span class="lineNum">     298 </span>            : 
-<span class="lineNum">     299 </span><span class="lineCov">        119 : bool ROSEE::MapActionHandler::parseAllActions(std::string pathFolder) {</span>
-<span class="lineNum">     300 </span>            :     
-<span class="lineNum">     301 </span><span class="lineCov">        119 :     bool flag = true;</span>
-<span class="lineNum">     302 </span><span class="lineCov">        119 :     if (! parseAllPrimitives(pathFolder + &quot;/primitives/&quot;) ) {</span>
-<span class="lineNum">     303 </span><span class="lineNoCov">          0 :         flag = false;</span>
-<span class="lineNum">     304 </span>            :     }
-<span class="lineNum">     305 </span><span class="lineCov">        119 :     if (! parseAllGenerics(pathFolder + + &quot;/generics/&quot;) ) {</span>
-<span class="lineNum">     306 </span><span class="lineNoCov">          0 :         flag = false;</span>
-<span class="lineNum">     307 </span>            :     }
-<span class="lineNum">     308 </span><span class="lineCov">        119 :     if (! parseAllTimeds(pathFolder + + &quot;/timeds/&quot;) ) {</span>
-<span class="lineNum">     309 </span><span class="lineNoCov">          0 :         flag = false;</span>
-<span class="lineNum">     310 </span>            :     }
-<span class="lineNum">     311 </span>            :     
-<span class="lineNum">     312 </span><span class="lineCov">        119 :     return flag;</span>
+<span class="lineNum">     278 </span><span class="lineNoCov">          0 :         auto it = pinchLoosePairsMap.find(finger);</span>
+<span class="lineNum">     279 </span>            :         
+<span class="lineNum">     280 </span><span class="lineNoCov">          0 :         if ( it != pinchLoosePairsMap.end() ) {</span>
+<span class="lineNum">     281 </span><span class="lineNoCov">          0 :             pairedFinger = it-&gt;second;</span>
+<span class="lineNum">     282 </span>            :             
+<span class="lineNum">     283 </span>            :         } else {
+<span class="lineNum">     284 </span><span class="lineNoCov">          0 :             std::cerr &lt;&lt; &quot;[WARNING MapActionHandler &quot; &lt;&lt; __func__ &lt;&lt; &quot;] No companions found to make a loose pinch with &quot; &lt;&lt; finger &lt;&lt; &quot; finger&quot; </span>
+<span class="lineNum">     285 </span><span class="lineNoCov">          0 :             &lt;&lt; std::endl;</span>
+<span class="lineNum">     286 </span>            :         } 
+<span class="lineNum">     287 </span><span class="lineNoCov">          0 :         break;</span>
+<span class="lineNum">     288 </span>            :     }
+<span class="lineNum">     289 </span>            :     
+<span class="lineNum">     290 </span><span class="lineNoCov">          0 :     default: {</span>
+<span class="lineNum">     291 </span>            :        
+<span class="lineNum">     292 </span><span class="lineNoCov">          0 :         std::cerr &lt;&lt; &quot;[WARNING MapActionHandler &quot; &lt;&lt; __func__ &lt;&lt; &quot;] Type &quot; &lt;&lt;</span>
+<span class="lineNum">     293 </span><span class="lineNoCov">          0 :         pinchType &lt;&lt; &quot; is not a type to look for companions &quot; &lt;&lt; std::endl;    </span>
+<span class="lineNum">     294 </span>            :     }
+<span class="lineNum">     295 </span>            :     }
+<span class="lineNum">     296 </span>            :     
+<span class="lineNum">     297 </span><span class="lineNoCov">          0 :     return pairedFinger;</span>
+<span class="lineNum">     298 </span>            : }
+<a name="299"><span class="lineNum">     299 </span>            : </a>
+<span class="lineNum">     300 </span>            : 
+<span class="lineNum">     301 </span><span class="lineCov">         41 : bool ROSEE::MapActionHandler::parseAllActions(std::string pathFolder) {</span>
+<span class="lineNum">     302 </span>            :     
+<span class="lineNum">     303 </span><span class="lineCov">         41 :     bool flag = true;</span>
+<span class="lineNum">     304 </span><span class="lineCov">         41 :     if (! parseAllPrimitives(pathFolder + &quot;/primitives/&quot;) ) {</span>
+<span class="lineNum">     305 </span><span class="lineNoCov">          0 :         flag = false;</span>
+<span class="lineNum">     306 </span>            :     }
+<span class="lineNum">     307 </span><span class="lineCov">         41 :     if (! parseAllGenerics(pathFolder + + &quot;/generics/&quot;) ) {</span>
+<span class="lineNum">     308 </span><span class="lineNoCov">          0 :         flag = false;</span>
+<span class="lineNum">     309 </span>            :     }
+<span class="lineNum">     310 </span><span class="lineCov">         41 :     if (! parseAllTimeds(pathFolder + + &quot;/timeds/&quot;) ) {</span>
+<span class="lineNum">     311 </span><span class="lineNoCov">          0 :         flag = false;</span>
+<span class="lineNum">     312 </span>            :     }
 <span class="lineNum">     313 </span>            :     
-<a name="314"><span class="lineNum">     314 </span>            : }</a>
-<span class="lineNum">     315 </span>            : 
-<span class="lineNum">     316 </span><span class="lineCov">        119 : bool ROSEE::MapActionHandler::parseAllPrimitives(std::string pathFolder) {</span>
-<span class="lineNum">     317 </span>            :     
-<span class="lineNum">     318 </span><span class="lineCov">        238 :     std::vector &lt;std::string&gt; filenames = ROSEE::Utils::getFilesInDir(pathFolder);</span>
-<span class="lineNum">     319 </span><span class="lineCov">        119 :     YamlWorker yamlWorker;</span>
-<span class="lineNum">     320 </span>            :     
-<span class="lineNum">     321 </span><span class="lineCov">        541 :      for (auto file : filenames) {</span>
-<span class="lineNum">     322 </span><span class="lineCov">        844 :         ActionPrimitiveMap primitive = yamlWorker.parseYamlPrimitive(pathFolder+file);</span>
-<span class="lineNum">     323 </span><span class="lineCov">        422 :         primitives.insert (std::make_pair( primitive.begin()-&gt;second-&gt;getName(), primitive) ) ;</span>
-<span class="lineNum">     324 </span>            :     }
-<span class="lineNum">     325 </span>            :     
-<span class="lineNum">     326 </span><span class="lineCov">        119 :     findPinchPairsMap();</span>
+<span class="lineNum">     314 </span><span class="lineCov">         41 :     return flag;</span>
+<span class="lineNum">     315 </span>            :     
+<a name="316"><span class="lineNum">     316 </span>            : }</a>
+<span class="lineNum">     317 </span>            : 
+<span class="lineNum">     318 </span><span class="lineCov">         41 : bool ROSEE::MapActionHandler::parseAllPrimitives(std::string pathFolder) {</span>
+<span class="lineNum">     319 </span>            :     
+<span class="lineNum">     320 </span><span class="lineCov">         82 :     std::vector &lt;std::string&gt; filenames = ROSEE::Utils::getFilesInDir(pathFolder);</span>
+<span class="lineNum">     321 </span><span class="lineCov">         41 :     YamlWorker yamlWorker;</span>
+<span class="lineNum">     322 </span>            :     
+<span class="lineNum">     323 </span><span class="lineCov">        199 :      for (auto file : filenames) {</span>
+<span class="lineNum">     324 </span><span class="lineCov">        316 :         ActionPrimitiveMap primitive = yamlWorker.parseYamlPrimitive(pathFolder+file);</span>
+<span class="lineNum">     325 </span><span class="lineCov">        158 :         primitives.insert (std::make_pair( primitive.begin()-&gt;second-&gt;getName(), primitive) ) ;</span>
+<span class="lineNum">     326 </span>            :     }
 <span class="lineNum">     327 </span>            :     
-<span class="lineNum">     328 </span><span class="lineCov">        238 :     return true;</span>
+<span class="lineNum">     328 </span><span class="lineCov">         41 :     findPinchPairsMap();</span>
 <span class="lineNum">     329 </span>            :     
-<a name="330"><span class="lineNum">     330 </span>            : }</a>
-<span class="lineNum">     331 </span>            : 
-<span class="lineNum">     332 </span><span class="lineCov">        119 : bool ROSEE::MapActionHandler::parseAllGenerics(std::string pathFolder) {</span>
+<span class="lineNum">     330 </span><span class="lineCov">         82 :     return true;</span>
+<span class="lineNum">     331 </span>            :     
+<a name="332"><span class="lineNum">     332 </span>            : }</a>
 <span class="lineNum">     333 </span>            : 
-<span class="lineNum">     334 </span><span class="lineCov">        238 :     std::vector &lt;std::string&gt; filenames = ROSEE::Utils::getFilesInDir(pathFolder);</span>
-<span class="lineNum">     335 </span><span class="lineCov">        119 :     YamlWorker yamlWorker;</span>
-<span class="lineNum">     336 </span><span class="lineCov">        543 :     for (auto file : filenames) {</span>
-<span class="lineNum">     337 </span>            :         
-<span class="lineNum">     338 </span>            :         ROSEE::ActionGeneric::Ptr genericPointer =
-<span class="lineNum">     339 </span><span class="lineCov">        848 :             yamlWorker.parseYamlGeneric(pathFolder+file);</span>
-<span class="lineNum">     340 </span><span class="lineCov">        424 :         generics.insert (std::make_pair( genericPointer-&gt;getName(), genericPointer) ) ;</span>
-<span class="lineNum">     341 </span>            :     }
-<span class="lineNum">     342 </span>            :     
-<span class="lineNum">     343 </span>            :     
-<span class="lineNum">     344 </span><span class="lineCov">        238 :     return true;</span>
+<span class="lineNum">     334 </span><span class="lineCov">         41 : bool ROSEE::MapActionHandler::parseAllGenerics(std::string pathFolder) {</span>
+<span class="lineNum">     335 </span>            : 
+<span class="lineNum">     336 </span><span class="lineCov">         82 :     std::vector &lt;std::string&gt; filenames = ROSEE::Utils::getFilesInDir(pathFolder);</span>
+<span class="lineNum">     337 </span><span class="lineCov">         41 :     YamlWorker yamlWorker;</span>
+<span class="lineNum">     338 </span><span class="lineCov">        316 :     for (auto file : filenames) {</span>
+<span class="lineNum">     339 </span>            :         
+<span class="lineNum">     340 </span>            :         ROSEE::ActionGeneric::Ptr genericPointer =
+<span class="lineNum">     341 </span><span class="lineCov">        550 :             yamlWorker.parseYamlGeneric(pathFolder+file);</span>
+<span class="lineNum">     342 </span><span class="lineCov">        275 :         generics.insert (std::make_pair( genericPointer-&gt;getName(), genericPointer) ) ;</span>
+<span class="lineNum">     343 </span>            :     }
+<span class="lineNum">     344 </span>            :     
 <span class="lineNum">     345 </span>            :     
-<span class="lineNum">     346 </span>            :     
-<a name="347"><span class="lineNum">     347 </span>            : }</a>
-<span class="lineNum">     348 </span>            : 
-<span class="lineNum">     349 </span><span class="lineCov">        119 : bool ROSEE::MapActionHandler::parseAllTimeds(std::string pathFolder) {</span>
-<span class="lineNum">     350 </span>            :     
-<span class="lineNum">     351 </span><span class="lineCov">        238 :     std::vector &lt;std::string&gt; filenames = ROSEE::Utils::getFilesInDir(pathFolder);</span>
-<span class="lineNum">     352 </span><span class="lineCov">        119 :     YamlWorker yamlWorker;</span>
-<span class="lineNum">     353 </span><span class="lineCov">        319 :     for (auto file : filenames) {</span>
-<span class="lineNum">     354 </span>            :         
-<span class="lineNum">     355 </span><span class="lineCov">        400 :         std::shared_ptr &lt; ROSEE::ActionTimed &gt; timed = yamlWorker.parseYamlTimed(pathFolder+file);</span>
-<span class="lineNum">     356 </span><span class="lineCov">        200 :         timeds.insert (std::make_pair( timed-&gt;getName(), timed) ) ;</span>
-<span class="lineNum">     357 </span>            :     }
-<span class="lineNum">     358 </span>            :     
-<span class="lineNum">     359 </span><span class="lineCov">        238 :     return true;</span>
-<span class="lineNum">     360 </span>            : }
-<span class="lineNum">     361 </span>            : 
-<span class="lineNum">     362 </span>            : 
-<span class="lineNum">     363 </span>            : 
+<span class="lineNum">     346 </span><span class="lineCov">         82 :     return true;</span>
+<span class="lineNum">     347 </span>            :     
+<span class="lineNum">     348 </span>            :     
+<a name="349"><span class="lineNum">     349 </span>            : }</a>
+<span class="lineNum">     350 </span>            : 
+<span class="lineNum">     351 </span><span class="lineCov">         41 : bool ROSEE::MapActionHandler::parseAllTimeds(std::string pathFolder) {</span>
+<span class="lineNum">     352 </span>            :     
+<span class="lineNum">     353 </span><span class="lineCov">         82 :     std::vector &lt;std::string&gt; filenames = ROSEE::Utils::getFilesInDir(pathFolder);</span>
+<span class="lineNum">     354 </span><span class="lineCov">         41 :     YamlWorker yamlWorker;</span>
+<span class="lineNum">     355 </span><span class="lineCov">        123 :     for (auto file : filenames) {</span>
+<span class="lineNum">     356 </span>            :         
+<span class="lineNum">     357 </span><span class="lineCov">        164 :         std::shared_ptr &lt; ROSEE::ActionTimed &gt; timed = yamlWorker.parseYamlTimed(pathFolder+file);</span>
+<span class="lineNum">     358 </span><span class="lineCov">         82 :         timeds.insert (std::make_pair( timed-&gt;getName(), timed) ) ;</span>
+<span class="lineNum">     359 </span>            :     }
+<span class="lineNum">     360 </span>            :     
+<span class="lineNum">     361 </span><span class="lineCov">         82 :     return true;</span>
+<span class="lineNum">     362 </span>            : }
+<a name="363"><span class="lineNum">     363 </span>            : </a>
 <span class="lineNum">     364 </span>            : 
-<a name="365"><span class="lineNum">     365 </span>            : //******************************** PRIVATE FUNCT ********************************************************************/</a>
-<span class="lineNum">     366 </span>            : 
-<span class="lineNum">     367 </span><span class="lineCov">        119 : void ROSEE::MapActionHandler::findPinchPairsMap() {</span>
+<span class="lineNum">     365 </span><span class="lineCov">         12 : bool ROSEE::MapActionHandler::insertSingleGeneric(ROSEE::ActionGeneric::Ptr generic) {</span>
+<span class="lineNum">     366 </span>            :     
+<span class="lineNum">     367 </span><span class="lineCov">         12 :     auto it = generics.find(generic-&gt;getName());</span>
 <span class="lineNum">     368 </span>            :     
-<span class="lineNum">     369 </span>            :     //Assume only one pinch tight, it should be like this now.
-<span class="lineNum">     370 </span><span class="lineCov">        238 :     auto maps = getPrimitiveMap(ROSEE::ActionPrimitive::Type::PinchTight);</span>
-<span class="lineNum">     371 </span>            :     
-<span class="lineNum">     372 </span><span class="lineCov">        119 :     if (maps.size() != 0 ){</span>
-<span class="lineNum">     373 </span><span class="lineCov">        178 :         for (ActionPrimitiveMap map : maps) {</span>
-<span class="lineNum">     374 </span><span class="lineCov">        240 :             for (auto mapEl : map) {</span>
-<span class="lineNum">     375 </span>            :         
-<span class="lineNum">     376 </span><span class="lineCov">        453 :                 for (auto fing : mapEl.first) { //.first is a set</span>
-<span class="lineNum">     377 </span>            :                     
-<span class="lineNum">     378 </span>            :                     //we will insert all the set as value, this means that also will include the key itself,
-<span class="lineNum">     379 </span>            :                     // we remove the key from the values later
-<span class="lineNum">     380 </span><span class="lineCov">        302 :                     if (pinchTightPairsMap.count(fing) == 0 ) {</span>
-<span class="lineNum">     381 </span><span class="lineCov">        209 :                         pinchTightPairsMap.insert(std::make_pair(fing, mapEl.first)); </span>
-<span class="lineNum">     382 </span>            :                     } else {
-<span class="lineNum">     383 </span><span class="lineCov">         93 :                         pinchTightPairsMap.at(fing).insert (mapEl.first.begin(), mapEl.first.end());</span>
-<span class="lineNum">     384 </span>            :                     }
-<span class="lineNum">     385 </span>            :                 }
-<span class="lineNum">     386 </span>            :             }
-<span class="lineNum">     387 </span>            :         }  
-<span class="lineNum">     388 </span>            :         //remove the string key from the values.
-<span class="lineNum">     389 </span><span class="lineCov">        298 :         for (auto it : pinchTightPairsMap) {</span>
-<span class="lineNum">     390 </span><span class="lineCov">        209 :             it.second.erase(it.first);</span>
-<span class="lineNum">     391 </span>            :         }
-<span class="lineNum">     392 </span>            :     }
+<span class="lineNum">     369 </span><span class="lineCov">         12 :     if (it != generics.end()){</span>
+<span class="lineNum">     370 </span>            :        
+<span class="lineNum">     371 </span>            :          std::cerr &lt;&lt; &quot;[ERROR MapActionHandler &quot; &lt;&lt; __func__ &lt;&lt; &quot;] Trying to insert generic action with name &quot; &lt;&lt;
+<span class="lineNum">     372 </span><span class="lineNoCov">          0 :             generic-&gt;getName() &lt;&lt; &quot;which already exists&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     373 </span>            :         
+<span class="lineNum">     374 </span><span class="lineNoCov">          0 :         return false;</span>
+<span class="lineNum">     375 </span>            :     }
+<span class="lineNum">     376 </span>            :     
+<span class="lineNum">     377 </span>            :     //it as hint beause we already did the lookup in the find above
+<span class="lineNum">     378 </span><span class="lineCov">         12 :     generics.insert(it, std::make_pair(generic-&gt;getName(), generic));</span>
+<span class="lineNum">     379 </span>            :     
+<span class="lineNum">     380 </span><span class="lineCov">         12 :     return true;</span>
+<span class="lineNum">     381 </span>            :     
+<span class="lineNum">     382 </span>            : }
+<span class="lineNum">     383 </span>            : 
+<span class="lineNum">     384 </span>            : 
+<span class="lineNum">     385 </span>            : 
+<span class="lineNum">     386 </span>            : 
+<a name="387"><span class="lineNum">     387 </span>            : //******************************** PRIVATE FUNCT ********************************************************************/</a>
+<span class="lineNum">     388 </span>            : 
+<span class="lineNum">     389 </span><span class="lineCov">         41 : void ROSEE::MapActionHandler::findPinchPairsMap() {</span>
+<span class="lineNum">     390 </span>            :     
+<span class="lineNum">     391 </span>            :     //Assume only one pinch tight, it should be like this now.
+<span class="lineNum">     392 </span><span class="lineCov">         82 :     auto maps = getPrimitiveMap(ROSEE::ActionPrimitive::Type::PinchTight);</span>
 <span class="lineNum">     393 </span>            :     
-<span class="lineNum">     394 </span>            :     //now do the same for the loose pinches
-<span class="lineNum">     395 </span><span class="lineCov">        238 :     auto mapsloose = getPrimitiveMap(ROSEE::ActionPrimitive::Type::PinchLoose);</span>
-<span class="lineNum">     396 </span>            :     
-<span class="lineNum">     397 </span><span class="lineCov">        119 :     if (mapsloose.size() != 0 ) {</span>
-<span class="lineNum">     398 </span><span class="lineCov">         74 :         for (ActionPrimitiveMap map : mapsloose) {</span>
-<span class="lineNum">     399 </span><span class="lineCov">         74 :             for (auto mapEl : map) {</span>
-<span class="lineNum">     400 </span>            :         
-<span class="lineNum">     401 </span><span class="lineCov">        111 :                 for (auto fing : mapEl.first) { //.first is a set</span>
-<span class="lineNum">     402 </span>            :                     
-<span class="lineNum">     403 </span>            :                     //we will insert all the set as value, this means that also will include the key itself,
-<span class="lineNum">     404 </span>            :                     // we remove the key from the values later
-<span class="lineNum">     405 </span><span class="lineCov">         74 :                     if (pinchLoosePairsMap.count(fing) == 0 ) {</span>
-<span class="lineNum">     406 </span><span class="lineCov">         74 :                         pinchLoosePairsMap.insert(std::make_pair(fing, mapEl.first)); </span>
-<span class="lineNum">     407 </span>            :                     } else {
-<span class="lineNum">     408 </span><span class="lineNoCov">          0 :                         pinchLoosePairsMap.at(fing).insert (mapEl.first.begin(), mapEl.first.end());</span>
-<span class="lineNum">     409 </span>            :                     }
-<span class="lineNum">     410 </span>            :                 }
-<span class="lineNum">     411 </span>            :             }
-<span class="lineNum">     412 </span>            :         }
-<span class="lineNum">     413 </span>            :         //remove the string key from the values.
-<span class="lineNum">     414 </span><span class="lineCov">        111 :         for (auto it : pinchLoosePairsMap) {</span>
-<span class="lineNum">     415 </span><span class="lineCov">         74 :             it.second.erase(it.first);</span>
-<a name="416"><span class="lineNum">     416 </span>            :         }</a>
-<span class="lineNum">     417 </span>            :     }
-<span class="lineNum">     418 </span><span class="lineCov">        476 : }</span>
-<span class="lineNum">     419 </span>            : 
-<span class="lineNum">     420 </span>            : 
+<span class="lineNum">     394 </span><span class="lineCov">         41 :     if (maps.size() != 0 ){</span>
+<span class="lineNum">     395 </span><span class="lineCov">         62 :         for (ActionPrimitiveMap map : maps) {</span>
+<span class="lineNum">     396 </span><span class="lineCov">         86 :             for (auto mapEl : map) {</span>
+<span class="lineNum">     397 </span>            :         
+<span class="lineNum">     398 </span><span class="lineCov">        165 :                 for (auto fing : mapEl.first) { //.first is a set</span>
+<span class="lineNum">     399 </span>            :                     
+<span class="lineNum">     400 </span>            :                     //we will insert all the set as value, this means that also will include the key itself,
+<span class="lineNum">     401 </span>            :                     // we remove the key from the values later
+<span class="lineNum">     402 </span><span class="lineCov">        110 :                     if (pinchTightPairsMap.count(fing) == 0 ) {</span>
+<span class="lineNum">     403 </span><span class="lineCov">         74 :                         pinchTightPairsMap.insert(std::make_pair(fing, mapEl.first)); </span>
+<span class="lineNum">     404 </span>            :                     } else {
+<span class="lineNum">     405 </span><span class="lineCov">         36 :                         pinchTightPairsMap.at(fing).insert (mapEl.first.begin(), mapEl.first.end());</span>
+<span class="lineNum">     406 </span>            :                     }
+<span class="lineNum">     407 </span>            :                 }
+<span class="lineNum">     408 </span>            :             }
+<span class="lineNum">     409 </span>            :         }  
+<span class="lineNum">     410 </span>            :         //remove the string key from the values.
+<span class="lineNum">     411 </span><span class="lineCov">        105 :         for (auto it : pinchTightPairsMap) {</span>
+<span class="lineNum">     412 </span><span class="lineCov">         74 :             it.second.erase(it.first);</span>
+<span class="lineNum">     413 </span>            :         }
+<span class="lineNum">     414 </span>            :     }
+<span class="lineNum">     415 </span>            :     
+<span class="lineNum">     416 </span>            :     //now do the same for the loose pinches
+<span class="lineNum">     417 </span><span class="lineCov">         82 :     auto mapsloose = getPrimitiveMap(ROSEE::ActionPrimitive::Type::PinchLoose);</span>
+<span class="lineNum">     418 </span>            :     
+<span class="lineNum">     419 </span><span class="lineCov">         41 :     if (mapsloose.size() != 0 ) {</span>
+<span class="lineNum">     420 </span><span class="lineCov">         16 :         for (ActionPrimitiveMap map : mapsloose) {</span>
+<span class="lineNum">     421 </span><span class="lineCov">         16 :             for (auto mapEl : map) {</span>
+<span class="lineNum">     422 </span>            :         
+<span class="lineNum">     423 </span><span class="lineCov">         24 :                 for (auto fing : mapEl.first) { //.first is a set</span>
+<span class="lineNum">     424 </span>            :                     
+<span class="lineNum">     425 </span>            :                     //we will insert all the set as value, this means that also will include the key itself,
+<span class="lineNum">     426 </span>            :                     // we remove the key from the values later
+<span class="lineNum">     427 </span><span class="lineCov">         16 :                     if (pinchLoosePairsMap.count(fing) == 0 ) {</span>
+<span class="lineNum">     428 </span><span class="lineCov">         16 :                         pinchLoosePairsMap.insert(std::make_pair(fing, mapEl.first)); </span>
+<span class="lineNum">     429 </span>            :                     } else {
+<span class="lineNum">     430 </span><span class="lineNoCov">          0 :                         pinchLoosePairsMap.at(fing).insert (mapEl.first.begin(), mapEl.first.end());</span>
+<span class="lineNum">     431 </span>            :                     }
+<span class="lineNum">     432 </span>            :                 }
+<span class="lineNum">     433 </span>            :             }
+<span class="lineNum">     434 </span>            :         }
+<span class="lineNum">     435 </span>            :         //remove the string key from the values.
+<span class="lineNum">     436 </span><span class="lineCov">         24 :         for (auto it : pinchLoosePairsMap) {</span>
+<span class="lineNum">     437 </span><span class="lineCov">         16 :             it.second.erase(it.first);</span>
+<a name="438"><span class="lineNum">     438 </span>            :         }</a>
+<span class="lineNum">     439 </span>            :     }
+<span class="lineNum">     440 </span><span class="lineCov">        164 : }</span>
+<span class="lineNum">     441 </span>            : 
+<span class="lineNum">     442 </span>            : 
 </pre>
       </td>
     </tr>
@@ -488,7 +510,7 @@
 
   <table width="100%" border=0 cellspacing=0 cellpadding=0>
     <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
-    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
   </table>
   <br>
 
