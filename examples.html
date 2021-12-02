@@ -184,11 +184,8 @@ catkin_make_isolated
 <span class="nb">cd</span> ~/qbhand
 mkdir src
 <span class="nb">cd</span> src
-git clone --branch production-kinetic https://bitbucket.org/qbrobotics/qbdevice-ros.git
-git clone --branch production-kinetic https://bitbucket.org/qbrobotics/qbhand-ros.git
-      <span class="nb">cd</span> ~/qbhand
-catkin_make
-<span class="nb">source</span> devel/setup.bash
+git clone https://bitbucket.org/qbrobotics/qbhand-ros.git
+<span class="nb">export</span> <span class="nv">ROS_PACKAGE_PATH</span><span class="o">=</span><span class="nv">$ROS_PACKAGE_PATH</span>:~/qbhand/
 </pre></div>
 </div>
 <p>Then run the nodes as usually but with <code class="code docutils literal notranslate"><span class="pre">hand_name:=qbahnd</span></code> as argument.</p>

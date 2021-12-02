@@ -106,11 +106,8 @@ Necessary steps before running ROS End-Effector with this hand:
   cd ~/qbhand
   mkdir src
   cd src
-  git clone --branch production-kinetic https://bitbucket.org/qbrobotics/qbdevice-ros.git
-  git clone --branch production-kinetic https://bitbucket.org/qbrobotics/qbhand-ros.git
-	cd ~/qbhand
-  catkin_make
-  source devel/setup.bash
+  git clone https://bitbucket.org/qbrobotics/qbhand-ros.git
+  export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/qbhand/
   
 Then run the nodes as usually but with :code:`hand_name:=qbahnd` as argument.
 
