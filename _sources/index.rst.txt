@@ -111,6 +111,49 @@ For reference, here there are listed all the packages involved in this project (
   :target: https://travis-ci.org/github/ADVRHumanoids/ROSEndEffectorDocs
   :alt: Build Status
   :width: 70
+  
+Cite our work
+=========================
+If you find our package useful, please cite our work!
+
+**Towards an Open-Source Hardware Agnostic Framework for Robotic End-Effectors Control**
+:raw-html:`<br />`
+by Davide Torielli, Liana Bertoni, Nikos Tsagarakis, and Luca Muratore,
+:raw-html:`<br />`
+*2021 20th International Conference on Advanced Robotics (ICAR)*
+
+.. code-block:: latex
+
+  @INPROCEEDINGS{9659331,
+  author={Torielli, Davide and Bertoni, Liana and Tsagarakis, Nikos and Muratore, Luca},
+  booktitle={2021 20th International Conference on Advanced Robotics (ICAR)}, 
+  title={Towards an Open-Source Hardware Agnostic Framework for Robotic End-Effectors Control}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={688-694},
+  doi={10.1109/ICAR53236.2021.9659331}}
+  
+:raw-html:`<br />`
+ 
+  
+**Towards a Generic Grasp Planning Pipeline using End-Effector Specific Primitive Grasping Actions**
+:raw-html:`<br />`
+by Liana Bertoni, Davide Torielli, Yifang Zhang, Nikos Tsagarakis, and Luca Muratore
+:raw-html:`<br />`
+*2021 20th International Conference on Advanced Robotics (ICAR)*
+
+.. code-block:: latex
+
+  @INPROCEEDINGS{9659402,
+  author={Bertoni, Liana and Torielli, Davide and Zhang, Yifang and Tsagarakis, Nikos G. and Muratore, Luca},
+  booktitle={2021 20th International Conference on Advanced Robotics (ICAR)}, 
+  title={Towards a Generic Grasp Planning Pipeline using End-Effector Specific Primitive Grasping Actions}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={722-729},
+  doi={10.1109/ICAR53236.2021.9659402}}
 
 =================================================
 
