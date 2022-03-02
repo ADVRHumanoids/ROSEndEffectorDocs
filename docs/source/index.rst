@@ -171,7 +171,7 @@ Supported by ROSIN - ROS-Industrial Quality-Assured Robot Software Components.
 :raw-html:`<br />`
 More information: rosin-project.eu_
 
-.. _rosin-project.eu: http://rosin-project.eu/
+.. _rosin-project.eu: https://www.rosin-project.eu/ftp/ros-end-effector
 
 
 .. image:: http://rosin-project.eu/wp-content/uploads/rosin_eu_flag.jpg
