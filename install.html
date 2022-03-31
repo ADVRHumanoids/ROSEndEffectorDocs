@@ -51,7 +51,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#ros-end-effector-gui-second-tab">ROS End-Effector GUI second tab</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#installation-issues">Installation issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-issues">Installation issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#qt-dependencies-old-method">Qt dependencies old method</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">How to use ROS End-Effector with your end-effector</a></li>
@@ -169,7 +172,17 @@ After installation, you should recompile the package to let cmake set the correc
 <p>Some functionalities of the ROS End-Effector Graphical User Interface are available only with a <em>Qt</em> version greater or equal <strong>5.9</strong>, which may be not installed by default into your system.
 These functionalities include an additional tab where joint state can be plotted in real-time, thanks to <em>Qt Charts</em>. More information about the ROS End-Effector GUI are available at <a class="reference internal" href="roseeGui.html#roseegui"><span class="std std-ref">ROS End-Effector GUI</span></a> page.
 <span class="raw-html"><br /></span>
-Any recent version of <em>Qt</em> can be installed following the link to the <a class="reference external" href="https://www.qt.io/download-qt-installer/">Qt website</a>.</p>
+It seems that from Ubuntu 18 and newer, the <em>Qt</em> installer is not necessary anymore, simply install these before compiling <em>rosee_gui</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install qttools5-dev libqt5charts5-dev qtdeclarative5-dev
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="installation-issues">
+<h2>Installation issues<a class="headerlink" href="#installation-issues" title="Permalink to this headline"></a></h2>
+<div class="section" id="qt-dependencies-old-method">
+<h3>Qt dependencies old method<a class="headerlink" href="#qt-dependencies-old-method" title="Permalink to this headline"></a></h3>
+<p>Any recent version of <em>Qt</em> can be installed following the link to the <a class="reference external" href="https://www.qt.io/download-qt-installer/">Qt website</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Multiple versions of <em>Qt</em> may coexist in your system, so it is recommended to not remove the default version.</p>
@@ -191,10 +204,6 @@ Any recent version of <em>Qt</em> can be installed following the link to the <a 
 <p class="admonition-title">Note</p>
 <p>the <code class="code docutils literal notranslate"><span class="pre">--cmake-args</span></code> argument is only necessary once (when the workspace is cleaned), future calls to <code class="code docutils literal notranslate"><span class="pre">catkin_make</span></code> can omit it</p>
 </div>
-</div>
-</div>
-<div class="section" id="installation-issues">
-<h2>Installation issues<a class="headerlink" href="#installation-issues" title="Permalink to this headline"></a></h2>
 <ul>
 <li><p>Recent version of <em>Qt</em> can cause an error like this:
 <code class="code docutils literal notranslate"><span class="pre">qt.qpa.plugin:</span> <span class="pre">Could</span> <span class="pre">not</span> <span class="pre">load</span> <span class="pre">the</span> <span class="pre">Qt</span> <span class="pre">platform</span> <span class="pre">plugin</span> <span class="pre">&quot;xcb&quot;</span> <span class="pre">in</span> <span class="pre">&quot;&quot;</span> <span class="pre">...</span></code>
@@ -205,6 +214,7 @@ Solve simply installing <em>libxcb-xinerama0</em> :</p>
 </div>
 </li>
 </ul>
+</div>
 </div>
 </div>
 
