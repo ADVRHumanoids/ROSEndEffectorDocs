@@ -22,8 +22,6 @@ The following steps will guide you to install all packages of ROSEE using a *.ro
 :raw-html:`<br />`
 The file will make you clone the necessary repository from their *master* branches.
 
-Install `muparser <https://github.com/beltoforion/muparser/blob/master/Install.txt>`_, as today the installation is only available from source
-
 Run in the terminal:
 
 .. code-block:: bash
