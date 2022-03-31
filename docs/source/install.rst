@@ -75,6 +75,19 @@ ROS End-Effector GUI second tab
 Some functionalities of the ROS End-Effector Graphical User Interface are available only with a *Qt* version greater or equal **5.9**, which may be not installed by default into your system. 
 These functionalities include an additional tab where joint state can be plotted in real-time, thanks to *Qt Charts*. More information about the ROS End-Effector GUI are available at :ref:`ROS End-Effector GUI <roseeGui>` page.
 :raw-html:`<br />`
+It seems that from Ubuntu 18 and newer, the *Qt* installer is not necessary anymore, simply install these before compiling *rosee_gui*:
+
+.. code-block:: bash
+
+  sudo apt install qttools5-dev libqt5charts5-dev qtdeclarative5-dev
+  
+
+
+Installation issues
+#####################  
+
+Qt dependencies old method
+*****************************
 Any recent version of *Qt* can be installed following the link to the `Qt website <https://www.qt.io/download-qt-installer/>`_.	
 
 .. note::
@@ -101,9 +114,6 @@ After installed Qt, be sure to compile ROS End-Effector **in an cleaned workspac
 .. note::
   the :code:`--cmake-args` argument is only necessary once (when the workspace is cleaned), future calls to :code:`catkin_make` can omit it
 
-
-Installation issues
-#####################  
 
 - Recent version of *Qt* can cause an error like this:
   :code:`qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" ...`
