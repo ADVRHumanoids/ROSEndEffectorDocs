@@ -8,9 +8,9 @@
 Installation
 ============
 
-ROS End-Effector is a ROS package tested on ROS kinetic with Ubuntu 16.04.
+ROS End-Effector is a ROS package tested on ROS kinetic, melodic, noetic (Ubuntu 16, 18, 20)
 :raw-html:`<br />`
-So, first, be sure to have ROS kinetic installed as described `here <http://wiki.ros.org/kinetic/Installation/Ubuntu>`_.
+So, first, be sure to have ROS installed as described `here <http://wiki.ros.org/kinetic/Installation/Ubuntu>`_.
 
 .. note::
   We are going to use the abreviation ROSEE for the ROS End-Effector from now on
@@ -21,6 +21,8 @@ Basic & Fast Installation
 The following steps will guide you to install all packages of ROSEE using a *.rosintall* file.
 :raw-html:`<br />`
 The file will make you clone the necessary repository from their *master* branches.
+
+Install `muparser <https://github.com/beltoforion/muparser/blob/master/Install.txt>`_, as today the installation is only available from source
 
 Run in the terminal:
 
