@@ -16,22 +16,21 @@ ROS End-Effector allows you to control your end-effector with minimal inital set
 
 - If you want to use also gazebo and :ref:`ROS End-Effector Gazebo plugin <roseeGazeboPlugins>`, please prepare correctly your *.urdf* model following the steps :ref:`here <prepare4Gazebo>`
 
-- Put *.urdf* and *.srdf* files in *ROSEndEffector/configs/urdf/* and *ROSEndEffector/configs/srdf/* respectively
-  (see later for information on how to proper write your *.srdf* file).
-  :raw-html:`<br />`
-  Be sure that the files are named like the name of the robot tag of *.urdf* and *.srdf*
+- The nodes of ROS End-Effector needs the *.urdf* and *.srdf* files. Their path can be set as argument when calling the launch files:
+
+  .. code-block:: xml 
+
+    <arg name="urdf_path" default="$(find end_effector)/configs/urdf/$(arg hand_name).urdf"/>
+    <arg name="srdf_path" default="$(find end_effector)/configs/srdf/$(arg hand_name).srdf"/>
+    <arg name="actions_folder_path" default="ROSEE/actions/$(arg hand_name)/"/>
+    
+  Note that the third argument is a path folder where the *.yaml* files of the grasping actions will be stored, and can be changed if necessary. As now it points to the *.ros* folder inside the home
+  :raw-html:`<br />` 
   
-    **E.G.** *my_hand.urdf*, *my_hand.srdf*, with tags in the files like : :code:`<robot name="my_hand" [...] >`
+  Note that some default arguments are set to comply with the ready-to-use examples of :ref:`Examples with ready to use end-effectors <examples>` section.
+  
+  
 
-  The meshes can be kept on your hand_description folder, only be sure to :code:`source` that *setup.bash* before run ROSEE nodes.
-
-- Create a yaml config file named *my_hand.yaml* to tell where the *.urdf* and *.srdf* files are, and put it in *ROSEndEffector/configs/* folder. As an example, see below:
-
-  .. code-block:: yaml 
-
-    ROSEndEffector:
-      urdf_path: "urdf/my_hand.urdf"
-      srdf_path: "srdf/my_hand.srdf"
 
 
 Creating SRDF files
