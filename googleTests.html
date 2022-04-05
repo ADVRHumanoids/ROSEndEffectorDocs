@@ -120,17 +120,7 @@ make tests
 </div>
 </li>
 <li><p>Run Test</p>
-<p>To run test locally, roscore and and the robot urdf and srdf are necessary before:
-In one terminal run :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roscore
-</pre></div>
-</div>
-<p>In another terminal:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> ../devel/setup.bash
-<span class="c1"># Set a robot, like &quot;test_ee&quot;</span>
-rosparam <span class="nb">set</span> -t <span class="k">$(</span>rospack find end_effector<span class="k">)</span>/configs/urdf/test_ee.urdf robot_description
-rosparam <span class="nb">set</span> -t <span class="k">$(</span>rospack find end_effector<span class="k">)</span>/configs/srdf/test_ee.srdf robot_description_semantic
-<span class="c1">#run tests</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#run tests</span>
 make <span class="nb">test</span> <span class="nv">ARGS</span><span class="o">=</span><span class="s2">&quot;-V&quot;</span> -i <span class="c1">#or ctest --verbose</span>
 </pre></div>
 </div>

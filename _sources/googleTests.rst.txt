@@ -25,21 +25,8 @@ Follow the steps to compile and run them on local machine:
 
 - Run Test
 
-  To run test locally, roscore and and the robot urdf and srdf are necessary before:  
-  In one terminal run :
-  
   .. code-block:: bash
-     
-     roscore
-   
-  In another terminal:
-  
-  .. code-block:: bash
-  
-    source ../devel/setup.bash
-    # Set a robot, like "test_ee"
-    rosparam set -t $(rospack find end_effector)/configs/urdf/test_ee.urdf robot_description
-    rosparam set -t $(rospack find end_effector)/configs/srdf/test_ee.srdf robot_description_semantic
+
     #run tests
     make test ARGS="-V" -i #or ctest --verbose
     
