@@ -14,6 +14,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
@@ -105,13 +106,13 @@
            <div itemprop="articleBody">
              
   <div class="section" id="findactions">
-<span id="id1"></span><h1>FindActions<a class="headerlink" href="#findactions" title="Permalink to this headline"></a></h1>
+<span id="id1"></span><h1>FindActions<a class="headerlink" href="#findactions" title="Permalink to this heading"></a></h1>
 <div class="admonition-todo admonition" id="id2">
 <p class="admonition-title">Todo</p>
 <p>put link to api doc for the classes</p>
 </div>
 <div class="section" id="primitives">
-<h2>Primitives<a class="headerlink" href="#primitives" title="Permalink to this headline"></a></h2>
+<h2>Primitives<a class="headerlink" href="#primitives" title="Permalink to this heading"></a></h2>
 <p>The <strong>FindActions</strong> class will help you to extract automatically the primitive actions that the loaded end-effector can accomplish. Each kind of primitive has its own method to understand if a primitive is doable and how (i.e. which joints moves and in which position).</p>
 <p>In brief, the pinch actions (PinchTight, PinchLoose, MultiplePinchTight) are found looking for collisions between the fingertips. A high number of random end-effector configurations (i.e. joint positions) is explored, and the configurations where the <em>best</em> collisions are found are stored. This is done with the help of some <em>Moveit</em> functionalities.
 The other kind of primitives are found exploring the kinematic tree of the models. For example, a trig is found selecting all the joints of a finger (if some are present).</p>
@@ -198,7 +199,7 @@ For example:</p>
 <p>The value is a pointer to ActionPrimitive class, which has some simply get methods to extract the essential information about the action, for example <code class="code docutils literal notranslate"><span class="pre">getJointPos()</span></code></p>
 </div>
 <div class="section" id="generic-actions-the-custom-ones">
-<h2>Generic Actions (the custom ones)<a class="headerlink" href="#generic-actions-the-custom-ones" title="Permalink to this headline"></a></h2>
+<h2>Generic Actions (the custom ones)<a class="headerlink" href="#generic-actions-the-custom-ones" title="Permalink to this heading"></a></h2>
 <p>The same file also shows how it is possible to create custom actions in the code.
 We can create a custom action <em>summing</em> two previously created actions (primitives, or other composed actions), thanks to the <code class="code docutils literal notranslate"><span class="pre">sumAction()</span></code> function. This function simply combine the actions <strong>summing</strong> the joint positions:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">mapsHandler</span><span class="p">.</span><span class="n">getPrimitiveMap</span><span class="p">(</span><span class="n">ROSEE</span><span class="o">::</span><span class="n">ActionPrimitive</span><span class="o">::</span><span class="n">Type</span><span class="o">::</span><span class="n">Trig</span><span class="p">).</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span>  <span class="o">&amp;&amp;</span>
@@ -251,7 +252,7 @@ We can create a custom action <em>summing</em> two previously created actions (p
 <p><strong>It is important</strong> to have all actuated joints as keys in both ROSEE::JointsInvolvedCount and ROSEE::JointPos</p>
 </div>
 <div class="section" id="timed-actions">
-<h2>Timed Actions<a class="headerlink" href="#timed-actions" title="Permalink to this headline"></a></h2>
+<h2>Timed Actions<a class="headerlink" href="#timed-actions" title="Permalink to this heading"></a></h2>
 <p>These kind of actions are created similarly to generic ones. The difference is that here we execute the action that we add <em>one after the other</em>, so we do not <em>sum</em> the joint positions. An example is always in the same file:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">mapsHandler</span><span class="p">.</span><span class="n">getPrimitive</span><span class="p">(</span><span class="s">&quot;singleJointMultipleTips_3&quot;</span><span class="p">,</span> <span class="s">&quot;left_hand_Finger_Spread&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="k">nullptr</span> <span class="o">&amp;&amp;</span>
     <span class="n">mapsHandler</span><span class="p">.</span><span class="n">getPrimitive</span><span class="p">(</span><span class="s">&quot;pinchTight&quot;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="s">&quot;left_hand_c&quot;</span><span class="p">,</span> <span class="s">&quot;left_hand_q&quot;</span><span class="p">))</span> <span class="o">!=</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="p">{</span>

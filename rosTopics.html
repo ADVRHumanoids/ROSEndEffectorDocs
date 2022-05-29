@@ -14,6 +14,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
@@ -104,7 +105,7 @@
            <div itemprop="articleBody">
              
   <div class="section" id="ros-topics-structures">
-<span id="rostopics"></span><h1>ROS Topics Structures<a class="headerlink" href="#ros-topics-structures" title="Permalink to this headline"></a></h1>
+<span id="rostopics"></span><h1>ROS Topics Structures<a class="headerlink" href="#ros-topics-structures" title="Permalink to this heading"></a></h1>
 <p>This section is an aid to discricate among the ros topics involved in the framework.
 <span class="raw-html"><br /></span>
 You can visualize the topics as in the following images at any time during while the framework is running, using
@@ -113,7 +114,7 @@ the ROS tool <code class="code docutils literal notranslate"><span class="pre">r
 As reminder, in <code class="code docutils literal notranslate"><span class="pre">rqt_graph</span></code> the ovals are the ROS nodes, the inner rectangles are the topics, the outer ones
 are the namespaces (which the inner topics belong), and the parallelepipeds are for ROS action (that are a sort of collections of topics). The arrows indicate ROS publications and subscriptions.</p>
 <div class="section" id="kinematic-simulation-only">
-<h2>Kinematic Simulation Only<a class="headerlink" href="#kinematic-simulation-only" title="Permalink to this headline"></a></h2>
+<h2>Kinematic Simulation Only<a class="headerlink" href="#kinematic-simulation-only" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="_images/rqt_graph.png"><img alt="ros topics kinematic simulation only" src="_images/rqt_graph.png" style="width: 700px;" /></a>
 <ul class="simple">
 <li><p><strong>gui_main</strong>
@@ -129,7 +130,7 @@ interpret them, and, if they are correct, send the joint position reference (for
 </ul>
 </div>
 <div class="section" id="dynamic-simulation-with-gazebo">
-<h2>Dynamic simulation (with gazebo)<a class="headerlink" href="#dynamic-simulation-with-gazebo" title="Permalink to this headline"></a></h2>
+<h2>Dynamic simulation (with gazebo)<a class="headerlink" href="#dynamic-simulation-with-gazebo" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="_images/rqt_graph_gaz.png"><img alt="ros topics kinematic gazebo simulation" src="_images/rqt_graph_gaz.png" style="width: 700px;" /></a>
 <p>With the dynamic simulations the graph is similar. The only difference is that, instead of the <strong>joint_state_publisher</strong>, there is the <strong>gazebo</strong> node. Inside this node, it is present the <a class="reference internal" href="roseeGazeboPlugins.html#roseegazeboplugins"><span class="std std-ref">rosee_gazebo_plugins</span></a> (which is not a standalone node because it is only a “plugin” for gazebo node). The plugin’s job includes to consider the mimic joints, similarly to what the <strong>joint_state_publisher</strong> did before.
 <span class="raw-html"><br /></span>

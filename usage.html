@@ -14,6 +14,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
@@ -112,10 +113,10 @@
            <div itemprop="articleBody">
              
   <div class="section" id="how-to-use-ros-end-effector-with-your-end-effector">
-<span id="usage"></span><h1>How to use ROS End-Effector with your end-effector<a class="headerlink" href="#how-to-use-ros-end-effector-with-your-end-effector" title="Permalink to this headline"></a></h1>
+<span id="usage"></span><h1>How to use ROS End-Effector with your end-effector<a class="headerlink" href="#how-to-use-ros-end-effector-with-your-end-effector" title="Permalink to this heading"></a></h1>
 <p>This section will guide you through using ROS End-Effector package.</p>
 <div class="section" id="prepare-the-files">
-<span id="preparethefiles"></span><h2>Prepare the files<a class="headerlink" href="#prepare-the-files" title="Permalink to this headline"></a></h2>
+<span id="preparethefiles"></span><h2>Prepare the files<a class="headerlink" href="#prepare-the-files" title="Permalink to this heading"></a></h2>
 <p>ROS End-Effector allows you to control your end-effector with minimal inital set-up, as you will notice in this section :D.</p>
 <ul>
 <li><p>If you want to use also gazebo and <a class="reference internal" href="roseeGazeboPlugins.html#roseegazeboplugins"><span class="std std-ref">ROS End-Effector Gazebo plugin</span></a>, please prepare correctly your <em>.urdf</em> model following the steps <a class="reference internal" href="roseeGazeboPlugins.html#prepare4gazebo"><span class="std std-ref">here</span></a></p></li>
@@ -131,7 +132,7 @@
 </li>
 </ul>
 <div class="section" id="creating-srdf-files">
-<h3>Creating SRDF files<a class="headerlink" href="#creating-srdf-files" title="Permalink to this headline"></a></h3>
+<h3>Creating SRDF files<a class="headerlink" href="#creating-srdf-files" title="Permalink to this heading"></a></h3>
 <p>Both <em>moveit</em> and <em>ROS End-Effector</em> refers to SRDF file to explore your hand. So it is important to provide a compatible SRDF file.
 If you do not know the SRDF format, please read <a class="reference external" href="http://wiki.ros.org/srdf">here</a>.</p>
 <ul>
@@ -171,7 +172,7 @@ Also, it is not necessary to set the passive tag for fixed joints.</p>
 </div>
 </div>
 <div class="section" id="find-grasping-actions-offline-phase">
-<span id="offphase"></span><h2>Find Grasping Actions (offline phase)<a class="headerlink" href="#find-grasping-actions-offline-phase" title="Permalink to this headline"></a></h2>
+<span id="offphase"></span><h2>Find Grasping Actions (offline phase)<a class="headerlink" href="#find-grasping-actions-offline-phase" title="Permalink to this heading"></a></h2>
 <p>Before control a new end-effector, the first step is to let <strong>UniversalFindActions</strong> explore your model and extract the grasping primitive actions. So, run the dedicated launch:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># source the setup.bash of package where robot meshes are</span>
 roslaunch end_effector findActions.launch hand_name:<span class="o">=</span>my_hand
@@ -191,7 +192,7 @@ These files will be parsed each time you run the main node (as explained in the 
 To know more about this part, and how to create custom grasping actions, see <a class="reference internal" href="actions.html#actions"><span class="std std-ref">ROS End-Effector Grasping Actions</span></a> and <a class="reference internal" href="findActions.html#findactions"><span class="std std-ref">FindActions</span></a> sections</p>
 </div>
 <div class="section" id="control-your-end-effector-with-rosee-online-phase">
-<span id="controleewithrosee"></span><h2>Control your End-Effector with ROSEE (online phase)<a class="headerlink" href="#control-your-end-effector-with-rosee-online-phase" title="Permalink to this headline"></a></h2>
+<span id="controleewithrosee"></span><h2>Control your End-Effector with ROSEE (online phase)<a class="headerlink" href="#control-your-end-effector-with-rosee-online-phase" title="Permalink to this heading"></a></h2>
 <p>The main node of ROS End-Effector will wait for grasping actions command (received as <em>ROS actions</em>) and it will send low level commands (such as joint position references) to the end-effector in use.
 <span class="raw-html"><br /></span>
 To launch this, please run:</p>
@@ -214,7 +215,7 @@ To run the GUI, please run:</p>
 <span class="raw-html"><br /></span>
 To know more about ROSEE GUI, check <a class="reference internal" href="roseeGui.html#roseegui"><span class="std std-ref">ROS End-Effector GUI</span></a> section.</p>
 <div class="section" id="publishing-grasping-action-command-without-gui">
-<h3>Publishing grasping action command without GUI<a class="headerlink" href="#publishing-grasping-action-command-without-gui" title="Permalink to this headline"></a></h3>
+<h3>Publishing grasping action command without GUI<a class="headerlink" href="#publishing-grasping-action-command-without-gui" title="Permalink to this heading"></a></h3>
 <p>The other way to command grasping actions is directly publishing on ROS topics (that is what GUI does for you).
 You can simply <code class="code docutils literal notranslate"><span class="pre">pub</span></code> a <em>rosee_msg/ROSEECommandActionGoal</em> message on <em>/ros_end_effector/action_command/goal</em> topic, and <code class="code docutils literal notranslate"><span class="pre">echo</span></code> on /<em>ros_end_effector/action_command/feedback</em> to receive the feedback.</p>
 <p>For example, to publish run this:</p>
@@ -257,7 +258,7 @@ only used for feedback</p>
 </div>
 </div>
 <div class="section" id="dynamic-simulation-with-gazebo">
-<h3>Dynamic Simulation with Gazebo<a class="headerlink" href="#dynamic-simulation-with-gazebo" title="Permalink to this headline"></a></h3>
+<h3>Dynamic Simulation with Gazebo<a class="headerlink" href="#dynamic-simulation-with-gazebo" title="Permalink to this heading"></a></h3>
 <p>Be sure to have installed the <em>rosee_gazebo_plugins</em> package (that you should have if you have followed <a class="reference internal" href="install.html#install"><span class="std std-ref">Installation</span></a> section). Be also sure that and your urdf model is ready to be used with Gazebo, as explained <a class="reference internal" href="roseeGazeboPlugins.html#prepare4gazebo"><span class="std std-ref">Prepare your Model for Gazebo</span></a> section.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

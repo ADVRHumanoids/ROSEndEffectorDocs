@@ -14,6 +14,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
@@ -108,7 +109,7 @@
            <div itemprop="articleBody">
              
   <div class="section" id="ros-end-effector-gui">
-<span id="roseegui"></span><h1>ROS End-Effector GUI<a class="headerlink" href="#ros-end-effector-gui" title="Permalink to this headline"></a></h1>
+<span id="roseegui"></span><h1>ROS End-Effector GUI<a class="headerlink" href="#ros-end-effector-gui" title="Permalink to this heading"></a></h1>
 <p>ROS End-Effector has a dedicated Graphical User Interface to communicate with the framework, sending grasping actions through <em>ROS topics</em>. The GUI is loaded dynamically at run-time, hence it will be different for each end-effector loaded. For example, it will show only the grasping actions specific for the end-effector in use. It also permits to monitor the joints states directly in its window.</p>
 <div class="figure align-center" id="id1">
 <a class="reference internal image-reference" href="_images/schunkGui.png"><img alt="GUI for Schunk SVH hand" src="_images/schunkGui.png" style="width: 600px;" /></a>
@@ -129,7 +130,7 @@
 </div>
 <p>The GUI package is hosted on <em>github</em> <a class="reference external" href="https://github.com/ADVRHumanoids/rosee_gui">here</a>.</p>
 <div class="section" id="how-to-install">
-<h2>How To Install<a class="headerlink" href="#how-to-install" title="Permalink to this headline"></a></h2>
+<h2>How To Install<a class="headerlink" href="#how-to-install" title="Permalink to this heading"></a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You probably already installed this if you have followed the steps in <a class="reference internal" href="install.html#install"><span class="std std-ref">Install</span></a> section. If you have followed the recommended installation, skip this section.</p>
@@ -143,9 +144,9 @@ compile with catkin_make
 </div>
 <hr class="docutils" />
 <div class="section" id="advanced">
-<h2>Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline"></a></h2>
+<h2>Advanced<a class="headerlink" href="#advanced" title="Permalink to this heading"></a></h2>
 <div class="section" id="how-it-works-code-structure-this-could-be-not-updated-kept-for-reference">
-<h3>How it works - code structure (this could be not updated, kept for reference)<a class="headerlink" href="#how-it-works-code-structure-this-could-be-not-updated-kept-for-reference" title="Permalink to this headline"></a></h3>
+<h3>How it works - code structure (this could be not updated, kept for reference)<a class="headerlink" href="#how-it-works-code-structure-this-could-be-not-updated-kept-for-reference" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>main.cpp</strong> : It handles ROS (creating the nodehandle) and the Qapplication. It creates the Window object</p></li>
 <li><p><strong>Window.cpp</strong> a <em>QWidget</em> derived class which refers to the gui Window. It has as member a <em>QGridLayout</em>, and it creates all the inner <em>QGridLayout</em> (one for each action)</p></li>
@@ -155,7 +156,7 @@ compile with catkin_make
 </ul>
 </div>
 <div class="section" id="developers-note">
-<h3>Developers note<a class="headerlink" href="#developers-note" title="Permalink to this headline"></a></h3>
+<h3>Developers note<a class="headerlink" href="#developers-note" title="Permalink to this heading"></a></h3>
 <p>Compiling
 The default qt installer is a gui, we cant use it on travis. I found by chance this <a class="reference external" href="https://github.com/miurahr/aqtinstall/">aqtinstall</a>, maybe it can be useful in future</p>
 </div>

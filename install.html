@@ -14,6 +14,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
@@ -112,7 +113,7 @@
            <div itemprop="articleBody">
              
   <span class="target" id="install"></span><div class="section" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
 <p>ROS End-Effector is a ROS package tested on ROS kinetic, melodic, noetic (Ubuntu 16, 18, 20)
 <span class="raw-html"><br /></span>
 So, first, be sure to have ROS installed as described <a class="reference external" href="http://wiki.ros.org/kinetic/Installation/Ubuntu">here</a>.</p>
@@ -121,7 +122,7 @@ So, first, be sure to have ROS installed as described <a class="reference extern
 <p>We are going to use the abreviation ROSEE for the ROS End-Effector from now on</p>
 </div>
 <div class="section" id="basic-fast-installation">
-<h2>Basic &amp; Fast Installation<a class="headerlink" href="#basic-fast-installation" title="Permalink to this headline"></a></h2>
+<h2>Basic &amp; Fast Installation<a class="headerlink" href="#basic-fast-installation" title="Permalink to this heading"></a></h2>
 <p>The following steps will guide you to install all packages of ROSEE using a <em>.rosintall</em> file.
 <span class="raw-html"><br /></span>
 The file will make you clone the necessary repository from their <em>master</em> branches.</p>
@@ -152,7 +153,7 @@ catkin_make -DBUILD_WITH_XBOT2<span class="o">=</span>OFF
 </div>
 <p>You are now ready to use ROS End-Effector! Check <a class="reference internal" href="usage.html#usage"><span class="std std-ref">How to use ROS End-Effector with your end-effector</span></a> and <a class="reference internal" href="examples.html#examples"><span class="std std-ref">Examples with ready to use end-effectors</span></a> sections to learn how to use it.</p>
 <div class="section" id="xbot2-integration">
-<span id="xbot2install"></span><h3>XBot2 Integration<a class="headerlink" href="#xbot2-integration" title="Permalink to this headline"></a></h3>
+<span id="xbot2install"></span><h3>XBot2 Integration<a class="headerlink" href="#xbot2-integration" title="Permalink to this heading"></a></h3>
 <p>ROS End-Effector also supports XBot2 to implement the Hardware Abstraction Layer, to communicate with the real or simulated robot. Please dowload it <a class="reference external" href="https://github.com/ADVRHumanoids/XBotControl/releases/tag/2.0-devel-core-updated">here</a>. Be sure to download a &gt;2 version!. Some helps on how setup xbot2 are available <a class="reference external" href="https://github.com/ADVRHumanoids/xbot2_examples">here</a>.</p>
 <p>ROS End-Effector include an integrated XBot2Hal: to compile it please set the BUILD_WITH_XBOT2 variable:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>catkin_make -DBUILD_WITH_XBOT2<span class="o">=</span>ON
@@ -160,7 +161,7 @@ catkin_make -DBUILD_WITH_XBOT2<span class="o">=</span>OFF
 </div>
 </div>
 <div class="section" id="logging-with-matlogger2">
-<h3>Logging with MatLogger2<a class="headerlink" href="#logging-with-matlogger2" title="Permalink to this headline"></a></h3>
+<h3>Logging with MatLogger2<a class="headerlink" href="#logging-with-matlogger2" title="Permalink to this heading"></a></h3>
 <p>You can use the MatLogger2 tool to log data of your end-effector. This is an optional feature, if you do not want it, nothing else to do is required.
 If you want it, you can install MatLogger2, following <a class="reference external" href="https://github.com/ADVRHumanoids/MatLogger2">here</a>.
 <span class="raw-html"><br /></span>
@@ -168,7 +169,7 @@ Please note that if you want to install also XBot2 (as described <a class="refer
 After installation, you should recompile the package to let cmake set the correct flag.</p>
 </div>
 <div class="section" id="ros-end-effector-gui-second-tab">
-<h3>ROS End-Effector GUI second tab<a class="headerlink" href="#ros-end-effector-gui-second-tab" title="Permalink to this headline"></a></h3>
+<h3>ROS End-Effector GUI second tab<a class="headerlink" href="#ros-end-effector-gui-second-tab" title="Permalink to this heading"></a></h3>
 <p>Some functionalities of the ROS End-Effector Graphical User Interface are available only with a <em>Qt</em> version greater or equal <strong>5.9</strong>, which may be not installed by default into your system.
 These functionalities include an additional tab where joint state can be plotted in real-time, thanks to <em>Qt Charts</em>. More information about the ROS End-Effector GUI are available at <a class="reference internal" href="roseeGui.html#roseegui"><span class="std std-ref">ROS End-Effector GUI</span></a> page.
 <span class="raw-html"><br /></span>
@@ -179,9 +180,9 @@ It seems that from Ubuntu 18 and newer, the <em>Qt</em> installer is not necessa
 </div>
 </div>
 <div class="section" id="installation-issues">
-<h2>Installation issues<a class="headerlink" href="#installation-issues" title="Permalink to this headline"></a></h2>
+<h2>Installation issues<a class="headerlink" href="#installation-issues" title="Permalink to this heading"></a></h2>
 <div class="section" id="qt-dependencies-old-method">
-<h3>Qt dependencies old method<a class="headerlink" href="#qt-dependencies-old-method" title="Permalink to this headline"></a></h3>
+<h3>Qt dependencies old method<a class="headerlink" href="#qt-dependencies-old-method" title="Permalink to this heading"></a></h3>
 <p>Any recent version of <em>Qt</em> can be installed following the link to the <a class="reference external" href="https://www.qt.io/download-qt-installer/">Qt website</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

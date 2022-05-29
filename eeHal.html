@@ -14,6 +14,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
@@ -108,23 +109,23 @@
            <div itemprop="articleBody">
              
   <div class="section" id="ros-end-effector-hal">
-<span id="eehal"></span><h1>ROS End-Effector HAL<a class="headerlink" href="#ros-end-effector-hal" title="Permalink to this headline"></a></h1>
+<span id="eehal"></span><h1>ROS End-Effector HAL<a class="headerlink" href="#ros-end-effector-hal" title="Permalink to this heading"></a></h1>
 <p>ROS End-Effector relies on a HAL interface (read: C++ pure abstract class) to communicate with simulated or real robot. This permits to load at run-time a concrete HAL depending on the robot that we are controlling.
 In general, the HAL will take actuator position commands as ros messages (from ROS End-Effector) and will give back the actual position of the robot’s actuators, again as ros messages. The communication with the robot (i.e. sense() and move()) must be implemented by each concrete HAL</p>
 <div class="section" id="included-concrete-hal">
-<h2>Included concrete Hal<a class="headerlink" href="#included-concrete-hal" title="Permalink to this headline"></a></h2>
+<h2>Included concrete Hal<a class="headerlink" href="#included-concrete-hal" title="Permalink to this heading"></a></h2>
 <p>We already provide two Hals. These can be check as examples to understand how to implement a new custom HAL.</p>
 <div class="section" id="dummyhal">
-<h3>DummyHal<a class="headerlink" href="#dummyhal" title="Permalink to this headline"></a></h3>
+<h3>DummyHal<a class="headerlink" href="#dummyhal" title="Permalink to this heading"></a></h3>
 <p>This Hal simply propagate the commands to other ROS topics, read by rviz and/or Gazebo. It is suitable for easy and fast ROS End-Effector use with simulated robots</p>
 </div>
 <div class="section" id="xbot2hal">
-<h3>XBot2Hal<a class="headerlink" href="#xbot2hal" title="Permalink to this headline"></a></h3>
+<h3>XBot2Hal<a class="headerlink" href="#xbot2hal" title="Permalink to this heading"></a></h3>
 <p>As above, this HAL communicate with simulated robot, but not using ROS topics. Instead, it uses XBot2 ways to communicate with Gazebo.</p>
 </div>
 </div>
 <div class="section" id="implementing-a-new-hal-for-your-robot">
-<h2>Implementing a new Hal for your robot<a class="headerlink" href="#implementing-a-new-hal-for-your-robot" title="Permalink to this headline"></a></h2>
+<h2>Implementing a new Hal for your robot<a class="headerlink" href="#implementing-a-new-hal-for-your-robot" title="Permalink to this heading"></a></h2>
 <p>You must derive the <em>EEHal</em> class, and implement the pure virtual sense() and move().</p>
 <p>In the sense(), you must fill the _js_msg field with the information took by your robot.</p>
 <p>In the move(), you must transmit motor position references (that are inside _mr_msg) to your robot.</p>

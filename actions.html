@@ -14,6 +14,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
@@ -106,7 +107,7 @@
            <div itemprop="articleBody">
              
   <div class="section" id="ros-end-effector-grasping-actions">
-<span id="actions"></span><h1>ROS End-Effector Grasping Actions<a class="headerlink" href="#ros-end-effector-grasping-actions" title="Permalink to this headline"></a></h1>
+<span id="actions"></span><h1>ROS End-Effector Grasping Actions<a class="headerlink" href="#ros-end-effector-grasping-actions" title="Permalink to this heading"></a></h1>
 <p><strong>TODO</strong> check explain better this page, put examples for create actions</p>
 <p>In ROS End-Effector, an <em>Action</em> is a movement that the end effector can be commanded to do. In practice, an action is a container that include the position for all the involved joints. There are three main categories of Action:</p>
 <ul class="simple">
@@ -115,7 +116,7 @@
 <li><p><a class="reference internal" href="#timed-actions">Timed Actions</a></p></li>
 </ul>
 <div class="section" id="primitive-actions">
-<span id="id1"></span><h2>Primitive Actions<a class="headerlink" href="#primitive-actions" title="Permalink to this headline"></a></h2>
+<span id="id1"></span><h2>Primitive Actions<a class="headerlink" href="#primitive-actions" title="Permalink to this heading"></a></h2>
 <p>Referred as <em>ActionPrimitive</em> in the code, this kind of actions is the one that is automatically detected thanks to
 the <em>FindAction</em> node (during the offline phase). Until now the following primitives have been defined:</p>
 <table class="colwidths-given docutils align-default" id="id4">
@@ -182,7 +183,7 @@ the <em>FindAction</em> node (during the offline phase). Until now the following
 </table>
 </div>
 <div class="section" id="generic-actions">
-<span id="id2"></span><h2>Generic Actions<a class="headerlink" href="#generic-actions" title="Permalink to this headline"></a></h2>
+<span id="id2"></span><h2>Generic Actions<a class="headerlink" href="#generic-actions" title="Permalink to this heading"></a></h2>
 <p><em>ActionGeneric</em> are the customizable type. With ROSEE, you can add a custom action and then command the end-effector to do that action many time you want during the execution.
 Generic Action can be built in 2 different ways:</p>
 <ul class="simple">
@@ -193,7 +194,7 @@ Generic Action can be built in 2 different ways:</p>
 an action as sum of other actions. For example, a grasp can be see as a sum of <em>trig</em> of each finger.</p>
 </div>
 <div class="section" id="timed-actions">
-<span id="id3"></span><h2>Timed Actions<a class="headerlink" href="#timed-actions" title="Permalink to this headline"></a></h2>
+<span id="id3"></span><h2>Timed Actions<a class="headerlink" href="#timed-actions" title="Permalink to this heading"></a></h2>
 <p>ActionTimed are a special type of actions that permit you to execute more inner actions <em>one after the other</em>.
 As an example, this can be useful to perform a <em>wide grasp</em>. First we want the finger to spread, and then perform the clousure toward the palm.
 These type of action are creable in the code, using the class functions.</p>

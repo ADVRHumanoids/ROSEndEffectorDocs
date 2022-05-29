@@ -14,6 +14,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
@@ -104,7 +105,7 @@
            <div itemprop="articleBody">
              
   <div class="section" id="how-to-retrieve-the-grasping-action-created">
-<span id="receiveactionsinfo"></span><h1>How to retrieve the Grasping Action Created<a class="headerlink" href="#how-to-retrieve-the-grasping-action-created" title="Permalink to this headline"></a></h1>
+<span id="receiveactionsinfo"></span><h1>How to retrieve the Grasping Action Created<a class="headerlink" href="#how-to-retrieve-the-grasping-action-created" title="Permalink to this heading"></a></h1>
 <p>Here we will see how it is possible to retrieve information about all the action created for a specific end-effector.</p>
 <p>All the Grasping Actions are stored in .yaml file, and ROS End-Effector provides functionalities to easily access them, without the need to write code to parse them.
 <span class="raw-html"><br /></span>
@@ -112,7 +113,7 @@ There are two ways to retrieve grasping action information.</p>
 <p><a class="reference internal" href="#retrieving-grasping-actions-with-ros-service"><span class="std std-ref">One</span></a> is by means of <a class="reference external" href="http://wiki.ros.org/Services">ROS Services</a>. For this is necessary that ROS End-Effector is in execution (being the <em>server</em> which will respond to the request).</p>
 <p>The <a class="reference internal" href="#retrieving-grasping-actions-with-mapactionhandler"><span class="std std-ref">other</span></a> is by using the ROS End-Effector library <em>MapActionHandler</em>, an utility class which parse the yaml files and store the actions in more comfortable containers (<em>std::map</em>). This is the method which ROS End-Effector itself uses to parse the files.</p>
 <div class="section" id="retrieving-grasping-actions-with-ros-service">
-<span id="id1"></span><h2>Retrieving Grasping Actions with ROS Service<a class="headerlink" href="#retrieving-grasping-actions-with-ros-service" title="Permalink to this headline"></a></h2>
+<span id="id1"></span><h2>Retrieving Grasping Actions with ROS Service<a class="headerlink" href="#retrieving-grasping-actions-with-ros-service" title="Permalink to this heading"></a></h2>
 <p>First, be sure that ROS End-Effector is in execution (as explained in <a class="reference internal" href="usage.html#controleewithrosee"><span class="std std-ref">Control your End-Effector with ROSEE</span></a>).
 <span class="raw-html"><br /></span>
 Be also sure that the service named <strong>ros_end_effector/grasping_actions_available</strong> by default (the name can be changed in the rosee_startup launch file) is available with <code class="code docutils literal notranslate"><span class="pre">rosservice</span> <span class="pre">list</span></code>.</p>
@@ -168,7 +169,7 @@ the element which distinguish a primitive, like 2 fingers for a PinchTight</p></
 <p>To use this service with your code, you can refer to the official ROS <a class="reference external" href="http://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28c%2B%2B%29">documentation</a></p>
 </div>
 <div class="section" id="retrieving-grasping-actions-with-mapactionhandler">
-<span id="id2"></span><h2>Retrieving Grasping Actions with <em>MapActionHandler</em><a class="headerlink" href="#retrieving-grasping-actions-with-mapactionhandler" title="Permalink to this headline"></a></h2>
+<span id="id2"></span><h2>Retrieving Grasping Actions with <em>MapActionHandler</em><a class="headerlink" href="#retrieving-grasping-actions-with-mapactionhandler" title="Permalink to this heading"></a></h2>
 <p><strong>TODO</strong></p>
 </div>
 </div>
