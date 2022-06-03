@@ -15,8 +15,27 @@ So, first, be sure to have ROS installed as described `here <http://wiki.ros.org
 .. note::
   We are going to use the abreviation ROSEE for the ROS End-Effector from now on
 
-Basic & Fast Installation 
+Basic Installation 
 ###############################
+
+We have released our package in the official ROS repositories! You can install it for ROS (melodic and noetic) and ROS2 (foxy) with one of these:
+
+.. code-block:: bash
+
+  sudo apt install ros-melodic-rosee-msg ros-melodic-end-effector
+
+.. code-block:: bash
+
+  sudo apt install ros-noetic-rosee-msg ros-noetic-end-effector
+
+.. code-block:: bash
+
+  sudo apt install ros-foxy-rosee-msg ros-foxy-end-effector
+
+Full Installation 
+###############################
+
+With the full installation (respect to the basic) you will install also the ROS End-Effector GUI and the plugin necessary to run the simulated robot in gazebo. You will compile everything from source
 
 The following steps will guide you to install all packages of ROSEE using a *.rosintall* file.
 :raw-html:`<br />`

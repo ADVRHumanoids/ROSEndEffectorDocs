@@ -46,7 +46,8 @@
               <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#basic-fast-installation">Basic &amp; Fast Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-installation">Basic Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#full-installation">Full Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#xbot2-integration">XBot2 Integration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#logging-with-matlogger2">Logging with MatLogger2</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ros-end-effector-gui-second-tab">ROS End-Effector GUI second tab</a></li>
@@ -121,8 +122,22 @@ So, first, be sure to have ROS installed as described <a class="reference extern
 <p class="admonition-title">Note</p>
 <p>We are going to use the abreviation ROSEE for the ROS End-Effector from now on</p>
 </div>
-<div class="section" id="basic-fast-installation">
-<h2>Basic &amp; Fast Installation<a class="headerlink" href="#basic-fast-installation" title="Permalink to this heading"></a></h2>
+<div class="section" id="basic-installation">
+<h2>Basic Installation<a class="headerlink" href="#basic-installation" title="Permalink to this heading"></a></h2>
+<p>We have released our package in the official ROS repositories! You can install it for ROS (melodic and noetic) and ROS2 (foxy) with one of these:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install ros-melodic-rosee-msg ros-melodic-end-effector
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install ros-noetic-rosee-msg ros-noetic-end-effector
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install ros-foxy-rosee-msg ros-foxy-end-effector
+</pre></div>
+</div>
+</div>
+<div class="section" id="full-installation">
+<h2>Full Installation<a class="headerlink" href="#full-installation" title="Permalink to this heading"></a></h2>
+<p>With the full installation (respect to the basic) you will install also the ROS End-Effector GUI and the plugin necessary to run the simulated robot in gazebo. You will compile everything from source</p>
 <p>The following steps will guide you to install all packages of ROSEE using a <em>.rosintall</em> file.
 <span class="raw-html"><br /></span>
 The file will make you clone the necessary repository from their <em>master</em> branches.</p>
