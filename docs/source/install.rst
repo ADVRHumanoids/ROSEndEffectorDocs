@@ -32,7 +32,7 @@ We have released our package in the official ROS repositories! You can install i
 
   sudo apt install ros-foxy-rosee-msg ros-foxy-end-effector
 
-Full Installation 
+Full Installation (ROS1)
 ###############################
 
 With the full installation (respect to the basic) you will install also the ROS End-Effector GUI and the plugin necessary to run the simulated robot in gazebo. You will compile everything from source
