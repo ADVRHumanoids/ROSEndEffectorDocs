@@ -101,6 +101,10 @@ For reference, here there are listed all the packages involved in this project (
 - `ROS End-Effector Package Manager <https://github.com/ADVRHumanoids/ROSEndEffectorPackageManager>`_ - metapackage to easy installation
   :raw-html:`<br />`
   :raw-html:`<br />`
+  
+- `ROS End-Effector2 <https://github.com/ADVRHumanoids/ROSEndEffector2>`_ - the main package for the second version of ROS
+  :raw-html:`<br />`
+
 
 .. |travisLogo| image:: https://travis-ci.org/ADVRHumanoids/ROSEndEffector.svg?branch=master
   :target: https://travis-ci.org/ADVRHumanoids/ROSEndEffector
