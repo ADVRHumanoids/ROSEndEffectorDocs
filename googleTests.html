@@ -132,7 +132,7 @@ make <span class="nb">test</span> <span class="nv">ARGS</span><span class="o">=<
 <h2>Code Coverage (from <a class="reference external" href="https://github.com/ADVRHumanoids/xbot2_wip/issues/21">Arturo Xbot2</a>)<a class="headerlink" href="#code-coverage-from-arturo-xbot2" title="Permalink to this heading"></a></h2>
 <p><em>lcov</em> has been used to see the test coverage.
 <span class="raw-html"><br /></span></p>
-<p>The html output is available <a class="reference external" href="_static/coverage_out/index.html">here</a> (please note that it can be not updated)
+<p>The html output is available <a class="reference external" href="_static/coverage_out/index.html">here(ROS1)</a> and <a class="reference external" href="_static/coverage_out2/index.html">here(ROS2)</a> (please note that it can be not updated)
 <span class="raw-html"><br /></span></p>
 <p>To run the coverage locally, follow the steps:</p>
 <ul>
@@ -143,7 +143,7 @@ make <span class="nb">test</span> <span class="nv">ARGS</span><span class="o">=<
 </li>
 <li><p>Then run the coverage:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> build_dir
-ccmake . <span class="c1"># Check if ROSEE_ENABLE_COVERAGE is set to ON)</span>
+ccmake &lt;src_folder&gt; <span class="c1"># Check if ROSEE_ENABLE_COVERAGE is set to ON)</span>
 make
 make test_clean_coverage  <span class="c1"># cleans old coverage results (they accumulate otherwise!)</span>
 make <span class="nb">test</span> <span class="nv">ARGS</span><span class="o">=</span><span class="s2">&quot;-V&quot;</span> <span class="c1"># run tests in verbose mode</span>

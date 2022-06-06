@@ -37,7 +37,7 @@ Code Coverage (from `Arturo Xbot2 <https://github.com/ADVRHumanoids/xbot2_wip/is
 *lcov* has been used to see the test coverage.
 :raw-html:`<br />`
 
-The html output is available `here <_static/coverage_out/index.html>`_ (please note that it can be not updated)
+The html output is available `here(ROS1) <_static/coverage_out/index.html>`_ and `here(ROS2) <_static/coverage_out2/index.html>`_ (please note that it can be not updated)
 :raw-html:`<br />`
 
 To run the coverage locally, follow the steps:
@@ -53,7 +53,7 @@ To run the coverage locally, follow the steps:
   .. code-block:: bash
   
     cd build_dir
-    ccmake . # Check if ROSEE_ENABLE_COVERAGE is set to ON)
+    ccmake <src_folder> # Check if ROSEE_ENABLE_COVERAGE is set to ON)
     make
     make test_clean_coverage  # cleans old coverage results (they accumulate otherwise!)
     make test ARGS="-V" # run tests in verbose mode
