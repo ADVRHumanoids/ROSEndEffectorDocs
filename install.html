@@ -126,13 +126,13 @@ So, first, be sure to have ROS installed as described <a class="reference extern
 <div class="section" id="basic-installation">
 <h2>Basic Installation<a class="headerlink" href="#basic-installation" title="Permalink to this heading"></a></h2>
 <p>We have released our package in the official ROS repositories! You can install it for ROS (melodic and noetic) and ROS2 (foxy) with one of these:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install ros-melodic-rosee-msg ros-melodic-end-effector
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-melodic-rosee-msg<span class="w"> </span>ros-melodic-end-effector
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install ros-noetic-rosee-msg ros-noetic-end-effector
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-noetic-rosee-msg<span class="w"> </span>ros-noetic-end-effector
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install ros-foxy-rosee-msg ros-foxy-end-effector
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-foxy-rosee-msg<span class="w"> </span>ros-foxy-end-effector
 </pre></div>
 </div>
 </div>
@@ -143,14 +143,14 @@ So, first, be sure to have ROS installed as described <a class="reference extern
 <span class="raw-html"><br /></span>
 The file will make you clone the necessary repository from their <em>master</em> branches.</p>
 <p>Run in the terminal:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone -b devel https://github.com/ADVRHumanoids/ROSEndEffectorPackageManager.git
-<span class="nb">cd</span> ROSEndEffectorPackageManager
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>devel<span class="w"> </span>https://github.com/ADVRHumanoids/ROSEndEffectorPackageManager.git
+<span class="nb">cd</span><span class="w"> </span>ROSEndEffectorPackageManager
 ./setup.sh
-<span class="nb">cd</span> src
+<span class="nb">cd</span><span class="w"> </span>src
 catkin_init_workspace
-rosws update
-<span class="nb">cd</span> ..
-catkin_make -DBUILD_WITH_XBOT2<span class="o">=</span>OFF
+rosws<span class="w"> </span>update
+<span class="nb">cd</span><span class="w"> </span>..
+catkin_make<span class="w"> </span>-DBUILD_WITH_XBOT2<span class="o">=</span>OFF
 </pre></div>
 </div>
 <div class="admonition note">
@@ -172,7 +172,7 @@ catkin_make -DBUILD_WITH_XBOT2<span class="o">=</span>OFF
 <span id="xbot2install"></span><h3>XBot2 Integration<a class="headerlink" href="#xbot2-integration" title="Permalink to this heading"></a></h3>
 <p>ROS End-Effector also supports XBot2 to implement the Hardware Abstraction Layer, to communicate with the real or simulated robot. Please dowload it <a class="reference external" href="https://github.com/ADVRHumanoids/XBotControl/releases/tag/2.0-devel-core-updated">here</a>. Be sure to download a &gt;2 version!. Some helps on how setup xbot2 are available <a class="reference external" href="https://github.com/ADVRHumanoids/xbot2_examples">here</a>.</p>
 <p>ROS End-Effector include an integrated XBot2Hal: to compile it please set the BUILD_WITH_XBOT2 variable:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>catkin_make -DBUILD_WITH_XBOT2<span class="o">=</span>ON
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>catkin_make<span class="w"> </span>-DBUILD_WITH_XBOT2<span class="o">=</span>ON
 </pre></div>
 </div>
 </div>
@@ -190,7 +190,7 @@ After installation, you should recompile the package to let cmake set the correc
 These functionalities include an additional tab where joint state can be plotted in real-time, thanks to <em>Qt Charts</em>. More information about the ROS End-Effector GUI are available at <a class="reference internal" href="roseeGui.html#roseegui"><span class="std std-ref">ROS End-Effector GUI</span></a> page.
 <span class="raw-html"><br /></span>
 It seems that from Ubuntu 18 and newer, the <em>Qt</em> installer is not necessary anymore, simply install these before compiling <em>rosee_gui</em>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install qttools5-dev libqt5charts5-dev qtdeclarative5-dev
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>qttools5-dev<span class="w"> </span>libqt5charts5-dev<span class="w"> </span>qtdeclarative5-dev
 </pre></div>
 </div>
 </div>
@@ -211,7 +211,7 @@ It seems that from Ubuntu 18 and newer, the <em>Qt</em> installer is not necessa
 <p>With installer, also qtcreator (the IDE) will be installed, without the possibility to uncheck it. This seems a known bug of <em>Qt</em> (<a class="reference external" href="https://bugreports.qt.io/browse/QTBUG-28101">reference here</a>). It should be safe to remove qtcreator manually, expecially if you have already it installed.</p>
 </div>
 <p>After installed Qt, be sure to compile ROS End-Effector <strong>in an cleaned workspace</strong> (simply delete any <em>devel</em>, <em>build</em>, <em>install</em> folders, if present) specifying the Qt path when calling catkin_make:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>catkin_make --cmake-args -DQT5_PATH:STRING<span class="o">=</span><span class="c1">#&lt;gcc_64 path folder of qt5&gt;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>catkin_make<span class="w"> </span>--cmake-args<span class="w"> </span>-DQT5_PATH:STRING<span class="o">=</span><span class="c1">#&lt;gcc_64 path folder of qt5&gt;</span>
 
 <span class="c1"># for example</span>
 <span class="c1"># catkin_make --cmake-args -DQT5_PATH:STRING=/usr/lib/x86_64-linux-gnu/Qt5.12.8/5.12.8/gcc_64</span>
@@ -226,7 +226,7 @@ It seems that from Ubuntu 18 and newer, the <em>Qt</em> installer is not necessa
 <code class="code docutils literal notranslate"><span class="pre">qt.qpa.plugin:</span> <span class="pre">Could</span> <span class="pre">not</span> <span class="pre">load</span> <span class="pre">the</span> <span class="pre">Qt</span> <span class="pre">platform</span> <span class="pre">plugin</span> <span class="pre">&quot;xcb&quot;</span> <span class="pre">in</span> <span class="pre">&quot;&quot;</span> <span class="pre">...</span></code>
 <span class="raw-html"><br /></span>
 Solve simply installing <em>libxcb-xinerama0</em> :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install libxcb-xinerama0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libxcb-xinerama0
 </pre></div>
 </div>
 </li>

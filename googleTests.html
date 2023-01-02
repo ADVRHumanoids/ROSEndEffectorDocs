@@ -116,14 +116,14 @@
 Follow the steps to compile and run them on local machine:</p>
 <ul>
 <li><p>Compile</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> &lt;ROSEE_pkg_path&gt;/build
-make tests
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>&lt;ROSEE_pkg_path&gt;/build
+make<span class="w"> </span>tests
 </pre></div>
 </div>
 </li>
 <li><p>Run Test</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#run tests</span>
-make <span class="nb">test</span> <span class="nv">ARGS</span><span class="o">=</span><span class="s2">&quot;-V&quot;</span> -i <span class="c1">#or ctest --verbose</span>
+make<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="nv">ARGS</span><span class="o">=</span><span class="s2">&quot;-V&quot;</span><span class="w"> </span>-i<span class="w"> </span><span class="c1">#or ctest --verbose</span>
 </pre></div>
 </div>
 </li>
@@ -138,17 +138,17 @@ make <span class="nb">test</span> <span class="nv">ARGS</span><span class="o">=<
 <p>To run the coverage locally, follow the steps:</p>
 <ul>
 <li><p>Be sure to have <em>lcov</em> installed:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install lcov
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>lcov
 </pre></div>
 </div>
 </li>
 <li><p>Then run the coverage:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> build_dir
-ccmake &lt;src_folder&gt; <span class="c1"># Check if ROSEE_ENABLE_COVERAGE is set to ON)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>build_dir
+ccmake<span class="w"> </span>&lt;src_folder&gt;<span class="w"> </span><span class="c1"># Check if ROSEE_ENABLE_COVERAGE is set to ON)</span>
 make
-make test_clean_coverage  <span class="c1"># cleans old coverage results (they accumulate otherwise!)</span>
-make <span class="nb">test</span> <span class="nv">ARGS</span><span class="o">=</span><span class="s2">&quot;-V&quot;</span> <span class="c1"># run tests in verbose mode</span>
-make test_coverage <span class="c1"># generate coverage report</span>
+make<span class="w"> </span>test_clean_coverage<span class="w">  </span><span class="c1"># cleans old coverage results (they accumulate otherwise!)</span>
+make<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="nv">ARGS</span><span class="o">=</span><span class="s2">&quot;-V&quot;</span><span class="w"> </span><span class="c1"># run tests in verbose mode</span>
+make<span class="w"> </span>test_coverage<span class="w"> </span><span class="c1"># generate coverage report</span>
 </pre></div>
 </div>
 </li>
@@ -161,7 +161,7 @@ make test_coverage <span class="c1"># generate coverage report</span>
 <li><p>Run Test OPTION 2 (Colorful prints but all tests togheter)</p>
 <p>This is old way kept here only for reference, and it should still works anyway. Roscore is runned in
 the test itself so there isn’t the need to run external roscore before the tests, or using roslaunch.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch end_effector old_googleTest_run_all.launch
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch<span class="w"> </span>end_effector<span class="w"> </span>old_googleTest_run_all.launch
 </pre></div>
 </div>
 <p>Check the <strong>old_googleTest_run_all.launch</strong> file to change the hand for the tests

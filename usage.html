@@ -122,9 +122,9 @@
 <ul>
 <li><p>If you want to use also gazebo and <a class="reference internal" href="roseeGazeboPlugins.html#roseegazeboplugins"><span class="std std-ref">ROS End-Effector Gazebo plugin</span></a>, please prepare correctly your <em>.urdf</em> model following the steps <a class="reference internal" href="roseeGazeboPlugins.html#prepare4gazebo"><span class="std std-ref">here</span></a></p></li>
 <li><p>The nodes of ROS End-Effector needs the <em>.urdf</em> and <em>.srdf</em> files. Their path can be set as argument when calling the launch files:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;urdf_path&quot;</span> <span class="na">default=</span><span class="s">&quot;$(find end_effector)/configs/urdf/$(arg hand_name).urdf&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;srdf_path&quot;</span> <span class="na">default=</span><span class="s">&quot;$(find end_effector)/configs/srdf/$(arg hand_name).srdf&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;actions_folder_path&quot;</span> <span class="na">default=</span><span class="s">&quot;ROSEE/actions/$(arg hand_name)/&quot;</span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;urdf_path&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find end_effector)/configs/urdf/$(arg hand_name).urdf&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;srdf_path&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find end_effector)/configs/srdf/$(arg hand_name).srdf&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;actions_folder_path&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;ROSEE/actions/$(arg hand_name)/&quot;</span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>Note that the third argument is a path folder where the <em>.yaml</em> files of the grasping actions will be stored, and can be changed if necessary. As now it points to the <em>.ros</em> folder inside the home
@@ -138,23 +138,23 @@
 If you do not know the SRDF format, please read <a class="reference external" href="http://wiki.ros.org/srdf">here</a>.</p>
 <ul>
 <li><p>The convention used by ROS End-Effector is that each finger is a <em>group</em>, from the base of the finger to the tip, so in each group you must add a chain, where the <em>base_link</em> is the first link of the finger, and the <em>tip_link</em> is the last one. For example (taken from <em>robotiq_3f.srdf</em>):</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;finger_1&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;chain</span> <span class="na">base_link=</span><span class="s">&quot;palm&quot;</span> <span class="na">tip_link=</span><span class="s">&quot;finger_1_link_3&quot;</span> <span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;finger_1&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;chain</span><span class="w"> </span><span class="na">base_link=</span><span class="s">&quot;palm&quot;</span><span class="w"> </span><span class="na">tip_link=</span><span class="s">&quot;finger_1_link_3&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/group&gt;</span>
 </pre></div>
 </div>
 </li>
 <li><p>All the fingers-group must be included in a bigger group, like this:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span> <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;end_effector_fingers&quot;</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;finger_1&quot;</span> <span class="nt">/&gt;</span>
-   <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;finger_2&quot;</span> <span class="nt">/&gt;</span>
-   <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;finger_middle&quot;</span> <span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;end_effector_fingers&quot;</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;finger_1&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">   </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;finger_2&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">   </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;finger_middle&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/group&gt;</span>
 </pre></div>
 </div>
 </li>
 <li><p>In the <em>SRDF</em> file you can also indicate some joints as passive in this way:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;passive_joint</span> <span class="na">name=</span><span class="s">&quot;JOINT_NAME&quot;</span> <span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;passive_joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;JOINT_NAME&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>The passive tag is used to indicate to ROS End-Effector that a non-fixed joint is not actuated (i.e. it can move only if some external forces are applied, in a compliant way). If you not put this tag, the joint will be considered actuated.
@@ -163,7 +163,7 @@ Please <strong>DO NOT</strong> add the passive tag for joints that are defined a
 Also, it is not necessary to set the passive tag for fixed joints.</p>
 </li>
 <li><p>If you are planning to use gazebo, specify as <em>virtual</em> the joint between the <em>world</em> and the end-effector base is necessary, like below:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;virtual_joint</span> <span class="na">name=</span><span class="s">&quot;world_base&quot;</span> <span class="na">type=</span><span class="s">&quot;fixed&quot;</span> <span class="na">parent_frame=</span><span class="s">&quot;world&quot;</span> <span class="na">child_link=</span><span class="s">&quot;palm&quot;</span> <span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;virtual_joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;world_base&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="w"> </span><span class="na">parent_frame=</span><span class="s">&quot;world&quot;</span><span class="w"> </span><span class="na">child_link=</span><span class="s">&quot;palm&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 </li>
@@ -176,7 +176,7 @@ Also, it is not necessary to set the passive tag for fixed joints.</p>
 <span id="offphase"></span><h2>Find Grasping Actions (offline phase)<a class="headerlink" href="#find-grasping-actions-offline-phase" title="Permalink to this heading"></a></h2>
 <p>Before control a new end-effector, the first step is to let <strong>UniversalFindActions</strong> explore your model and extract the grasping primitive actions. So, run the dedicated launch:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># source the setup.bash of package where robot meshes are</span>
-roslaunch end_effector findActions.launch hand_name:<span class="o">=</span>my_hand
+roslaunch<span class="w"> </span>end_effector<span class="w"> </span>findActions.launch<span class="w"> </span>hand_name:<span class="o">=</span>my_hand
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -198,7 +198,7 @@ To know more about this part, and how to create custom grasping actions, see <a 
 <span class="raw-html"><br /></span>
 To launch this, please run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># source the setup.bash of package where robot meshes are</span>
-roslaunch end_effector rosee_startup.launch hand_name:<span class="o">=</span>my_hand
+roslaunch<span class="w"> </span>end_effector<span class="w"> </span>rosee_startup.launch<span class="w"> </span>hand_name:<span class="o">=</span>my_hand
 </pre></div>
 </div>
 <p>This command will load ROSEE controller node (called <em>UniversalROSEndEffector</em>) with rviz for visualization purposes.</p>
@@ -209,7 +209,7 @@ roslaunch end_effector rosee_startup.launch hand_name:<span class="o">=</span>my
 <p>In another terminal, you can run the ROS End-Effector GUI to command the grasping actions. Only be sure to have <em>rosee_gui</em> package installed (that you should have if you have followed <a class="reference internal" href="install.html#install"><span class="std std-ref">Installation</span></a> section).
 <span class="raw-html"><br /></span>
 To run the GUI, please run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch rosee_gui gui.launch <span class="c1">#no hand name is needed</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch<span class="w"> </span>rosee_gui<span class="w"> </span>gui.launch<span class="w"> </span><span class="c1">#no hand name is needed</span>
 </pre></div>
 </div>
 <p>This will load the GUI dynamically, visualizing only the grasping action defined for the end effector in use.
@@ -220,7 +220,7 @@ To know more about ROSEE GUI, check <a class="reference internal" href="roseeGui
 <p>The other way to command grasping actions is directly publishing on ROS topics (that is what GUI does for you).
 You can simply <code class="code docutils literal notranslate"><span class="pre">pub</span></code> a <em>rosee_msg/ROSEECommandActionGoal</em> message on <em>/ros_end_effector/action_command/goal</em> topic, and <code class="code docutils literal notranslate"><span class="pre">echo</span></code> on /<em>ros_end_effector/action_command/feedback</em> to receive the feedback.</p>
 <p>For example, to publish run this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rostopic pub /ros_end_effector/action_command/goal rosee_msg/ROSEECommandActionGoal <span class="s2">&quot;header:</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rostopic<span class="w"> </span>pub<span class="w"> </span>/ros_end_effector/action_command/goal<span class="w"> </span>rosee_msg/ROSEECommandActionGoal<span class="w"> </span><span class="s2">&quot;header:</span>
 <span class="s2">    seq: 0</span>
 <span class="s2">    stamp:</span>
 <span class="s2">      secs: 0</span>
@@ -254,7 +254,7 @@ if it is set to 0, the default norm will be used (actually 0.01). Note that the 
 only used for feedback</p>
 </div>
 <p>And to receive feedback, run (in another terminal):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rostopic <span class="nb">echo</span> /ros_end_effector/action_command/feedback
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rostopic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/ros_end_effector/action_command/feedback
 </pre></div>
 </div>
 </div>
@@ -268,11 +268,11 @@ only used for feedback</p>
 <p>Launch the main node with the <code class="code docutils literal notranslate"><span class="pre">gazebo:=true</span></code> argument, in this way:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># source the setup.bash of package where robot meshes are</span>
 <span class="c1"># if some errors happens, try to also source gazebo.setup, like &quot;source /usr/share/gazebo/setup.sh&quot;</span>
-roslaunch end_effector rosee_startup.launch hand_name:<span class="o">=</span>my_hand gazebo:<span class="o">=</span><span class="nb">true</span>
+roslaunch<span class="w"> </span>end_effector<span class="w"> </span>rosee_startup.launch<span class="w"> </span>hand_name:<span class="o">=</span>my_hand<span class="w"> </span>gazebo:<span class="o">=</span><span class="nb">true</span>
 </pre></div>
 </div>
 <p>As before, you can use the ROSEE GUI to send grasping action commands, running in another terminal:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch rosee_gui gui.launch <span class="c1">#no hand name is needed</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch<span class="w"> </span>rosee_gui<span class="w"> </span>gui.launch<span class="w"> </span><span class="c1">#no hand name is needed</span>
 </pre></div>
 </div>
 </div>

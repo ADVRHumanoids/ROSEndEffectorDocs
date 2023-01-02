@@ -136,10 +136,10 @@ It is hosted on <em>github</em> <a class="reference external" href="https://gith
 <p class="admonition-title">Note</p>
 <p>You probably already installed this if you have followed the steps in <a class="reference internal" href="install.html#install"><span class="std std-ref">Install</span></a> section</p>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins.git <span class="c1">#necessary external plugin</span>
-git clone -b &lt;branch_you_want&gt; https://github.com/ADVRHumanoids/rosee_gazebo_plugins.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins.git<span class="w"> </span><span class="c1">#necessary external plugin</span>
+git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>&lt;branch_you_want&gt;<span class="w"> </span>https://github.com/ADVRHumanoids/rosee_gazebo_plugins.git
 
-compile with catkin_make
+compile<span class="w"> </span>with<span class="w"> </span>catkin_make
 </pre></div>
 </div>
 </div>
@@ -151,7 +151,7 @@ compile with catkin_make
 <span class="raw-html"><br /></span>
 Also add in your <em>.urdf</em> :</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;gazebo&gt;</span>
-  <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;SOMENAME&quot;</span> <span class="na">filename=</span><span class="s">&quot;librosee_plugin.so&quot;</span><span class="nt">&gt;</span> <span class="nt">&lt;/plugin&gt;</span>
+<span class="w">  </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;SOMENAME&quot;</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;librosee_plugin.so&quot;</span><span class="nt">&gt;</span><span class="w"> </span><span class="nt">&lt;/plugin&gt;</span>
 <span class="nt">&lt;/gazebo&gt;</span>
 </pre></div>
 </div>
@@ -160,20 +160,20 @@ Also add in your <em>.urdf</em> :</p>
 <li><p>Add <em>rosee_gazebo_plugins_args</em> node in the main <em>yaml</em> config file <em>your_hand.yaml</em>, that you have created before as instructed in <a class="reference internal" href="usage.html#preparethefiles"><span class="std std-ref">Prepare the files</span></a> section. In this node you have a controller for each actuated joint, specifing
 the controller type, the joint which is controlled, and the pid gains.
 An example is below:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">ROSEndEffector</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">urdf_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;urdf/my_hand.urdf&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">srdf_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;srdf/my_hand.srdf&quot;</span><span class="w"></span>
-<span class="c1"># ^^^^^^^^^^^^^^^^^^^^^^^^^^^^   -- &gt; you should already have these lines</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">ROSEndEffector</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">urdf_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;urdf/my_hand.urdf&quot;</span>
+<span class="w">  </span><span class="nt">srdf_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;srdf/my_hand.srdf&quot;</span>
+<span class="c1"># ^^^^^^^^^^^^^^^^^^^^^^^^^^^^   -- &gt; you should already have these lines</span>
 
-<span class="nt">rosee_gazebo_plugins_args</span><span class="p">:</span><span class="w"></span>
+<span class="nt">rosee_gazebo_plugins_args</span><span class="p">:</span>
 
-<span class="w">  </span><span class="nt">joint_1_controller_name</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JointPositionController</span><span class="w"></span>
-<span class="w">    </span><span class="nt">joint_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JOINT NAME</span><span class="w"></span>
-<span class="w">    </span><span class="nt">pid</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">p</span><span class="p">:</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="nt"> i</span><span class="p">:</span><span class="w"> </span><span class="nv">0.001</span><span class="p p-Indicator">,</span><span class="nt"> d</span><span class="p">:</span><span class="w"> </span><span class="nv">0.00005</span><span class="p p-Indicator">}</span><span class="w"></span>
+<span class="w">  </span><span class="nt">joint_1_controller_name</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JointPositionController</span>
+<span class="w">    </span><span class="nt">joint_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JOINT NAME</span>
+<span class="w">    </span><span class="nt">pid</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">p</span><span class="p">:</span><span class="w"> </span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="nt"> i</span><span class="p">:</span><span class="w"> </span><span class="nv">0.001</span><span class="p p-Indicator">,</span><span class="nt"> d</span><span class="p">:</span><span class="w"> </span><span class="nv">0.00005</span><span class="p p-Indicator">}</span>
 
-<span class="w w-Error"> </span><span class="nt">joint_2_controller_name</span><span class="p">:</span><span class="w"></span>
-<span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"></span>
+<span class="w w-Error"> </span><span class="nt">joint_2_controller_name</span><span class="p">:</span>
+<span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -186,56 +186,56 @@ In truth there exists also <em>JointEffortController</em>, we will implement thi
 <p><span class="raw-html"><br /></span></p>
 </li>
 <li><p><strong>Important</strong>: if your urdf file has some mimic joints, you have to add a <a class="reference external" href="https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins">mimic_joint_plugin</a> for each one, like below:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;base_to_right_finger&quot;</span> <span class="na">type=</span><span class="s">&quot;revolute&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;limit</span> <span class="na">effort=</span><span class="s">&quot;1000.0&quot;</span> <span class="na">lower=</span><span class="s">&quot;-0.7&quot;</span> <span class="na">upper=</span><span class="s">&quot;0.0&quot;</span> <span class="na">velocity=</span><span class="s">&quot;0.5&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;base&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">&quot;right_finger&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;.1 0 0&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;mimic</span> <span class="na">joint=</span><span class="s">&quot;base_to_left_finger&quot;</span> <span class="na">multiplier=</span><span class="s">&quot;-1&quot;</span> <span class="na">offset=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;base_to_right_finger&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;revolute&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;axis</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;limit</span><span class="w"> </span><span class="na">effort=</span><span class="s">&quot;1000.0&quot;</span><span class="w"> </span><span class="na">lower=</span><span class="s">&quot;-0.7&quot;</span><span class="w"> </span><span class="na">upper=</span><span class="s">&quot;0.0&quot;</span><span class="w"> </span><span class="na">velocity=</span><span class="s">&quot;0.5&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;base&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;right_finger&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;.1 0 0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;mimic</span><span class="w"> </span><span class="na">joint=</span><span class="s">&quot;base_to_left_finger&quot;</span><span class="w"> </span><span class="na">multiplier=</span><span class="s">&quot;-1&quot;</span><span class="w"> </span><span class="na">offset=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/joint&gt;</span>
 <span class="cm">&lt;!-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this is the mimic joint --&gt;</span>
 
 <span class="nt">&lt;gazebo&gt;</span>
-  <span class="nt">&lt;plugin</span> <span class="na">filename=</span><span class="s">&quot;libroboticsgroup_gazebo_mimic_joint_plugin.so&quot;</span> <span class="na">name=</span><span class="s">&quot;base_to_right_finger_jointmimic_joint_plugin&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;joint&gt;</span>base_to_left_finger<span class="nt">&lt;/joint&gt;</span>
-  <span class="nt">&lt;mimicJoint&gt;</span>base_to_right_finger<span class="nt">&lt;/mimicJoint&gt;</span>
-  <span class="nt">&lt;multiplier&gt;</span>-1.0<span class="nt">&lt;/multiplier&gt;</span>
-  <span class="nt">&lt;offset&gt;</span>0<span class="nt">&lt;/offset&gt;</span>
-  <span class="nt">&lt;sensitiveness&gt;</span>0.0<span class="nt">&lt;/sensitiveness&gt;</span>
-  <span class="cm">&lt;!-- if absolute difference between setpoint and process value is below this threshold, do nothing; 0.0 = disable [rad] --&gt;</span>
-  <span class="nt">&lt;maxEffort&gt;</span>1000.0<span class="nt">&lt;/maxEffort&gt;</span>
-  <span class="nt">&lt;/plugin&gt;</span>
+<span class="w">  </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;libroboticsgroup_gazebo_mimic_joint_plugin.so&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;base_to_right_finger_jointmimic_joint_plugin&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;joint&gt;</span>base_to_left_finger<span class="nt">&lt;/joint&gt;</span>
+<span class="w">  </span><span class="nt">&lt;mimicJoint&gt;</span>base_to_right_finger<span class="nt">&lt;/mimicJoint&gt;</span>
+<span class="w">  </span><span class="nt">&lt;multiplier&gt;</span>-1.0<span class="nt">&lt;/multiplier&gt;</span>
+<span class="w">  </span><span class="nt">&lt;offset&gt;</span>0<span class="nt">&lt;/offset&gt;</span>
+<span class="w">  </span><span class="nt">&lt;sensitiveness&gt;</span>0.0<span class="nt">&lt;/sensitiveness&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- if absolute difference between setpoint and process value is below this threshold, do nothing; 0.0 = disable [rad] --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;maxEffort&gt;</span>1000.0<span class="nt">&lt;/maxEffort&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/plugin&gt;</span>
 <span class="nt">&lt;/gazebo&gt;</span>
 </pre></div>
 </div>
 <p>This example is taken from <em>configs/urdf/two_finger_mimic.urdf</em> file.
 <span class="raw-html"><br /></span>
 If you like to use xacro macros to add this plugin, you can create one in this way:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;xacro:macro</span> <span class="na">name=</span><span class="s">&quot;mimic_joint_plugin_gazebo&quot;</span> <span class="na">params=</span><span class="s">&quot;name_prefix parent_joint mimic_joint has_pid:=false multiplier:=1.0 offset:=0 sensitiveness:=0.0 max_effort:=1.0 robot_namespace:=&#39;&#39;&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;gazebo&gt;</span>
-  <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;${name_prefix}mimic_joint_plugin&quot;</span> <span class="na">filename=</span><span class="s">&quot;libroboticsgroup_gazebo_mimic_joint_plugin.so&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;joint&gt;</span>${parent_joint}<span class="nt">&lt;/joint&gt;</span>
-      <span class="nt">&lt;mimicJoint&gt;</span>${mimic_joint}<span class="nt">&lt;/mimicJoint&gt;</span>
-      <span class="nt">&lt;xacro:if</span> <span class="na">value=</span><span class="s">&quot;${has_pid}&quot;</span><span class="nt">&gt;</span>                     <span class="cm">&lt;!-- if set to true, PID parameters from &quot;/gazebo_ros_control/pid_gains/${mimic_joint}&quot; are loaded --&gt;</span>
-           <span class="nt">&lt;hasPID</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;/xacro:if&gt;</span>
-      <span class="nt">&lt;multiplier&gt;</span>${multiplier}<span class="nt">&lt;/multiplier&gt;</span>
-      <span class="nt">&lt;offset&gt;</span>${offset}<span class="nt">&lt;/offset&gt;</span>
-      <span class="nt">&lt;sensitiveness&gt;</span>${sensitiveness}<span class="nt">&lt;/sensitiveness&gt;</span>   <span class="cm">&lt;!-- if absolute difference between setpoint and process value is below this threshold, do nothing; 0.0 = disable [rad] --&gt;</span>
-      <span class="nt">&lt;maxEffort&gt;</span>${max_effort}<span class="nt">&lt;/maxEffort&gt;</span>              <span class="cm">&lt;!-- only taken into account if has_pid:=true [Nm] --&gt;</span>
-      <span class="nt">&lt;xacro:unless</span> <span class="na">value=</span><span class="s">&quot;${robot_namespace == &#39;&#39;}&quot;</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;robotNamespace&gt;</span>($robot_namespace)<span class="nt">&lt;/robotNamespace&gt;</span>
-      <span class="nt">&lt;/xacro:unless&gt;</span>
-  <span class="nt">&lt;/plugin&gt;</span>
-  <span class="nt">&lt;/gazebo&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;xacro:macro</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mimic_joint_plugin_gazebo&quot;</span><span class="w"> </span><span class="na">params=</span><span class="s">&quot;name_prefix parent_joint mimic_joint has_pid:=false multiplier:=1.0 offset:=0 sensitiveness:=0.0 max_effort:=1.0 robot_namespace:=&#39;&#39;&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;gazebo&gt;</span>
+<span class="w">  </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;${name_prefix}mimic_joint_plugin&quot;</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;libroboticsgroup_gazebo_mimic_joint_plugin.so&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;joint&gt;</span>${parent_joint}<span class="nt">&lt;/joint&gt;</span>
+<span class="w">      </span><span class="nt">&lt;mimicJoint&gt;</span>${mimic_joint}<span class="nt">&lt;/mimicJoint&gt;</span>
+<span class="w">      </span><span class="nt">&lt;xacro:if</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;${has_pid}&quot;</span><span class="nt">&gt;</span><span class="w">                     </span><span class="cm">&lt;!-- if set to true, PID parameters from &quot;/gazebo_ros_control/pid_gains/${mimic_joint}&quot; are loaded --&gt;</span>
+<span class="w">           </span><span class="nt">&lt;hasPID</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/xacro:if&gt;</span>
+<span class="w">      </span><span class="nt">&lt;multiplier&gt;</span>${multiplier}<span class="nt">&lt;/multiplier&gt;</span>
+<span class="w">      </span><span class="nt">&lt;offset&gt;</span>${offset}<span class="nt">&lt;/offset&gt;</span>
+<span class="w">      </span><span class="nt">&lt;sensitiveness&gt;</span>${sensitiveness}<span class="nt">&lt;/sensitiveness&gt;</span><span class="w">   </span><span class="cm">&lt;!-- if absolute difference between setpoint and process value is below this threshold, do nothing; 0.0 = disable [rad] --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;maxEffort&gt;</span>${max_effort}<span class="nt">&lt;/maxEffort&gt;</span><span class="w">              </span><span class="cm">&lt;!-- only taken into account if has_pid:=true [Nm] --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;xacro:unless</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;${robot_namespace == &#39;&#39;}&quot;</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;robotNamespace&gt;</span>($robot_namespace)<span class="nt">&lt;/robotNamespace&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/xacro:unless&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/gazebo&gt;</span>
 <span class="nt">&lt;/xacro:macro&gt;</span>
 </pre></div>
 </div>
 <p>And then use it:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;xacro:mimic_joint_plugin_gazebo</span> <span class="na">name_prefix=</span><span class="s">&quot;base_to_right_finger_joint&quot;</span>
-  <span class="na">arent_joint=</span><span class="s">&quot;base_to_left_finger&quot;</span> <span class="na">mimic_joint=</span><span class="s">&quot;base_to_right_finger&quot;</span>
-  <span class="na">has_pid=</span><span class="s">&quot;false&quot;</span> <span class="na">multiplier=</span><span class="s">&quot;-1.0&quot;</span> <span class="na">max_effort=</span><span class="s">&quot;1000.0&quot;</span> <span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;xacro:mimic_joint_plugin_gazebo</span><span class="w"> </span><span class="na">name_prefix=</span><span class="s">&quot;base_to_right_finger_joint&quot;</span>
+<span class="w">  </span><span class="na">arent_joint=</span><span class="s">&quot;base_to_left_finger&quot;</span><span class="w"> </span><span class="na">mimic_joint=</span><span class="s">&quot;base_to_right_finger&quot;</span>
+<span class="w">  </span><span class="na">has_pid=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">multiplier=</span><span class="s">&quot;-1.0&quot;</span><span class="w"> </span><span class="na">max_effort=</span><span class="s">&quot;1000.0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>This example is taken from <em>configs/urdf/two_finger_mimic.urdf.xacro</em> file.
@@ -249,12 +249,12 @@ The macro is taken from <a class="reference external" href="https://github.com/m
 <p>To run ROS End-Effector as a whole, follow the guide in <a class="reference internal" href="usage.html#usage"><span class="std std-ref">How to use ROS End-Effector with your End-Effector</span></a> section.</p>
 <ul>
 <li><p>Anyway, ROS End-Effector Gazebo Plugins is a package that run independently, so you can also launch it alone:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch rosee_gazebo_plugins twofinger.launch
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch<span class="w"> </span>rosee_gazebo_plugins<span class="w"> </span>twofinger.launch
 </pre></div>
 </div>
 </li>
 <li><p>To run the dynamic reconfigurator:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosrun rosee_gazebo_plugins DynReconfigure two_finger
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosrun<span class="w"> </span>rosee_gazebo_plugins<span class="w"> </span>DynReconfigure<span class="w"> </span>two_finger
 </pre></div>
 </div>
 </li>

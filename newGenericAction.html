@@ -111,21 +111,21 @@
 <p>The request is composed as following:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1">## Service associated with GenericGraspingAction message</span>
 
-NewGenericGraspingAction newAction
+NewGenericGraspingAction<span class="w"> </span>newAction
 
 <span class="c1"># user can also request to store the action in a yaml file, togheter with the others</span>
-bool emitYaml
+bool<span class="w"> </span>emitYaml
 
 ---
 
 <span class="c1"># the service will give true if action is good and it is inserted in the structure</span>
-bool accepted
+bool<span class="w"> </span>accepted
 
 <span class="c1"># true false depending if emission on yaml file is successful</span>
-bool emitted
+bool<span class="w"> </span>emitted
 
 <span class="c1"># string containing useful info about a possible not acceptance</span>
-string error_msg
+string<span class="w"> </span>error_msg
 </pre></div>
 </div>
 <p>Where NewGenericGraspingAction is defined as:</p>
@@ -133,21 +133,21 @@ string error_msg
 <span class="c1"># (https://github.com/ADVRHumanoids/ROSEndEffector/issues/71)</span>
 
 <span class="c1"># name of the action</span>
-string action_name
+string<span class="w"> </span>action_name
 
 <span class="c1"># Motor Position</span>
-MotorPosition action_motor_position
+MotorPosition<span class="w"> </span>action_motor_position
 
 <span class="c1"># OPTIONAL The mask which says if the motor is used by the action (count &gt; 0) or not (count = 0).</span>
 <span class="c1"># take care that if it is not included, the not used joint will be considered the ones with 0 position</span>
-JointsInvolvedCount action_motor_count
+JointsInvolvedCount<span class="w"> </span>action_motor_count
 
 <span class="c1"># OPTIONAL field to indicate which hand element will be moved by the action</span>
-string<span class="o">[]</span> elements_involved
+string<span class="o">[]</span><span class="w"> </span>elements_involved
 </pre></div>
 </div>
 <p>Hence you can call the service from usual c++ code or also from terminal for example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosservice call /ros_end_effector/new_generic_grasping_action <span class="s2">&quot;newAction:</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosservice<span class="w"> </span>call<span class="w"> </span>/ros_end_effector/new_generic_grasping_action<span class="w"> </span><span class="s2">&quot;newAction:</span>
 <span class="s2">        action_name: &#39;newFancyAction&#39;</span>
 <span class="s2">        action_motor_position:</span>
 <span class="s2">          name:</span>

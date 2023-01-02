@@ -112,7 +112,7 @@
 <h2>Generic<a class="headerlink" href="#generic" title="Permalink to this heading"></a></h2>
 <ul>
 <li><p>From 28-01-2020 the <em>use_gui</em> param (in launch files) gives an error because it is deprecated. This causes the sliders of joint state publisher not shown. To solve :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install ros-kinetic-joint-state-publisher-gui
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-kinetic-joint-state-publisher-gui
 </pre></div>
 </div>
 </li>
@@ -154,7 +154,7 @@ if you have set up your <em>urdf</em> file for Gazebo usage.
 <p>If gazebo simulation is unstable, or the model explodes, or other similar issues happen, the reasons can be many.</p>
 <ul>
 <li><p>Be sure that dynamic parameters of the model are correct. In particular, in the urdf file, other than the <code class="code docutils literal notranslate"><span class="pre">&lt;inertial&gt;</span></code> tags, you will probably need also some dynamic params for joints:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dynamics</span> <span class="na">damping=</span><span class="s">&quot;SOMEVALUE&quot;</span> <span class="na">friction=</span><span class="s">&quot;SOMEVALUE&quot;</span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dynamics</span><span class="w"> </span><span class="na">damping=</span><span class="s">&quot;SOMEVALUE&quot;</span><span class="w"> </span><span class="na">friction=</span><span class="s">&quot;SOMEVALUE&quot;</span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>If you not put these values, or they are too low (like &lt;10e-05?) you could have some issues. They may be caused by some divisions by 0 (or a very low number) that cause too high magnitudes somewhere in the computations. Even if you do not known the real parameters, the experiments should not be influenced so much by wrong values.</p>

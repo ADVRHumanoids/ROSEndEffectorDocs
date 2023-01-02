@@ -151,7 +151,7 @@ the element which distinguish a primitive, like 2 fingers for a PinchTight</p></
 </ul>
 <p>The respond is a vector of grasping actions (that can be also empty or with only one element)</p>
 <p>You can use <code class="code docutils literal notranslate"><span class="pre">rosservice</span> <span class="pre">call</span></code> command to call the service:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosservice call /ros_end_effector/grasping_actions_available <span class="s2">&quot;action_type: 0</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosservice<span class="w"> </span>call<span class="w"> </span>/ros_end_effector/grasping_actions_available<span class="w"> </span><span class="s2">&quot;action_type: 0</span>
 <span class="s2">primitive_type: 1</span>
 <span class="s2">action_name: &#39;&#39;</span>
 <span class="s2">elements_involved:</span>
@@ -161,7 +161,7 @@ the element which distinguish a primitive, like 2 fingers for a PinchTight</p></
 </div>
 <p>This command will request the primitive (<em>action_type</em> : <em>0</em>) of type PinchTight (<em>primitive_type</em> : <em>0</em>) done with the <em>thumb</em> and <em>index</em> fingers.</p>
 <p><span class="raw-html"><br /></span></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosservice call /ros_end_effector/grasping_actions_available <span class="s2">&quot;action_type: 1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosservice<span class="w"> </span>call<span class="w"> </span>/ros_end_effector/grasping_actions_available<span class="w"> </span><span class="s2">&quot;action_type: 1</span>
 <span class="s2">action_name: &#39;AParticularGenericAction&#39;&quot;</span>
 </pre></div>
 </div>
