@@ -120,6 +120,31 @@ Cite our work
 =========================
 If you find our package useful, please cite our work!
 
+**ROS End-Effector: A Hardware-Agnostic Software and Control Framework for Robotic End-Effectors**
+:raw-html:`<br />`
+by Davide Torielli, Liana Bertoni, Fabio Fusaro, Nikos Tsagarakis, and Luca Muratore,
+:raw-html:`<br />`
+*Journal of Intelligent and Robotic Systems 108, 70 (2023)*
+
+.. code-block:: latex
+
+  @Article{Torielli2023,
+  author={Torielli, Davide and Bertoni, Liana and Fusaro, Fabio and Tsagarakis, Nikos and Muratore, Luca},
+  title={ROS End-Effector: A Hardware-Agnostic Software and Control Framework for Robotic End-Effectors},
+  journal={Journal of Intelligent {\&} Robotic Systems},
+  year={2023},
+  month={Jul},
+  day={22},
+  volume={108},
+  number={4},
+  pages={70},
+  issn={1573-0409},
+  doi={10.1007/s10846-023-01911-5},
+  url={https://doi.org/10.1007/s10846-023-01911-5}}
+
+:raw-html:`<br />`
+
+
 **Towards an Open-Source Hardware Agnostic Framework for Robotic End-Effectors Control**
 :raw-html:`<br />`
 by Davide Torielli, Liana Bertoni, Nikos Tsagarakis, and Luca Muratore,
