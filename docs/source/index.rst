@@ -200,7 +200,7 @@ Supported by ROSIN - ROS-Industrial Quality-Assured Robot Software Components.
 :raw-html:`<br />`
 More information: rosin-project.eu_
 
-.. _rosin-project.eu: https://www.rosin-project.eu/ftp/ros-end-effector
+.. _rosin-project.eu: https://cordis.europa.eu/project/id/732287
 
 
 .. image:: https://raw.githubusercontent.com/rosin-project/press_kit/master/img/rosin_eu_flag.jpg
