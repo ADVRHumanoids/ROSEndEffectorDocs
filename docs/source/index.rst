@@ -190,7 +190,7 @@ by Liana Bertoni, Davide Torielli, Yifang Zhang, Nikos Tsagarakis, and Luca Mura
     ROSIN acknowledgement from the ROSIN press kit
     @ https://github.com/rosin-project/press_kit
 
-.. image:: http://rosin-project.eu/wp-content/uploads/rosin_ack_logo_wide.png
+.. image:: https://raw.githubusercontent.com/rosin-project/press_kit/master/img/rosin_ack_logo_wide.png
   :target: http://rosin-project.eu
   :alt: rosin_logo
   :width: 200
@@ -200,10 +200,10 @@ Supported by ROSIN - ROS-Industrial Quality-Assured Robot Software Components.
 :raw-html:`<br />`
 More information: rosin-project.eu_
 
-.. _rosin-project.eu: https://www.rosin-project.eu/ftp/ros-end-effector
+.. _rosin-project.eu: https://cordis.europa.eu/project/id/732287
 
 
-.. image:: http://rosin-project.eu/wp-content/uploads/rosin_eu_flag.jpg
+.. image:: https://raw.githubusercontent.com/rosin-project/press_kit/master/img/rosin_eu_flag.jpg
   :alt: eu_flag
   :width: 70
   :align: left 
